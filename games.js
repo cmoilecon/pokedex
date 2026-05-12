@@ -29,7 +29,7 @@ export const games = [
     shortName: "Isolarmure",
     subtitle: "Isle of Armor Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/isle-of-armor",
-    coverPokemonIds: [1, 2, 3]
+    coverPokemonIds: [1, 100, 101]
   },
   {
     id: "crown-tundra",
@@ -37,7 +37,7 @@ export const games = [
     shortName: "Couronneige",
     subtitle: "Crown Tundra Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/crown-tundra",
-    coverPokemonIds: [1, 2, 3]
+    coverPokemonIds: [200, 208, 210]
   },
   {
     id: "brilliant-diamond-shining-pearl",
@@ -69,7 +69,7 @@ export const games = [
     shortName: "Septentria",
     subtitle: "Kitakami Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/scarlet-violet/teal-mask",
-    coverPokemonIds: [1, 2, 3]
+    coverPokemonIds: [197, 198, 199]
   },
   {
     id: "indigo-disk",
@@ -77,7 +77,7 @@ export const games = [
     shortName: "Institut Myrtille",
     subtitle: "Blueberry Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/scarlet-violet/indigo-disk",
-    coverPokemonIds: [1, 4, 7]
+    coverPokemonIds: [241, 240, 243]
   },
   {
     id: "legends-z-a",

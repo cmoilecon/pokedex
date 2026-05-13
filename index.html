@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dex Switch</title>
+  <link rel="icon" href="data:,">
+
+  <link rel="stylesheet" href="./style.css?v=12" />
+  <script type="module" src="./app.js?v=12" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-main">
+      <div class="topbar-left">
+        <button id="homeBtn" class="btn">Home</button>
+      </div>
+
+      <div class="topbar-center">
+        <h1 id="appTitle">Dex Switch</h1>
+        <p id="appSubtitle">Pokédex web avec profils</p>
+        <p id="topbarMiniStats" class="topbar-mini-stats hidden">0 / 0 • 0%</p>
+      </div>
+
+      <div class="topbar-right">
+        <button id="menuToggleBtn" class="btn menu-btn">Menu</button>
+      </div>
+    </div>
+
+    <div id="topbarControls" class="controls collapsed">
+      <div class="controls-line controls-main-line">
+        <label id="profileSelectLabel">
+          Profil :
+          <select id="profileSelect"></select>
+        </label>
+
+        <button id="newProfileBtn" class="btn">Nouveau profil</button>
+        <button id="editProfileBtn" class="btn">Modifier profil</button>
+
+        <button id="exportSaveBtn" class="btn good">Exporter</button>
+        <button id="importSaveBtn" class="btn warn">Importer</button>
+
+        <button id="deleteProfileBtn" class="btn danger">Supprimer profil</button>
+
+        <label>
+          Lang :
+          <select id="langSelect">
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+          </select>
+        </label>
+
+        <label class="toggle">
+          Dark :
+          <input id="darkMode" type="checkbox">
+        </label>
+      </div>
+
+      <div class="controls-line controls-dex-line">
+        <label class="toggle">
+          Shiny Dex :
+          <input id="shinyMode" type="checkbox">
+        </label>
+
+        <label class="toggle">
+          Manquants :
+          <input id="missingOnlyMode" type="checkbox">
+        </label>
+
+        <button id="checkVisibleBtn" class="btn good">Tout cocher</button>
+        <button id="uncheckVisibleBtn" class="btn warn">Tout décocher</button>
+
+        <label class="toggle" id="hideCompletedDexLabel">
+          Masquer complets :
+          <input id="hideCompletedDexMode" type="checkbox">
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <section id="setupView" class="setup-view hidden">
+    <div class="setup-card">
+      <h2>Bienvenue 👋</h2>
+      <p>Crée ton profil et choisis les Dex que tu veux suivre.</p>
+
+      <label class="field">
+        Nom du profil
+        <input id="setupProfileName" type="text" placeholder="Ex : Sacha" />
+      </label>
+
+      <h3>Choisis tes Dex</h3>
+
+      <div class="setup-actions">
+        <button id="selectAllDexBtn" class="btn good" type="button">Tout sélectionner</button>
+        <button id="unselectAllDexBtn" class="btn warn" type="button">Tout désélectionner</button>
+      </div>
+
+      <label class="dex-choice national-link-choice">
+        <input id="setupNationalLinked" type="checkbox">
+        Lier le National aux autres Dex
+      </label>
+
+      <div id="setupDexChoices" class="setup-dex-list"></div>
+
+      <button id="createFirstProfileBtn" class="btn good big">Créer le profil</button>
+    </div>
+  </section>
+
+<section id="homeView" class="home-view hidden">
+  <div class="home-header">
+    <h2 id="homeProfileName">Profil</h2>
+    <p>Choisis un Dex à ouvrir.</p>
+  </div>
+
+  <section class="level-panel">
+    <div>
+      <h3 id="globalLevelTitle">Niveau 1 — Débutant</h3>
+      <p id="globalXpText">XP : 0 / 25</p>
+    </div>
+
+    <div class="level-progress">
+      <div id="globalXpFill"></div>
+    </div>
+  </section>
+
+  <section class="objectives-panel">
+    <div class="objectives-header">
+      <div>
+        <h3>Objectifs actifs</h3>
+        <p>Petites missions rapides pour avancer sans te perdre.</p>
+      </div>
+
+      <div class="objectives-actions">
+        <button id="toggleObjectivesBtn" class="btn" type="button">Réduire</button>
+        <button id="randomObjectiveBtn" class="btn good" type="button">🎲 Objectif</button>
+      </div>
+    </div>
+
+    <div id="objectivesList" class="objectives-list compact"></div>
+  </section>
+
+  <div id="gameGrid" class="game-grid"></div>
+</section>
+
+  <section id="dexView" class="dex-view hidden">
+    <section class="stats">
+      <div>
+        <span>Pokémon obtenus</span>
+        <strong id="count">0 / 0</strong>
+      </div>
+
+      <div>
+        <span>Complétion</span>
+        <strong id="percent">0%</strong>
+      </div>
+
+      <div class="progress">
+        <div id="progressFill"></div>
+      </div>
+    </section>
+
+    <section id="dexObjectivesPanel" class="dex-objectives-panel hidden">
+      <div class="dex-objectives-title">Objectifs de ce Dex</div>
+      <div id="dexObjectivesList" class="objectives-list compact dex-objectives-list"></div>
+    </section>
+
+    <section class="search-box">
+      <input id="searchInput" type="search" placeholder="Rechercher un Pokémon..." />
+    </section>
+
+    <main id="dex" class="dex"></main>
+  </section>
+
+  <section id="backupModal" class="backup-modal hidden">
+    <div class="backup-card">
+      <h2 id="backupTitle">Sauvegarde</h2>
+      <p id="backupText">Copie ou colle ta sauvegarde ici.</p>
+
+      <textarea id="backupArea" spellcheck="false"></textarea>
+
+      <div class="backup-actions">
+        <button id="copyBackupBtn" class="btn good">Copier</button>
+        <button id="applyBackupBtn" class="btn warn">Importer ce JSON</button>
+        <button id="closeBackupBtn" class="btn danger">Fermer</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="toastContainer" class="toast-container"></div>
+</body>
+</html>

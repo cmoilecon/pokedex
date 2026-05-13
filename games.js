@@ -37,7 +37,7 @@ export const games = [
     shortName: "Couronneige",
     subtitle: "Crown Tundra Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/crown-tundra",
-    coverPokemonIds: [200, 208, 210]
+    coverPokemonIds: [208, 209, 210]
   },
   {
     id: "brilliant-diamond-shining-pearl",

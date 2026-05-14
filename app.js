@@ -44,6 +44,8 @@ const ui = {
   appTitle: $("#appTitle"),
   appSubtitle: $("#appSubtitle"),
   topbarMiniStats: $("#topbarMiniStats"),
+  topbarBadgesLeft: $("#topbarBadgesLeft"),
+  topbarBadgesRight: $("#topbarBadgesRight"),
   menuToggleBtn: $("#menuToggleBtn"),
   topbarControls: $("#topbarControls"),
 
@@ -79,7 +81,6 @@ const ui = {
 
   objectiveHistoryPanel: $("#objectiveHistoryPanel"),
   objectiveHistoryList: $("#objectiveHistoryList"),
-  toggleObjectiveHistoryBtn: $("#toggleObjectiveHistoryBtn"),
 
   dexObjectivesPanel: $("#dexObjectivesPanel"),
   dexObjectivesList: $("#dexObjectivesList"),
@@ -105,6 +106,11 @@ const ui = {
   copyBackupBtn: $("#copyBackupBtn"),
   applyBackupBtn: $("#applyBackupBtn"),
   closeBackupBtn: $("#closeBackupBtn"),
+  achievementUnlockOverlay: $("#achievementUnlockOverlay"),
+  achievementUnlockImage: $("#achievementUnlockImage"),
+  achievementUnlockName: $("#achievementUnlockName"),
+  achievementUnlockDesc: $("#achievementUnlockDesc"),
+
   toastContainer: $("#toastContainer")
 };
 
@@ -115,7 +121,15 @@ let setupMode = "create";
 let isMenuOpen = false;
 let areObjectivesCollapsed = false;
 let isObjectiveHistoryCollapsed = true;
+let objectiveHistoryStatusFilter = "all";
+let objectiveHistoryDexFilter = "all";
+let objectiveHistoryNeutralFilter = true;
 let activeObjectiveFilterId = null;
+let recentlyUnlockedAchievementIds = new Set();
+let achievementUnlockQueue = [];
+let isShowingAchievementUnlock = false;
+let achievementAudioContext = null;
+let achievementSoundEnabled = true;
 
 function loadProfiles() {
   try {
@@ -691,6 +705,35 @@ function getNextMissingObjectiveCandidate(profile, gameId) {
   };
 }
 
+function getNearbyMissingObjectiveCandidates(profile, gameId) {
+  const state = getProfileDexState(profile, gameId);
+  const obtained = state.obtained || {};
+  const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
+  const pokemons = getPokemonsForGame(gameId);
+
+  const candidates = [];
+
+  for (let i = 0; i < pokemons.length; i++) {
+    const slice = pokemons.slice(i, i + 4);
+
+    const missing = slice
+      .filter(pokemon => !obtained[pokemon.id])
+      .filter(pokemon => !alreadyTargeted.has(String(pokemon.id)));
+
+    if (missing.length < 3) continue;
+
+    candidates.push({
+      gameId,
+      type: "catch_nearby",
+      title: "Compléter une série proche",
+      target: missing.length,
+      pokemonIds: missing.map(pokemon => pokemon.id)
+    });
+  }
+
+  return candidates;
+}
+
 function getFamilyObjectiveCandidates(profile, gameId) {
   const pokemons = getPokemonsForGame(gameId);
   const state = getProfileDexState(profile, gameId);
@@ -739,7 +782,7 @@ function canCreateObjectiveType(profile, type, maxSameType = 2) {
   return sameTypeCount < maxSameType;
 }
 
-function createRandomObjective() {
+function createRandomObjective(forcedGameId = null) {
   const profile = getActiveProfile();
 
   if (!profile) {
@@ -755,14 +798,30 @@ function createRandomObjective() {
     return;
   }
 
-  const possibleGames = getPossibleObjectiveGames(profile);
+  let possibleGames;
+
+  if (forcedGameId) {
+    const missingIds = getMissingPokemonIdsForObjective(profile, forcedGameId);
+
+    possibleGames = missingIds.length > 0
+      ? [{ gameId: forcedGameId, missingIds }]
+      : [];
+  } else {
+    possibleGames = getPossibleObjectiveGames(profile);
+  }
 
   if (possibleGames.length === 0) {
-    showToast("✅ Tous tes Dex sélectionnés sont déjà complets.", "success");
+    showToast(
+      forcedGameId
+        ? "✅ Ce Dex n’a plus assez de Pokémon disponibles pour une quête."
+        : "✅ Tous tes Dex sélectionnés sont déjà complets.",
+      "success"
+    );
     return;
   }
 
   const familyCandidates = possibleGames.flatMap(item => getFamilyObjectiveCandidates(profile, item.gameId));
+  const nearbyCandidates = possibleGames.flatMap(item => getNearbyMissingObjectiveCandidates(profile, item.gameId));
   const nextMissingCandidates = possibleGames
     .map(item => getNextMissingObjectiveCandidate(profile, item.gameId))
     .filter(Boolean);
@@ -780,6 +839,13 @@ function createRandomObjective() {
     questGroups.push({
       type: "catch_next_missing",
       candidates: nextMissingCandidates
+    });
+  }
+
+  if (nearbyCandidates.length > 0 && canCreateObjectiveType(profile, "catch_nearby")) {
+    questGroups.push({
+      type: "catch_nearby",
+      candidates: nearbyCandidates
     });
   }
 
@@ -1035,29 +1101,145 @@ function renderObjectiveHistory() {
     return;
   }
 
-  const completed = getObjectiveHistory(profile, "completed", 5);
-  const abandoned = getObjectiveHistory(profile, "abandoned", 5);
+  const history = (profile.objectives || [])
+    .filter(objective => objective.status === "completed" || objective.status === "abandoned")
+    .filter(objective => {
+      if (objectiveHistoryStatusFilter === "completed") return objective.status === "completed";
+      if (objectiveHistoryStatusFilter === "abandoned") return objective.status === "abandoned";
+      return true;
+    })
+    .filter(objective => {
+      if (objectiveHistoryDexFilter === "all") return true;
+      return objective.gameId === objectiveHistoryDexFilter;
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.completedAt || a.abandonedAt || a.createdAt || 0).getTime();
+      const dateB = new Date(b.completedAt || b.abandonedAt || b.createdAt || 0).getTime();
+      return dateB - dateA;
+    })
+    .slice(0, 20);
+
+  const header = ui.objectiveHistoryPanel.querySelector(".objective-history-header");
+
+  if (header && !ui.objectiveHistoryPanel.querySelector(".objective-history-filters")) {
+    header.insertAdjacentHTML("afterend", `
+      <div class="objective-history-filters">
+        <button id="historyFilterAllBtn" class="btn tiny" type="button">Tous</button>
+        <button id="historyFilterCompletedBtn" class="btn tiny good" type="button">Réussis</button>
+        <button id="historyFilterAbandonedBtn" class="btn tiny danger" type="button">Abandonnés</button>
+
+        <select id="historyDexFilterSelect" class="history-dex-filter">
+          <option value="all">Tous les Dex</option>
+        </select>
+      </div>
+    `);
+
+    const dexSelect = ui.objectiveHistoryPanel.querySelector("#historyDexFilterSelect");
+
+    for (const gameId of profile.enabledDexes || []) {
+      const game = getGame(gameId);
+      const option = document.createElement("option");
+      option.value = gameId;
+      option.textContent = game?.shortName || game?.name || gameId;
+      dexSelect.appendChild(option);
+    }
+
+    ui.objectiveHistoryPanel.querySelector("#historyFilterAllBtn").addEventListener("click", () => {
+      if (objectiveHistoryStatusFilter === "all" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
+        objectiveHistoryStatusFilter = "all";
+        objectiveHistoryNeutralFilter = true;
+        setObjectiveHistoryCollapsed(true);
+        renderObjectiveHistory();
+        return;
+      }
+
+      objectiveHistoryStatusFilter = "all";
+      objectiveHistoryNeutralFilter = false;
+      setObjectiveHistoryCollapsed(false);
+      renderObjectiveHistory();
+    });
+
+    ui.objectiveHistoryPanel.querySelector("#historyFilterCompletedBtn").addEventListener("click", () => {
+      if (objectiveHistoryStatusFilter === "completed" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
+        objectiveHistoryStatusFilter = "all";
+        objectiveHistoryNeutralFilter = true;
+        setObjectiveHistoryCollapsed(true);
+        renderObjectiveHistory();
+        return;
+      }
+
+      objectiveHistoryStatusFilter = "completed";
+      objectiveHistoryNeutralFilter = false;
+      setObjectiveHistoryCollapsed(false);
+      renderObjectiveHistory();
+    });
+
+    ui.objectiveHistoryPanel.querySelector("#historyFilterAbandonedBtn").addEventListener("click", () => {
+      if (objectiveHistoryStatusFilter === "abandoned" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
+        objectiveHistoryStatusFilter = "all";
+        objectiveHistoryNeutralFilter = true;
+        setObjectiveHistoryCollapsed(true);
+        renderObjectiveHistory();
+        return;
+      }
+
+      objectiveHistoryStatusFilter = "abandoned";
+      objectiveHistoryNeutralFilter = false;
+      setObjectiveHistoryCollapsed(false);
+      renderObjectiveHistory();
+    });
+
+    dexSelect.addEventListener("change", () => {
+      objectiveHistoryDexFilter = dexSelect.value;
+      objectiveHistoryNeutralFilter = false;
+      setObjectiveHistoryCollapsed(false);
+      renderObjectiveHistory();
+    });
+  }
+
+  const dexSelect = ui.objectiveHistoryPanel.querySelector("#historyDexFilterSelect");
+  if (dexSelect) {
+    dexSelect.value = objectiveHistoryDexFilter;
+  }
+
+  const showActiveHistoryFilter = !objectiveHistoryNeutralFilter;
+
+  ui.objectiveHistoryPanel.querySelector("#historyFilterAllBtn")?.classList.toggle(
+    "active-filter",
+    showActiveHistoryFilter && objectiveHistoryStatusFilter === "all"
+  );
+
+  ui.objectiveHistoryPanel.querySelector("#historyFilterCompletedBtn")?.classList.toggle(
+    "active-filter",
+    showActiveHistoryFilter && objectiveHistoryStatusFilter === "completed"
+  );
+
+  ui.objectiveHistoryPanel.querySelector("#historyFilterAbandonedBtn")?.classList.toggle(
+    "active-filter",
+    showActiveHistoryFilter && objectiveHistoryStatusFilter === "abandoned"
+  );
 
   ui.objectiveHistoryList.innerHTML = "";
 
-  if (completed.length === 0 && abandoned.length === 0) {
+  if (history.length === 0) {
     ui.objectiveHistoryList.innerHTML = `
       <div class="objective-history-empty">
-        Aucun historique pour l’instant.
+        Aucun objectif trouvé avec ces filtres.
       </div>
     `;
     return;
   }
 
-  const createHistoryCard = (objective, status) => {
+  for (const objective of history) {
     const game = getGame(objective.gameId);
-    const icon = status === "completed" ? "✅" : "🗑️";
-    const label = status === "completed" ? "Terminé" : "Abandonné";
+    const isCompleted = objective.status === "completed";
+    const icon = isCompleted ? "✅" : "🗑️";
+    const label = isCompleted ? "Réussi" : "Abandonné";
     const date = objective.completedAt || objective.abandonedAt || objective.createdAt;
     const progress = calculateObjectiveProgress(objective);
 
     const card = document.createElement("article");
-    card.className = `objective-history-card ${status}`;
+    card.className = `objective-history-card ${objective.status}`;
 
     card.innerHTML = `
       <div class="objective-history-title">
@@ -1070,19 +1252,7 @@ function renderObjectiveHistory() {
       </div>
     `;
 
-    return card;
-  };
-
-  if (completed.length > 0) {
-    for (const objective of completed) {
-      ui.objectiveHistoryList.appendChild(createHistoryCard(objective, "completed"));
-    }
-  }
-
-  if (abandoned.length > 0) {
-    for (const objective of abandoned) {
-      ui.objectiveHistoryList.appendChild(createHistoryCard(objective, "abandoned"));
-    }
+    ui.objectiveHistoryList.appendChild(card);
   }
 }
 
@@ -1092,10 +1262,6 @@ function setObjectiveHistoryCollapsed(collapsed) {
   if (ui.objectiveHistoryPanel) {
     ui.objectiveHistoryPanel.classList.toggle("objective-history-collapsed", isObjectiveHistoryCollapsed);
   }
-
-  if (ui.toggleObjectiveHistoryBtn) {
-    ui.toggleObjectiveHistoryBtn.textContent = isObjectiveHistoryCollapsed ? "Afficher" : "Réduire";
-  }
 }
 
 function renderDexObjectives() {
@@ -1104,14 +1270,6 @@ function renderDexObjectives() {
   if (!ui.dexObjectivesPanel || !ui.dexObjectivesList || !profile || !currentGameId) return;
 
   completeFinishedObjectives(false);
-
-  const objectivesForDex = getActiveObjectives(profile).filter(objective => objective.gameId === currentGameId);
-
-  if (objectivesForDex.length === 0) {
-    ui.dexObjectivesPanel.classList.add("hidden");
-    ui.dexObjectivesList.innerHTML = "";
-    return;
-  }
 
   ui.dexObjectivesPanel.classList.remove("hidden");
 
@@ -1125,9 +1283,14 @@ function renderDexObjectives() {
       </span>
 
       <span class="objective-filter-actions">
+        <button id="createDexObjectiveBtn" class="btn tiny good" type="button">🎲 Objectif ce Dex</button>
         ${activeObjectiveFilterId ? `<button id="clearObjectiveFilterBtn" class="btn tiny" type="button">Voir tout le Dex</button>` : ""}
       </span>
     `;
+
+    title.querySelector("#createDexObjectiveBtn")?.addEventListener("click", () => {
+      createRandomObjective(currentGameId);
+    });
 
     title.querySelector("#clearObjectiveFilterBtn")?.addEventListener("click", clearObjectiveFilter);
   }
@@ -1146,6 +1309,7 @@ function refreshObjectivesUI() {
   setObjectiveHistoryCollapsed(isObjectiveHistoryCollapsed);
 
   renderAchievements();
+  renderTopbarAchievements();
   renderDexObjectives();
 }
 
@@ -1165,7 +1329,7 @@ function updateGlobalLevelUI(profile) {
 }
 
 function getBadgeImageUrl(fileName) {
-  return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(fileName)}`;
+  return `./assets/badges/${fileName}`;
 }
 
 function getCompletedObjectiveCount(profile) {
@@ -1207,28 +1371,28 @@ function getAchievementList(profile) {
       id: "premier-objectif",
       name: "Premier objectif",
       desc: "Terminer 1 objectif",
-      image: getBadgeImageUrl("Boulder Badge.png"),
+      image: getBadgeImageUrl("Boulder-Badge.png"),
       unlocked: completedObjectives >= 1
     },
     {
       id: "chasseur-motive",
       name: "Chasseur motivé",
       desc: "Terminer 5 objectifs",
-      image: getBadgeImageUrl("Thunder Badge.png"),
+      image: getBadgeImageUrl("Thunder-Badge.png"),
       unlocked: completedObjectives >= 5
     },
     {
       id: "enchainement-propre",
       name: "Enchaînement propre",
       desc: "Terminer 10 objectifs",
-      image: getBadgeImageUrl("Soul Badge.png"),
+      image: getBadgeImageUrl("Soul-Badge.png"),
       unlocked: completedObjectives >= 10
     },
     {
       id: "routine-capture",
       name: "Routine de capture",
       desc: "Terminer 25 objectifs",
-      image: "./assets/badges/Cascade_Badge.png",
+      image: getBadgeImageUrl("Cascade-Badge.png"),
       unlocked: completedObjectives >= 25
     },
 
@@ -1236,28 +1400,28 @@ function getAchievementList(profile) {
       id: "premier-dex-complete",
       name: "Premier Dex complété",
       desc: "Compléter 1 Dex à 100%",
-      image: "./assets/badges/Rainbow_Badge.png",
+      image: getBadgeImageUrl("Rainbow-Badge.png"),
       unlocked: completedDexes >= 1
     },
     {
       id: "collectionneur-confirme",
       name: "Collectionneur confirmé",
       desc: "Compléter 2 Dex à 100%",
-      image: getBadgeImageUrl("Marsh Badge.png"),
+      image: getBadgeImageUrl("Marsh-Badge.png"),
       unlocked: completedDexes >= 2
     },
     {
       id: "grand-collectionneur",
       name: "Grand Collectionneur",
       desc: "Compléter 5 Dex à 100%",
-      image: getBadgeImageUrl("Volcano Badge.png"),
+      image: getBadgeImageUrl("Volcano-Badge.png"),
       unlocked: completedDexes >= 5
     },
     {
       id: "collectionneur-legendaire",
       name: "Collectionneur légendaire",
       desc: "Compléter 10 Dex à 100%",
-      image: getBadgeImageUrl("Earth Badge.png"),
+      image: getBadgeImageUrl("Earth-Badge.png"),
       unlocked: completedDexes >= 10
     },
 
@@ -1265,31 +1429,339 @@ function getAchievementList(profile) {
       id: "premier-shiny-dex",
       name: "Premier Shiny Dex",
       desc: "Compléter 1 Dex en Shiny Dex",
-      image: getBadgeImageUrl("Icicle Badge.png"),
+      image: getBadgeImageUrl("Icicle-Badge.png"),
       unlocked: shinyCompletedDexes >= 1
     },
     {
       id: "collection-rare-1",
       name: "Collection rare ✦",
       desc: "Tous les Dex hors National en shiny",
-      image: getBadgeImageUrl("Rising Badge.png"),
+      image: getBadgeImageUrl("Rising-Badge.png"),
       unlocked: rareStarLevel >= 1
     },
     {
       id: "collection-rare-2",
       name: "Collection rare ✦✦",
       desc: "Tous les Dex + National en shiny",
-      image: getBadgeImageUrl("Legend Badge.png"),
+      image: getBadgeImageUrl("Legend-Badge.png"),
       unlocked: rareStarLevel >= 2
     },
     {
       id: "collection-rare-3",
       name: "Collection rare ✦✦✦",
       desc: "Tout shiny complet, shiny locks compris",
-      image: getBadgeImageUrl("Beacon Badge.png"),
+      image: getBadgeImageUrl("Beacon-Badge.png"),
       unlocked: rareStarLevel >= 3
     }
   ];
+}
+
+function renderTopbarAchievements() {
+  const profile = getActiveProfile();
+
+  if (!ui.topbarBadgesLeft || !ui.topbarBadgesRight || !profile) {
+    return;
+  }
+
+  const achievements = getAchievementList(profile)
+    .filter(achievement => achievement.unlocked || !achievement.id.startsWith("collection-rare"));
+
+  const unlockedRareCount = achievements.filter(achievement =>
+    achievement.id.startsWith("collection-rare") && achievement.unlocked
+  ).length;
+
+  const leftCount = unlockedRareCount >= 2 ? 6 : 5;
+
+  const leftAchievements = achievements.slice(0, leftCount);
+  const rightAchievements = achievements.slice(leftCount);
+
+  const createMiniBadge = achievement => {
+    const badge = document.createElement("div");
+    badge.className = `topbar-badge ${achievement.unlocked ? "unlocked" : "locked"}`;
+    badge.setAttribute("tabindex", "0");
+
+    badge.innerHTML = `
+      <img
+        src="${achievement.image}"
+        alt="${escapeHtml(achievement.name)}"
+        loading="lazy"
+      >
+
+      <div class="topbar-badge-tooltip">
+        <div class="topbar-badge-tooltip-name">${escapeHtml(achievement.name)}</div>
+        <div class="topbar-badge-tooltip-desc">${escapeHtml(achievement.desc)}</div>
+        <div class="topbar-badge-tooltip-state ${achievement.unlocked ? "unlocked" : "locked"}">
+          ${achievement.unlocked ? "Débloqué" : "Verrouillé"}
+        </div>
+      </div>
+    `;
+
+    badge.addEventListener("click", event => {
+      event.stopPropagation();
+
+      const wasOpen = badge.classList.contains("tooltip-open");
+
+      document.querySelectorAll(".topbar-badge.tooltip-open").forEach(element => {
+        element.classList.remove("tooltip-open");
+      });
+
+      if (!wasOpen) {
+        badge.classList.add("tooltip-open");
+      }
+    });
+
+    return badge;
+  };
+
+  ui.topbarBadgesLeft.innerHTML = "";
+  ui.topbarBadgesRight.innerHTML = "";
+
+  for (const achievement of leftAchievements) {
+    ui.topbarBadgesLeft.appendChild(createMiniBadge(achievement));
+  }
+
+  for (const achievement of rightAchievements) {
+    ui.topbarBadgesRight.appendChild(createMiniBadge(achievement));
+  }
+}
+
+function getAchievementState(profile) {
+  profile.achievementState ||= {};
+  profile.achievementState.notified ||= {};
+  return profile.achievementState;
+}
+
+function markCurrentAchievementsAsSeen(profile) {
+  const achievementState = getAchievementState(profile);
+
+  for (const achievement of getAchievementList(profile)) {
+    if (achievement.unlocked) {
+      achievementState.notified[achievement.id] = true;
+    }
+  }
+}
+
+function checkNewAchievements(showNotification = true) {
+  const profile = getActiveProfile();
+  if (!profile) return [];
+
+  const achievementState = getAchievementState(profile);
+  const achievements = getAchievementList(profile);
+  const newlyUnlocked = achievements.filter(achievement => {
+    return achievement.unlocked && !achievementState.notified[achievement.id];
+  });
+
+  if (newlyUnlocked.length === 0) {
+    return [];
+  }
+
+  for (const achievement of newlyUnlocked) {
+    achievementState.notified[achievement.id] = true;
+  }
+
+  recentlyUnlockedAchievementIds = new Set(newlyUnlocked.map(achievement => achievement.id));
+  saveProfiles();
+
+  if (showNotification) {
+    queueAchievementUnlocks(newlyUnlocked);
+  }
+
+  return newlyUnlocked;
+}
+
+function playAchievementUnlockSound() {
+  if (!achievementSoundEnabled) return;
+
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    achievementAudioContext ||= new AudioContextClass();
+
+    const ctx = achievementAudioContext;
+
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+
+    const now = ctx.currentTime;
+
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.0001, now);
+    master.gain.exponentialRampToValueAtTime(0.65, now + 0.025);
+    master.gain.exponentialRampToValueAtTime(0.001, now + 1.85);
+    master.connect(ctx.destination);
+
+    const tone = ({
+      freq,
+      start,
+      duration,
+      type = "sine",
+      volume = 0.25,
+      endFreq = null,
+      pan = 0
+    }) => {
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(freq, now + start);
+
+      if (endFreq) {
+        oscillator.frequency.exponentialRampToValueAtTime(endFreq, now + start + duration);
+      }
+
+      gain.gain.setValueAtTime(0.0001, now + start);
+      gain.gain.exponentialRampToValueAtTime(volume, now + start + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + start + duration);
+
+      oscillator.connect(gain);
+
+      if (panner) {
+        panner.pan.setValueAtTime(pan, now + start);
+        gain.connect(panner);
+        panner.connect(master);
+      } else {
+        gain.connect(master);
+      }
+
+      oscillator.start(now + start);
+      oscillator.stop(now + start + duration + 0.05);
+    };
+
+    const noise = ({ start, duration, volume = 0.08, highpass = 1600 }) => {
+      const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * duration), ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      for (let i = 0; i < data.length; i++) {
+        const fade = 1 - i / data.length;
+        data[i] = (Math.random() * 2 - 1) * fade;
+      }
+
+      const source = ctx.createBufferSource();
+      const filter = ctx.createBiquadFilter();
+      const gain = ctx.createGain();
+
+      source.buffer = buffer;
+      filter.type = "highpass";
+      filter.frequency.setValueAtTime(highpass, now + start);
+
+      gain.gain.setValueAtTime(0.0001, now + start);
+      gain.gain.exponentialRampToValueAtTime(volume, now + start + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + start + duration);
+
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(master);
+
+      source.start(now + start);
+      source.stop(now + start + duration + 0.03);
+    };
+
+    // 1) Petit éclat d'ouverture
+    noise({ start: 0.00, duration: 0.20, volume: 0.11, highpass: 2200 });
+
+    tone({ freq: 1567.98, start: 0.00, duration: 0.10, type: "triangle", volume: 0.16, pan: -0.25 });
+    tone({ freq: 2093.00, start: 0.045, duration: 0.12, type: "triangle", volume: 0.18, pan: 0.25 });
+
+    // 2) Montée “shiny”
+    tone({ freq: 783.99, start: 0.10, duration: 0.18, type: "triangle", volume: 0.22, pan: -0.15 });
+    tone({ freq: 987.77, start: 0.18, duration: 0.18, type: "triangle", volume: 0.25, pan: 0.10 });
+    tone({ freq: 1318.51, start: 0.27, duration: 0.22, type: "triangle", volume: 0.28, pan: -0.05 });
+    tone({ freq: 1760.00, start: 0.39, duration: 0.30, type: "sine", volume: 0.26, pan: 0.15 });
+
+    // 3) Accord final “récompense”
+    tone({ freq: 659.25, start: 0.50, duration: 0.78, type: "sine", volume: 0.17, pan: -0.12 });
+    tone({ freq: 830.61, start: 0.50, duration: 0.78, type: "sine", volume: 0.15, pan: 0.00 });
+    tone({ freq: 1046.50, start: 0.50, duration: 0.90, type: "sine", volume: 0.19, pan: 0.12 });
+    tone({ freq: 1318.51, start: 0.56, duration: 0.70, type: "sine", volume: 0.11, pan: 0.20 });
+
+    // 4) Scintillements autour de l'accord
+    const sparkles = [
+      [2349.32, 0.34, -0.45],
+      [2637.02, 0.42, 0.40],
+      [3135.96, 0.54, -0.25],
+      [2793.83, 0.68, 0.30],
+      [3520.00, 0.82, -0.15],
+      [4186.01, 0.98, 0.18]
+    ];
+
+    for (const [freq, start, pan] of sparkles) {
+      tone({
+        freq,
+        start,
+        duration: 0.11,
+        type: "triangle",
+        volume: 0.07,
+        endFreq: freq * 1.18,
+        pan
+      });
+    }
+
+    // 5) Petit “ding” final
+    tone({ freq: 2093.00, start: 1.05, duration: 0.32, type: "sine", volume: 0.13, pan: 0 });
+    tone({ freq: 3135.96, start: 1.09, duration: 0.26, type: "triangle", volume: 0.065, pan: 0.18 });
+  } catch (error) {
+    console.warn("Son badge indisponible :", error);
+  }
+}
+
+function showAchievementUnlockPopup(achievement) {
+  if (
+    !ui.achievementUnlockOverlay ||
+    !ui.achievementUnlockImage ||
+    !ui.achievementUnlockName ||
+    !ui.achievementUnlockDesc
+  ) {
+    showToast(`🏅 Nouveau badge débloqué : ${achievement.name} !`, "success");
+    return;
+  }
+
+  ui.achievementUnlockImage.src = achievement.image;
+  ui.achievementUnlockImage.alt = achievement.name;
+  ui.achievementUnlockName.textContent = achievement.name;
+  ui.achievementUnlockDesc.textContent = achievement.desc;
+
+  playAchievementUnlockSound();
+
+  ui.achievementUnlockOverlay.classList.remove("hidden");
+  ui.achievementUnlockOverlay.classList.remove("show");
+
+  requestAnimationFrame(() => {
+    ui.achievementUnlockOverlay.classList.add("show");
+  });
+
+  setTimeout(() => {
+    ui.achievementUnlockOverlay.classList.remove("show");
+
+    setTimeout(() => {
+      ui.achievementUnlockOverlay.classList.add("hidden");
+      showNextAchievementUnlock();
+    }, 280);
+  }, 2600);
+}
+
+function queueAchievementUnlocks(achievements) {
+  if (!achievements.length) return;
+
+  achievementUnlockQueue.push(...achievements);
+
+  if (!isShowingAchievementUnlock) {
+    showNextAchievementUnlock();
+  }
+}
+
+function showNextAchievementUnlock() {
+  const nextAchievement = achievementUnlockQueue.shift();
+
+  if (!nextAchievement) {
+    isShowingAchievementUnlock = false;
+    return;
+  }
+
+  isShowingAchievementUnlock = true;
+  showAchievementUnlockPopup(nextAchievement);
 }
 
 function renderAchievements() {
@@ -1311,7 +1783,10 @@ function renderAchievements() {
     }
 
     const badge = document.createElement("article");
-    badge.className = `achievement-badge ${achievement.unlocked ? "unlocked" : "locked"}`;
+    const isNew = recentlyUnlockedAchievementIds.has(achievement.id);
+
+    badge.className = `achievement-badge ${achievement.unlocked ? "unlocked" : "locked"} ${isNew ? "achievement-new" : ""}`;
+    badge.setAttribute("tabindex", "0");
 
     badge.innerHTML = `
       <div class="achievement-image-wrap">
@@ -1323,16 +1798,40 @@ function renderAchievements() {
         >
       </div>
 
-      <div>
-        <div class="achievement-name">${escapeHtml(achievement.name)}</div>
-        <div class="achievement-desc">${escapeHtml(achievement.desc)}</div>
-        <div class="achievement-state">
+      <div class="achievement-tooltip">
+        <div class="achievement-tooltip-name">${escapeHtml(achievement.name)}</div>
+        <div class="achievement-tooltip-desc">${escapeHtml(achievement.desc)}</div>
+        <div class="achievement-tooltip-state ${achievement.unlocked ? "unlocked" : "locked"}">
           ${achievement.unlocked ? "Débloqué" : "Verrouillé"}
         </div>
       </div>
     `;
 
+    badge.addEventListener("click", event => {
+      event.stopPropagation();
+
+      const wasOpen = badge.classList.contains("tooltip-open");
+
+      document.querySelectorAll(".achievement-badge.tooltip-open").forEach(el => {
+        el.classList.remove("tooltip-open");
+      });
+
+      if (!wasOpen) {
+        badge.classList.add("tooltip-open");
+      }
+    });
+
     ui.achievementsList.appendChild(badge);
+  }
+
+  if (recentlyUnlockedAchievementIds.size > 0) {
+    setTimeout(() => {
+      recentlyUnlockedAchievementIds.clear();
+
+      document.querySelectorAll(".achievement-new").forEach(element => {
+        element.classList.remove("achievement-new");
+      });
+    }, 1600);
   }
 }
 
@@ -1415,7 +1914,12 @@ function togglePokemon(id) {
   }
 
   completeFinishedObjectives(true);
-  if (profile) awardAllCompletedDexBonuses(profile);
+
+  if (profile) {
+    awardAllCompletedDexBonuses(profile);
+    checkNewAchievements(true);
+  }
+
   renderDex();
 }
 
@@ -1596,8 +2100,10 @@ function renderHome() {
 
   completeFinishedObjectives(false);
   awardAllCompletedDexBonuses(profile);
+  checkNewAchievements(false);
   updateGlobalLevelUI(profile);
   renderAchievements();
+  renderTopbarAchievements();
 
   ui.appTitle.textContent = "Dex Switch";
   ui.appSubtitle.textContent = "Menu des Pokédex";
@@ -1722,6 +2228,7 @@ function renderDex() {
 
   updateStats();
   renderDexObjectives();
+  renderTopbarAchievements();
 }
 
 function createProfile(name, enabledDexes, nationalLinked = false) {
@@ -1860,6 +2367,7 @@ function syncProfilesWithGames() {
     }
 
     migrateExistingProgress(profile);
+    markCurrentAchievementsAsSeen(profile);
 
     profile.lastView ||= "dex";
 
@@ -2188,6 +2696,24 @@ function debugShowRanks() {
   const rareRank = getRareGlobalRank(profile);
 
   showToast(rareRank ? `🧪 ${globalRank.name} — ${rareRank}` : `🧪 Rang global : ${globalRank.name}`, "success");
+}
+
+function debugSimulateAchievementUnlock() {
+  const profile = getActiveProfile();
+
+  if (!profile) {
+    showToast("🧪 Aucun profil actif.", "warn");
+    return;
+  }
+
+  const achievements = getAchievementList(profile);
+  const unlockedAchievement = achievements.find(achievement => achievement.unlocked) || achievements[0];
+
+  recentlyUnlockedAchievementIds = new Set([unlockedAchievement.id]);
+  queueAchievementUnlocks([unlockedAchievement]);
+  renderAchievements();
+
+  showToast("🧪 Simulation badge lancée.", "success");
 }
 
 function debugOpenHome() {
@@ -2566,6 +3092,7 @@ function createDebugMenu() {
         <div class="debug-grid">
           <button id="debugRefreshRanksBtn" class="btn tiny good" type="button">Refresh</button>
           <button id="debugCopySummaryBtn" class="btn tiny quest" type="button">Copier</button>
+          <button id="debugSimulateAchievementBtn" class="btn tiny good" type="button">Badge</button>
           <button id="debugCleanObjectivesBtn" class="btn tiny danger" type="button">Nettoyer</button>
           <button id="debugCloseBtn" class="btn tiny" type="button">Fermer</button>
         </div>
@@ -2593,7 +3120,9 @@ function createDebugMenu() {
 
   bind("#debugAdvanceObjectiveBtn", debugAdvanceFirstObjective);
   bind("#debugRetreatObjectiveBtn", debugRetreatFirstObjective);
-  bind("#debugCreateObjectiveBtn", createRandomObjective);
+  bind("#debugCreateObjectiveBtn", () => {
+    createRandomObjective();
+  });
   bind("#debugRemoveObjectiveBtn", debugRemoveFirstObjective);
   bind("#debugCompleteObjectiveBtn", debugCompleteFirstObjective);
   bind("#debugResetObjectivesBtn", debugResetActiveObjectives);
@@ -2621,18 +3150,27 @@ function createDebugMenu() {
 
   bind("#debugRefreshRanksBtn", debugRefreshRanks);
   bind("#debugCopySummaryBtn", debugCopySummary);
+  bind("#debugSimulateAchievementBtn", debugSimulateAchievementUnlock);
   bind("#debugCleanObjectivesBtn", debugCleanHiddenObjectives);
 
   makeDebugPanelDraggable(debugPanel, debugPanel.querySelector("#debugHeader"));
 }
 
 function bindEvents() {
-  ui.menuToggleBtn.addEventListener("click", () => setMenuOpen(!isMenuOpen));
-  ui.randomObjectiveBtn.addEventListener("click", createRandomObjective);
-  ui.toggleObjectivesBtn.addEventListener("click", () => setObjectivesCollapsed(!areObjectivesCollapsed));
-  ui.toggleObjectiveHistoryBtn.addEventListener("click", () => {
-    setObjectiveHistoryCollapsed(!isObjectiveHistoryCollapsed);
+
+  document.addEventListener("click", event => {
+    if (!event.target.closest(".achievement-badge")) {
+      document.querySelectorAll(".achievement-badge.tooltip-open").forEach(el => {
+        el.classList.remove("tooltip-open");
+      });
+    }
   });
+
+  ui.menuToggleBtn.addEventListener("click", () => setMenuOpen(!isMenuOpen));
+  ui.randomObjectiveBtn.addEventListener("click", () => {
+    createRandomObjective();
+  });
+  ui.toggleObjectivesBtn.addEventListener("click", () => setObjectivesCollapsed(!areObjectivesCollapsed));
 
   ui.createFirstProfileBtn.addEventListener("click", () => {
     const enabledDexes = getSelectedSetupDexes();
@@ -2750,6 +3288,7 @@ function bindEvents() {
       showObjectiveAdvanceNotifications(getObjectiveAdvanceMessages(profile, currentGameId, newlyObtainedIds));
       completeFinishedObjectives(true);
       awardAllCompletedDexBonuses(profile);
+      checkNewAchievements(true);
     }
 
     renderDex();

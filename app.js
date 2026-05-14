@@ -1228,7 +1228,7 @@ function getAchievementList(profile) {
       id: "routine-capture",
       name: "Routine de capture",
       desc: "Terminer 25 objectifs",
-      image: getBadgeImageUrl("Cascade Badge.png"),
+      image: "./assets/badges/Cascade_Badge.png",
       unlocked: completedObjectives >= 25
     },
 
@@ -1236,7 +1236,7 @@ function getAchievementList(profile) {
       id: "premier-dex-complete",
       name: "Premier Dex complété",
       desc: "Compléter 1 Dex à 100%",
-      image: getBadgeImageUrl("Rainbow Badge.png"),
+      image: "./assets/badges/Rainbow_Badge.png",
       unlocked: completedDexes >= 1
     },
     {

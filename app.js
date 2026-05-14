@@ -81,6 +81,10 @@ const ui = {
 
   objectiveHistoryPanel: $("#objectiveHistoryPanel"),
   objectiveHistoryList: $("#objectiveHistoryList"),
+  historyAllBtn: $("#historyAllBtn"),
+  historyCompletedBtn: $("#historyCompletedBtn"),
+  historyAbandonedBtn: $("#historyAbandonedBtn"),
+  historyDexFilter: $("#historyDexFilter"),
 
   dexObjectivesPanel: $("#dexObjectivesPanel"),
   dexObjectivesList: $("#dexObjectivesList"),
@@ -1094,11 +1098,58 @@ function getObjectiveHistory(profile, status, limit = 5) {
     .slice(0, limit);
 }
 
+function setObjectiveHistoryCollapsed(collapsed) {
+  isObjectiveHistoryCollapsed = collapsed;
+
+  if (ui.objectiveHistoryPanel) {
+    ui.objectiveHistoryPanel.classList.toggle("objective-history-collapsed", isObjectiveHistoryCollapsed);
+  }
+}
+
+function setHistoryFilter(status) {
+  if (
+    objectiveHistoryStatusFilter === status &&
+    !objectiveHistoryNeutralFilter &&
+    !isObjectiveHistoryCollapsed
+  ) {
+    objectiveHistoryStatusFilter = "all";
+    objectiveHistoryNeutralFilter = true;
+    setObjectiveHistoryCollapsed(true);
+    renderObjectiveHistory();
+    return;
+  }
+
+  objectiveHistoryStatusFilter = status;
+  objectiveHistoryNeutralFilter = false;
+  setObjectiveHistoryCollapsed(false);
+  renderObjectiveHistory();
+}
+
 function renderObjectiveHistory() {
   const profile = getActiveProfile();
 
   if (!ui.objectiveHistoryPanel || !ui.objectiveHistoryList || !profile) {
     return;
+  }
+
+  if (ui.historyDexFilter) {
+    const currentValue = objectiveHistoryDexFilter || ui.historyDexFilter.value || "all";
+
+    ui.historyDexFilter.innerHTML = `<option value="all">Tous les Dex</option>`;
+
+    for (const gameId of profile.enabledDexes || []) {
+      const game = getGame(gameId);
+      const option = document.createElement("option");
+
+      option.value = gameId;
+      option.textContent = game?.shortName || game?.name || gameId;
+
+      ui.historyDexFilter.appendChild(option);
+    }
+
+    const valueStillExists = [...ui.historyDexFilter.options].some(option => option.value === currentValue);
+    ui.historyDexFilter.value = valueStillExists ? currentValue : "all";
+    objectiveHistoryDexFilter = ui.historyDexFilter.value;
   }
 
   const history = (profile.objectives || [])
@@ -1119,102 +1170,19 @@ function renderObjectiveHistory() {
     })
     .slice(0, 20);
 
-  const header = ui.objectiveHistoryPanel.querySelector(".objective-history-header");
-
-  if (header && !ui.objectiveHistoryPanel.querySelector(".objective-history-filters")) {
-    header.insertAdjacentHTML("afterend", `
-      <div class="objective-history-filters">
-        <button id="historyFilterAllBtn" class="btn tiny" type="button">Tous</button>
-        <button id="historyFilterCompletedBtn" class="btn tiny good" type="button">Réussis</button>
-        <button id="historyFilterAbandonedBtn" class="btn tiny danger" type="button">Abandonnés</button>
-
-        <select id="historyDexFilterSelect" class="history-dex-filter">
-          <option value="all">Tous les Dex</option>
-        </select>
-      </div>
-    `);
-
-    const dexSelect = ui.objectiveHistoryPanel.querySelector("#historyDexFilterSelect");
-
-    for (const gameId of profile.enabledDexes || []) {
-      const game = getGame(gameId);
-      const option = document.createElement("option");
-      option.value = gameId;
-      option.textContent = game?.shortName || game?.name || gameId;
-      dexSelect.appendChild(option);
-    }
-
-    ui.objectiveHistoryPanel.querySelector("#historyFilterAllBtn").addEventListener("click", () => {
-      if (objectiveHistoryStatusFilter === "all" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
-        objectiveHistoryStatusFilter = "all";
-        objectiveHistoryNeutralFilter = true;
-        setObjectiveHistoryCollapsed(true);
-        renderObjectiveHistory();
-        return;
-      }
-
-      objectiveHistoryStatusFilter = "all";
-      objectiveHistoryNeutralFilter = false;
-      setObjectiveHistoryCollapsed(false);
-      renderObjectiveHistory();
-    });
-
-    ui.objectiveHistoryPanel.querySelector("#historyFilterCompletedBtn").addEventListener("click", () => {
-      if (objectiveHistoryStatusFilter === "completed" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
-        objectiveHistoryStatusFilter = "all";
-        objectiveHistoryNeutralFilter = true;
-        setObjectiveHistoryCollapsed(true);
-        renderObjectiveHistory();
-        return;
-      }
-
-      objectiveHistoryStatusFilter = "completed";
-      objectiveHistoryNeutralFilter = false;
-      setObjectiveHistoryCollapsed(false);
-      renderObjectiveHistory();
-    });
-
-    ui.objectiveHistoryPanel.querySelector("#historyFilterAbandonedBtn").addEventListener("click", () => {
-      if (objectiveHistoryStatusFilter === "abandoned" && !objectiveHistoryNeutralFilter && !isObjectiveHistoryCollapsed) {
-        objectiveHistoryStatusFilter = "all";
-        objectiveHistoryNeutralFilter = true;
-        setObjectiveHistoryCollapsed(true);
-        renderObjectiveHistory();
-        return;
-      }
-
-      objectiveHistoryStatusFilter = "abandoned";
-      objectiveHistoryNeutralFilter = false;
-      setObjectiveHistoryCollapsed(false);
-      renderObjectiveHistory();
-    });
-
-    dexSelect.addEventListener("change", () => {
-      objectiveHistoryDexFilter = dexSelect.value;
-      objectiveHistoryNeutralFilter = false;
-      setObjectiveHistoryCollapsed(false);
-      renderObjectiveHistory();
-    });
-  }
-
-  const dexSelect = ui.objectiveHistoryPanel.querySelector("#historyDexFilterSelect");
-  if (dexSelect) {
-    dexSelect.value = objectiveHistoryDexFilter;
-  }
-
   const showActiveHistoryFilter = !objectiveHistoryNeutralFilter;
 
-  ui.objectiveHistoryPanel.querySelector("#historyFilterAllBtn")?.classList.toggle(
+  ui.historyAllBtn?.classList.toggle(
     "active-filter",
     showActiveHistoryFilter && objectiveHistoryStatusFilter === "all"
   );
 
-  ui.objectiveHistoryPanel.querySelector("#historyFilterCompletedBtn")?.classList.toggle(
+  ui.historyCompletedBtn?.classList.toggle(
     "active-filter",
     showActiveHistoryFilter && objectiveHistoryStatusFilter === "completed"
   );
 
-  ui.objectiveHistoryPanel.querySelector("#historyFilterAbandonedBtn")?.classList.toggle(
+  ui.historyAbandonedBtn?.classList.toggle(
     "active-filter",
     showActiveHistoryFilter && objectiveHistoryStatusFilter === "abandoned"
   );
@@ -1253,14 +1221,6 @@ function renderObjectiveHistory() {
     `;
 
     ui.objectiveHistoryList.appendChild(card);
-  }
-}
-
-function setObjectiveHistoryCollapsed(collapsed) {
-  isObjectiveHistoryCollapsed = collapsed;
-
-  if (ui.objectiveHistoryPanel) {
-    ui.objectiveHistoryPanel.classList.toggle("objective-history-collapsed", isObjectiveHistoryCollapsed);
   }
 }
 
@@ -1320,11 +1280,13 @@ function updateGlobalLevelUI(profile) {
   const rareRank = getRareGlobalRank(profile);
   const globalCompletion = getGlobalCompletionPercent(profile);
 
-  ui.globalLevelTitle.textContent = `Rang global — ${globalRank.name}`;
+  ui.globalLevelTitle.textContent = `${profile.name} — ${globalRank.name}`;
+
   ui.globalXpText.innerHTML = `
-    Dex complétés : ${globalRank.completedDexCount}
+    ${globalRank.completedDexCount} Dex complétés
     ${rareRank ? `<div class="rare-rank-text">${rareRank}</div>` : ""}
   `;
+
   ui.globalXpFill.style.width = `${globalCompletion}%`;
 }
 
@@ -3168,9 +3130,23 @@ function bindEvents() {
 
   ui.menuToggleBtn.addEventListener("click", () => setMenuOpen(!isMenuOpen));
   ui.randomObjectiveBtn.addEventListener("click", () => {
-    createRandomObjective();
+  createRandomObjective();
+});
+
+ui.toggleObjectivesBtn?.addEventListener("click", () => {
+  setObjectivesCollapsed(!areObjectivesCollapsed);
+});
+
+ui.historyAllBtn?.addEventListener("click", () => setHistoryFilter("all"));
+  ui.historyCompletedBtn?.addEventListener("click", () => setHistoryFilter("completed"));
+  ui.historyAbandonedBtn?.addEventListener("click", () => setHistoryFilter("abandoned"));
+
+  ui.historyDexFilter?.addEventListener("change", () => {
+    objectiveHistoryDexFilter = ui.historyDexFilter.value;
+    objectiveHistoryNeutralFilter = false;
+    setObjectiveHistoryCollapsed(false);
+    renderObjectiveHistory();
   });
-  ui.toggleObjectivesBtn.addEventListener("click", () => setObjectivesCollapsed(!areObjectivesCollapsed));
 
   ui.createFirstProfileBtn.addEventListener("click", () => {
     const enabledDexes = getSelectedSetupDexes();

@@ -497,42 +497,66 @@ input[type="text"] {
 ========================================================= */
 
 .level-panel {
-  background: var(--panel);
-  border: 3px solid var(--border);
-  border-radius: 18px;
-  padding: 14px;
-  margin-bottom: 18px;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 6px 12px;
+  margin: 0 0 14px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.level-panel::before {
+  content: "";
+  width: 5px;
+  height: 38px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #d4af37, #22c55e);
 }
 
 .level-panel h3 {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 950;
+  letter-spacing: -0.6px;
+  line-height: 1;
 }
 
 .level-panel p {
-  margin: 4px 0 10px;
+  margin: 4px 0 0;
+  font-size: 13px;
   font-weight: 800;
-  color: #555;
+  color: rgba(255, 255, 255, 0.58);
 }
 
 .level-progress {
-  height: 14px;
-  background: #ddd;
-  border: 2px solid var(--border);
+  grid-column: 1 / -1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 999px;
   overflow: hidden;
 }
 
 #globalXpFill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #86efac, #22c55e);
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #d4af37);
 }
 
 .rare-rank-text {
-  margin-top: 6px;
+  margin-top: 4px;
+  font-size: 12px;
   font-weight: 900;
-  color: var(--accent);
+  color: #d4af37;
+}
+.home-header {
+  display: none;
 }
 
 /* =========================================================
@@ -952,6 +976,18 @@ input[type="text"] {
   gap: 8px;
 }
 
+#objectivesList {
+  max-height: 145px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.dex-objectives-list {
+  max-height: 145px !important;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
 .objectives-list.compact {
   gap: 7px;
   max-height: 210px;
@@ -964,6 +1000,10 @@ input[type="text"] {
 }
 
 .objectives-panel.objectives-collapsed .objectives-list {
+  display: none;
+}
+
+.objectives-panel.objectives-collapsed .objective-history-panel {
   display: none;
 }
 
@@ -1080,16 +1120,15 @@ input[type="text"] {
 }
 
 /* =========================================================
-   OBJECTIVE HISTORY
+   OBJECTIVE HISTORY INSIDE OBJECTIVES PANEL
 ========================================================= */
 
 .objective-history-panel {
-  background: var(--panel);
-  border: 3px solid var(--border);
-  border-radius: 18px;
-  padding: 14px;
-  margin-bottom: 18px;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 3px solid var(--border);
+  background: transparent;
+  box-shadow: none;
 }
 
 .objective-history-header {
@@ -1097,6 +1136,7 @@ input[type="text"] {
   justify-content: space-between;
   gap: 14px;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .objective-history-header h3 {
@@ -1114,7 +1154,7 @@ input[type="text"] {
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .history-dex-filter {
@@ -1128,7 +1168,6 @@ input[type="text"] {
 .objective-history-list {
   display: grid;
   gap: 8px;
-  margin-top: 10px;
   max-height: 220px;
   overflow-y: auto;
   padding-right: 6px;
@@ -1630,7 +1669,12 @@ body.dark .card.obtained {
 body.dark .objective-empty,
 body.dark .objective-card,
 body.dark .objective-history-card,
-body.dark .objective-history-empty,
+body.dark .objective-history-empty {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+}
+
 body.dark .achievement-badge {
   background: var(--card);
   color: var(--text);

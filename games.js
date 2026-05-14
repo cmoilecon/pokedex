@@ -27,7 +27,7 @@ export const games = [
     id: "isle-of-armor",
     name: "Épée/Bouclier — Isolarmure",
     shortName: "Isolarmure",
-    subtitle: "Isle of Armor Pokédex",
+    subtitle: "Isolarmure Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/isle-of-armor",
     coverPokemonIds: [1, 100, 101]
   },
@@ -35,14 +35,14 @@ export const games = [
     id: "crown-tundra",
     name: "Épée/Bouclier — Couronneige",
     shortName: "Couronneige",
-    subtitle: "Crown Tundra Pokédex",
+    subtitle: "Couronneige Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/crown-tundra",
     coverPokemonIds: [200, 208, 210]
   },
   {
     id: "brilliant-diamond-shining-pearl",
     name: "Pokémon Diamant Étincelant/Perle Scintillante",
-    shortName: "DEPS",
+    shortName: "Diamant/Perle (switch)",
     subtitle: "Sinnoh Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/brilliant-diamond-shining-pearl",
     coverPokemonIds: [1, 4, 7]

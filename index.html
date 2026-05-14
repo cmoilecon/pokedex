@@ -150,22 +150,32 @@
         </div>
 
         <div class="objectives-actions">
-          <button id="toggleObjectivesBtn" class="btn" type="button">Réduire</button>
-          <button id="randomObjectiveBtn" class="btn good" type="button">🎲 Objectif</button>
+          <button id="toggleObjectivesBtn" class="btn tiny" type="button">Réduire</button>
+          <button id="randomObjectiveBtn" class="btn tiny quest" type="button">🎲 Objectif</button>
         </div>
       </div>
 
-      <div id="objectivesList" class="objectives-list compact"></div>
-    </section>
-    <section id="objectiveHistoryPanel" class="objective-history-panel objective-history-collapsed">
-      <div class="objective-history-header">
-        <div>
-          <h3>Historique</h3>
-          <p>Derniers objectifs terminés ou abandonnés.</p>
-        </div>
-      </div>
+      <div id="objectivesList" class="objectives-list"></div>
 
-      <div id="objectiveHistoryList" class="objective-history-list"></div>
+      <div id="objectiveHistoryPanel" class="objective-history-panel objective-history-collapsed">
+        <div class="objective-history-header">
+          <div>
+            <h3>Historique</h3>
+            <p>Derniers objectifs terminés ou abandonnés.</p>
+          </div>
+        </div>
+
+        <div class="objective-history-filters">
+          <button id="historyAllBtn" class="btn tiny active-filter" type="button">Tous</button>
+          <button id="historyCompletedBtn" class="btn tiny good" type="button">Réussis</button>
+          <button id="historyAbandonedBtn" class="btn tiny danger" type="button">Abandonnés</button>
+          <select id="historyDexFilter" class="history-dex-filter">
+            <option value="all">Tous les Dex</option>
+          </select>
+        </div>
+
+        <div id="objectiveHistoryList" class="objective-history-list"></div>
+      </div>
     </section>
     <div id="gameGrid" class="game-grid"></div>
   </section>

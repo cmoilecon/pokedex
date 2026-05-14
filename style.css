@@ -281,6 +281,58 @@ input[type="text"] {
   background: linear-gradient(90deg, #86efac, #22c55e);
 }
 
+.game-level-info {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0.85;
+}
+
+.game-level-info.rare {
+  color: var(--accent);
+}
+
+/* LEVELS */
+
+.level-panel {
+  background: var(--panel);
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 18px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+}
+
+.level-panel h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.level-panel p {
+  margin: 4px 0 10px;
+  font-weight: 800;
+  color: #555;
+}
+
+.level-progress {
+  height: 14px;
+  background: #ddd;
+  border: 2px solid var(--border);
+  overflow: hidden;
+}
+
+#globalXpFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #86efac, #22c55e);
+}
+
+.rare-rank-text {
+  margin-top: 6px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
 /* OBJECTIVES */
 
 .objectives-panel {
@@ -396,6 +448,27 @@ input[type="text"] {
   background: linear-gradient(90deg, #86efac, #22c55e);
 }
 
+.objective-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.objective-pokemon-list {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+.objective-pokemon-name.done {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
 .dex-objectives-panel {
   background: var(--panel);
   border-bottom: 2px solid var(--border);
@@ -403,8 +476,106 @@ input[type="text"] {
 }
 
 .dex-objectives-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
   font-weight: 900;
   margin-bottom: 8px;
+}
+
+.objective-filter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.objective-filter-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* OBJECTIVE HISTORY */
+
+.objective-history-panel {
+  background: var(--panel);
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 18px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+}
+
+.objective-history-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.objective-history-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.objective-history-header p {
+  margin: 3px 0 0;
+  color: #555;
+}
+
+.objective-history-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.objective-history-collapsed .objective-history-list {
+  display: none;
+}
+
+.objective-history-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-weight: 800;
+}
+
+.objective-history-card.completed {
+  background: #dcfce7;
+}
+
+.objective-history-card.abandoned {
+  background: #fee2e2;
+}
+
+.objective-history-title {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.objective-history-meta {
+  margin-top: 3px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.objective-history-empty {
+  background: var(--card);
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 800;
 }
 
 /* STATS */
@@ -517,7 +688,7 @@ input[type="text"] {
   min-height: 58px;
 }
 
-.info-zone > div {
+.info-zone>div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -525,7 +696,7 @@ input[type="text"] {
   font-size: 14px;
 }
 
-.info-zone > div:last-child {
+.info-zone>div:last-child {
   border-right: none;
 }
 
@@ -661,11 +832,21 @@ input[type="text"] {
   background: #fca5a5;
 }
 
+.btn.quest {
+  background: #bfdbfe;
+}
+
 .btn.big {
   width: 100%;
   margin-top: 20px;
   padding: 14px;
   font-size: 17px;
+}
+
+.btn.tiny {
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 7px;
 }
 
 /* TOAST NOTIFICATIONS */
@@ -715,6 +896,93 @@ input[type="text"] {
   color: #111;
 }
 
+/* DEBUG PANEL */
+
+.debug-panel {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2500;
+  width: 260px;
+  max-height: 80vh;
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  opacity: 1;
+}
+
+.debug-panel.closed {
+  width: auto;
+  opacity: 0.45;
+}
+
+.debug-panel.closed:hover {
+  opacity: 0.9;
+}
+
+.debug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  font-weight: 900;
+  cursor: move;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+
+.debug-panel.closed .debug-header {
+  border-bottom: none;
+}
+
+.debug-title {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.debug-toggle {
+  min-width: 34px;
+  padding: 5px 7px;
+}
+
+.debug-body {
+  padding: 10px;
+  display: grid;
+  gap: 12px;
+  max-height: calc(80vh - 50px);
+  overflow-y: auto;
+}
+
+.debug-panel.closed .debug-body {
+  display: none;
+}
+
+.debug-section {
+  display: grid;
+  gap: 7px;
+}
+
+.debug-section-title {
+  font-weight: 900;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.debug-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.debug-grid .btn {
+  width: 100%;
+}
+
 /* DARK MODE */
 
 body.dark {
@@ -727,9 +995,7 @@ body.dark {
   --text: #f1f1f1;
   --gold: #2a2a2a;
   --accent: #4ade80;
-}
 
-body.dark {
   background: var(--bg);
   color: var(--text);
 }
@@ -741,7 +1007,9 @@ body.dark .setup-card,
 body.dark .game-card,
 body.dark .backup-card,
 body.dark .objectives-panel,
-body.dark .dex-objectives-panel {
+body.dark .dex-objectives-panel,
+body.dark .level-panel,
+body.dark .debug-panel {
   background: var(--panel);
   color: var(--text);
   border-color: var(--border);
@@ -752,18 +1020,29 @@ body.dark .stats div {
   border-color: var(--border);
 }
 
-body.dark .progress {
+body.dark .progress,
+body.dark .level-progress {
   background: #333 !important;
   border-color: var(--border);
 }
 
 body.dark #progressFill,
+body.dark #globalXpFill,
 body.dark .game-progress-fill,
 body.dark .objective-progress-fill {
   background: linear-gradient(90deg, #166534, #22c55e);
 }
 
-body.dark .dex {
+body.dark .dex,
+body.dark .image-zone,
+body.dark .info-zone>div,
+body.dark .card-actions,
+body.dark .game-progress,
+body.dark .dex-choice,
+body.dark .objective-empty,
+body.dark .objective-card,
+body.dark .objective-progress-bar,
+body.dark .debug-header {
   border-color: var(--border);
 }
 
@@ -783,17 +1062,6 @@ body.dark .card.obtained {
   border-color: #3f6f55;
 }
 
-body.dark .image-zone,
-body.dark .info-zone > div,
-body.dark .card-actions,
-body.dark .game-progress,
-body.dark .dex-choice,
-body.dark .objective-empty,
-body.dark .objective-card,
-body.dark .objective-progress-bar {
-  border-color: var(--border);
-}
-
 body.dark .objective-empty,
 body.dark .objective-card {
   background: var(--card);
@@ -804,7 +1072,9 @@ body.dark .objective-progress-bar {
   background: #333;
 }
 
-body.dark .objectives-header p {
+body.dark .objectives-header p,
+body.dark .level-panel p,
+body.dark .game-content p {
   color: #aaa;
 }
 
@@ -851,8 +1121,8 @@ body.dark .btn.danger {
   background: #3a2020;
 }
 
-body.dark .game-content p {
-  color: #aaa;
+body.dark .btn.quest {
+  background: #1e3a5f;
 }
 
 body.dark .toast {
@@ -874,6 +1144,31 @@ body.dark .toast.warn {
 body.dark .toast.danger {
   background: #3a2020;
   color: #f1f1f1;
+}
+
+body.dark .objective-history-panel {
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .objective-history-header p {
+  color: #aaa;
+}
+
+body.dark .objective-history-card,
+body.dark .objective-history-empty {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .objective-history-card.completed {
+  background: #1f3a2e;
+}
+
+body.dark .objective-history-card.abandoned {
+  background: #3a2020;
 }
 
 /* RESPONSIVE */
@@ -936,7 +1231,7 @@ body.dark .toast.danger {
     grid-template-columns: 52px 1fr 40px;
   }
 
-  .info-zone > div {
+  .info-zone>div {
     font-size: 12px;
   }
 
@@ -967,29 +1262,21 @@ body.dark .toast.danger {
     bottom: 12px;
     width: calc(100vw - 24px);
   }
+
+  .debug-panel {
+    left: 10px;
+    bottom: 10px;
+    width: 245px;
+  }
+
+  .objective-history-header {
+    display: grid;
+  }
 }
 
-.objective-buttons {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
+/* ACHIEVEMENTS */
 
-.btn.tiny {
-  padding: 5px 8px;
-  font-size: 12px;
-  border-radius: 7px;
-}
-
-.objective-card.completed-preview {
-  opacity: 0.75;
-}
-
-/* LEVELS */
-
-.level-panel {
+.achievements-panel {
   background: var(--panel);
   border: 3px solid var(--border);
   border-radius: 18px;
@@ -998,70 +1285,88 @@ body.dark .toast.danger {
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
 }
 
-.level-panel h3 {
+.achievements-header {
+  margin-bottom: 10px;
+}
+
+.achievements-header h3 {
   margin: 0;
   font-size: 22px;
 }
 
-.level-panel p {
-  margin: 4px 0 10px;
-  font-weight: 800;
+.achievements-header p {
+  margin: 3px 0 0;
   color: #555;
 }
 
-.level-progress {
-  height: 14px;
-  background: #ddd;
+.achievements-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.achievement-badge {
+  background: var(--card);
   border: 2px solid var(--border);
-  overflow: hidden;
-}
-
-#globalXpFill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #86efac, #22c55e);
-}
-
-.game-level-info {
-  margin-top: 8px;
-  font-size: 13px;
+  border-radius: 14px;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
   font-weight: 900;
-  opacity: 0.85;
+  min-height: 190px;
 }
 
-.objective-pokemon-list {
-  margin-top: 6px;
-  font-size: 12px;
+.achievement-badge.locked {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.achievement-image-wrap {
+  width: 100%;
+  height: 92px;
+  display: grid;
+  place-items: center;
+}
+
+.achievement-image {
+  max-width: 92px;
+  max-height: 92px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.25));
+}
+
+.achievement-name {
+  font-size: 13px;
+  line-height: 1.15;
+}
+
+.achievement-desc {
+  font-size: 11px;
   font-weight: 800;
-  opacity: 0.85;
-  line-height: 1.35;
+  opacity: 0.72;
+  line-height: 1.25;
 }
 
-body.dark .level-panel {
+.achievement-state {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+body.dark .achievements-panel {
   background: var(--panel);
   color: var(--text);
   border-color: var(--border);
 }
 
-body.dark .level-panel p {
+body.dark .achievements-header p {
   color: #aaa;
 }
 
-body.dark .level-progress {
-  background: #333;
+body.dark .achievement-badge {
+  background: var(--card);
+  color: var(--text);
   border-color: var(--border);
-}
-
-body.dark #globalXpFill {
-  background: linear-gradient(90deg, #166534, #22c55e);
-}
-
-.rare-rank-text {
-  margin-top: 6px;
-  font-weight: 900;
-  color: var(--accent);
-}
-
-.game-level-info.rare {
-  color: var(--accent);
 }

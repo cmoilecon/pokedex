@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,9 +8,10 @@
   <title>Dex Switch</title>
   <link rel="icon" href="data:,">
 
-  <link rel="stylesheet" href="./style.css?v=12" />
-  <script type="module" src="./app.js?v=12" defer></script>
+  <link rel="stylesheet" href="./style.css?v=13" />
+  <script type="module" src="./app.js?v=13" defer></script>
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-main">
@@ -37,10 +39,8 @@
 
         <button id="newProfileBtn" class="btn">Nouveau profil</button>
         <button id="editProfileBtn" class="btn">Modifier profil</button>
-
         <button id="exportSaveBtn" class="btn good">Exporter</button>
         <button id="importSaveBtn" class="btn warn">Importer</button>
-
         <button id="deleteProfileBtn" class="btn danger">Supprimer profil</button>
 
         <label>
@@ -107,41 +107,62 @@
     </div>
   </section>
 
-<section id="homeView" class="home-view hidden">
-  <div class="home-header">
-    <h2 id="homeProfileName">Profil</h2>
-    <p>Choisis un Dex à ouvrir.</p>
+  <section id="homeView" class="home-view hidden">
+    <div class="home-header">
+      <h2 id="homeProfileName">Profil</h2>
+      <p>Choisis un Dex à ouvrir.</p>
+    </div>
+
+    <section class="level-panel">
+      <section class="achievements-panel">
+  <div class="achievements-header">
+    <div>
+      <h3>Succès</h3>
+      <p>Badges débloqués avec ta progression.</p>
+    </div>
   </div>
 
-  <section class="level-panel">
-    <div>
-      <h3 id="globalLevelTitle">Niveau 1 — Débutant</h3>
-      <p id="globalXpText">XP : 0 / 25</p>
-    </div>
-
-    <div class="level-progress">
-      <div id="globalXpFill"></div>
-    </div>
-  </section>
-
-  <section class="objectives-panel">
-    <div class="objectives-header">
-      <div>
-        <h3>Objectifs actifs</h3>
-        <p>Petites missions rapides pour avancer sans te perdre.</p>
-      </div>
-
-      <div class="objectives-actions">
-        <button id="toggleObjectivesBtn" class="btn" type="button">Réduire</button>
-        <button id="randomObjectiveBtn" class="btn good" type="button">🎲 Objectif</button>
-      </div>
-    </div>
-
-    <div id="objectivesList" class="objectives-list compact"></div>
-  </section>
-
-  <div id="gameGrid" class="game-grid"></div>
+  <div id="achievementsList" class="achievements-list"></div>
 </section>
+      <div>
+        <h3 id="globalLevelTitle">Rang global — Débutant</h3>
+        <p id="globalXpText">Dex complétés : 0</p>
+      </div>
+
+      <div class="level-progress">
+        <div id="globalXpFill"></div>
+      </div>
+    </section>
+
+    <section class="objectives-panel">
+      <div class="objectives-header">
+        <div>
+          <h3>Objectifs actifs</h3>
+          <p>Petites missions rapides pour avancer sans te perdre.</p>
+        </div>
+
+        <div class="objectives-actions">
+          <button id="toggleObjectivesBtn" class="btn" type="button">Réduire</button>
+          <button id="randomObjectiveBtn" class="btn good" type="button">🎲 Objectif</button>
+        </div>
+      </div>
+
+      <div id="objectivesList" class="objectives-list compact"></div>
+    </section>
+    <section id="objectiveHistoryPanel" class="objective-history-panel objective-history-collapsed">
+      <div class="objective-history-header">
+        <div>
+          <h3>Historique</h3>
+          <p>Derniers objectifs terminés ou abandonnés.</p>
+        </div>
+
+        <button id="toggleObjectiveHistoryBtn" class="btn" type="button">Afficher</button>
+      </div>
+
+      <div id="objectiveHistoryList" class="objective-history-list"></div>
+    </section>
+    <div id="gameGrid" class="game-grid"></div>
+  </section>
 
   <section id="dexView" class="dex-view hidden">
     <section class="stats">
@@ -189,4 +210,5 @@
 
   <div id="toastContainer" class="toast-container"></div>
 </body>
+
 </html>

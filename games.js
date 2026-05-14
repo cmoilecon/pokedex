@@ -27,7 +27,7 @@ export const games = [
     id: "isle-of-armor",
     name: "Épée/Bouclier — Isolarmure",
     shortName: "Isolarmure",
-    subtitle: "Isolarmure Pokédex",
+    subtitle: "Isle of Armor Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/isle-of-armor",
     coverPokemonIds: [1, 100, 101]
   },
@@ -35,14 +35,14 @@ export const games = [
     id: "crown-tundra",
     name: "Épée/Bouclier — Couronneige",
     shortName: "Couronneige",
-    subtitle: "Couronneige Pokédex",
+    subtitle: "Crown Tundra Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/crown-tundra",
     coverPokemonIds: [200, 208, 210]
   },
   {
     id: "brilliant-diamond-shining-pearl",
     name: "Pokémon Diamant Étincelant/Perle Scintillante",
-    shortName: "Diamant & Perle (switch)",
+    shortName: "DEPS",
     subtitle: "Sinnoh Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/brilliant-diamond-shining-pearl",
     coverPokemonIds: [1, 4, 7]
@@ -65,17 +65,17 @@ export const games = [
   },
   {
     id: "teal-mask",
-    name: "Écarlate/Violet - Le Masque Turquoise",
-    shortName: "Masque Turquoise",
-    subtitle: "Septentria pokedex",
+    name: "Écarlate/Violet — Le Masque Turquoise",
+    shortName: "Septentria",
+    subtitle: "Kitakami Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/scarlet-violet/teal-mask",
     coverPokemonIds: [197, 198, 199]
   },
   {
     id: "indigo-disk",
-    name: "Écarlate/Violet - Le Disque Indigo",
-    shortName: "Disque Indigo",
-    subtitle: "Institut Myrtille Pokédex",
+    name: "Écarlate/Violet — Le Disque Indigo",
+    shortName: "Institut Myrtille",
+    subtitle: "Blueberry Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/scarlet-violet/indigo-disk",
     coverPokemonIds: [241, 240, 243]
   },
@@ -83,7 +83,7 @@ export const games = [
     id: "legends-z-a",
     name: "Pokémon Legends: Z-A",
     shortName: "Legends: Z-A",
-    subtitle: "Illumis Pokédex",
+    subtitle: "Kalos Pokédex",
     dexUrl: "https://pokemondb.net/pokedex/game/legends-z-a",
     coverPokemonIds: [1, 4, 7]
   },

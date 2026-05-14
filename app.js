@@ -12,7 +12,7 @@ import { pokemons as legendsZAPokemons } from "./data/legends-z-a.js";
 import { pokemons as megaDimensionPokemons } from "./data/mega-dimension.js";
 import { games } from "./games.js";
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 const STORAGE_KEYS = {
   profiles: "switch-dex-profiles-v2",

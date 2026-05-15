@@ -977,13 +977,13 @@ input[type="text"] {
 }
 
 #objectivesList {
-  max-height: 145px;
+  max-height: 170px;
   overflow-y: auto;
   padding-right: 6px;
 }
 
 .dex-objectives-list {
-  max-height: 145px !important;
+  max-height: 170px !important;
   overflow-y: auto;
   padding-right: 6px;
 }

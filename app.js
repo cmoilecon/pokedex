@@ -12,7 +12,8 @@ import { pokemons as legendsZAPokemons } from "./data/legends-z-a.js";
 import { pokemons as megaDimensionPokemons } from "./data/mega-dimension.js";
 import { games } from "./games.js";
 
-const DEBUG_MODE = false;
+const DEBUG_MODE = true;
+const SHORTCUTS_MODE = true;
 
 const STORAGE_KEYS = {
   profiles: "switch-dex-profiles-v2",
@@ -20,7 +21,8 @@ const STORAGE_KEYS = {
   dark: "swsh-dex-dark-v1",
   lang: "swsh-dex-lang-v1",
   missingOnly: "swsh-dex-missing-only-v1",
-  hideCompletedDex: "switch-dex-hide-completed-v1"
+  hideCompletedDex: "switch-dex-hide-completed-v1",
+  shortcutsVisible: "dex-switch-shortcuts-visible-v1"
 };
 
 const dexDataMap = {
@@ -134,6 +136,8 @@ let achievementUnlockQueue = [];
 let isShowingAchievementUnlock = false;
 let achievementAudioContext = null;
 let achievementSoundEnabled = true;
+let shortcutObjectiveViewIndex = 0;
+let isDebugPanelVisible = true;
 
 function loadProfiles() {
   try {
@@ -943,10 +947,31 @@ function setObjectiveFilter(objectiveId) {
   showToast("🎯 Filtre de quête activé.", "success");
 }
 
+function setAllDexObjectivesFilter() {
+  const profile = getActiveProfile();
+
+  if (!profile || !currentGameId) {
+    showToast("⚠️ Aucun Dex ouvert.", "warn");
+    return;
+  }
+
+  const objectives = getActiveObjectives(profile)
+    .filter(objective => objective.gameId === currentGameId);
+
+  if (objectives.length === 0) {
+    showToast("⚠️ Aucune quête active pour ce Dex.", "warn");
+    return;
+  }
+
+  activeObjectiveFilterId = "__all_dex_objectives__";
+  renderDex();
+  showToast("🎯 Pokémon des quêtes affichés.", "success");
+}
+
 function clearObjectiveFilter() {
   activeObjectiveFilterId = null;
   renderDex();
-  showToast("🔎 Filtre de quête retiré.", "success");
+  showToast("🔎 Tous les Pokémon du Dex affichés.", "success");
 }
 
 function getObjectiveAdvanceMessages(profile, gameId, pokemonIds) {
@@ -990,12 +1015,28 @@ function getFilteredPokemons() {
   let objectiveFilterIds = null;
 
   if (profile && activeObjectiveFilterId) {
-    const objective = getActiveObjectives(profile).find(item => item.id === activeObjectiveFilterId);
+    if (activeObjectiveFilterId === "__all_dex_objectives__") {
+      const ids = [];
 
-    if (objective && objective.gameId === currentGameId) {
-      objectiveFilterIds = new Set((objective.pokemonIds || []).map(String));
+      for (const objective of getActiveObjectives(profile)) {
+        if (objective.gameId !== currentGameId) continue;
+        ids.push(...(objective.pokemonIds || []));
+      }
+
+      objectiveFilterIds = new Set(ids.map(String));
+
+      if (objectiveFilterIds.size === 0) {
+        activeObjectiveFilterId = null;
+        objectiveFilterIds = null;
+      }
     } else {
-      activeObjectiveFilterId = null;
+      const objective = getActiveObjectives(profile).find(item => item.id === activeObjectiveFilterId);
+
+      if (objective && objective.gameId === currentGameId) {
+        objectiveFilterIds = new Set((objective.pokemonIds || []).map(String));
+      } else {
+        activeObjectiveFilterId = null;
+      }
     }
   }
 
@@ -1238,15 +1279,18 @@ function renderDexObjectives() {
   if (title) {
     title.innerHTML = `
       <span>
-        Objectifs de ce Dex
-        ${activeObjectiveFilterId ? `<span class="objective-filter-badge">Filtre quête actif</span>` : ""}
-      </span>
+  Objectifs de ce Dex
+  ${activeObjectiveFilterId ? `<span class="objective-filter-badge">Filtre quête actif</span>` : ""}
+</span>
 
-      <span class="objective-filter-actions">
-        <button id="createDexObjectiveBtn" class="btn tiny good" type="button">🎲 Objectif ce Dex</button>
-        ${activeObjectiveFilterId ? `<button id="clearObjectiveFilterBtn" class="btn tiny" type="button">Voir tout le Dex</button>` : ""}
-      </span>
+<span class="objective-filter-actions">
+  <button id="showDexQuestPokemonsBtn" class="btn tiny quest" type="button">🎯 Voir Pokémon des quêtes</button>
+  <button id="createDexObjectiveBtn" class="btn tiny good" type="button">🎲 Objectif ce Dex</button>
+  ${activeObjectiveFilterId ? `<button id="clearObjectiveFilterBtn" class="btn tiny" type="button">Voir tout le Dex</button>` : ""}
+</span>
     `;
+
+    title.querySelector("#showDexQuestPokemonsBtn")?.addEventListener("click", setAllDexObjectivesFilter);
 
     title.querySelector("#createDexObjectiveBtn")?.addEventListener("click", () => {
       createRandomObjective(currentGameId);
@@ -2113,16 +2157,37 @@ function renderHome() {
   showView(ui.homeView);
 }
 
-function openDex(gameId) {
+function shortcutOpenLastDexOnly() {
+  const profile = getActiveProfile();
+
+  if (!profile) {
+    showToast("Aucun profil actif.", "warn");
+    return;
+  }
+
+  const gameId = profile.lastDex || profile.enabledDexes?.[0];
+
+  if (!gameId) {
+    showToast("Aucun Dex disponible.", "warn");
+    return;
+  }
+
+  openDex(gameId);
+}
+
+function openDex(gameId, rememberLastDex = true) {
   const profile = getActiveProfile();
   const game = getGame(gameId);
 
   if (!profile || !game) return;
 
   currentGameId = gameId;
-  profile.lastView = "dex";
-  profile.lastDex = gameId;
-  saveProfiles();
+
+  if (rememberLastDex) {
+    profile.lastView = "dex";
+    profile.lastDex = gameId;
+    saveProfiles();
+  }
 
   loadCurrentDexShinyMode();
   ui.searchInput.value = "";
@@ -2629,7 +2694,7 @@ function debugShowCurrentObjective() {
     return;
   }
 
-  setObjectiveFilter(objective.id);
+  setObjectiveFilter(objective.id, false);
 }
 
 function debugClearQuestFilter() {
@@ -2946,7 +3011,53 @@ function debugCleanHiddenObjectives() {
   showToast("🧪 Objectifs terminés/abandonnés nettoyés.", "warn");
 }
 
-function makeDebugPanelDraggable(panel, handle) {
+function getPanelStorageKey(id) {
+  return `dex-switch-panel-position-${id}`;
+}
+
+function savePanelPosition(panel) {
+  const header = panel.querySelector(".floating-panel-header");
+  const rect = header.getBoundingClientRect();
+
+  localStorage.setItem(
+    getPanelStorageKey(panel.id),
+    JSON.stringify({
+      left: rect.left,
+      top: rect.top
+    })
+  );
+}
+
+function restorePanelPosition(panel) {
+  try {
+    const saved = JSON.parse(localStorage.getItem(getPanelStorageKey(panel.id)) || "null");
+    if (!saved) return;
+
+    const left = Math.max(0, Math.min(saved.left, window.innerWidth - 80));
+    const top = Math.max(0, Math.min(saved.top, window.innerHeight - 60));
+
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+    panel.style.right = "auto";
+    panel.style.bottom = "auto";
+  } catch {
+    // position ignorée
+  }
+}
+
+function updatePanelOpeningDirection(panel) {
+  const header = panel.querySelector(".floating-panel-header");
+  const body = panel.querySelector(".floating-panel-body");
+  if (!header || !body) return;
+
+  const rect = header.getBoundingClientRect();
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
+  panel.classList.toggle("open-up", spaceBelow < 330 && spaceAbove > spaceBelow);
+}
+
+function makeFloatingPanelDraggable(panel, handle) {
   let isDragging = false;
   let startX = 0;
   let startY = 0;
@@ -2960,24 +3071,35 @@ function makeDebugPanelDraggable(panel, handle) {
     startX = event.clientX;
     startY = event.clientY;
 
-    const rect = panel.getBoundingClientRect();
+    const rect = handle.getBoundingClientRect();
+
     startLeft = rect.left;
     startTop = rect.top;
 
     panel.style.left = `${startLeft}px`;
     panel.style.top = `${startTop}px`;
+    panel.style.right = "auto";
     panel.style.bottom = "auto";
+
     document.body.style.userSelect = "none";
   });
 
   window.addEventListener("mousemove", event => {
     if (!isDragging) return;
 
-    const nextLeft = Math.max(0, startLeft + event.clientX - startX);
-    const nextTop = Math.max(0, startTop + event.clientY - startY);
+    const headerRect = handle.getBoundingClientRect();
+    const maxLeft = window.innerWidth - headerRect.width;
+    const maxTop = window.innerHeight - headerRect.height;
+
+    const nextLeft = Math.max(0, Math.min(maxLeft, startLeft + event.clientX - startX));
+    const nextTop = Math.max(0, Math.min(maxTop, startTop + event.clientY - startY));
 
     panel.style.left = `${nextLeft}px`;
     panel.style.top = `${nextTop}px`;
+    panel.style.right = "auto";
+    panel.style.bottom = "auto";
+
+    updatePanelOpeningDirection(panel);
   });
 
   window.addEventListener("mouseup", () => {
@@ -2985,140 +3107,641 @@ function makeDebugPanelDraggable(panel, handle) {
 
     isDragging = false;
     document.body.style.userSelect = "";
+    updatePanelOpeningDirection(panel);
+    savePanelPosition(panel);
+  });
+}
+
+function getBestDebugDexId() {
+  const profile = getActiveProfile();
+  if (!profile) return null;
+
+  return currentGameId || profile.lastDex || profile.enabledDexes?.[0] || null;
+}
+
+function ensureDebugDexOpen() {
+  const gameId = getBestDebugDexId();
+
+  if (!gameId) {
+    showToast("⚠️ Aucun Dex disponible.", "warn");
+    return false;
+  }
+
+  if (currentGameId !== gameId) {
+    openDex(gameId);
+  }
+
+  return true;
+}
+
+function runDexShortcut(handler) {
+  if (!ensureDebugDexOpen()) return;
+  handler();
+}
+
+function createFloatingPanel({ id, title, enabled, className = "", sections }) {
+  if (!enabled || document.querySelector(`#${id}`)) return;
+
+  const panel = document.createElement("section");
+  panel.id = id;
+  panel.className = `floating-dev-panel ${className} closed`;
+
+  panel.innerHTML = `
+    <div class="floating-panel-header">
+      <div class="floating-panel-title">${title}</div>
+      <button class="btn tiny floating-panel-toggle" type="button">+</button>
+    </div>
+
+    <div class="floating-panel-body">
+      ${sections.map(section => `
+        <div class="floating-panel-section">
+          <div class="floating-panel-section-title">${section.title}</div>
+          <div class="floating-panel-grid">
+            ${section.buttons.map(button => `
+              <button id="${button.id}" class="btn tiny ${button.className || ""}" type="button" title="${button.title || button.label}">
+                ${button.label}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  document.body.appendChild(panel);
+
+  restorePanelPosition(panel);
+  updatePanelOpeningDirection(panel);
+
+  const toggleBtn = panel.querySelector(".floating-panel-toggle");
+
+  toggleBtn.addEventListener("click", event => {
+    event.stopPropagation();
+
+    const isOpening = panel.classList.contains("closed");
+
+    if (isOpening) {
+      updatePanelOpeningDirection(panel);
+      panel.classList.remove("closed");
+      toggleBtn.textContent = "−";
+    } else {
+      panel.classList.add("closed");
+      toggleBtn.textContent = "+";
+    }
+
+    savePanelPosition(panel);
+  });
+
+  for (const section of sections) {
+    for (const button of section.buttons) {
+      panel.querySelector(`#${button.id}`)?.addEventListener("click", event => {
+        event.stopPropagation();
+
+        try {
+          button.handler();
+        } catch (error) {
+          console.error(error);
+          showToast(`❌ Erreur : ${button.label}`, "danger");
+        }
+      });
+    }
+  }
+
+  makeFloatingPanelDraggable(panel, panel.querySelector(".floating-panel-header"));
+}
+
+function getDebugStateReport() {
+  const profile = getActiveProfile();
+  const report = [];
+
+  const add = (ok, name, detail = "") => {
+    report.push(`${ok ? "✅" : "❌"} ${name}${detail ? ` — ${detail}` : ""}`);
+  };
+
+  add(Boolean(profile), "Profil actif", profile ? profile.name : "aucun");
+  add(Boolean(currentGameId), "Dex courant", currentGameId || "home");
+  add(Boolean(ui.dex), "Grille Dex trouvée");
+  add(Boolean(ui.objectivesList), "Liste objectifs accueil trouvée");
+  add(Boolean(ui.dexObjectivesList), "Liste objectifs Dex trouvée");
+  add(Boolean(ui.toastContainer), "Toasts trouvés");
+  add(Boolean(ui.backupModal), "Modal sauvegarde trouvée");
+  add(Boolean(ui.achievementUnlockOverlay), "Popup badge trouvée");
+  add(Boolean(ui.toggleObjectivesBtn), "Bouton réduire/afficher objectifs trouvé");
+
+  if (profile) {
+    const activeObjectives = getActiveObjectives(profile);
+    const completed = (profile.objectives || []).filter(o => o.status === "completed").length;
+    const abandoned = (profile.objectives || []).filter(o => o.status === "abandoned").length;
+    const globalRank = getGlobalRank(profile);
+
+    add(true, "Rang calculé", globalRank.name);
+    add(true, "Dex actifs", String(profile.enabledDexes?.length || 0));
+    const totalObjectives = profile.objectives?.length || 0;
+
+    add(true, "Objectifs total", String(totalObjectives));
+    add(true, "Objectifs actifs", String(activeObjectives.length));
+    add(true, "Objectifs terminés", String(completed));
+    add(true, "Objectifs abandonnés", String(abandoned));
+
+    if (totalObjectives === 0) {
+      add(true, "Historique objectifs", "vide");
+    }
+  }
+
+  return report;
+}
+
+function debugShowReport() {
+  const report = getDebugStateReport();
+  const text = `===== RAPPORT DEBUG DEX SWITCH =====\n${report.join("\n")}`;
+
+  console.log(text);
+
+  navigator.clipboard?.writeText(text)
+    .then(() => showToast("✅ Rapport debug copié + console.", "success"))
+    .catch(() => showToast("✅ Rapport debug dans la console.", "success"));
+}
+
+function debugTestButton(name, action, report) {
+  try {
+    action();
+    report.push(`✅ ${name}`);
+  } catch (error) {
+    console.error(error);
+    report.push(`❌ ${name} — ${error.message || error}`);
+  }
+}
+
+function toggleDebugPanelVisibility() {
+  const panel = document.querySelector("#debugPanel");
+  const btn = document.querySelector("#toggleDebugMenuBtn");
+
+  if (!panel || !btn) return;
+
+  isDebugPanelVisible = !isDebugPanelVisible;
+
+  panel.classList.toggle("hidden", !isDebugPanelVisible);
+  btn.classList.toggle("debug-toggle-off", !isDebugPanelVisible);
+}
+
+function debugRunFullTest() {
+  const report = [];
+
+  debugTestButton("État général", () => getDebugStateReport(), report);
+  debugTestButton("Accueil", () => renderHome(), report);
+  debugTestButton("Ouvrir Dex", () => debugOpenLastDex(), report);
+  debugTestButton("Menu haut", () => debugToggleMenu(), report);
+  debugTestButton("Mode sombre", () => debugToggleDark(), report);
+  debugTestButton("Langue", () => debugToggleLang(), report);
+
+  debugTestButton("Créer objectif", () => createRandomObjective(), report);
+  debugTestButton("Voir première quête", () => debugShowCurrentObjective(), report);
+  debugTestButton("Voir Pokémon des quêtes", () => setAllDexObjectivesFilter(), report);
+  debugTestButton("Retirer filtre quête", () => clearObjectiveFilter(), report);
+
+  debugTestButton("Cocher 1 Pokémon", () => runDexShortcut(debugCheckOneVisible), report);
+  debugTestButton("Décocher 1 Pokémon", () => runDexShortcut(debugUncheckOneVisible), report);
+  debugTestButton("Filtre manquants", () => runDexShortcut(debugToggleMissingOnly), report);
+  debugTestButton("Mode shiny", () => runDexShortcut(debugToggleShinyMode), report);
+  debugTestButton("Shiny lock", () => runDexShortcut(debugToggleOneShinyLock), report);
+  debugTestButton("Clear shiny locks", () => runDexShortcut(debugClearShinyLocksCurrentDex), report);
+
+  debugTestButton("Refresh rangs", () => debugRefreshRanks(), report);
+  debugTestButton("Badge popup", () => debugSimulateAchievementUnlock(), report);
+
+  const fullReport = [
+    "===== TEST COMPLET DEX SWITCH =====",
+    ...report,
+    "",
+    "===== ÉTAT FINAL =====",
+    ...getDebugStateReport()
+  ].join("\n");
+
+  console.log(fullReport);
+
+  navigator.clipboard?.writeText(fullReport).catch(() => { });
+
+  const okCount = report.filter(line => line.startsWith("✅")).length;
+  showToast(`🧪 Test fini : ${okCount}/${report.length} OK. Rapport copié/console.`, okCount === report.length ? "success" : "warn");
+}
+
+function shortcutAbandonFirstObjective() {
+  const objective = getFirstActiveObjective();
+
+  if (!objective) {
+    showToast("⚠️ Aucune quête active à abandonner.", "warn");
+    return;
+  }
+
+  abandonObjective(objective.id, false);
+}
+
+function shortcutViewNextObjective() {
+  const profile = getActiveProfile();
+  const objectives = getActiveObjectives(profile);
+
+  if (objectives.length === 0) {
+    showToast("⚠️ Aucune quête active.", "warn");
+    return;
+  }
+
+  if (shortcutObjectiveViewIndex >= objectives.length) {
+    shortcutObjectiveViewIndex = 0;
+  }
+
+  const objective = objectives[shortcutObjectiveViewIndex];
+  shortcutObjectiveViewIndex++;
+
+  setObjectiveFilter(objective.id);
+}
+
+function createShortcutMenu() {
+  createFloatingPanel({
+    id: "shortcutPanel",
+    title: "Raccourcis",
+    enabled: SHORTCUTS_MODE,
+    className: "shortcut-panel",
+    sections: [
+      {
+        title: "Dex",
+        buttons: [
+          {
+            id: "shortcutAddBtn",
+            label: "Tout +",
+            title: "Tout cocher les Pokémon visibles",
+            className: "good",
+            handler: () => runDexShortcut(() => ui.checkVisibleBtn.click())
+          },
+          {
+            id: "shortcutRemoveBtn",
+            label: "Tout -",
+            title: "Tout décocher les Pokémon visibles",
+            className: "warn",
+            handler: () => runDexShortcut(() => ui.uncheckVisibleBtn.click())
+          },
+          {
+            id: "shortcutMissingBtn",
+            label: "Manq.",
+            title: "Activer/désactiver les Pokémon manquants",
+            className: "quest",
+            handler: () => runDexShortcut(debugToggleMissingOnly)
+          },
+          {
+            id: "shortcutShinyBtn",
+            label: "Shiny",
+            title: "Activer/désactiver le mode shiny",
+            className: "quest",
+            handler: () => runDexShortcut(debugToggleShinyMode)
+          }
+        ]
+      },
+      {
+        title: "Quêtes",
+        buttons: [
+          {
+            id: "shortcutNewDexQuestBtn",
+            label: "Obj. ce dex",
+            title: "Créer un objectif pour le Dex ouvert",
+            className: "good",
+            handler: () => {
+              if (!currentGameId) {
+                showToast("⚠️ Ouvre un Dex pour créer une quête sur ce Dex.", "warn");
+                return;
+              }
+
+              createRandomObjective(currentGameId);
+            }
+          },
+          {
+            id: "shortcutNewRandomQuestBtn",
+            label: "Obj. aléatoire",
+            title: "Créer un objectif sur un Dex aléatoire",
+            className: "good",
+            handler: () => createRandomObjective()
+          },
+          {
+            id: "shortcutQuestViewBtn",
+            label: "Voir",
+            title: "Voir la quête suivante",
+            className: "quest",
+            handler: shortcutViewNextObjective
+          },
+          {
+            id: "shortcutQuestAllBtn",
+            label: "Quêtes Dex",
+            title: "Afficher tous les Pokémon demandés par les quêtes du Dex ouvert",
+            className: "quest",
+            handler: () => runDexShortcut(setAllDexObjectivesFilter)
+          },
+          {
+            id: "shortcutQuestClearBtn",
+            label: "Sans filtre",
+            title: "Retirer le filtre quête et réafficher tout le Dex",
+            handler: () => runDexShortcut(clearObjectiveFilter)
+          }
+        ]
+      },
+      {
+        title: "Nav",
+        buttons: [
+          {
+            id: "shortcutHomeBtn",
+            label: "Home",
+            title: "Retour accueil",
+            handler: debugOpenHome
+          },
+          {
+            id: "shortcutDexBtn",
+            label: "Dex",
+            title: "Ouvrir le dernier Dex",
+            handler: shortcutOpenLastDexOnly
+          },
+          {
+            id: "shortcutMenuBtn",
+            label: "Menu",
+            title: "Ouvrir/fermer le menu du haut",
+            handler: debugToggleMenu
+          },
+          {
+            id: "shortcutDarkBtn",
+            label: "Dark",
+            title: "Activer/désactiver le thème sombre",
+            handler: debugToggleDark
+          }
+        ]
+      }
+    ]
   });
 }
 
 function createDebugMenu() {
-  if (!DEBUG_MODE || document.querySelector("#debugPanel")) return;
+  createFloatingPanel({
+    id: "debugPanel",
+    title: "Debug",
+    enabled: DEBUG_MODE,
+    className: "debug-panel-full",
+    sections: [
+      {
+        title: "Rapport",
+        buttons: [
+          {
+            id: "debugAllBtn",
+            label: "Test all",
+            title: "Tester toutes les actions principales",
+            className: "good",
+            handler: debugRunFullTest
+          },
+          {
+            id: "debugReportBtn",
+            label: "Rapport",
+            title: "Copier un rapport d'état complet",
+            className: "quest",
+            handler: debugShowReport
+          }
+        ]
+      },
+      {
+        title: "Quêtes",
+        buttons: [
+          {
+            id: "debugQuestNewBtn",
+            label: "New",
+            className: "good",
+            handler: () => createRandomObjective()
+          },
+          {
+            id: "debugQuestPlusBtn",
+            label: "+1",
+            className: "quest",
+            handler: debugAdvanceFirstObjective
+          },
+          {
+            id: "debugQuestMinusBtn",
+            label: "-1",
+            className: "warn",
+            handler: debugRetreatFirstObjective
+          },
+          {
+            id: "debugQuestDoneBtn",
+            label: "Done",
+            className: "good",
+            handler: debugCompleteFirstObjective
+          },
+          {
+            id: "debugQuestViewBtn",
+            label: "Voir",
+            className: "quest",
+            handler: debugShowCurrentObjective
+          },
+          {
+            id: "debugQuestAllBtn",
+            label: "Toutes",
+            className: "quest",
+            handler: () => runDexShortcut(setAllDexObjectivesFilter)
+          },
+          {
+            id: "debugQuestReplaceBtn",
+            label: "Rpl.",
+            className: "warn",
+            handler: debugReplaceFirstObjective
+          },
+          {
+            id: "debugQuestAbandonBtn",
+            label: "Aban.",
+            className: "danger",
+            handler: debugRemoveFirstObjective
+          },
+          {
+            id: "debugQuestResetBtn",
+            label: "Reset",
+            className: "danger",
+            handler: debugResetActiveObjectives
+          }
+        ]
+      },
+      {
+        title: "Dex",
+        buttons: [
+          {
+            id: "debugDexOpenBtn",
+            label: "Open",
+            handler: debugOpenLastDex
+          },
+          {
+            id: "debugDexAddBtn",
+            label: "+1",
+            className: "good",
+            handler: () => runDexShortcut(debugCheckOneVisible)
+          },
+          {
+            id: "debugDexRemoveBtn",
+            label: "-1",
+            className: "warn",
+            handler: () => runDexShortcut(debugUncheckOneVisible)
+          },
+          {
+            id: "debugDexFullBtn",
+            label: "Full",
+            className: "good",
+            handler: () => runDexShortcut(debugCompleteCurrentDex)
+          },
+          {
+            id: "debugDexEmptyBtn",
+            label: "Vider",
+            className: "danger",
+            handler: () => runDexShortcut(debugEmptyCurrentDex)
+          },
+          {
+            id: "debugDexMissingBtn",
+            label: "Manq.",
+            className: "quest",
+            handler: () => runDexShortcut(debugToggleMissingOnly)
+          }
+        ]
+      },
+      {
+        title: "Shiny",
+        buttons: [
+          {
+            id: "debugShinyModeBtn",
+            label: "Mode",
+            className: "quest",
+            handler: () => runDexShortcut(debugToggleShinyMode)
+          },
+          {
+            id: "debugShinyLockBtn",
+            label: "Lock",
+            className: "warn",
+            handler: () => runDexShortcut(debugToggleOneShinyLock)
+          },
+          {
+            id: "debugShinyClearBtn",
+            label: "Clear",
+            className: "danger",
+            handler: () => runDexShortcut(debugClearShinyLocksCurrentDex)
+          },
+          {
+            id: "debugShinyFullBtn",
+            label: "Full",
+            className: "good",
+            handler: () => runDexShortcut(debugCompleteShinyNoLocksCurrentDex)
+          }
+        ]
+      },
+      {
+        title: "UI",
+        buttons: [
+          {
+            id: "debugHomeBtn",
+            label: "Home",
+            handler: debugOpenHome
+          },
+          {
+            id: "debugMenuBtn",
+            label: "Menu",
+            handler: debugToggleMenu
+          },
+          {
+            id: "debugDarkBtn",
+            label: "Dark",
+            handler: debugToggleDark
+          },
+          {
+            id: "debugLangBtn",
+            label: "Lang",
+            handler: debugToggleLang
+          }
+        ]
+      },
+      {
+        title: "Data",
+        buttons: [
+          {
+            id: "debugRankBtn",
+            label: "Rangs",
+            className: "good",
+            handler: debugRefreshRanks
+          },
+          {
+            id: "debugBadgeBtn",
+            label: "Badge",
+            className: "good",
+            handler: debugSimulateAchievementUnlock
+          },
+          {
+            id: "debugCleanBtn",
+            label: "Clean",
+            className: "danger",
+            handler: debugCleanHiddenObjectives
+          },
+          {
+            id: "debugExportBtn",
+            label: "Export",
+            className: "quest",
+            handler: openBackupExport
+          }
+        ]
+      }
+    ]
+  });
+  const panel = document.querySelector("#debugPanel");
+  if (panel) {
+    panel.classList.toggle("hidden", !isDebugPanelVisible);
+  }
+}
 
-  const debugPanel = document.createElement("section");
-  debugPanel.id = "debugPanel";
-  debugPanel.className = "debug-panel closed";
-  debugPanel.innerHTML = `
-    <div id="debugHeader" class="debug-header">
-      <div class="debug-title">🧪 Debug</div>
-      <button id="debugToggleBtn" class="btn tiny debug-toggle" type="button">+</button>
-    </div>
+function areShortcutsVisible() {
+  return localStorage.getItem(STORAGE_KEYS.shortcutsVisible) !== "0";
+}
 
-    <div class="debug-body">
-      <div class="debug-section">
-        <div class="debug-section-title">Quêtes</div>
-        <div class="debug-grid">
-          <button id="debugAdvanceObjectiveBtn" class="btn tiny quest" type="button">+1</button>
-          <button id="debugRetreatObjectiveBtn" class="btn tiny warn" type="button">-1</button>
-          <button id="debugCreateObjectiveBtn" class="btn tiny good" type="button">Créer</button>
-          <button id="debugRemoveObjectiveBtn" class="btn tiny danger" type="button">Abandonner</button>
-          <button id="debugCompleteObjectiveBtn" class="btn tiny warn" type="button">Finir</button>
-          <button id="debugResetObjectivesBtn" class="btn tiny danger" type="button">Reset</button>
-          <button id="debugReplaceObjectiveBtn" class="btn tiny warn" type="button">Remplacer</button>
-          <button id="debugViewObjectiveBtn" class="btn tiny quest" type="button">Voir quête</button>
-          <button id="debugClearQuestFilterBtn" class="btn tiny" type="button">Voir Dex</button>
-          <button id="debugRanksBtn" class="btn tiny" type="button">Rangs</button>
-        </div>
-      </div>
+function setShortcutsVisible(visible) {
+  localStorage.setItem(STORAGE_KEYS.shortcutsVisible, visible ? "1" : "0");
 
-      <div class="debug-section">
-        <div class="debug-section-title">Dex</div>
-        <div class="debug-grid">
-          <button id="debugCheckOneBtn" class="btn tiny good" type="button">+1</button>
-          <button id="debugUncheckOneBtn" class="btn tiny warn" type="button">-1</button>
-          <button id="debugCompleteDexBtn" class="btn tiny good" type="button">Full Dex</button>
-          <button id="debugEmptyDexBtn" class="btn tiny danger" type="button">Vider Dex</button>
-        </div>
-      </div>
+  const panel = document.querySelector("#shortcutPanel");
+  if (panel) {
+    panel.classList.toggle("hidden", !visible);
+  }
 
-      <div class="debug-section">
-        <div class="debug-section-title">Shiny</div>
-        <div class="debug-grid">
-          <button id="debugToggleShinyBtn" class="btn tiny quest" type="button">Mode</button>
-          <button id="debugOneLockBtn" class="btn tiny warn" type="button">Lock +1</button>
-          <button id="debugClearLocksBtn" class="btn tiny danger" type="button">Locks 0</button>
-          <button id="debugShinyNoLocksBtn" class="btn tiny good" type="button">Shiny full</button>
-        </div>
-      </div>
+  const btn = document.querySelector("#toggleShortcutsMenuBtn");
+  if (btn) {
+    btn.textContent = "Raccourcis";
+    btn.classList.toggle("shortcut-toggle-off", !visible);
+  }
+}
 
-      <div class="debug-section">
-        <div class="debug-section-title">UI</div>
-        <div class="debug-grid">
-          <button id="debugHomeBtn" class="btn tiny" type="button">Home</button>
-          <button id="debugDexBtn" class="btn tiny" type="button">Dex</button>
-          <button id="debugMenuBtn" class="btn tiny" type="button">Menu</button>
-          <button id="debugDarkBtn" class="btn tiny" type="button">Dark</button>
-          <button id="debugLangBtn" class="btn tiny" type="button">Lang</button>
-          <button id="debugMissingBtn" class="btn tiny" type="button">Manquants</button>
-        </div>
-      </div>
+function createShortcutsToggleButton() {
+  if (!ui.topbarControls || document.querySelector("#toggleShortcutsMenuBtn")) return;
 
-      <div class="debug-section">
-        <div class="debug-section-title">Profil</div>
-        <div class="debug-grid">
-          <button id="debugRefreshRanksBtn" class="btn tiny good" type="button">Refresh</button>
-          <button id="debugCopySummaryBtn" class="btn tiny quest" type="button">Copier</button>
-          <button id="debugSimulateAchievementBtn" class="btn tiny good" type="button">Badge</button>
-          <button id="debugCleanObjectivesBtn" class="btn tiny danger" type="button">Nettoyer</button>
-          <button id="debugCloseBtn" class="btn tiny" type="button">Fermer</button>
-        </div>
-      </div>
-    </div>
-  `;
+  const button = document.createElement("button");
+  button.id = "toggleShortcutsMenuBtn";
+  button.className = "btn";
+  button.type = "button";
+  button.textContent = "Raccourcis";
 
-  document.body.appendChild(debugPanel);
-
-  const debugToggleBtn = debugPanel.querySelector("#debugToggleBtn");
-  debugToggleBtn.addEventListener("click", event => {
-    event.stopPropagation();
-    const isClosed = debugPanel.classList.toggle("closed");
-    debugToggleBtn.textContent = isClosed ? "+" : "−";
+  button.addEventListener("click", () => {
+    setShortcutsVisible(!areShortcutsVisible());
   });
 
-  debugPanel.querySelector("#debugCloseBtn").addEventListener("click", () => {
-    debugPanel.classList.add("closed");
-    debugToggleBtn.textContent = "+";
-  });
+  const firstLine = ui.topbarControls.querySelector(".controls-main-line") || ui.topbarControls;
+  firstLine.appendChild(button);
 
-  const bind = (selector, handler) => {
-    debugPanel.querySelector(selector).addEventListener("click", handler);
-  };
-
-  bind("#debugAdvanceObjectiveBtn", debugAdvanceFirstObjective);
-  bind("#debugRetreatObjectiveBtn", debugRetreatFirstObjective);
-  bind("#debugCreateObjectiveBtn", () => {
-    createRandomObjective();
-  });
-  bind("#debugRemoveObjectiveBtn", debugRemoveFirstObjective);
-  bind("#debugCompleteObjectiveBtn", debugCompleteFirstObjective);
-  bind("#debugResetObjectivesBtn", debugResetActiveObjectives);
-  bind("#debugReplaceObjectiveBtn", debugReplaceFirstObjective);
-  bind("#debugViewObjectiveBtn", debugShowCurrentObjective);
-  bind("#debugClearQuestFilterBtn", debugClearQuestFilter);
-  bind("#debugRanksBtn", debugShowRanks);
-
-  bind("#debugCheckOneBtn", debugCheckOneVisible);
-  bind("#debugUncheckOneBtn", debugUncheckOneVisible);
-  bind("#debugCompleteDexBtn", debugCompleteCurrentDex);
-  bind("#debugEmptyDexBtn", debugEmptyCurrentDex);
-
-  bind("#debugToggleShinyBtn", debugToggleShinyMode);
-  bind("#debugOneLockBtn", debugToggleOneShinyLock);
-  bind("#debugClearLocksBtn", debugClearShinyLocksCurrentDex);
-  bind("#debugShinyNoLocksBtn", debugCompleteShinyNoLocksCurrentDex);
-
-  bind("#debugHomeBtn", debugOpenHome);
-  bind("#debugDexBtn", debugOpenLastDex);
-  bind("#debugMenuBtn", debugToggleMenu);
-  bind("#debugDarkBtn", debugToggleDark);
-  bind("#debugLangBtn", debugToggleLang);
-  bind("#debugMissingBtn", debugToggleMissingOnly);
-
-  bind("#debugRefreshRanksBtn", debugRefreshRanks);
-  bind("#debugCopySummaryBtn", debugCopySummary);
-  bind("#debugSimulateAchievementBtn", debugSimulateAchievementUnlock);
-  bind("#debugCleanObjectivesBtn", debugCleanHiddenObjectives);
-
-  makeDebugPanelDraggable(debugPanel, debugPanel.querySelector("#debugHeader"));
+  setShortcutsVisible(areShortcutsVisible());
 }
 
 function bindEvents() {
+
+
+  if (DEBUG_MODE && ui.profileSelectLabel && !document.querySelector("#toggleDebugMenuBtn")) {
+    const debugToggleBtn = document.createElement("button");
+    debugToggleBtn.id = "toggleDebugMenuBtn";
+    debugToggleBtn.className = "btn";
+    debugToggleBtn.type = "button";
+    debugToggleBtn.textContent = "Debug";
+
+    debugToggleBtn.addEventListener("click", toggleDebugPanelVisibility);
+
+    ui.profileSelectLabel.parentElement.insertBefore(debugToggleBtn, ui.profileSelectLabel);
+  }
 
   document.addEventListener("click", event => {
     if (!event.target.closest(".achievement-badge")) {
@@ -3130,14 +3753,14 @@ function bindEvents() {
 
   ui.menuToggleBtn.addEventListener("click", () => setMenuOpen(!isMenuOpen));
   ui.randomObjectiveBtn.addEventListener("click", () => {
-  createRandomObjective();
-});
+    createRandomObjective();
+  });
 
-ui.toggleObjectivesBtn?.addEventListener("click", () => {
-  setObjectivesCollapsed(!areObjectivesCollapsed);
-});
+  ui.toggleObjectivesBtn?.addEventListener("click", () => {
+    setObjectivesCollapsed(!areObjectivesCollapsed);
+  });
 
-ui.historyAllBtn?.addEventListener("click", () => setHistoryFilter("all"));
+  ui.historyAllBtn?.addEventListener("click", () => setHistoryFilter("all"));
   ui.historyCompletedBtn?.addEventListener("click", () => setHistoryFilter("completed"));
   ui.historyAbandonedBtn?.addEventListener("click", () => setHistoryFilter("abandoned"));
 
@@ -3291,7 +3914,10 @@ function init() {
 
   if (Object.keys(profiles).length === 0) {
     showSetupCreate();
+    createShortcutMenu();
     createDebugMenu();
+    createShortcutsToggleButton();
+    setShortcutsVisible(areShortcutsVisible());
     return;
   }
 
@@ -3301,7 +3927,10 @@ function init() {
   }
 
   goToLastPlaceForActiveProfile();
+  createShortcutMenu();
   createDebugMenu();
+  createShortcutsToggleButton();
+  setShortcutsVisible(areShortcutsVisible());
 }
 
 init();

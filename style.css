@@ -555,6 +555,7 @@ input[type="text"] {
   font-weight: 900;
   color: #d4af37;
 }
+
 .home-header {
   display: none;
 }
@@ -983,7 +984,7 @@ input[type="text"] {
 }
 
 .dex-objectives-list {
-  max-height: 170px !important;
+  max-height: 130px !important;
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -993,10 +994,6 @@ input[type="text"] {
   max-height: 210px;
   overflow-y: auto;
   padding-right: 6px;
-}
-
-.dex-objectives-list {
-  max-height: 130px !important;
 }
 
 .objectives-panel.objectives-collapsed .objectives-list {
@@ -1906,4 +1903,336 @@ body.dark .achievement-unlock-card {
   .topbar-title-block {
     min-width: 0;
   }
+}
+
+/* =========================================================
+   FLOATING PANELS : RACCOURCIS + DEBUG
+========================================================= */
+
+/* Toujours garder la place de la scrollbar : évite le mini décalage quand "Manquants" change la liste */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+/* Panels flottants */
+.floating-dev-panel {
+  position: fixed;
+  z-index: 2600;
+  width: 230px;
+  max-height: 82vh;
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+.floating-dev-panel.closed {
+  width: auto;
+  max-width: 190px;
+}
+
+.floating-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  cursor: move;
+  user-select: none;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.floating-dev-panel.closed .floating-panel-header {
+  border-bottom: none;
+}
+
+.floating-panel-title {
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+.floating-panel-toggle {
+  min-width: 32px;
+  padding: 4px 7px;
+}
+
+.floating-panel-body {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  max-height: calc(82vh - 46px);
+  overflow-y: auto;
+  background: var(--panel);
+}
+
+.floating-dev-panel.closed .floating-panel-body {
+  display: none;
+}
+
+.floating-panel-section {
+  display: grid;
+  gap: 6px;
+}
+
+.floating-panel-section-title {
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0.72;
+}
+
+.floating-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.floating-panel-grid .btn {
+  width: 100%;
+  min-width: 0;
+  padding: 5px 6px;
+  font-size: 11px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/* Raccourcis : position de base en haut à droite */
+.shortcut-panel {
+  left: 14px;
+  bottom: 14px;
+  border-color: rgba(74, 222, 128, 0.75);
+  box-shadow:
+    5px 5px 0 rgba(0, 0, 0, 0.28),
+    0 0 18px rgba(74, 222, 128, 0.22);
+}
+
+.shortcut-panel .floating-panel-title::before {
+  content: "⚡ ";
+}
+
+/* Debug : position de base en haut à gauche */
+.debug-panel-full {
+  right: 14px;
+  bottom: 14px;
+  border-color: rgba(251, 191, 36, 0.75);
+  box-shadow:
+    5px 5px 0 rgba(0, 0, 0, 0.28),
+    0 0 18px rgba(251, 191, 36, 0.22);
+}
+
+.debug-panel-full .floating-panel-title::before {
+  content: "🧪 ";
+}
+
+.debug-panel-full .floating-panel-header {
+  background: rgba(251, 191, 36, 0.08);
+}
+
+/* Dark mode des panels */
+body.dark .floating-dev-panel,
+body.dark .floating-panel-body {
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .shortcut-panel,
+body.dark .shortcut-panel .floating-panel-body {
+  border-color: rgba(74, 222, 128, 0.75);
+}
+
+body.dark .debug-panel-full,
+body.dark .debug-panel-full .floating-panel-body {
+  border-color: rgba(251, 191, 36, 0.75);
+}
+
+/* =========================================================
+   TOGGLE BUTTONS SANS CASE À COCHER
+   Shiny Dex / Manquants / Dark / Raccourcis
+========================================================= */
+
+/* On cache les vraies cases à cocher */
+.toggle input[type="checkbox"],
+.controls input[type="checkbox"] {
+  display: none;
+}
+
+/* Style de base des labels à checkbox */
+.toggle,
+.controls label:has(input[type="checkbox"]) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+
+  font-weight: 900;
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+/* Actif = contour vert + glow */
+.toggle:has(input[type="checkbox"]:checked),
+.controls label:has(input[type="checkbox"]:checked) {
+  border-color: rgba(74, 222, 128, 0.95);
+  background: rgba(34, 197, 94, 0.10);
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.16),
+    0 0 14px rgba(74, 222, 128, 0.22);
+}
+
+/* Désactivé = texte normal, pas gris, pas contour vert */
+.toggle:has(input[type="checkbox"]:not(:checked)),
+.controls label:has(input[type="checkbox"]:not(:checked)) {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  box-shadow: none;
+  opacity: 1;
+}
+
+/* Bouton Raccourcis : exactement le même esprit que Shiny/Manquants */
+#toggleShortcutsMenuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 2px solid var(--border) !important;
+  border-radius: 10px;
+  padding: 8px 12px;
+
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--text) !important;
+
+  font-weight: 900;
+  opacity: 1 !important;
+  box-shadow: none !important;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+/* Raccourcis actif = vert */
+#toggleShortcutsMenuBtn:not(.shortcut-toggle-off) {
+  border-color: rgba(74, 222, 128, 0.95) !important;
+  background: rgba(34, 197, 94, 0.10) !important;
+  color: var(--text) !important;
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.16),
+    0 0 14px rgba(74, 222, 128, 0.22) !important;
+}
+
+/* Raccourcis désactivé = normal, lisible, sans contour vert */
+#toggleShortcutsMenuBtn.shortcut-toggle-off {
+  border-color: var(--border) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* Mode clair : texte noir lisible */
+body:not(.dark) #toggleShortcutsMenuBtn,
+body:not(.dark) .toggle,
+body:not(.dark) .controls label:has(input[type="checkbox"]) {
+  color: #111111 !important;
+}
+
+/* Mode sombre : texte blanc lisible */
+body.dark #toggleShortcutsMenuBtn,
+body.dark .toggle,
+body.dark .controls label:has(input[type="checkbox"]) {
+  color: var(--text) !important;
+}
+
+.floating-dev-panel {
+  overflow: visible;
+}
+
+.floating-dev-panel .floating-panel-header {
+  position: relative;
+  z-index: 2;
+}
+
+.floating-dev-panel .floating-panel-body {
+  overflow-y: auto;
+  border-radius: 0 0 12px 12px;
+}
+
+.floating-dev-panel.open-up .floating-panel-body {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: calc(100% - 2px);
+  max-height: min(70vh, 520px);
+  border: 2px solid currentColor;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.shortcut-panel.open-up .floating-panel-body {
+  border-color: rgba(74, 222, 128, 0.75);
+}
+
+.debug-panel-full.open-up .floating-panel-body {
+  border-color: rgba(251, 191, 36, 0.75);
+}
+
+.floating-dev-panel.open-up {
+  overflow: visible;
+}
+
+.floating-dev-panel.open-up .floating-panel-body {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: calc(100% - 2px);
+  max-height: min(70vh, 520px);
+  border: 2px solid currentColor;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+}
+
+.shortcut-panel.open-up .floating-panel-body {
+  border-color: rgba(74, 222, 128, 0.75);
+}
+
+.debug-panel-full.open-up .floating-panel-body {
+  border-color: rgba(251, 191, 36, 0.75);
+}
+
+.floating-dev-panel.open-up .floating-panel-header {
+  border-radius: 0 0 12px 12px;
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+#toggleDebugMenuBtn {
+  border-color: rgba(251, 191, 36, 0.95);
+  box-shadow:
+    0 0 0 2px rgba(251, 191, 36, 0.16),
+    0 0 14px rgba(251, 191, 36, 0.22);
+}
+
+#toggleDebugMenuBtn.debug-toggle-off {
+  border-color: var(--border);
+  box-shadow: none;
 }

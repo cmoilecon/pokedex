@@ -1,15 +1,22 @@
 import { pokemons as nationalPokemons } from "./data/national.js";
-import { pokemons as letsGoPokemons } from "./data/lets-go-pikachu-eevee.js";
-import { pokemons as swordShieldPokemons } from "./data/sword-shield.js";
-import { pokemons as isleOfArmorPokemons } from "./data/isle-of-armor.js";
-import { pokemons as crownTundraPokemons } from "./data/crown-tundra.js";
-import { pokemons as bdspPokemons } from "./data/brilliant-diamond-shining-pearl.js";
-import { pokemons as legendsArceusPokemons } from "./data/legends-arceus.js";
-import { pokemons as scarletVioletPokemons } from "./data/scarlet-violet.js";
-import { pokemons as tealMaskPokemons } from "./data/teal-mask.js";
-import { pokemons as indigoDiskPokemons } from "./data/indigo-disk.js";
-import { pokemons as legendsZAPokemons } from "./data/legends-z-a.js";
-import { pokemons as megaDimensionPokemons } from "./data/mega-dimension.js";
+
+import { pokemons as letsGoPokemons } from "./data/switch/lets-go-pikachu-eevee.js";
+import { pokemons as swordShieldPokemons } from "./data/switch/sword-shield.js";
+import { pokemons as isleOfArmorPokemons } from "./data/switch/isle-of-armor.js";
+import { pokemons as crownTundraPokemons } from "./data/switch/crown-tundra.js";
+import { pokemons as bdspPokemons } from "./data/switch/brilliant-diamond-shining-pearl.js";
+import { pokemons as legendsArceusPokemons } from "./data/switch/legends-arceus.js";
+import { pokemons as scarletVioletPokemons } from "./data/switch/scarlet-violet.js";
+import { pokemons as tealMaskPokemons } from "./data/switch/teal-mask.js";
+import { pokemons as indigoDiskPokemons } from "./data/switch/indigo-disk.js";
+import { pokemons as legendsZAPokemons } from "./data/switch/legends-z-a.js";
+import { pokemons as megaDimensionPokemons } from "./data/switch/mega-dimension.js";
+
+import { pokemons as XYPokemons } from "./data/3ds/x-y.js";
+import { pokemons as RoSaPokemons } from "./data/3ds/omega-ruby-alpha-sapphire.js";
+import { pokemons as SLPokemons } from "./data/3ds/sun-moon.js";
+import { pokemons as UsUlPokemons } from "./data/3ds/ultra-sun-ultra-moon.js";
+
 import { games } from "./games.js";
 
 const DEBUG_MODE = false;
@@ -27,6 +34,7 @@ const STORAGE_KEYS = {
 
 const dexDataMap = {
   national: nationalPokemons,
+  //switch
   "lets-go-pikachu-eevee": letsGoPokemons,
   "sword-shield": swordShieldPokemons,
   "isle-of-armor": isleOfArmorPokemons,
@@ -37,7 +45,12 @@ const dexDataMap = {
   "teal-mask": tealMaskPokemons,
   "indigo-disk": indigoDiskPokemons,
   "legends-z-a": legendsZAPokemons,
-  "mega-dimension": megaDimensionPokemons
+  "mega-dimension": megaDimensionPokemons,
+  //3ds
+  "x-y": XYPokemons,
+  "omega-ruby-alpha-sapphire": RoSaPokemons,
+  "sun-moon": SLPokemons,
+  "ultra-sun-ultra-moon": UsUlPokemons
 };
 
 const $ = selector => document.querySelector(selector);
@@ -77,6 +90,7 @@ const ui = {
   globalXpFill: $("#globalXpFill"),
   achievementsList: $("#achievementsList"),
   gameGrid: $("#gameGrid"),
+  dexPlatformFilters: $("#dexPlatformFilters"),
   objectivesList: $("#objectivesList"),
   randomObjectiveBtn: $("#randomObjectiveBtn"),
   toggleObjectivesBtn: $("#toggleObjectivesBtn"),
@@ -138,6 +152,7 @@ let achievementAudioContext = null;
 let achievementSoundEnabled = true;
 let shortcutObjectiveViewIndex = 0;
 let isDebugPanelVisible = true;
+let activeDexPlatformFilter = "all";
 
 function loadProfiles() {
   try {
@@ -265,6 +280,50 @@ function getCurrentDexState() {
 
 function getObtained() {
   return getCurrentDexState()?.obtained || {};
+}
+
+function getPokemonStorageKey(pokemonOrId) {
+  if (typeof pokemonOrId === "object" && pokemonOrId) {
+    return pokemonOrId.sectionId ? `${pokemonOrId.sectionId}:${pokemonOrId.id}` : String(pokemonOrId.id);
+  }
+
+  return String(pokemonOrId);
+}
+
+function getObtainedKeysForSlug(profile, gameId, slug) {
+  return getPokemonsForGame(gameId)
+    .filter(pokemon => pokemon.slug === slug)
+    .map(pokemon => getPokemonStorageKey(pokemon));
+}
+
+function isPokemonObtainedLocal(profile, gameId, pokemon) {
+  const state = getProfileDexState(profile, gameId);
+  const obtained = state.obtained || {};
+  const keys = getObtainedKeysForSlug(profile, gameId, pokemon.slug);
+
+  return keys.some(key => obtained[key]);
+}
+
+function setPokemonObtainedEverywhere(profile, gameId, pokemon, value) {
+  const state = getProfileDexState(profile, gameId);
+  const obtained = { ...(state.obtained || {}) };
+  const shinyLocked = { ...(state.shinyLocked || {}) };
+  const keys = getObtainedKeysForSlug(profile, gameId, pokemon.slug);
+
+  for (const key of keys) {
+    if (value) {
+      obtained[key] = true;
+    } else {
+      delete obtained[key];
+      delete shinyLocked[key];
+    }
+  }
+
+  state.obtained = obtained;
+  state.shinyLocked = shinyLocked;
+  saveProfiles();
+
+  return keys;
 }
 
 function saveObtained(obtained) {
@@ -2096,6 +2155,31 @@ function getGameSpritePreview(gameId) {
   }).join("");
 }
 
+function getFilteredHomeGames(profile) {
+  const enabled = new Set(profile.enabledDexes || []);
+
+  return games
+    .filter(game => enabled.has(game.id))
+    .filter(game => {
+      if (game.id === "national") return true;
+      if (activeDexPlatformFilter === "all") return true;
+      return game.platform === activeDexPlatformFilter;
+    })
+    .sort((a, b) => {
+      if (a.id === "national") return -1;
+      if (b.id === "national") return 1;
+      return 0;
+    });
+}
+
+function updateDexPlatformFilterButtons() {
+  if (!ui.dexPlatformFilters) return;
+
+  ui.dexPlatformFilters.querySelectorAll("[data-platform-filter]").forEach(button => {
+    button.classList.toggle("active", button.dataset.platformFilter === activeDexPlatformFilter);
+  });
+}
+
 function renderHome() {
   const profile = getActiveProfile();
   if (!profile) return;
@@ -2120,8 +2204,9 @@ function renderHome() {
 
   ui.gameGrid.innerHTML = "";
 
-  for (const game of games) {
-    if (!profile.enabledDexes.includes(game.id)) continue;
+  updateDexPlatformFilterButtons();
+
+  for (const game of getFilteredHomeGames(profile)) {
 
     const progress = calculateGameProgress(profile, game.id);
     if (ui.hideCompletedDexMode.checked && progress.completion === 100) continue;
@@ -2203,7 +2288,20 @@ function renderDex() {
   completeFinishedObjectives(false);
   ui.dex.innerHTML = "";
 
+  let lastSectionId = null;
+
   for (const pokemon of getFilteredPokemons()) {
+    if (pokemon.sectionId && pokemon.sectionId !== lastSectionId) {
+      lastSectionId = pokemon.sectionId;
+
+      const section = document.createElement("div");
+      section.className = "dex-section-separator";
+      section.innerHTML = `
+        <span>${escapeHtml(pokemon.sectionName || "Section du Dex")}</span>
+      `;
+
+      ui.dex.appendChild(section);
+    }
     const isObtained = isPokemonObtained(pokemon);
     const isLocked = isPokemonShinyLocked(pokemon);
     const name = getPokemonName(pokemon);
@@ -3730,6 +3828,15 @@ function createShortcutsToggleButton() {
 
 function bindEvents() {
 
+
+
+  ui.dexPlatformFilters?.addEventListener("click", event => {
+    const button = event.target.closest("[data-platform-filter]");
+    if (!button) return;
+
+    activeDexPlatformFilter = button.dataset.platformFilter || "all";
+    renderHome();
+  });
 
   if (DEBUG_MODE && ui.profileSelectLabel && !document.querySelector("#toggleDebugMenuBtn")) {
     const debugToggleBtn = document.createElement("button");

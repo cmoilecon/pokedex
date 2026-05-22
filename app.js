@@ -370,7 +370,7 @@ function getImageUrl(pokemon) {
 function getPokemonInfoUrl(pokemon) {
   if (ui.langSelect.value === "fr") {
     const pokemonCible = pokemon.names?.fr || pokemon.names?.en || pokemon.slug;
-    // return `https://www.pokepedia.fr/${encodeURIComponent(pokemonCible)}`;
+    return `https://www.pokebip.com/pokedex/pokemon/${encodeURIComponent(pokemonCible)}`;
   }
 
   return `https://pokemondb.net/pokedex/${pokemon.slug}`;

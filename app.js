@@ -368,11 +368,7 @@ function getImageUrl(pokemon) {
 }
 
 function getPokeBipSlug(pokemon) {
-  if (pokemon.slug) {
-    return pokemon.slug;
-  }
-
-  const name = pokemon.names?.fr || pokemon.names?.en || "";
+  const name = pokemon.names?.fr || pokemon.names?.en || pokemon.slug || "";
 
   return name
     .trim()

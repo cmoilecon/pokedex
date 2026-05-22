@@ -367,10 +367,29 @@ function getImageUrl(pokemon) {
   return `https://img.pokemondb.net/sprites/home/${form}/${imageSlug}.png`;
 }
 
+function getPokeBipSlug(pokemon) {
+  if (pokemon.slug) {
+    return pokemon.slug;
+  }
+
+  const name = pokemon.names?.fr || pokemon.names?.en || "";
+
+  return name
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/♀/g, "-f")
+    .replace(/♂/g, "-m")
+    .replace(/['’]/g, "")
+    .replace(/\./g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function getPokemonInfoUrl(pokemon) {
   if (ui.langSelect.value === "fr") {
-    const pokemonCible = pokemon.names?.fr || pokemon.names?.en || pokemon.slug;
-    return `https://www.pokebip.com/pokedex/pokemon/${encodeURIComponent(pokemonCible)}`;
+    return `https://www.pokebip.com/pokedex/pokemon/${getPokeBipSlug(pokemon)}`;
   }
 
   return `https://pokemondb.net/pokedex/${pokemon.slug}`;

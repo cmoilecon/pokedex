@@ -8,8 +8,8 @@
   <title>Dex</title>
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="./style.css?v=16" />
-  <script type="module" src="./app.js?v=16" defer></script>
+  <link rel="stylesheet" href="./style.css?v=24" />
+  <script type="module" src="./app.js?v=24" defer></script>
 </head>
 
 <body>
@@ -63,6 +63,11 @@
           Dark :
           <input id="darkMode" type="checkbox">
         </label>
+
+        <label class="toggle">
+          Sons :
+          <input id="soundMode" type="checkbox">
+        </label>
       </div>
 
       <div class="controls-line controls-dex-line">
@@ -74,6 +79,18 @@
         <label class="toggle">
           Manquants :
           <input id="missingOnlyMode" type="checkbox">
+        </label>
+
+        <label class="toggle">
+          Favoris :
+          <input id="favoritesOnlyMode" type="checkbox">
+        </label>
+
+        <label id="typeFilterLabel">
+          Type :
+          <select id="typeFilterSelect">
+            <option value="all">Tous</option>
+          </select>
         </label>
 
         <button id="checkVisibleBtn" class="btn good">Tout cocher</button>
@@ -121,25 +138,22 @@
       <p>Choisis un Dex à ouvrir.</p>
     </div>
 
-    <section class="level-panel">
-      <section class="achievements-panel">
-        <div class="achievements-header">
-          <div>
-            <h3>Succès</h3>
-            <p>Badges débloqués avec ta progression.</p>
-          </div>
+    <section id="profileSummaryPanel" class="profile-summary-panel">
+      <div class="summary-profile-block">
+        <p class="summary-kicker">Tableau de bord</p>
+        <h2 id="summaryProfileName">Profil</h2>
+        <p id="summaryRankDetail" class="summary-rank-detail">0 Dex complétés</p>
+        <p id="summaryLastDex">Dernier Dex : aucun</p>
+      </div>
+
+      <div class="summary-main-block">
+        <div id="summaryStatsGrid" class="summary-stats-grid"></div>
+        <div class="summary-level-progress">
+          <div id="summaryLevelProgressFill"></div>
         </div>
-
-        <div id="achievementsList" class="achievements-list"></div>
-      </section>
-      <div>
-        <h3 id="globalLevelTitle">Rang global — Débutant</h3>
-        <p id="globalXpText">Dex complétés : 0</p>
       </div>
 
-      <div class="level-progress">
-        <div id="globalXpFill"></div>
-      </div>
+      <button id="continueDexBtn" class="btn good continue-dex-btn" type="button">▶ Continuer</button>
     </section>
 
     <section class="objectives-panel">

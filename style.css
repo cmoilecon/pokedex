@@ -2395,3 +2395,1840 @@ body.dark .dex-section-separator {
 body.dark .dex-section-divider {
   background: var(--panel);
 }
+/* =========================================================
+   AJOUTS : RÉSUMÉ PROFIL / FAVORIS / TYPES / FONDS DEX
+========================================================= */
+
+.profile-summary-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.25fr) 2fr auto;
+  gap: 18px;
+  align-items: center;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(34, 197, 94, 0.22), transparent 34%),
+    var(--panel);
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.16);
+}
+
+.summary-profile-block {
+  position: relative;
+  padding-left: 18px;
+}
+
+.summary-profile-block::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 5px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #d4af37, #22c55e);
+}
+
+.summary-main-block {
+  display: grid;
+  gap: 10px;
+}
+
+.summary-kicker {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.profile-summary-panel h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.profile-summary-panel p {
+  font-weight: 800;
+  opacity: 0.78;
+}
+
+.summary-rank-text {
+  margin: 8px 0 0;
+  font-size: 16px;
+  font-weight: 950 !important;
+  opacity: 1 !important;
+}
+
+.summary-rank-detail {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--accent);
+  opacity: 0.95 !important;
+}
+
+.summary-level-progress {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#summaryLevelProgressFill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #d4af37);
+}
+
+.summary-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.summary-stat {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 9px 10px;
+  text-align: center;
+}
+
+.summary-stat span {
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  opacity: 0.72;
+}
+
+.summary-stat strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.continue-dex-btn {
+  min-width: 170px;
+  white-space: nowrap;
+}
+
+#typeFilterLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+}
+
+.favorite-btn {
+  flex: 0 0 42px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 950;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.favorite-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.favorite-btn.active {
+  background: #fde68a;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.25);
+}
+
+.game-card[data-game-id="national"] .game-sprites {
+  background: linear-gradient(135deg, #111827, #d4af37);
+}
+
+.game-card[data-game-id="lets-go-pikachu-eevee"] .game-sprites {
+  background: linear-gradient(135deg, #facc15, #f97316);
+}
+
+.game-card[data-game-id="sword-shield"] .game-sprites,
+.game-card[data-game-id="isle-of-armor"] .game-sprites,
+.game-card[data-game-id="crown-tundra"] .game-sprites {
+  background: linear-gradient(135deg, #2563eb, #dc2626);
+}
+
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] .game-sprites {
+  background: linear-gradient(135deg, #60a5fa, #f9a8d4);
+}
+
+.game-card[data-game-id="legends-arceus"] .game-sprites {
+  background: linear-gradient(135deg, #334155, #a16207);
+}
+
+.game-card[data-game-id="scarlet-violet"] .game-sprites,
+.game-card[data-game-id="teal-mask"] .game-sprites,
+.game-card[data-game-id="indigo-disk"] .game-sprites {
+  background: linear-gradient(135deg, #b91c1c, #7c3aed);
+}
+
+.game-card[data-game-id="legends-z-a"] .game-sprites,
+.game-card[data-game-id="mega-dimension"] .game-sprites {
+  background: linear-gradient(135deg, #0f766e, #7c3aed);
+}
+
+.game-card[data-game-id="x-y"] .game-sprites {
+  background: linear-gradient(135deg, #1d4ed8, #dc2626);
+}
+
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] .game-sprites {
+  background: linear-gradient(135deg, #dc2626, #2563eb);
+}
+
+.game-card[data-game-id="sun-moon"] .game-sprites,
+.game-card[data-game-id="ultra-sun-ultra-moon"] .game-sprites {
+  background: linear-gradient(135deg, #f97316, #7c3aed);
+}
+
+body.dark .profile-summary-panel,
+body.dark .summary-stat {
+  background-color: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .summary-stat {
+  background: var(--card);
+}
+
+body.dark .favorite-btn {
+  background: #181818;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .favorite-btn.active {
+  background: #3a3420;
+  color: #fde68a;
+}
+
+@media (max-width: 900px) {
+  .profile-summary-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .continue-dex-btn {
+    width: 100%;
+  }
+
+  .continue-dex-btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   PATCH : FILTRE FAVORIS + FONDS DEX PLUS DIFFÉRENTS
+========================================================= */
+
+.game-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.game-card::after {
+  content: attr(data-platform);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(5px);
+}
+
+.game-card[data-platform="global"]::after {
+  content: "Global";
+}
+
+.game-card[data-platform="switch"]::after {
+  content: "Switch";
+}
+
+.game-card[data-platform="3ds"]::after {
+  content: "3DS";
+}
+
+.game-sprites {
+  position: relative;
+  overflow: hidden;
+  background: var(--game-bg, linear-gradient(135deg, #14532d, #22c55e)) !important;
+}
+
+.game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.30), transparent 18%),
+    radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.18), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+}
+
+.game-sprites img {
+  position: relative;
+  z-index: 1;
+}
+
+.game-card[data-game-id="national"] { --game-bg: linear-gradient(135deg, #101827 0%, #253549 45%, #d4af37 100%); }
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --game-bg: linear-gradient(135deg, #facc15 0%, #fb923c 52%, #38bdf8 100%); }
+.game-card[data-game-id="sword-shield"] { --game-bg: linear-gradient(135deg, #1d4ed8 0%, #0f172a 48%, #dc2626 100%); }
+.game-card[data-game-id="isle-of-armor"] { --game-bg: linear-gradient(135deg, #16a34a 0%, #f97316 48%, #7c2d12 100%); }
+.game-card[data-game-id="crown-tundra"] { --game-bg: linear-gradient(135deg, #0f172a 0%, #38bdf8 50%, #a78bfa 100%); }
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] { --game-bg: linear-gradient(135deg, #38bdf8 0%, #e5e7eb 46%, #f9a8d4 100%); }
+.game-card[data-game-id="legends-arceus"] { --game-bg: linear-gradient(135deg, #3f6212 0%, #92400e 52%, #334155 100%); }
+.game-card[data-game-id="scarlet-violet"] { --game-bg: linear-gradient(135deg, #dc2626 0%, #7c3aed 50%, #312e81 100%); }
+.game-card[data-game-id="teal-mask"] { --game-bg: linear-gradient(135deg, #0f766e 0%, #84cc16 48%, #be123c 100%); }
+.game-card[data-game-id="indigo-disk"] { --game-bg: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 48%, #06b6d4 100%); }
+.game-card[data-game-id="legends-z-a"] { --game-bg: linear-gradient(135deg, #06b6d4 0%, #111827 46%, #ec4899 100%); }
+.game-card[data-game-id="mega-dimension"] { --game-bg: linear-gradient(135deg, #020617 0%, #7c3aed 48%, #22d3ee 100%); }
+.game-card[data-game-id="x-y"] { --game-bg: linear-gradient(135deg, #2563eb 0%, #f8fafc 46%, #dc2626 100%); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --game-bg: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 42%, #1d4ed8 100%); }
+.game-card[data-game-id="sun-moon"] { --game-bg: linear-gradient(135deg, #f97316 0%, #facc15 42%, #2563eb 100%); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --game-bg: linear-gradient(135deg, #f59e0b 0%, #0f172a 45%, #7c3aed 100%); }
+
+body.dark .game-card::after {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.38);
+}
+
+
+/* =========================================================
+   PATCH V19 : CARTES DEX PLUS PREMIUM ET PLUS DISTINCTES
+========================================================= */
+
+.game-grid {
+  gap: 20px;
+}
+
+.game-card {
+  --theme-a: #22c55e;
+  --theme-b: #14532d;
+  --theme-c: #0f172a;
+  --theme-light: rgba(255, 255, 255, 0.32);
+  --theme-glow: rgba(34, 197, 94, 0.28);
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border-width: 2px;
+  background:
+    linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(135deg, var(--theme-a), var(--theme-b), var(--theme-c)) border-box;
+  border-color: transparent;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+.game-card:hover {
+  transform: translateY(-6px) scale(1.012);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 18px 34px rgba(0, 0, 0, 0.30),
+    0 0 22px var(--theme-glow);
+}
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.12;
+  background:
+    radial-gradient(circle at 16% 18%, var(--theme-a), transparent 23%),
+    radial-gradient(circle at 88% 86%, var(--theme-b), transparent 24%);
+}
+
+.game-card::after {
+  top: 12px;
+  right: 12px;
+  padding: 5px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(0, 0, 0, 0.34);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+.game-sprites {
+  height: 145px;
+  background:
+    radial-gradient(circle at 20% 20%, var(--theme-light), transparent 18%),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.22), transparent 20%),
+    radial-gradient(circle at 50% 115%, rgba(0, 0, 0, 0.38), transparent 42%),
+    linear-gradient(135deg, var(--theme-a) 0%, var(--theme-b) 48%, var(--theme-c) 100%) !important;
+}
+
+.game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: -28px;
+  background:
+    radial-gradient(circle at 50% 52%, transparent 0 37px, rgba(255, 255, 255, 0.18) 38px 41px, transparent 42px 100px),
+    linear-gradient(115deg, transparent 0 38%, rgba(255, 255, 255, 0.22) 43%, transparent 50%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 15px);
+  opacity: 0.82;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+.game-sprites::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  width: 190px;
+  height: 80px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.38), transparent 68%);
+  pointer-events: none;
+}
+
+.game-sprites img {
+  width: 88px;
+  height: 88px;
+  filter:
+    drop-shadow(0 12px 8px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.16));
+}
+
+.game-card:hover .game-sprites img:nth-child(1) {
+  transform: translateY(-6px) rotate(-5deg) scale(1.07);
+}
+
+.game-card:hover .game-sprites img:nth-child(2) {
+  transform: translateY(-9px) scale(1.11);
+}
+
+.game-card:hover .game-sprites img:nth-child(3) {
+  transform: translateY(-6px) rotate(5deg) scale(1.07);
+}
+
+.game-content {
+  position: relative;
+  padding: 15px 15px 16px;
+}
+
+.game-content::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  width: 54px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--theme-a), var(--theme-b));
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px var(--theme-glow);
+}
+
+.game-content h3 {
+  font-size: 21px;
+  letter-spacing: -0.45px;
+}
+
+.game-content p {
+  font-weight: 800;
+  opacity: 0.78;
+}
+
+.game-progress {
+  height: 10px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.22);
+}
+
+.game-progress-fill {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--theme-a), var(--theme-b));
+  box-shadow: 0 0 12px var(--theme-glow);
+}
+
+.game-level-info {
+  color: var(--theme-a);
+  opacity: 1;
+}
+
+.game-card[data-game-id="national"] { --theme-a: #f8fafc; --theme-b: #d4af37; --theme-c: #111827; --theme-light: rgba(255,247,191,.42); --theme-glow: rgba(212,175,55,.34); }
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --theme-a: #facc15; --theme-b: #fb923c; --theme-c: #38bdf8; --theme-light: rgba(255,255,255,.40); --theme-glow: rgba(250,204,21,.34); }
+.game-card[data-game-id="sword-shield"] { --theme-a: #38bdf8; --theme-b: #dc2626; --theme-c: #0f172a; --theme-light: rgba(191,219,254,.38); --theme-glow: rgba(56,189,248,.30); }
+.game-card[data-game-id="isle-of-armor"] { --theme-a: #84cc16; --theme-b: #f97316; --theme-c: #365314; --theme-light: rgba(254,240,138,.36); --theme-glow: rgba(132,204,22,.30); }
+.game-card[data-game-id="crown-tundra"] { --theme-a: #bae6fd; --theme-b: #60a5fa; --theme-c: #4338ca; --theme-light: rgba(224,242,254,.42); --theme-glow: rgba(96,165,250,.32); }
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] { --theme-a: #67e8f9; --theme-b: #f9a8d4; --theme-c: #64748b; --theme-light: rgba(255,255,255,.54); --theme-glow: rgba(249,168,212,.32); }
+.game-card[data-game-id="legends-arceus"] { --theme-a: #d9b77e; --theme-b: #4d7c0f; --theme-c: #292524; --theme-light: rgba(254,243,199,.34); --theme-glow: rgba(217,183,126,.26); }
+.game-card[data-game-id="scarlet-violet"] { --theme-a: #ff3f3f; --theme-b: #8b5cf6; --theme-c: #1e1b4b; --theme-light: rgba(255,255,255,.33); --theme-glow: rgba(139,92,246,.34); }
+.game-card[data-game-id="teal-mask"] { --theme-a: #14b8a6; --theme-b: #a3e635; --theme-c: #9f1239; --theme-light: rgba(204,251,241,.36); --theme-glow: rgba(20,184,166,.30); }
+.game-card[data-game-id="indigo-disk"] { --theme-a: #22d3ee; --theme-b: #6366f1; --theme-c: #172554; --theme-light: rgba(207,250,254,.35); --theme-glow: rgba(34,211,238,.30); }
+.game-card[data-game-id="legends-z-a"] { --theme-a: #00f5ff; --theme-b: #ec4899; --theme-c: #020617; --theme-light: rgba(236,254,255,.32); --theme-glow: rgba(0,245,255,.32); }
+.game-card[data-game-id="mega-dimension"] { --theme-a: #22d3ee; --theme-b: #a855f7; --theme-c: #020617; --theme-light: rgba(216,180,254,.30); --theme-glow: rgba(168,85,247,.34); }
+.game-card[data-game-id="x-y"] { --theme-a: #2563eb; --theme-b: #f8fafc; --theme-c: #dc2626; --theme-light: rgba(255,255,255,.48); --theme-glow: rgba(37,99,235,.30); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --theme-a: #ef4444; --theme-b: #2563eb; --theme-c: #0f172a; --theme-light: rgba(255,255,255,.32); --theme-glow: rgba(239,68,68,.30); }
+.game-card[data-game-id="sun-moon"] { --theme-a: #facc15; --theme-b: #f97316; --theme-c: #2563eb; --theme-light: rgba(254,249,195,.44); --theme-glow: rgba(250,204,21,.34); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --theme-a: #f59e0b; --theme-b: #7c3aed; --theme-c: #020617; --theme-light: rgba(255,237,213,.34); --theme-glow: rgba(124,58,237,.34); }
+
+body.dark .game-card {
+  background:
+    linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(135deg, var(--theme-a), var(--theme-b), var(--theme-c)) border-box;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 12px 26px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .game-content p {
+  color: rgba(241, 241, 241, 0.68);
+}
+
+/* Tableau de bord : plus propre, moins plat */
+.profile-summary-panel {
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(74, 222, 128, 0.22), transparent 28%),
+    radial-gradient(circle at 92% 10%, rgba(212, 175, 55, 0.14), transparent 24%),
+    linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(255, 255, 255, 0.02) 44%, rgba(212, 175, 55, 0.05)),
+    var(--panel);
+}
+
+.profile-summary-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0 55%, rgba(255,255,255,.06) 56%, transparent 66%);
+  pointer-events: none;
+}
+
+.summary-stat {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================================
+   PATCH V20 : CARTES DEX WOW / CLEAN / SANS PETITE BARRE BIZARRE
+========================================================= */
+
+.game-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  perspective: 900px;
+}
+
+.game-card {
+  --theme-a: #22c55e;
+  --theme-b: #16a34a;
+  --theme-c: #0f172a;
+  --theme-d: #020617;
+  --theme-glow: rgba(34, 197, 94, 0.38);
+  --theme-soft: rgba(34, 197, 94, 0.16);
+
+  isolation: isolate;
+  min-height: 370px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(circle at 85% 8%, var(--theme-soft), transparent 32%),
+    radial-gradient(circle at 10% 95%, rgba(255, 255, 255, 0.05), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)),
+    var(--panel);
+  box-shadow:
+    0 22px 44px rgba(0, 0, 0, 0.30),
+    0 0 0 1px rgba(255, 255, 255, 0.055) inset;
+  transform-style: preserve-3d;
+}
+
+.game-card:hover {
+  transform: translateY(-10px) scale(1.025);
+  box-shadow:
+    0 30px 62px rgba(0, 0, 0, 0.44),
+    0 0 36px var(--theme-glow),
+    0 0 0 1px rgba(255, 255, 255, 0.16) inset;
+}
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.46),
+      var(--theme-a) 18%,
+      var(--theme-b) 48%,
+      var(--theme-c) 74%,
+      rgba(255,255,255,.22));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: .82;
+  pointer-events: none;
+}
+
+.game-card::after {
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  border-radius: 999px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(8, 12, 24, .46);
+  color: rgba(255,255,255,.96);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 12px;
+  font-weight: 950;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.30),
+    0 0 18px var(--theme-glow);
+}
+
+.game-sprites {
+  height: 170px;
+  overflow: hidden;
+  border-radius: 22px 22px 0 0;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255,255,255,.16) 0 46px, transparent 47px),
+    radial-gradient(circle at 50% 52%, transparent 0 66px, rgba(255,255,255,.18) 67px 69px, transparent 70px),
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.30), transparent 25%),
+    radial-gradient(circle at 86% 12%, rgba(255,255,255,.18), transparent 24%),
+    linear-gradient(135deg, var(--theme-a) 0%, var(--theme-b) 42%, var(--theme-c) 78%, var(--theme-d) 100%) !important;
+}
+
+/* Texture visible derrière les sprites : lignes + éclats, mais plus propre */
+.game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: -42px;
+  background:
+    linear-gradient(115deg, transparent 0 26%, rgba(255,255,255,.24) 31%, transparent 39%),
+    linear-gradient(115deg, transparent 0 61%, rgba(255,255,255,.12) 65%, transparent 72%),
+    repeating-linear-gradient(135deg,
+      rgba(255,255,255,.115) 0 2px,
+      transparent 2px 17px);
+  opacity: .96;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+.game-sprites::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 54px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.36));
+  pointer-events: none;
+}
+
+.game-sprites img {
+  z-index: 2;
+  width: 96px;
+  height: 96px;
+  transform: translateZ(18px);
+  filter:
+    drop-shadow(0 14px 10px rgba(0,0,0,.46))
+    drop-shadow(0 0 14px rgba(255,255,255,.22));
+}
+
+.game-sprites img:nth-child(1) {
+  transform: translateY(5px) rotate(-4deg) scale(1.02);
+}
+
+.game-sprites img:nth-child(2) {
+  transform: translateY(-2px) scale(1.10);
+}
+
+.game-sprites img:nth-child(3) {
+  transform: translateY(5px) rotate(4deg) scale(1.02);
+}
+
+.game-card:hover .game-sprites img:nth-child(1) {
+  transform: translateY(-9px) rotate(-8deg) scale(1.12);
+}
+
+.game-card:hover .game-sprites img:nth-child(2) {
+  transform: translateY(-16px) scale(1.21);
+}
+
+.game-card:hover .game-sprites img:nth-child(3) {
+  transform: translateY(-9px) rotate(8deg) scale(1.12);
+}
+
+.game-content {
+  z-index: 2;
+  min-height: 200px;
+  padding: 18px 20px 20px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.045), transparent 32%),
+    radial-gradient(circle at 100% 100%, var(--theme-soft), transparent 38%);
+}
+
+/* Supprime la petite barre courte au début que tu trouvais bizarre */
+.game-content::before {
+  display: none !important;
+}
+
+.game-content h3 {
+  margin-top: 0;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -0.7px;
+  text-wrap: balance;
+}
+
+.game-content p {
+  color: rgba(255,255,255,.58);
+  font-weight: 950;
+  letter-spacing: .01em;
+}
+
+.game-progress-info {
+  margin-top: 17px;
+  align-items: end;
+}
+
+.game-progress-info span,
+.game-progress-info strong {
+  font-size: 18px;
+  color: rgba(255,255,255,.94);
+}
+
+.game-progress {
+  position: relative;
+  height: 12px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.11);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+}
+
+.game-progress::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,.16), transparent 38%, rgba(255,255,255,.10));
+  pointer-events: none;
+}
+
+.game-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--theme-a), var(--theme-b), var(--theme-c));
+  box-shadow:
+    0 0 14px var(--theme-glow),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.game-level-info {
+  margin-top: 16px;
+  color: var(--theme-a);
+  font-size: 15px;
+  text-shadow: 0 0 16px var(--theme-glow);
+}
+
+/* Palettes plus marquées jeu par jeu */
+.game-card[data-game-id="national"] { --theme-a:#f8fafc; --theme-b:#facc15; --theme-c:#334155; --theme-d:#020617; --theme-glow:rgba(250,204,21,.38); --theme-soft:rgba(250,204,21,.17); }
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --theme-a:#ffdf2e; --theme-b:#ff7a18; --theme-c:#38bdf8; --theme-d:#0f172a; --theme-glow:rgba(255,207,38,.42); --theme-soft:rgba(56,189,248,.16); }
+.game-card[data-game-id="sword-shield"] { --theme-a:#33d6ff; --theme-b:#ee304d; --theme-c:#1d4ed8; --theme-d:#020617; --theme-glow:rgba(51,214,255,.38); --theme-soft:rgba(238,48,77,.16); }
+.game-card[data-game-id="isle-of-armor"] { --theme-a:#eaff4f; --theme-b:#f97316; --theme-c:#16a34a; --theme-d:#1a2e05; --theme-glow:rgba(234,255,79,.35); --theme-soft:rgba(249,115,22,.18); }
+.game-card[data-game-id="crown-tundra"] { --theme-a:#e0f7ff; --theme-b:#60a5fa; --theme-c:#8b5cf6; --theme-d:#020617; --theme-glow:rgba(96,165,250,.42); --theme-soft:rgba(139,92,246,.17); }
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] { --theme-a:#67e8f9; --theme-b:#f9a8d4; --theme-c:#e2e8f0; --theme-d:#1e293b; --theme-glow:rgba(249,168,212,.42); --theme-soft:rgba(103,232,249,.18); }
+.game-card[data-game-id="legends-arceus"] { --theme-a:#f3d19b; --theme-b:#85a947; --theme-c:#8b5a2b; --theme-d:#1c1917; --theme-glow:rgba(243,209,155,.32); --theme-soft:rgba(133,169,71,.17); }
+.game-card[data-game-id="scarlet-violet"] { --theme-a:#ff4545; --theme-b:#9b5cff; --theme-c:#3547ff; --theme-d:#11102a; --theme-glow:rgba(155,92,255,.43); --theme-soft:rgba(255,69,69,.18); }
+.game-card[data-game-id="teal-mask"] { --theme-a:#16f1cf; --theme-b:#a3ff3a; --theme-c:#d4145a; --theme-d:#111827; --theme-glow:rgba(22,241,207,.38); --theme-soft:rgba(163,255,58,.17); }
+.game-card[data-game-id="indigo-disk"] { --theme-a:#29f3ff; --theme-b:#6366f1; --theme-c:#1e3a8a; --theme-d:#020617; --theme-glow:rgba(41,243,255,.40); --theme-soft:rgba(99,102,241,.18); }
+.game-card[data-game-id="legends-z-a"] { --theme-a:#00ffe7; --theme-b:#ff3ea5; --theme-c:#7c3aed; --theme-d:#020617; --theme-glow:rgba(0,255,231,.36); --theme-soft:rgba(255,62,165,.17); }
+.game-card[data-game-id="mega-dimension"] { --theme-a:#22d3ee; --theme-b:#a855f7; --theme-c:#f472b6; --theme-d:#020617; --theme-glow:rgba(168,85,247,.44); --theme-soft:rgba(34,211,238,.16); }
+.game-card[data-game-id="x-y"] { --theme-a:#2f6bff; --theme-b:#f8fafc; --theme-c:#ff2e2e; --theme-d:#0f172a; --theme-glow:rgba(47,107,255,.38); --theme-soft:rgba(255,46,46,.15); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --theme-a:#ff3434; --theme-b:#2563eb; --theme-c:#7dd3fc; --theme-d:#111827; --theme-glow:rgba(255,52,52,.37); --theme-soft:rgba(37,99,235,.17); }
+.game-card[data-game-id="sun-moon"] { --theme-a:#ffd43b; --theme-b:#ff7a18; --theme-c:#2563eb; --theme-d:#111827; --theme-glow:rgba(255,212,59,.42); --theme-soft:rgba(37,99,235,.16); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --theme-a:#ffb703; --theme-b:#7c3aed; --theme-c:#00d4ff; --theme-d:#020617; --theme-glow:rgba(124,58,237,.42); --theme-soft:rgba(255,183,3,.16); }
+
+body:not(.dark) .game-card {
+  background:
+    radial-gradient(circle at 90% 10%, var(--theme-soft), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.72)),
+    var(--panel);
+}
+
+body:not(.dark) .game-content p,
+body:not(.dark) .game-progress-info span,
+body:not(.dark) .game-progress-info strong {
+  color: #111827;
+}
+
+body:not(.dark) .game-progress {
+  background: rgba(15,23,42,.12);
+}
+
+@media (max-width: 800px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card {
+    min-height: 340px;
+  }
+
+  .game-sprites {
+    height: 154px;
+  }
+}
+
+
+/* =========================================================
+   V21 — CARTES DEX WOW CLEAN
+   - plus de lignes diagonales
+   - plus de bande noire en bas de l'image
+   - bannière plus recherchée : aura, vitrail, bulles lumineuses
+========================================================= */
+
+.game-card {
+  border-radius: 26px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0%, var(--theme-soft), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
+    #161616;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 22px 45px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,255,255,.055),
+    inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.game-card:hover {
+  transform: translateY(-7px) scale(1.018);
+  box-shadow:
+    0 30px 65px rgba(0,0,0,.46),
+    0 0 42px var(--theme-glow),
+    0 0 0 1px rgba(255,255,255,.14),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+/* Bordure lumineuse intérieure plus propre */
+.game-card::before {
+  border-radius: 26px;
+  padding: 1px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.55),
+      var(--theme-a),
+      var(--theme-b),
+      var(--theme-c),
+      rgba(255,255,255,.20));
+  opacity: .72;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-card::after {
+  top: 16px;
+  right: 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.24);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.05)),
+    rgba(8, 10, 18, .48);
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.34),
+    0 0 24px var(--theme-glow);
+}
+
+.game-sprites {
+  height: 180px;
+  position: relative;
+  isolation: isolate;
+  gap: 18px;
+  border-radius: 26px 26px 0 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255,255,255,.34) 0 0.5px, transparent 34%),
+    radial-gradient(circle at 78% 18%, rgba(255,255,255,.22), transparent 28%),
+    radial-gradient(circle at 50% 57%, rgba(255,255,255,.20) 0 38px, transparent 39px),
+    radial-gradient(circle at 50% 57%, transparent 0 62px, rgba(255,255,255,.23) 63px 65px, transparent 66px),
+    conic-gradient(from 225deg at 50% 52%,
+      color-mix(in srgb, var(--theme-a) 88%, white 12%),
+      color-mix(in srgb, var(--theme-b) 86%, white 14%),
+      color-mix(in srgb, var(--theme-c) 86%, white 14%),
+      color-mix(in srgb, var(--theme-d) 92%, black 8%),
+      color-mix(in srgb, var(--theme-a) 88%, white 12%)) !important;
+}
+
+/* Plus de lignes derrière : on remplace par des formes douces façon vitrail/aura */
+.game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(255,255,255,.22), transparent 32%),
+    radial-gradient(ellipse at 82% 78%, var(--theme-soft), transparent 35%),
+    linear-gradient(110deg, rgba(255,255,255,.18) 0 18%, transparent 18.5% 48%, rgba(255,255,255,.08) 48.5% 63%, transparent 63.5%);
+  opacity: .82;
+  transform: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Suppression du dégradé noir qui faisait la tache sous le premier Pokémon */
+.game-sprites::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(255,255,255,.15), transparent 36%),
+    radial-gradient(circle at 32% 36%, rgba(255,255,255,.11), transparent 21%),
+    radial-gradient(circle at 68% 38%, rgba(255,255,255,.10), transparent 22%);
+  border: 1px solid rgba(255,255,255,.10);
+  pointer-events: none;
+  opacity: .95;
+  height: auto;
+}
+
+.game-sprites img {
+  position: relative;
+  z-index: 3;
+  width: 102px;
+  height: 102px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 16px 12px rgba(0,0,0,.40))
+    drop-shadow(0 0 18px rgba(255,255,255,.25));
+}
+
+.game-sprites img:nth-child(1) {
+  transform: translateY(9px) rotate(-8deg) scale(1.03);
+}
+
+.game-sprites img:nth-child(2) {
+  transform: translateY(-4px) scale(1.16);
+}
+
+.game-sprites img:nth-child(3) {
+  transform: translateY(8px) rotate(8deg) scale(1.04);
+}
+
+.game-card:hover .game-sprites img:nth-child(1) {
+  transform: translateY(-9px) rotate(-13deg) scale(1.15);
+}
+
+.game-card:hover .game-sprites img:nth-child(2) {
+  transform: translateY(-20px) scale(1.27);
+}
+
+.game-card:hover .game-sprites img:nth-child(3) {
+  transform: translateY(-9px) rotate(13deg) scale(1.15);
+}
+
+.game-content {
+  position: relative;
+  padding: 20px 22px 22px;
+  background:
+    radial-gradient(circle at 100% 100%, var(--theme-soft), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+}
+
+.game-content::before,
+.game-content::after {
+  display: none !important;
+}
+
+.game-content h3 {
+  font-size: 25px;
+  line-height: 1.05;
+  letter-spacing: -0.85px;
+}
+
+.game-level-info {
+  display: inline-flex;
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+/* Variantes plus identifiables, moins arc-en-ciel générique */
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --theme-a:#ffe96b; --theme-b:#ffb703; --theme-c:#8ddcff; --theme-d:#2b1b00; --theme-glow:rgba(255,213,79,.42); --theme-soft:rgba(255,183,3,.18); }
+.game-card[data-game-id="sword-shield"] { --theme-a:#4dd8ff; --theme-b:#3156ff; --theme-c:#ff2f55; --theme-d:#070a17; --theme-glow:rgba(77,216,255,.40); --theme-soft:rgba(255,47,85,.16); }
+.game-card[data-game-id="scarlet-violet"] { --theme-a:#ff4040; --theme-b:#ff8a3d; --theme-c:#8057ff; --theme-d:#11102a; --theme-glow:rgba(128,87,255,.45); --theme-soft:rgba(255,64,64,.18); }
+.game-card[data-game-id="teal-mask"] { --theme-a:#11e6c6; --theme-b:#7ee928; --theme-c:#c0174f; --theme-d:#11160f; --theme-glow:rgba(17,230,198,.38); --theme-soft:rgba(126,233,40,.18); }
+.game-card[data-game-id="indigo-disk"] { --theme-a:#3cf5ff; --theme-b:#4f7cff; --theme-c:#1e1b75; --theme-d:#020617; --theme-glow:rgba(60,245,255,.40); --theme-soft:rgba(79,124,255,.18); }
+.game-card[data-game-id="legends-arceus"] { --theme-a:#f5d5a1; --theme-b:#96b85e; --theme-c:#8b5a2b; --theme-d:#1c1917; --theme-glow:rgba(245,213,161,.32); --theme-soft:rgba(150,184,94,.18); }
+.game-card[data-game-id="x-y"] { --theme-a:#2e6dff; --theme-b:#f8fafc; --theme-c:#ff3333; --theme-d:#0a1022; --theme-glow:rgba(46,109,255,.40); --theme-soft:rgba(255,51,51,.14); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --theme-a:#ff3333; --theme-b:#b91c1c; --theme-c:#2563eb; --theme-d:#08111f; --theme-glow:rgba(255,51,51,.38); --theme-soft:rgba(37,99,235,.17); }
+.game-card[data-game-id="sun-moon"] { --theme-a:#ffe066; --theme-b:#ff7a18; --theme-c:#225cff; --theme-d:#0d1324; --theme-glow:rgba(255,224,102,.42); --theme-soft:rgba(34,92,255,.15); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --theme-a:#ffb703; --theme-b:#7c3aed; --theme-c:#00d4ff; --theme-d:#020617; --theme-glow:rgba(124,58,237,.42); --theme-soft:rgba(255,183,3,.16); }
+
+body:not(.dark) .game-card {
+  background:
+    radial-gradient(circle at 92% 8%, var(--theme-soft), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.76));
+}
+
+@media (max-width: 800px) {
+  .game-sprites { height: 164px; }
+  .game-sprites img { width: 92px; height: 92px; }
+}
+
+/* =========================================================
+   V22 — ULTRA WOW / HOLODEX
+   Objectif : moins “dégradé simple”, plus carte collector premium.
+   Aucun motif à lignes derrière les sprites, uniquement aura + lumière.
+========================================================= */
+
+.game-grid {
+  grid-template-columns: repeat(auto-fill, minmax(318px, 1fr));
+  gap: 28px;
+  perspective: 1200px;
+}
+
+.game-card {
+  --holo-shine: rgba(255,255,255,.58);
+  --card-ink: rgba(255,255,255,.94);
+  --card-muted: rgba(255,255,255,.62);
+
+  min-height: 392px;
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 92% 6%, var(--theme-soft), transparent 32%),
+    radial-gradient(circle at 8% 100%, color-mix(in srgb, var(--theme-c) 30%, transparent), transparent 44%),
+    linear-gradient(180deg, rgba(255,255,255,.070), rgba(255,255,255,.018) 38%, rgba(0,0,0,.10)),
+    #151515;
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow:
+    0 24px 58px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.055),
+    inset 0 1px 0 rgba(255,255,255,.14);
+  transition:
+    transform .24s cubic-bezier(.2,.8,.2,1),
+    box-shadow .24s ease,
+    filter .24s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-12px) scale(1.024) rotateX(1.5deg);
+  filter: saturate(1.12) contrast(1.04);
+  box-shadow:
+    0 36px 86px rgba(0,0,0,.58),
+    0 0 54px var(--theme-glow),
+    0 0 0 1px rgba(255,255,255,.19),
+    inset 0 1px 0 rgba(255,255,255,.20);
+}
+
+/* Bordure holographique fine, pas une grosse ligne */
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    conic-gradient(from 150deg,
+      rgba(255,255,255,.68),
+      var(--theme-a),
+      var(--theme-b),
+      var(--theme-c),
+      rgba(255,255,255,.42),
+      var(--theme-a),
+      rgba(255,255,255,.68));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: .68;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+/* Badge plateforme : plus propre, façon capsule collector */
+.game-card::after {
+  top: 18px;
+  right: 18px;
+  z-index: 8;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.28);
+  background:
+    radial-gradient(circle at 25% 0%, rgba(255,255,255,.20), transparent 45%),
+    color-mix(in srgb, var(--theme-c) 28%, rgba(10,10,18,.60));
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.34),
+    0 0 20px var(--theme-glow),
+    inset 0 1px 0 rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+}
+
+.game-sprites {
+  height: 196px;
+  position: relative;
+  isolation: isolate;
+  gap: 18px;
+  padding: 18px 18px 10px;
+  border-radius: 30px 30px 0 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at 50% 58%, rgba(255,255,255,.26) 0 43px, transparent 44px),
+    radial-gradient(circle at 50% 58%, transparent 0 68px, rgba(255,255,255,.27) 69px 71px, transparent 72px),
+    radial-gradient(circle at 13% 18%, rgba(255,255,255,.42), transparent 23%),
+    radial-gradient(circle at 86% 17%, var(--theme-soft), transparent 30%),
+    radial-gradient(circle at 20% 88%, color-mix(in srgb, var(--theme-a) 32%, transparent), transparent 30%),
+    radial-gradient(circle at 82% 92%, color-mix(in srgb, var(--theme-b) 25%, transparent), transparent 30%),
+    conic-gradient(from 215deg at 50% 52%,
+      color-mix(in srgb, var(--theme-a) 92%, white 8%),
+      color-mix(in srgb, var(--theme-b) 90%, white 10%),
+      color-mix(in srgb, var(--theme-c) 88%, white 12%),
+      var(--theme-d),
+      color-mix(in srgb, var(--theme-a) 92%, white 8%)) !important;
+}
+
+/* Aura organique : pas de lignes, pas de texture agressive */
+.game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: 10px 12px;
+  z-index: 1;
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at 24% 38%, rgba(255,255,255,.20), transparent 25%),
+    radial-gradient(ellipse at 50% 54%, rgba(255,255,255,.18), transparent 34%),
+    radial-gradient(ellipse at 77% 36%, rgba(255,255,255,.14), transparent 28%),
+    radial-gradient(circle at 50% 50%, transparent 0 55px, rgba(255,255,255,.11) 56px 58px, transparent 59px),
+    radial-gradient(circle at 50% 50%, transparent 0 82px, rgba(255,255,255,.07) 83px 85px, transparent 86px);
+  border: 1px solid rgba(255,255,255,.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -22px 38px rgba(0,0,0,.035),
+    0 0 32px var(--theme-glow);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: .95;
+}
+
+/* Petites étincelles douces, pas de bandes */
+.game-sprites::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 5px;
+  height: 5px;
+  left: 23%;
+  top: 26%;
+  border-radius: 999px;
+  background: rgba(255,255,255,.75);
+  box-shadow:
+    72px 18px 0 -1px rgba(255,255,255,.42),
+    128px -4px 0 -2px rgba(255,255,255,.45),
+    176px 42px 0 -1px rgba(255,255,255,.34),
+    36px 90px 0 -2px rgba(255,255,255,.42),
+    214px 96px 0 -2px rgba(255,255,255,.38),
+    104px 116px 0 -2px rgba(255,255,255,.32);
+  opacity: .72;
+  pointer-events: none;
+  height: 5px;
+  border: 0;
+}
+
+.game-sprites img {
+  position: relative;
+  z-index: 4;
+  width: 108px;
+  height: 108px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 18px 12px rgba(0,0,0,.42))
+    drop-shadow(0 0 18px rgba(255,255,255,.28));
+  transition:
+    transform .26s cubic-bezier(.2,.9,.2,1),
+    filter .26s ease;
+}
+
+.game-sprites img:nth-child(1) {
+  transform: translateY(14px) rotate(-10deg) scale(1.02);
+}
+
+.game-sprites img:nth-child(2) {
+  transform: translateY(-8px) scale(1.20);
+}
+
+.game-sprites img:nth-child(3) {
+  transform: translateY(13px) rotate(10deg) scale(1.03);
+}
+
+.game-card:hover .game-sprites img {
+  filter:
+    drop-shadow(0 22px 14px rgba(0,0,0,.48))
+    drop-shadow(0 0 24px rgba(255,255,255,.36));
+}
+
+.game-card:hover .game-sprites img:nth-child(1) {
+  transform: translateY(-8px) rotate(-15deg) scale(1.17);
+}
+
+.game-card:hover .game-sprites img:nth-child(2) {
+  transform: translateY(-25px) scale(1.31);
+}
+
+.game-card:hover .game-sprites img:nth-child(3) {
+  transform: translateY(-8px) rotate(15deg) scale(1.17);
+}
+
+.game-content {
+  min-height: 196px;
+  padding: 22px 24px 24px;
+  background:
+    radial-gradient(circle at 96% 105%, var(--theme-soft), transparent 40%),
+    radial-gradient(circle at 8% 0%, rgba(255,255,255,.045), transparent 32%),
+    linear-gradient(180deg, rgba(255,255,255,.050), rgba(255,255,255,.014));
+}
+
+.game-content::before,
+.game-content::after {
+  display: none !important;
+}
+
+.game-content h3 {
+  margin-bottom: 9px;
+  font-size: 25px;
+  line-height: 1.04;
+  letter-spacing: -.95px;
+  text-shadow: 0 12px 30px rgba(0,0,0,.24);
+}
+
+.game-content p {
+  color: var(--card-muted);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.game-progress-info {
+  margin-top: 18px;
+  margin-bottom: 9px;
+}
+
+.game-progress-info span,
+.game-progress-info strong {
+  color: var(--card-ink);
+  font-size: 18px;
+  letter-spacing: -.2px;
+}
+
+.game-progress {
+  height: 13px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.105);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.075),
+    0 0 18px rgba(0,0,0,.10);
+}
+
+.game-progress-fill {
+  background: linear-gradient(90deg, var(--theme-a), var(--theme-b), var(--theme-c));
+  box-shadow:
+    0 0 18px var(--theme-glow),
+    inset 0 1px 0 rgba(255,255,255,.40);
+}
+
+.game-level-info {
+  margin-top: 16px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 48%),
+    color-mix(in srgb, var(--theme-a) 10%, rgba(255,255,255,.055));
+  border: 1px solid color-mix(in srgb, var(--theme-a) 34%, rgba(255,255,255,.08));
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--theme-glow) 70%, transparent),
+    inset 0 1px 0 rgba(255,255,255,.13);
+}
+
+/* Petit reflet qui passe uniquement au hover, sans lignes statiques */
+@media (prefers-reduced-motion: no-preference) {
+  .game-card .game-sprites::before {
+    transition: opacity .24s ease, transform .24s ease;
+  }
+
+  .game-card:hover .game-sprites::before {
+    transform: scale(1.035);
+    opacity: 1;
+  }
+
+  .game-card:hover .game-sprites::after {
+    animation: dexSparkleFloat 1.9s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes dexSparkleFloat {
+  from { transform: translateY(0) scale(1); opacity: .62; }
+  to { transform: translateY(-5px) scale(1.08); opacity: .92; }
+}
+
+/* Palettes V22 encore plus marquées */
+.game-card[data-game-id="national"] { --theme-a:#fff7bf; --theme-b:#facc15; --theme-c:#64748b; --theme-d:#020617; --theme-glow:rgba(250,204,21,.42); --theme-soft:rgba(250,204,21,.18); }
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --theme-a:#ffe45c; --theme-b:#ff9f1c; --theme-c:#35c9ff; --theme-d:#2a1600; --theme-glow:rgba(255,207,64,.46); --theme-soft:rgba(53,201,255,.15); }
+.game-card[data-game-id="sword-shield"] { --theme-a:#25d9ff; --theme-b:#2457ff; --theme-c:#ff3157; --theme-d:#030712; --theme-glow:rgba(37,217,255,.43); --theme-soft:rgba(255,49,87,.16); }
+.game-card[data-game-id="isle-of-armor"] { --theme-a:#eaff4f; --theme-b:#ff7a1a; --theme-c:#1fb94d; --theme-d:#14220a; --theme-glow:rgba(234,255,79,.38); --theme-soft:rgba(255,122,26,.17); }
+.game-card[data-game-id="crown-tundra"] { --theme-a:#e0f7ff; --theme-b:#69b6ff; --theme-c:#9170ff; --theme-d:#030712; --theme-glow:rgba(105,182,255,.46); --theme-soft:rgba(145,112,255,.17); }
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] { --theme-a:#81f5ff; --theme-b:#ffb3df; --theme-c:#f8fafc; --theme-d:#253044; --theme-glow:rgba(255,179,223,.44); --theme-soft:rgba(129,245,255,.18); }
+.game-card[data-game-id="legends-arceus"] { --theme-a:#f5d5a1; --theme-b:#9fbd69; --theme-c:#9a6734; --theme-d:#1c1917; --theme-glow:rgba(245,213,161,.34); --theme-soft:rgba(159,189,105,.18); }
+.game-card[data-game-id="scarlet-violet"] { --theme-a:#ff4545; --theme-b:#ff8a3d; --theme-c:#8f5cff; --theme-d:#11102a; --theme-glow:rgba(143,92,255,.48); --theme-soft:rgba(255,69,69,.18); }
+.game-card[data-game-id="teal-mask"] { --theme-a:#0ff0ce; --theme-b:#9cff28; --theme-c:#d4145a; --theme-d:#10150e; --theme-glow:rgba(15,240,206,.42); --theme-soft:rgba(156,255,40,.17); }
+.game-card[data-game-id="indigo-disk"] { --theme-a:#38f5ff; --theme-b:#6078ff; --theme-c:#241c91; --theme-d:#020617; --theme-glow:rgba(56,245,255,.44); --theme-soft:rgba(96,120,255,.18); }
+.game-card[data-game-id="legends-z-a"] { --theme-a:#00ffe7; --theme-b:#ff40a6; --theme-c:#8b5cf6; --theme-d:#020617; --theme-glow:rgba(0,255,231,.40); --theme-soft:rgba(255,64,166,.17); }
+.game-card[data-game-id="mega-dimension"] { --theme-a:#33eaff; --theme-b:#b85cff; --theme-c:#ff73bd; --theme-d:#020617; --theme-glow:rgba(184,92,255,.48); --theme-soft:rgba(51,234,255,.16); }
+.game-card[data-game-id="x-y"] { --theme-a:#2e6dff; --theme-b:#f8fafc; --theme-c:#ff3333; --theme-d:#080f20; --theme-glow:rgba(46,109,255,.43); --theme-soft:rgba(255,51,51,.14); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --theme-a:#ff3333; --theme-b:#b91c1c; --theme-c:#2d72ff; --theme-d:#07101e; --theme-glow:rgba(255,51,51,.42); --theme-soft:rgba(45,114,255,.17); }
+.game-card[data-game-id="sun-moon"] { --theme-a:#ffe066; --theme-b:#ff7a18; --theme-c:#2261ff; --theme-d:#0d1324; --theme-glow:rgba(255,224,102,.46); --theme-soft:rgba(34,97,255,.15); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --theme-a:#ffb703; --theme-b:#8248ff; --theme-c:#00d4ff; --theme-d:#020617; --theme-glow:rgba(130,72,255,.46); --theme-soft:rgba(255,183,3,.16); }
+
+body:not(.dark) .game-card {
+  --card-ink: #111827;
+  --card-muted: rgba(17,24,39,.60);
+  background:
+    radial-gradient(circle at 92% 6%, var(--theme-soft), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.78));
+}
+
+body:not(.dark) .game-content {
+  background:
+    radial-gradient(circle at 96% 105%, var(--theme-soft), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.68));
+}
+
+body:not(.dark) .game-content p,
+body:not(.dark) .game-progress-info span,
+body:not(.dark) .game-progress-info strong {
+  color: var(--card-ink);
+}
+
+@media (max-width: 800px) {
+  .game-grid { grid-template-columns: 1fr; gap: 20px; }
+  .game-card { min-height: 360px; }
+  .game-sprites { height: 174px; }
+  .game-sprites img { width: 94px; height: 94px; }
+}
+
+/* =========================================================
+   PATCH V23 : CARTES COMPACTES CINÉMATIQUES / SANS DÉLIMITATION
+   Objectif : moins grand, plus premium, fond continu, lore Legends Z-A
+========================================================= */
+
+.game-grid {
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 18px;
+  perspective: 1000px;
+}
+
+.game-card {
+  --card-ink: #f8fafc;
+  --card-muted: rgba(248, 250, 252, .66);
+  --surface-1: rgba(9, 11, 20, .96);
+  --surface-2: rgba(17, 24, 39, .92);
+
+  min-height: 324px;
+  border-radius: 23px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background:
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--theme-a) 28%, transparent), transparent 34%),
+    radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--theme-b) 22%, transparent), transparent 32%),
+    radial-gradient(circle at 80% 104%, color-mix(in srgb, var(--theme-c) 22%, transparent), transparent 38%),
+    linear-gradient(155deg, rgba(255,255,255,.08), rgba(255,255,255,.018) 38%, rgba(0,0,0,.16)),
+    linear-gradient(180deg, var(--surface-2), var(--surface-1));
+  overflow: hidden;
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,255,255,.055) inset;
+}
+
+.game-card:hover {
+  transform: translateY(-7px) scale(1.018);
+  box-shadow:
+    0 26px 54px rgba(0,0,0,.48),
+    0 0 32px var(--theme-glow),
+    0 0 0 1px rgba(255,255,255,.14) inset;
+}
+
+.game-card::before {
+  opacity: .76;
+  padding: 1px;
+  background:
+    linear-gradient(145deg,
+      rgba(255,255,255,.38),
+      var(--theme-a) 18%,
+      var(--theme-b) 45%,
+      var(--theme-c) 70%,
+      rgba(255,255,255,.18));
+}
+
+.game-card::after {
+  top: 13px;
+  right: 13px;
+  padding: 6px 11px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(8, 10, 18, .42);
+  box-shadow:
+    0 9px 22px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.game-sprites {
+  height: 148px;
+  gap: 10px;
+  padding: 14px 18px 0;
+  border-radius: 22px 22px 0 0;
+  border-bottom: 0 !important;
+  background: transparent !important;
+  overflow: visible;
+}
+
+/* Grand fond continu derrière image + texte : pas de coupure entre les deux zones */
+.game-card .game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 214px;
+  z-index: 1;
+  border-radius: 23px 23px 36px 36px;
+  background:
+    radial-gradient(ellipse at 28% 28%, rgba(255,255,255,.28), transparent 27%),
+    radial-gradient(ellipse at 72% 30%, color-mix(in srgb, var(--theme-a) 30%, transparent), transparent 32%),
+    radial-gradient(ellipse at 50% 86%, color-mix(in srgb, var(--theme-b) 20%, transparent), transparent 46%),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-a) 78%, #ffffff 5%) 0%,
+      color-mix(in srgb, var(--theme-b) 82%, #020617 4%) 48%,
+      color-mix(in srgb, var(--theme-c) 88%, #020617 12%) 100%);
+  box-shadow: inset 0 -44px 54px rgba(0,0,0,.26);
+  opacity: .96;
+  pointer-events: none;
+  mix-blend-mode: normal;
+}
+
+/* Signature visuelle douce, pas de lignes : verre + aura */
+.game-card .game-sprites::after {
+  content: "";
+  position: absolute;
+  inset: 16px 16px auto 16px;
+  z-index: 2;
+  height: 116px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255,255,255,.20), transparent 21%),
+    radial-gradient(circle at 50% 52%, rgba(255,255,255,.18), transparent 33%),
+    radial-gradient(circle at 78% 34%, rgba(255,255,255,.13), transparent 24%);
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 26px color-mix(in srgb, var(--theme-glow) 70%, transparent);
+  opacity: .82;
+  pointer-events: none;
+}
+
+.game-sprites img {
+  z-index: 4;
+  width: 92px;
+  height: 92px;
+  filter:
+    drop-shadow(0 16px 10px rgba(0,0,0,.48))
+    drop-shadow(0 0 14px rgba(255,255,255,.22));
+}
+
+.game-sprites img:nth-child(1) { transform: translateY(15px) rotate(-8deg) scale(.96); }
+.game-sprites img:nth-child(2) { transform: translateY(-5px) scale(1.18); }
+.game-sprites img:nth-child(3) { transform: translateY(13px) rotate(8deg) scale(.98); }
+
+.game-card:hover .game-sprites img:nth-child(1) { transform: translateY(2px) rotate(-12deg) scale(1.08); }
+.game-card:hover .game-sprites img:nth-child(2) { transform: translateY(-16px) scale(1.29); }
+.game-card:hover .game-sprites img:nth-child(3) { transform: translateY(1px) rotate(12deg) scale(1.08); }
+
+.game-content {
+  position: relative;
+  z-index: 3;
+  min-height: 176px;
+  padding: 20px 21px 21px;
+  margin-top: -2px;
+  background: transparent !important;
+  color: var(--card-ink);
+}
+
+.game-content h3 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: -.78px;
+  color: var(--card-ink);
+  text-shadow: 0 10px 26px rgba(0,0,0,.42);
+}
+
+.game-content p {
+  font-size: 14px;
+  color: var(--card-muted) !important;
+}
+
+.game-progress-info {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.game-progress-info span,
+.game-progress-info strong {
+  color: var(--card-ink) !important;
+  font-size: 16px;
+}
+
+.game-progress {
+  height: 10px;
+  background: rgba(255,255,255,.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.075),
+    0 0 18px rgba(0,0,0,.12);
+}
+
+.game-level-info {
+  display: inline-flex;
+  max-width: 100%;
+  margin-top: 14px;
+  padding: 7px 11px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--theme-a) 80%, #ffffff 20%);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-a) 15%, rgba(255,255,255,.04)),
+      rgba(255,255,255,.045));
+}
+
+/* Legends Z-A : Zygarde + Fleur Éternelle, ambiance Kalos futuriste mais verte/noire/rose */
+.game-card[data-game-id="legends-z-a"] {
+  --theme-a:#45ff6a;
+  --theme-b:#111827;
+  --theme-c:#ff3f8e;
+  --theme-d:#020617;
+  --theme-glow:rgba(69,255,106,.42);
+  --theme-soft:rgba(255,63,142,.15);
+}
+
+.game-card[data-game-id="legends-z-a"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 22% 25%, rgba(69,255,106,.28), transparent 28%),
+    radial-gradient(circle at 70% 30%, rgba(255,63,142,.25), transparent 30%),
+    radial-gradient(circle at 50% 92%, rgba(255,255,255,.10), transparent 38%),
+    linear-gradient(135deg, #0a2316 0%, #101827 46%, #3c1029 76%, #ff3f8e 120%);
+}
+
+.game-card[data-game-id="legends-z-a"] .game-sprites::after {
+  background:
+    radial-gradient(circle at 22% 33%, rgba(69,255,106,.18), transparent 20%),
+    radial-gradient(circle at 70% 36%, rgba(255,255,255,.16), transparent 18%),
+    radial-gradient(circle at 68% 36%, rgba(255,63,142,.14), transparent 34%),
+    linear-gradient(30deg, transparent 0 44%, rgba(69,255,106,.10) 45% 46%, transparent 47% 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 0 24px rgba(69,255,106,.22);
+}
+
+.game-card[data-game-id="mega-dimension"] {
+  --theme-a:#44eaff;
+  --theme-b:#6d28d9;
+  --theme-c:#ff4fb3;
+  --theme-d:#020617;
+  --theme-glow:rgba(109,40,217,.50);
+  --theme-soft:rgba(68,234,255,.15);
+}
+
+.game-card[data-game-id="mega-dimension"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 24% 30%, rgba(68,234,255,.25), transparent 30%),
+    radial-gradient(circle at 68% 30%, rgba(255,79,179,.23), transparent 31%),
+    radial-gradient(circle at 52% 94%, rgba(109,40,217,.30), transparent 42%),
+    linear-gradient(135deg, #020617 0%, #2e1065 45%, #111827 70%, #44eaff 120%);
+}
+
+/* On neutralise les règles light précédentes : plus de carte blanche */
+body:not(.dark) .game-card,
+body.dark .game-card {
+  --card-ink: #f8fafc;
+  --card-muted: rgba(248,250,252,.66);
+}
+
+body:not(.dark) .game-content,
+body.dark .game-content {
+  background: transparent !important;
+}
+
+@media (max-width: 800px) {
+  .game-grid { grid-template-columns: 1fr; gap: 16px; }
+  .game-card { min-height: 314px; }
+  .game-sprites { height: 142px; }
+  .game-sprites img { width: 84px; height: 84px; }
+  .game-content { min-height: 170px; padding: 18px 19px 20px; }
+}
+
+/* =========================================================
+   PATCH V24 : CARTES DEX VERRE PREMIUM / SOUS-TITRE FIXE
+   Objectif : plus de texte à moitié dans la couleur, cartes moins massives,
+   fond continu + panneau glass discret sans grosse séparation.
+========================================================= */
+
+.game-grid {
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  gap: 18px;
+}
+
+.game-card {
+  --glass: rgba(8, 10, 18, .66);
+  --glass-2: rgba(8, 10, 18, .86);
+  min-height: 302px;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 12%, color-mix(in srgb, var(--theme-a) 28%, transparent), transparent 34%),
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--theme-b) 26%, transparent), transparent 34%),
+    radial-gradient(circle at 50% 108%, color-mix(in srgb, var(--theme-c) 22%, transparent), transparent 42%),
+    linear-gradient(180deg, #161922, #0b0d12 72%);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, .36),
+    0 0 0 1px rgba(255, 255, 255, .055) inset;
+}
+
+.game-card:hover {
+  transform: translateY(-6px) scale(1.014);
+  box-shadow:
+    0 26px 48px rgba(0, 0, 0, .50),
+    0 0 34px var(--theme-glow),
+    0 0 0 1px rgba(255, 255, 255, .14) inset;
+}
+
+.game-card::before {
+  opacity: .78;
+  background:
+    linear-gradient(145deg,
+      rgba(255,255,255,.45),
+      var(--theme-a) 20%,
+      var(--theme-b) 48%,
+      var(--theme-c) 74%,
+      rgba(255,255,255,.18));
+}
+
+.game-card::after {
+  top: 12px;
+  right: 12px;
+  z-index: 7;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(7, 9, 16, .48);
+  border: 1px solid rgba(255, 255, 255, .24);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 9px 22px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.game-sprites {
+  height: 142px;
+  padding: 12px 17px 0;
+  gap: 8px;
+  border-radius: 22px 22px 0 0;
+  overflow: visible;
+  background: transparent !important;
+}
+
+/* Fond continu sur toute la carte : pas une image + bloc texte séparés */
+.game-card .game-sprites::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 245px;
+  z-index: 1;
+  border-radius: 22px 22px 34px 34px;
+  background:
+    radial-gradient(ellipse at 21% 25%, rgba(255,255,255,.27), transparent 27%),
+    radial-gradient(ellipse at 74% 18%, color-mix(in srgb, var(--theme-a) 32%, transparent), transparent 31%),
+    radial-gradient(ellipse at 50% 74%, color-mix(in srgb, var(--theme-b) 24%, transparent), transparent 45%),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-a) 82%, #ffffff 5%) 0%,
+      color-mix(in srgb, var(--theme-b) 84%, #020617 5%) 48%,
+      color-mix(in srgb, var(--theme-c) 90%, #020617 12%) 100%);
+  box-shadow: inset 0 -92px 70px rgba(6, 8, 14, .55);
+  opacity: .98;
+  pointer-events: none;
+}
+
+/* Aura propre, sans lignes ni taches noires */
+.game-card .game-sprites::after {
+  content: "";
+  position: absolute;
+  inset: 18px 18px auto 18px;
+  z-index: 2;
+  height: 102px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.22), transparent 43%),
+    radial-gradient(circle at 28% 42%, color-mix(in srgb, var(--theme-a) 20%, transparent), transparent 34%),
+    radial-gradient(circle at 72% 42%, color-mix(in srgb, var(--theme-c) 16%, transparent), transparent 34%);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.15),
+    0 0 28px color-mix(in srgb, var(--theme-glow) 68%, transparent);
+  opacity: .82;
+  pointer-events: none;
+}
+
+.game-sprites img {
+  z-index: 5;
+  width: 86px;
+  height: 86px;
+  filter:
+    drop-shadow(0 14px 9px rgba(0,0,0,.46))
+    drop-shadow(0 0 13px rgba(255,255,255,.20));
+}
+
+.game-sprites img:nth-child(1) { transform: translateY(14px) rotate(-7deg) scale(.95); }
+.game-sprites img:nth-child(2) { transform: translateY(-4px) scale(1.15); }
+.game-sprites img:nth-child(3) { transform: translateY(13px) rotate(7deg) scale(.96); }
+
+.game-card:hover .game-sprites img:nth-child(1) { transform: translateY(3px) rotate(-10deg) scale(1.06); }
+.game-card:hover .game-sprites img:nth-child(2) { transform: translateY(-13px) scale(1.25); }
+.game-card:hover .game-sprites img:nth-child(3) { transform: translateY(2px) rotate(10deg) scale(1.06); }
+
+/* Le fix important : tout le texte est dans le même panneau, donc subtitle toujours lisible */
+.game-content {
+  position: relative;
+  z-index: 6;
+  min-height: 148px;
+  margin: -12px 13px 13px;
+  padding: 16px 16px 15px;
+  border-radius: 18px;
+  color: #f8fafc;
+  background:
+    linear-gradient(180deg, rgba(10, 13, 22, .64), rgba(8, 10, 18, .88));
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .10),
+    0 -18px 38px rgba(0, 0, 0, .10);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.game-content::before,
+.game-content::after {
+  display: none !important;
+}
+
+.game-content h3 {
+  margin: 0 0 7px;
+  font-size: 20px;
+  line-height: 1.08;
+  letter-spacing: -.6px;
+  color: #ffffff !important;
+  text-shadow: 0 8px 22px rgba(0,0,0,.45);
+}
+
+.game-content p {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.18;
+  color: rgba(248, 250, 252, .72) !important;
+  text-shadow: 0 6px 18px rgba(0,0,0,.36);
+}
+
+.game-progress-info {
+  margin: 0 0 8px;
+}
+
+.game-progress-info span,
+.game-progress-info strong {
+  font-size: 15px;
+  color: #ffffff !important;
+}
+
+.game-progress {
+  height: 9px;
+  background: rgba(255,255,255,.13) !important;
+  border: 0 !important;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.game-progress-fill {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--theme-a), var(--theme-b)) !important;
+  box-shadow: 0 0 16px var(--theme-glow);
+}
+
+.game-level-info {
+  margin-top: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--theme-a) 76%, #ffffff 24%) !important;
+  background: rgba(255,255,255,.06);
+  border: 1px solid color-mix(in srgb, var(--theme-a) 35%, rgba(255,255,255,.10));
+  box-shadow: 0 0 15px color-mix(in srgb, var(--theme-glow) 55%, transparent);
+}
+
+/* Palettes un peu plus lore / moins toutes jaunes */
+.game-card[data-game-id="national"] { --theme-a:#fff1a8; --theme-b:#d4af37; --theme-c:#334155; --theme-d:#020617; --theme-glow:rgba(212,175,55,.44); }
+.game-card[data-game-id="lets-go-pikachu-eevee"] { --theme-a:#ffd84d; --theme-b:#ff8a1c; --theme-c:#39c9ff; --theme-d:#261400; --theme-glow:rgba(255,216,77,.45); }
+.game-card[data-game-id="sword-shield"] { --theme-a:#1ed7ff; --theme-b:#2457ff; --theme-c:#ff3157; --theme-d:#020617; --theme-glow:rgba(30,215,255,.42); }
+.game-card[data-game-id="isle-of-armor"] { --theme-a:#f2ff55; --theme-b:#f97316; --theme-c:#279647; --theme-d:#101b0a; --theme-glow:rgba(242,255,85,.38); }
+.game-card[data-game-id="crown-tundra"] { --theme-a:#e9fbff; --theme-b:#7cc7ff; --theme-c:#7c6cff; --theme-d:#020617; --theme-glow:rgba(124,199,255,.44); }
+.game-card[data-game-id="brilliant-diamond-shining-pearl"] { --theme-a:#8df5ff; --theme-b:#ffb7e6; --theme-c:#cbd5e1; --theme-d:#1e293b; --theme-glow:rgba(255,183,230,.42); }
+.game-card[data-game-id="legends-arceus"] { --theme-a:#f1d3a0; --theme-b:#99b96c; --theme-c:#8a5a2e; --theme-d:#1c1917; --theme-glow:rgba(241,211,160,.34); }
+.game-card[data-game-id="scarlet-violet"] { --theme-a:#ff4343; --theme-b:#ff8a3d; --theme-c:#8257ff; --theme-d:#11102a; --theme-glow:rgba(130,87,255,.45); }
+.game-card[data-game-id="teal-mask"] { --theme-a:#11e6c6; --theme-b:#9af52d; --theme-c:#c5174e; --theme-d:#10160f; --theme-glow:rgba(17,230,198,.40); }
+.game-card[data-game-id="indigo-disk"] { --theme-a:#40f4ff; --theme-b:#6078ff; --theme-c:#241c91; --theme-d:#020617; --theme-glow:rgba(64,244,255,.44); }
+.game-card[data-game-id="legends-z-a"] { --theme-a:#4cff6c; --theme-b:#101827; --theme-c:#ff3f8e; --theme-d:#020617; --theme-glow:rgba(76,255,108,.44); }
+.game-card[data-game-id="mega-dimension"] { --theme-a:#33eaff; --theme-b:#7c3aed; --theme-c:#ff5cbd; --theme-d:#020617; --theme-glow:rgba(124,58,237,.50); }
+.game-card[data-game-id="x-y"] { --theme-a:#2e6dff; --theme-b:#f8fafc; --theme-c:#ff3333; --theme-d:#080f20; --theme-glow:rgba(46,109,255,.42); }
+.game-card[data-game-id="omega-ruby-alpha-sapphire"] { --theme-a:#ff3333; --theme-b:#b91c1c; --theme-c:#2d72ff; --theme-d:#07101e; --theme-glow:rgba(255,51,51,.42); }
+.game-card[data-game-id="sun-moon"] { --theme-a:#ffe066; --theme-b:#ff7a18; --theme-c:#2261ff; --theme-d:#0d1324; --theme-glow:rgba(255,224,102,.45); }
+.game-card[data-game-id="ultra-sun-ultra-moon"] { --theme-a:#ffb703; --theme-b:#8248ff; --theme-c:#00d4ff; --theme-d:#020617; --theme-glow:rgba(130,72,255,.46); }
+
+/* Legends Z-A : Zygarde + Fleur Éternelle, vert/noir/rose plus assumé */
+.game-card[data-game-id="legends-z-a"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 22% 25%, rgba(76,255,108,.30), transparent 28%),
+    radial-gradient(circle at 72% 30%, rgba(255,63,142,.27), transparent 31%),
+    radial-gradient(circle at 50% 92%, rgba(255,255,255,.10), transparent 38%),
+    linear-gradient(135deg, #0a2516 0%, #101827 48%, #3c1029 78%, #ff3f8e 122%);
+}
+
+@media (max-width: 800px) {
+  .game-grid { grid-template-columns: 1fr; gap: 16px; }
+  .game-card { min-height: 292px; }
+  .game-sprites { height: 134px; }
+  .game-sprites img { width: 82px; height: 82px; }
+  .game-content { min-height: 145px; margin: -10px 12px 12px; padding: 15px; }
+}

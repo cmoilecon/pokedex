@@ -28,8 +28,10 @@ const STORAGE_KEYS = {
   dark: "swsh-dex-dark-v1",
   lang: "swsh-dex-lang-v1",
   missingOnly: "swsh-dex-missing-only-v1",
+  favoritesOnly: "dex-favorites-only-v1",
   hideCompletedDex: "switch-dex-hide-completed-v1",
-  shortcutsVisible: "dex-switch-shortcuts-visible-v1"
+  shortcutsVisible: "dex-switch-shortcuts-visible-v1",
+  sound: "dex-sound-enabled-v1"
 };
 
 const dexDataMap = {
@@ -52,6 +54,37 @@ const dexDataMap = {
   "sun-moon": SLPokemons,
   "ultra-sun-ultra-moon": UsUlPokemons
 };
+
+const TYPE_LABELS_FR = {
+  normal: "Normal",
+  fire: "Feu",
+  water: "Eau",
+  electric: "Électrik",
+  grass: "Plante",
+  ice: "Glace",
+  fighting: "Combat",
+  poison: "Poison",
+  ground: "Sol",
+  flying: "Vol",
+  psychic: "Psy",
+  bug: "Insecte",
+  rock: "Roche",
+  ghost: "Spectre",
+  dragon: "Dragon",
+  dark: "Ténèbres",
+  steel: "Acier",
+  fairy: "Fée"
+};
+
+const TYPE_ORDER = [
+  "normal", "fire", "water", "electric", "grass", "ice",
+  "fighting", "poison", "ground", "flying", "psychic", "bug",
+  "rock", "ghost", "dragon", "dark", "steel", "fairy"
+];
+
+function getTypeLabel(type) {
+  return TYPE_LABELS_FR[type] || type;
+}
 
 const $ = selector => document.querySelector(selector);
 
@@ -85,6 +118,14 @@ const ui = {
   deleteProfileBtn: $("#deleteProfileBtn"),
 
   homeProfileName: $("#homeProfileName"),
+  profileSummaryPanel: $("#profileSummaryPanel"),
+  summaryProfileName: $("#summaryProfileName"),
+  summaryRankText: $("#summaryRankText"),
+  summaryRankDetail: $("#summaryRankDetail"),
+  summaryLastDex: $("#summaryLastDex"),
+  summaryStatsGrid: $("#summaryStatsGrid"),
+  summaryLevelProgressFill: $("#summaryLevelProgressFill"),
+  continueDexBtn: $("#continueDexBtn"),
   globalLevelTitle: $("#globalLevelTitle"),
   globalXpText: $("#globalXpText"),
   globalXpFill: $("#globalXpFill"),
@@ -113,7 +154,11 @@ const ui = {
   langSelect: $("#langSelect"),
   shinyMode: $("#shinyMode"),
   darkMode: $("#darkMode"),
+  soundMode: $("#soundMode"),
   missingOnlyMode: $("#missingOnlyMode"),
+  favoritesOnlyMode: $("#favoritesOnlyMode"),
+  typeFilterLabel: $("#typeFilterLabel"),
+  typeFilterSelect: $("#typeFilterSelect"),
   hideCompletedDexLabel: $("#hideCompletedDexLabel"),
   hideCompletedDexMode: $("#hideCompletedDexMode"),
   checkVisibleBtn: $("#checkVisibleBtn"),
@@ -150,6 +195,7 @@ let achievementUnlockQueue = [];
 let isShowingAchievementUnlock = false;
 let achievementAudioContext = null;
 let achievementSoundEnabled = true;
+let activeTypeFilter = "all";
 let shortcutObjectiveViewIndex = 0;
 let isDebugPanelVisible = true;
 let activeDexPlatformFilter = "all";
@@ -247,13 +293,15 @@ function getProfileDexState(profile, gameId) {
   profile.dexData[gameId] ||= {
     obtained: {},
     shinyMode: false,
-    shinyLocked: {}
+    shinyLocked: {},
+    favorites: {}
   };
 
   const state = profile.dexData[gameId];
 
   state.obtained ||= {};
   state.shinyLocked ||= {};
+  state.favorites ||= {};
 
   if (typeof state.shinyMode !== "boolean") {
     state.shinyMode = false;
@@ -332,6 +380,37 @@ function saveObtained(obtained) {
 
   state.obtained = obtained;
   saveProfiles();
+}
+
+function getFavorites() {
+  return getCurrentDexState()?.favorites || {};
+}
+
+function saveFavorites(favorites) {
+  const state = getCurrentDexState();
+  if (!state) return;
+
+  state.favorites = favorites;
+  saveProfiles();
+}
+
+function isPokemonFavorite(pokemon) {
+  return Boolean(getFavorites()[pokemon.id]);
+}
+
+function toggleFavorite(pokemon) {
+  const favorites = { ...getFavorites() };
+
+  if (favorites[pokemon.id]) {
+    delete favorites[pokemon.id];
+    playUiSound("remove");
+  } else {
+    favorites[pokemon.id] = true;
+    playUiSound("favorite");
+  }
+
+  saveFavorites(favorites);
+  renderDex();
 }
 
 function getShinyLocked() {
@@ -702,6 +781,7 @@ function completeFinishedObjectives(showNotification = false) {
 
   if (completedCount > 0) {
     saveProfiles();
+    playUiSound("quest");
 
     if (showNotification) {
       showToast(
@@ -1117,6 +1197,8 @@ function getFilteredPokemons() {
   return pokemons.filter(pokemon => {
     if (objectiveFilterIds && !objectiveFilterIds.has(String(pokemon.id))) return false;
     if (ui.missingOnlyMode.checked && isPokemonObtained(pokemon)) return false;
+    if (ui.favoritesOnlyMode?.checked && !isPokemonFavorite(pokemon)) return false;
+    if (activeTypeFilter !== "all" && !(pokemon.types || []).includes(activeTypeFilter)) return false;
 
     const id = String(pokemon.id).padStart(3, "0");
     const frName = (pokemon.names?.fr || "").toLowerCase();
@@ -1392,20 +1474,23 @@ function refreshObjectivesUI() {
 }
 
 function updateGlobalLevelUI(profile) {
-  if (!ui.globalLevelTitle || !ui.globalXpText || !ui.globalXpFill || !profile) return;
+  if (!profile) return;
 
   const globalRank = getGlobalRank(profile);
   const rareRank = getRareGlobalRank(profile);
   const globalCompletion = getGlobalCompletionPercent(profile);
-
-  ui.globalLevelTitle.textContent = `${profile.name} — ${globalRank.name}`;
-
-  ui.globalXpText.innerHTML = `
+  const detailHtml = `
     ${globalRank.completedDexCount} Dex complétés
     ${rareRank ? `<div class="rare-rank-text">${rareRank}</div>` : ""}
   `;
 
-  ui.globalXpFill.style.width = `${globalCompletion}%`;
+  if (ui.globalLevelTitle) ui.globalLevelTitle.textContent = `${profile.name} — ${globalRank.name}`;
+  if (ui.globalXpText) ui.globalXpText.innerHTML = detailHtml;
+  if (ui.globalXpFill) ui.globalXpFill.style.width = `${globalCompletion}%`;
+
+  if (ui.summaryRankText) ui.summaryRankText.textContent = `${globalRank.name}`;
+  if (ui.summaryRankDetail) ui.summaryRankDetail.innerHTML = detailHtml;
+  if (ui.summaryLevelProgressFill) ui.summaryLevelProgressFill.style.width = `${globalCompletion}%`;
 }
 
 function getBadgeImageUrl(fileName) {
@@ -1647,6 +1732,44 @@ function checkNewAchievements(showNotification = true) {
   }
 
   return newlyUnlocked;
+}
+
+function playUiSound(kind = "check") {
+  if (!achievementSoundEnabled) return;
+
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    achievementAudioContext ||= new AudioContextClass();
+    const ctx = achievementAudioContext;
+
+    if (ctx.state === "suspended") ctx.resume();
+
+    const now = ctx.currentTime;
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    const presets = {
+      check: [660, 0.08, 0.10],
+      remove: [260, 0.10, 0.08],
+      favorite: [880, 0.12, 0.12],
+      quest: [740, 0.14, 0.16]
+    };
+
+    const [freq, duration, volume] = presets[kind] || presets.check;
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(freq, now);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(volume, now + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+    oscillator.start(now);
+    oscillator.stop(now + duration + 0.03);
+  } catch (error) {
+    console.warn("Son indisponible :", error);
+  }
 }
 
 function playAchievementUnlockSound() {
@@ -1981,6 +2104,9 @@ function togglePokemon(id) {
   if (!obtained[id]) {
     delete obtained[id];
     delete shinyLocked[id];
+    playUiSound("remove");
+  } else {
+    playUiSound("check");
   }
 
   saveObtained(obtained);
@@ -2068,6 +2194,8 @@ function updateTopbarVisibility(mode) {
   const dexOnlyControls = [
     ui.shinyMode.closest("label"),
     ui.missingOnlyMode.closest("label"),
+    ui.favoritesOnlyMode?.closest("label"),
+    ui.typeFilterLabel,
     ui.checkVisibleBtn,
     ui.uncheckVisibleBtn
   ];
@@ -2140,6 +2268,17 @@ function getSelectedSetupDexes() {
 function getGameSpritePreview(gameId) {
   const game = getGame(gameId);
   const pokemons = getPokemonsForGame(gameId);
+
+  if (game?.coverSprites?.length) {
+    return game.coverSprites.map(sprite => `
+      <img
+        src="https://img.pokemondb.net/sprites/home/normal/${sprite.slug}.png"
+        alt="${escapeHtml(sprite.name || sprite.slug)}"
+        loading="lazy"
+      >
+    `).join("");
+  }
+
   let previewPokemons = [];
 
   if (game?.coverPokemonIds?.length) {
@@ -2195,6 +2334,85 @@ function updateDexPlatformFilterButtons() {
   });
 }
 
+function getProfileSummary(profile) {
+  let totalPokemon = 0;
+  let obtainedPokemon = 0;
+  let completedDexes = 0;
+  let favoriteCount = 0;
+
+  for (const gameId of profile.enabledDexes || []) {
+    const progress = calculateGameProgress(profile, gameId);
+    totalPokemon += progress.total;
+    obtainedPokemon += progress.done;
+    if (progress.completion === 100) completedDexes++;
+
+    const state = getProfileDexState(profile, gameId);
+    favoriteCount += Object.values(state.favorites || {}).filter(Boolean).length;
+  }
+
+  const objectives = profile.objectives || [];
+
+  return {
+    totalPokemon,
+    obtainedPokemon,
+    completedDexes,
+    activeObjectives: objectives.filter(objective => objective.status === "active").length,
+    completedObjectives: objectives.filter(objective => objective.status === "completed").length,
+    favoriteCount
+  };
+}
+
+function renderProfileSummary(profile) {
+  if (!ui.summaryProfileName || !ui.summaryStatsGrid || !ui.continueDexBtn || !profile) return;
+
+  const summary = getProfileSummary(profile);
+  const lastGame = getGame(profile.lastDex);
+  const globalRank = getGlobalRank(profile);
+
+  ui.summaryProfileName.textContent = `${profile.name} - ${globalRank.name}`;
+  updateGlobalLevelUI(profile);
+  ui.summaryLastDex.textContent = lastGame
+    ? `Dernier Dex : ${lastGame.shortName || lastGame.name}`
+    : "Dernier Dex : aucun";
+
+  ui.summaryStatsGrid.innerHTML = `
+    <div class="summary-stat"><span>Pokémon</span><strong>${summary.obtainedPokemon} / ${summary.totalPokemon}</strong></div>
+    <div class="summary-stat"><span>Dex terminés</span><strong>${summary.completedDexes}</strong></div>
+    <div class="summary-stat"><span>Objectifs actifs</span><strong>${summary.activeObjectives}</strong></div>
+    <div class="summary-stat"><span>Objectifs réussis</span><strong>${summary.completedObjectives}</strong></div>
+    <div class="summary-stat"><span>Favoris</span><strong>${summary.favoriteCount}</strong></div>
+  `;
+
+  ui.continueDexBtn.disabled = !lastGame;
+  ui.continueDexBtn.textContent = lastGame ? `▶ Continuer : ${lastGame.shortName || lastGame.name}` : "▶ Continuer";
+}
+
+function renderTypeFilter() {
+  if (!ui.typeFilterSelect || !currentGameId) return;
+
+  const currentValue = activeTypeFilter;
+  const types = new Set();
+
+  for (const pokemon of getPokemonsForGame(currentGameId)) {
+    for (const type of pokemon.types || []) types.add(type);
+  }
+
+  const orderedTypes = TYPE_ORDER.filter(type => types.has(type));
+  activeTypeFilter = currentValue === "all" || types.has(currentValue) ? currentValue : "all";
+
+  ui.typeFilterSelect.innerHTML = `<option value="all">Tous</option>`;
+
+  for (const type of orderedTypes) {
+    const option = document.createElement("option");
+    option.value = type;
+    option.textContent = getTypeLabel(type);
+    ui.typeFilterSelect.appendChild(option);
+  }
+
+  ui.typeFilterSelect.value = activeTypeFilter;
+  ui.typeFilterLabel?.classList.toggle("hidden", orderedTypes.length === 0);
+}
+
 function renderHome() {
   const profile = getActiveProfile();
   if (!profile) return;
@@ -2210,9 +2428,10 @@ function renderHome() {
   renderAchievements();
   renderTopbarAchievements();
 
-  ui.appTitle.textContent = "Dex Switch";
+  ui.appTitle.textContent = "Dex";
   ui.appSubtitle.textContent = "Menu des Pokédex";
   ui.homeProfileName.textContent = `Profil : ${profile.name}`;
+  renderProfileSummary(profile);
 
   renderProfileSelect();
   refreshObjectivesUI();
@@ -2229,6 +2448,8 @@ function renderHome() {
     const dexRank = getDexDisplayRank(profile, game.id);
     const card = document.createElement("article");
     card.className = "game-card";
+    card.dataset.gameId = game.id;
+    card.dataset.platform = game.platform;
     card.innerHTML = `
       <div class="game-sprites">${getGameSpritePreview(game.id)}</div>
 
@@ -2290,6 +2511,7 @@ function openDex(gameId, rememberLastDex = true) {
   }
 
   loadCurrentDexShinyMode();
+  activeTypeFilter = "all";
   ui.searchInput.value = "";
   ui.appTitle.textContent = `Dex — ${game.shortName}`;
   ui.appSubtitle.textContent = game.subtitle;
@@ -2301,6 +2523,7 @@ function openDex(gameId, rememberLastDex = true) {
 
 function renderDex() {
   completeFinishedObjectives(false);
+  renderTypeFilter();
   ui.dex.innerHTML = "";
 
   let lastSectionId = null;
@@ -2319,6 +2542,7 @@ function renderDex() {
     }
     const isObtained = isPokemonObtained(pokemon);
     const isLocked = isPokemonShinyLocked(pokemon);
+    const isFavorite = isPokemonFavorite(pokemon);
     const name = getPokemonName(pokemon);
     const card = document.createElement("article");
 
@@ -2335,12 +2559,18 @@ function renderDex() {
       </div>
 
       <div class="card-actions">
+        <button class="favorite-btn ${isFavorite ? "active" : ""}" type="button" title="Favori">${isFavorite ? "⭐" : "☆"}</button>
         <a class="info-link" href="${getPokemonInfoUrl(pokemon)}" target="_blank" rel="noopener noreferrer">Infos ↗</a>
         ${ui.shinyMode.checked && isObtained
         ? `<button class="lock-btn ${isLocked ? "active" : ""}" type="button">${isLocked ? "🔒 Shiny Lock" : "🔓 Shiny Lock"}</button>`
         : ""}
       </div>
     `;
+
+    card.querySelector(".favorite-btn")?.addEventListener("click", event => {
+      event.stopPropagation();
+      toggleFavorite(pokemon);
+    });
 
     card.querySelector(".lock-btn")?.addEventListener("click", event => {
       event.stopPropagation();
@@ -2376,7 +2606,7 @@ function createProfile(name, enabledDexes, nationalLinked = false) {
   const dexData = {};
 
   for (const gameId of enabledDexes) {
-    dexData[gameId] = { obtained: {}, shinyMode: false, shinyLocked: {} };
+    dexData[gameId] = { obtained: {}, shinyMode: false, shinyLocked: {}, favorites: {} };
   }
 
   profiles[id] = {
@@ -2531,7 +2761,11 @@ function loadGlobalSettings() {
   ui.darkMode.checked = localStorage.getItem(STORAGE_KEYS.dark) === "1";
   document.body.classList.toggle("dark", ui.darkMode.checked);
 
+  achievementSoundEnabled = localStorage.getItem(STORAGE_KEYS.sound) !== "0";
+  if (ui.soundMode) ui.soundMode.checked = achievementSoundEnabled;
+
   ui.missingOnlyMode.checked = localStorage.getItem(STORAGE_KEYS.missingOnly) === "1";
+  if (ui.favoritesOnlyMode) ui.favoritesOnlyMode.checked = localStorage.getItem(STORAGE_KEYS.favoritesOnly) === "1";
   ui.hideCompletedDexMode.checked = localStorage.getItem(STORAGE_KEYS.hideCompletedDex) === "1";
 
   const savedLang = localStorage.getItem(STORAGE_KEYS.lang);
@@ -2579,7 +2813,9 @@ function getBackupData() {
       dark: localStorage.getItem(STORAGE_KEYS.dark) || "0",
       lang: localStorage.getItem(STORAGE_KEYS.lang) || "fr",
       missingOnly: localStorage.getItem(STORAGE_KEYS.missingOnly) || "0",
-      hideCompletedDex: localStorage.getItem(STORAGE_KEYS.hideCompletedDex) || "0"
+      favoritesOnly: localStorage.getItem(STORAGE_KEYS.favoritesOnly) || "0",
+      hideCompletedDex: localStorage.getItem(STORAGE_KEYS.hideCompletedDex) || "0",
+      sound: localStorage.getItem(STORAGE_KEYS.sound) || "1"
     }
   };
 }
@@ -2648,7 +2884,9 @@ function applyBackupImport() {
       if (["0", "1"].includes(data.globalSettings.dark)) localStorage.setItem(STORAGE_KEYS.dark, data.globalSettings.dark);
       if (["fr", "en"].includes(data.globalSettings.lang)) localStorage.setItem(STORAGE_KEYS.lang, data.globalSettings.lang);
       if (["0", "1"].includes(data.globalSettings.missingOnly)) localStorage.setItem(STORAGE_KEYS.missingOnly, data.globalSettings.missingOnly);
+      if (["0", "1"].includes(data.globalSettings.favoritesOnly)) localStorage.setItem(STORAGE_KEYS.favoritesOnly, data.globalSettings.favoritesOnly);
       if (["0", "1"].includes(data.globalSettings.hideCompletedDex)) localStorage.setItem(STORAGE_KEYS.hideCompletedDex, data.globalSettings.hideCompletedDex);
+      if (["0", "1"].includes(data.globalSettings.sound)) localStorage.setItem(STORAGE_KEYS.sound, data.globalSettings.sound);
     }
 
     saveProfiles();
@@ -3934,6 +4172,18 @@ function bindEvents() {
 
   ui.homeBtn.addEventListener("click", renderHome);
 
+  ui.continueDexBtn?.addEventListener("click", () => {
+    const profile = getActiveProfile();
+    const gameId = profile?.lastDex || profile?.enabledDexes?.[0];
+
+    if (!gameId) {
+      showToast("⚠️ Aucun Dex à continuer.", "warn");
+      return;
+    }
+
+    openDex(gameId);
+  });
+
   ui.profileSelect.addEventListener("change", () => {
     activeProfileId = ui.profileSelect.value;
     saveActiveProfile();
@@ -3973,8 +4223,27 @@ function bindEvents() {
     saveGlobalSetting(STORAGE_KEYS.dark, ui.darkMode.checked ? "1" : "0");
   });
 
+  ui.soundMode?.addEventListener("change", () => {
+    achievementSoundEnabled = ui.soundMode.checked;
+    saveGlobalSetting(STORAGE_KEYS.sound, achievementSoundEnabled ? "1" : "0");
+    if (achievementSoundEnabled) playUiSound("check");
+  });
+
+  ui.typeFilterSelect?.addEventListener("change", () => {
+    activeTypeFilter = ui.typeFilterSelect.value || "all";
+    if (currentGameId) renderDex();
+  });
+
   ui.missingOnlyMode.addEventListener("change", () => {
     saveGlobalSetting(STORAGE_KEYS.missingOnly, ui.missingOnlyMode.checked ? "1" : "0");
+
+    if (currentGameId) {
+      renderDex();
+    }
+  });
+
+  ui.favoritesOnlyMode?.addEventListener("change", () => {
+    saveGlobalSetting(STORAGE_KEYS.favoritesOnly, ui.favoritesOnlyMode.checked ? "1" : "0");
 
     if (currentGameId) {
       renderDex();
@@ -4012,6 +4281,7 @@ function bindEvents() {
       checkNewAchievements(true);
     }
 
+    if (newlyObtainedIds.length > 0) playUiSound("check");
     renderDex();
   });
 
@@ -4023,6 +4293,7 @@ function bindEvents() {
     }
 
     saveObtained(obtained);
+    playUiSound("remove");
     renderDex();
   });
 }

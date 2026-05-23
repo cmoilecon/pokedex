@@ -2293,6 +2293,14 @@ body.dark .controls label:has(input[type="checkbox"]) {
     0 0 14px rgba(212, 175, 55, 0.22);
 }
 
+.dex-platform-filter-btn[data-platform-filter="switch"].active {
+  border-color: rgba(239, 68, 68, 0.95);
+  background: rgba(239, 68, 68, 0.12);
+  box-shadow:
+    0 0 0 2px rgba(239, 68, 68, 0.16),
+    0 0 14px rgba(239, 68, 68, 0.25);
+}
+
 body.dark .dex-platform-filter-btn {
   background: var(--panel);
   color: var(--text);
@@ -4231,4 +4239,160 @@ body.dark .game-content {
   .game-sprites { height: 134px; }
   .game-sprites img { width: 82px; height: 82px; }
   .game-content { min-height: 145px; margin: -10px 12px 12px; padding: 15px; }
+}
+
+/* =========================================================
+   V25 CLEAN : JEUX DS
+   Nettoyé : une seule source de couleurs DS.
+   Ne touche pas à Legends Z-A.
+========================================================= */
+
+.game-card[data-platform="ds"]::after {
+  content: "DS";
+}
+
+.dex-platform-filter-btn[data-platform-filter="ds"].active {
+  border-color: rgba(168, 85, 247, 0.95);
+  background: rgba(168, 85, 247, 0.12);
+  box-shadow:
+    0 0 0 2px rgba(168, 85, 247, 0.16),
+    0 0 14px rgba(168, 85, 247, 0.24);
+}
+
+/* Diamant/Perle DS — Sinnoh doux, rose/bleu perlé */
+.game-card[data-game-id="diamond-pearl"] {
+  --theme-a: #9ee8ff;
+  --theme-b: #f6b7dc;
+  --theme-c: #d8deea;
+  --theme-d: #1a2230;
+  --theme-glow: rgba(158, 232, 255, .42);
+}
+
+.game-card[data-game-id="diamond-pearl"] .game-sprites::before {
+  background:
+    radial-gradient(ellipse at 22% 24%, rgba(255,255,255,.34), transparent 28%),
+    radial-gradient(ellipse at 74% 18%, rgba(246,183,220,.34), transparent 32%),
+    radial-gradient(ellipse at 50% 78%, rgba(158,232,255,.22), transparent 45%),
+    linear-gradient(135deg, #9ee8ff 0%, #e8d9ef 45%, #f6b7dc 100%);
+  box-shadow: inset 0 -92px 70px rgba(6, 8, 14, .48);
+}
+
+/* Platine — Team Galaxie : espace, acier, violet, rouge discret */
+.game-card[data-game-id="platinum"] {
+  --theme-a: #d6dbe6;
+  --theme-b: #5b6172;
+  --theme-c: #5b2a86;
+  --theme-d: #090914;
+  --theme-glow: rgba(139, 92, 246, .42);
+}
+
+.game-card[data-game-id="platinum"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.13) 0 49px, transparent 50px),
+    radial-gradient(circle at 50% 48%, transparent 0 70px, rgba(255,255,255,.14) 71px 73px, transparent 74px),
+    radial-gradient(circle at 24% 18%, rgba(214,219,230,.30), transparent 23%),
+    radial-gradient(circle at 82% 24%, rgba(239,68,68,.20), transparent 26%),
+    radial-gradient(circle at 50% 90%, rgba(91,42,134,.34), transparent 45%),
+    linear-gradient(135deg, #171925 0%, #3b3f52 42%, #221333 72%, #090914 100%);
+  box-shadow: inset 0 -92px 70px rgba(4, 5, 12, .62);
+}
+
+.game-card[data-game-id="platinum"] .game-level-info {
+  color: #d8b4fe !important;
+  border-color: rgba(168, 85, 247, .38);
+  box-shadow: 0 0 15px rgba(139, 92, 246, .30);
+}
+
+/* HeartGold / SoulSilver — or + argent, thème remake premium */
+.game-card[data-game-id="heartgold-soulsilver"] {
+  --theme-a: #ffd166;
+  --theme-b: #c8922e;
+  --theme-c: #b7d8e8;
+  --theme-d: #17202b;
+  --theme-glow: rgba(255, 209, 102, .44);
+}
+
+.game-card[data-game-id="heartgold-soulsilver"] .game-sprites::before {
+  background:
+    radial-gradient(ellipse at 24% 22%, rgba(255,241,184,.35), transparent 30%),
+    radial-gradient(ellipse at 72% 18%, rgba(183,216,232,.34), transparent 31%),
+    radial-gradient(ellipse at 50% 84%, rgba(200,146,46,.26), transparent 44%),
+    linear-gradient(135deg, #f7b733 0%, #c8922e 43%, #d8edf6 76%, #5d7f94 100%);
+  box-shadow: inset 0 -92px 70px rgba(6, 8, 14, .50);
+}
+
+/* Noir/Blanc — mode normal : ref Pokémon Noir, noir lisible pas noir bouché */
+.game-card[data-game-id="black-white"] {
+  --theme-a: #737b89;
+  --theme-b: #313846;
+  --theme-c: #171b24;
+  --theme-d: #07090e;
+  --theme-glow: rgba(180, 190, 205, .30);
+}
+
+.game-card[data-game-id="black-white"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.10) 0 48px, transparent 49px),
+    radial-gradient(circle at 50% 48%, transparent 0 68px, rgba(255,255,255,.12) 69px 71px, transparent 72px),
+    radial-gradient(circle at 22% 18%, rgba(255,255,255,.16), transparent 23%),
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,.10), transparent 25%),
+    linear-gradient(135deg, #4b5563 0%, #1f2937 43%, #0f131c 72%, #05070b 100%);
+  box-shadow: inset 0 -92px 70px rgba(0, 0, 0, .62);
+}
+
+/* Noir/Blanc — dark mode : ref Pokémon Blanc, blanc/gris doux */
+body.dark .game-card[data-game-id="black-white"] {
+  --theme-a: #f1f5f9;
+  --theme-b: #cbd5e1;
+  --theme-c: #7b8797;
+  --theme-d: #202632;
+  --theme-glow: rgba(241, 245, 249, .30);
+}
+
+body.dark .game-card[data-game-id="black-white"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.30) 0 48px, transparent 49px),
+    radial-gradient(circle at 50% 48%, transparent 0 68px, rgba(255,255,255,.26) 69px 71px, transparent 72px),
+    radial-gradient(circle at 20% 18%, rgba(255,255,255,.42), transparent 25%),
+    radial-gradient(circle at 78% 20%, rgba(148,163,184,.24), transparent 28%),
+    linear-gradient(135deg, #f1f5f9 0%, #dbe3ed 44%, #9aa7b8 76%, #46515f 100%);
+  box-shadow: inset 0 -92px 70px rgba(20, 25, 34, .42);
+}
+
+/* Noir 2 / Blanc 2 — mode normal : ref Blanc 2, blanc/glace */
+.game-card[data-game-id="black-2-white-2"] {
+  --theme-a: #f8fafc;
+  --theme-b: #dbeafe;
+  --theme-c: #7dd3fc;
+  --theme-d: #1e2a3b;
+  --theme-glow: rgba(125, 211, 252, .42);
+}
+
+.game-card[data-game-id="black-2-white-2"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.28) 0 48px, transparent 49px),
+    radial-gradient(circle at 50% 48%, transparent 0 70px, rgba(125,211,252,.20) 71px 73px, transparent 74px),
+    radial-gradient(circle at 24% 18%, rgba(255,255,255,.40), transparent 26%),
+    radial-gradient(circle at 78% 20%, rgba(125,211,252,.28), transparent 28%),
+    linear-gradient(135deg, #f8fafc 0%, #dbeafe 46%, #7dd3fc 78%, #2b3b52 100%);
+  box-shadow: inset 0 -92px 70px rgba(16, 24, 39, .43);
+}
+
+/* Noir 2 / Blanc 2 — dark mode : ref Noir 2, noir/bleu froid */
+body.dark .game-card[data-game-id="black-2-white-2"] {
+  --theme-a: #6ee7ff;
+  --theme-b: #334155;
+  --theme-c: #111827;
+  --theme-d: #020617;
+  --theme-glow: rgba(110, 231, 255, .38);
+}
+
+body.dark .game-card[data-game-id="black-2-white-2"] .game-sprites::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(110,231,255,.16) 0 49px, transparent 50px),
+    radial-gradient(circle at 50% 48%, transparent 0 70px, rgba(255,255,255,.11) 71px 73px, transparent 74px),
+    radial-gradient(circle at 24% 18%, rgba(110,231,255,.24), transparent 26%),
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,.10), transparent 28%),
+    linear-gradient(135deg, #1e293b 0%, #111827 44%, #070b12 76%, #020617 100%);
+  box-shadow: inset 0 -92px 70px rgba(0, 0, 0, .64);
 }

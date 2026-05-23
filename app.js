@@ -17,6 +17,12 @@ import { pokemons as RoSaPokemons } from "./data/3ds/omega-ruby-alpha-sapphire.j
 import { pokemons as SLPokemons } from "./data/3ds/sun-moon.js";
 import { pokemons as UsUlPokemons } from "./data/3ds/ultra-sun-ultra-moon.js";
 
+import { pokemons as DiamondPearlPokemons } from "./data/ds/diamond-pearl.js";
+import { pokemons as PlatinumPokemons } from "./data/ds/platinum.js";
+import { pokemons as HgssPokemons } from "./data/ds/heartgold-soulsilver.js";
+import { pokemons as BlackWhitePokemons } from "./data/ds/black-white.js";
+import { pokemons as Black2White2Pokemons } from "./data/ds/black-white-2.js";
+
 import { games } from "./games.js";
 
 const DEBUG_MODE = false;
@@ -52,7 +58,13 @@ const dexDataMap = {
   "x-y": XYPokemons,
   "omega-ruby-alpha-sapphire": RoSaPokemons,
   "sun-moon": SLPokemons,
-  "ultra-sun-ultra-moon": UsUlPokemons
+  "ultra-sun-ultra-moon": UsUlPokemons,
+  //ds
+  "diamond-pearl": DiamondPearlPokemons,
+  "platinum": PlatinumPokemons,
+  "heartgold-soulsilver": HgssPokemons,
+  "black-white": BlackWhitePokemons,
+  "black-2-white-2": Black2White2Pokemons
 };
 
 const TYPE_LABELS_FR = {
@@ -184,7 +196,7 @@ let activeProfileId = localStorage.getItem(STORAGE_KEYS.activeProfile);
 let currentGameId = null;
 let setupMode = "create";
 let isMenuOpen = false;
-let areObjectivesCollapsed = false;
+let areObjectivesCollapsed = true;
 let isObjectiveHistoryCollapsed = true;
 let objectiveHistoryStatusFilter = "all";
 let objectiveHistoryDexFilter = "all";

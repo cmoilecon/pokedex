@@ -5,7 +5,13 @@ export const games = [
   // Switch
   { id: "lets-go-pikachu-eevee", platform: "switch", name: "Pokémon Let's Go Pikachu/Évoli", shortName: "Let's Go", subtitle: "Kanto Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/lets-go-pikachu-eevee", coverPokemonIds: [25, 133, 150] },
   { id: "sword-shield", platform: "switch", name: "Pokémon Épée/Bouclier", shortName: "Épée/Bouclier", subtitle: "Galar Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/sword-shield", coverPokemonIds: [1, 4, 7] },
-  { id: "isle-of-armor", platform: "switch", name: "DLC - Isolarmure", shortName: "Isolarmure", subtitle: "Isolarmure Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/isle-of-armor", coverPokemonIds: [1, 100, 101] },
+  { id: "isle-of-armor", platform: "switch", name: "DLC - Isolarmure", shortName: "Isolarmure", subtitle: "Isolarmure Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/isle-of-armor", coverPokemonIds: [1, 100, 101],
+    coverSprites: [
+      { slug: "urshifu-rapid-strike", name: "rapid" },
+      { slug: "kubfu", name: "kubfu" },
+      { slug: "urshifu-single-strike", name: "single" }
+    ]
+   },
   {
     id: "crown-tundra", platform: "switch", name: "DLC - Couronneige", shortName: "Couronneige", subtitle: "Couronneige Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/sword-shield/crown-tundra", coverPokemonIds: [208, 209, 210],
     coverSprites: [
@@ -71,5 +77,68 @@ export const games = [
       { slug: "necrozma-ultra", name: "necrozma" },
       { slug: "necrozma-dusk-mane", name: "necrozma" }
     ]
-   }
+   },
+
+  // DS
+  {
+    id: "diamond-pearl",
+    platform: "ds",
+    name: "Pokémon Diamant/Perle",
+    shortName: "Diamant/Perle",
+    subtitle: "Sinnoh Pokédex",
+    dexUrl: "https://pokemondb.net/pokedex/game/diamond-pearl",
+    coverPokemonIds: [387, 390, 393]
+  },
+  {
+    id: "platinum",
+    platform: "ds",
+    name: "Pokémon Platine",
+    shortName: "Platine",
+    subtitle: "Sinnoh Pokédex étendu",
+    dexUrl: "https://pokemondb.net/pokedex/game/platinum",
+    coverPokemonIds: [487, 479, 448],
+    coverSprites: [
+      { slug: "dialga", name: "Dialga" },
+      { slug: "giratina-altered", name: "giratina" },
+      { slug: "palkia", name: "Palkia" }
+    ]
+  },
+  {
+    id: "heartgold-soulsilver",
+    platform: "ds",
+    name: "Pokémon Or/Argent (Remake)",
+    shortName: "HGSS",
+    subtitle: "Johto Pokédex",
+    dexUrl: "https://pokemondb.net/pokedex/game/heartgold-soulsilver",
+    coverPokemonIds: [152, 155, 158],
+    coverSprites: [
+      { slug: "ho-oh", name: "Ho-Oh" },
+      { slug: "celebi", name: "celebi" },
+      { slug: "lugia", name: "Lugia" }
+    ]
+  },
+  {
+    id: "black-white",
+    platform: "ds",
+    name: "Pokémon Noir/Blanc",
+    shortName: "Noir/Blanc",
+    subtitle: "Unys Pokédex",
+    dexUrl: "https://pokemondb.net/pokedex/game/black-white",
+    coverPokemonIds: [1, 4, 7],
+  },
+  {
+    id: "black-2-white-2",
+    platform: "ds",
+    name: "Pokémon Noir 2/Blanc 2",
+    shortName: "Noir 2/Blanc 2",
+    subtitle: "Unys Pokédex étendu",
+    dexUrl: "https://pokemondb.net/pokedex/game/black-2-white-2",
+    coverPokemonIds: [646, 647, 648],
+    coverSprites: [
+      { slug: "kyurem-black", name: "Kyurem Noir" },
+      { slug: "kyurem", name: "Kyurem" },
+      { slug: "kyurem-white", name: "Kyurem Blanc" }
+    ]
+  }
+
 ];

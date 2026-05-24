@@ -4,6 +4,9 @@ export const pokemons = [
     "slug": "chespin",
     "imageSlug": "chespin",
     "family": "337",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -16,6 +19,9 @@ export const pokemons = [
     "slug": "quilladin",
     "imageSlug": "quilladin",
     "family": "337",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -28,6 +34,10 @@ export const pokemons = [
     "slug": "chesnaught",
     "imageSlug": "chesnaught",
     "family": "337",
+    "types": [
+      "grass",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -40,6 +50,9 @@ export const pokemons = [
     "slug": "fennekin",
     "imageSlug": "fennekin",
     "family": "338",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -52,6 +65,9 @@ export const pokemons = [
     "slug": "braixen",
     "imageSlug": "braixen",
     "family": "338",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -64,6 +80,10 @@ export const pokemons = [
     "slug": "delphox",
     "imageSlug": "delphox",
     "family": "338",
+    "types": [
+      "fire",
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -76,6 +96,9 @@ export const pokemons = [
     "slug": "froakie",
     "imageSlug": "froakie",
     "family": "339",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -88,6 +111,9 @@ export const pokemons = [
     "slug": "frogadier",
     "imageSlug": "frogadier",
     "family": "339",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -100,6 +126,10 @@ export const pokemons = [
     "slug": "greninja",
     "imageSlug": "greninja",
     "family": "339",
+    "types": [
+      "water",
+      "dark"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -112,6 +142,9 @@ export const pokemons = [
     "slug": "bunnelby",
     "imageSlug": "bunnelby",
     "family": "340",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -124,6 +157,10 @@ export const pokemons = [
     "slug": "diggersby",
     "imageSlug": "diggersby",
     "family": "340",
+    "types": [
+      "normal",
+      "ground"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -136,6 +173,9 @@ export const pokemons = [
     "slug": "zigzagoon",
     "imageSlug": "zigzagoon",
     "family": "134",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -148,6 +188,9 @@ export const pokemons = [
     "slug": "linoone",
     "imageSlug": "linoone",
     "family": "134",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -160,6 +203,10 @@ export const pokemons = [
     "slug": "fletchling",
     "imageSlug": "fletchling",
     "family": "341",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -172,6 +219,10 @@ export const pokemons = [
     "slug": "fletchinder",
     "imageSlug": "fletchinder",
     "family": "341",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -184,6 +235,10 @@ export const pokemons = [
     "slug": "talonflame",
     "imageSlug": "talonflame",
     "family": "341",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -196,6 +251,10 @@ export const pokemons = [
     "slug": "pidgey",
     "imageSlug": "pidgey",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -208,6 +267,10 @@ export const pokemons = [
     "slug": "pidgeotto",
     "imageSlug": "pidgeotto",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -220,6 +283,10 @@ export const pokemons = [
     "slug": "pidgeot",
     "imageSlug": "pidgeot",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -232,6 +299,9 @@ export const pokemons = [
     "slug": "scatterbug",
     "imageSlug": "scatterbug",
     "family": "342",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -244,6 +314,9 @@ export const pokemons = [
     "slug": "spewpa",
     "imageSlug": "spewpa",
     "family": "342",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -256,6 +329,10 @@ export const pokemons = [
     "slug": "vivillon",
     "imageSlug": "vivillon",
     "family": "342",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -268,6 +345,9 @@ export const pokemons = [
     "slug": "caterpie",
     "imageSlug": "caterpie",
     "family": "4",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -280,6 +360,9 @@ export const pokemons = [
     "slug": "metapod",
     "imageSlug": "metapod",
     "family": "4",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -292,6 +375,10 @@ export const pokemons = [
     "slug": "butterfree",
     "imageSlug": "butterfree",
     "family": "4",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -304,6 +391,10 @@ export const pokemons = [
     "slug": "weedle",
     "imageSlug": "weedle",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -316,6 +407,10 @@ export const pokemons = [
     "slug": "kakuna",
     "imageSlug": "kakuna",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -328,6 +423,10 @@ export const pokemons = [
     "slug": "beedrill",
     "imageSlug": "beedrill",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -340,6 +439,9 @@ export const pokemons = [
     "slug": "pansage",
     "imageSlug": "pansage",
     "family": "262",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -352,6 +454,9 @@ export const pokemons = [
     "slug": "simisage",
     "imageSlug": "simisage",
     "family": "262",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -364,6 +469,9 @@ export const pokemons = [
     "slug": "pansear",
     "imageSlug": "pansear",
     "family": "263",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -376,6 +484,9 @@ export const pokemons = [
     "slug": "simisear",
     "imageSlug": "simisear",
     "family": "263",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -388,6 +499,9 @@ export const pokemons = [
     "slug": "panpour",
     "imageSlug": "panpour",
     "family": "264",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -400,6 +514,9 @@ export const pokemons = [
     "slug": "simipour",
     "imageSlug": "simipour",
     "family": "264",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -412,6 +529,9 @@ export const pokemons = [
     "slug": "pichu",
     "imageSlug": "pichu",
     "family": "10",
+    "types": [
+      "electric"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -424,6 +544,9 @@ export const pokemons = [
     "slug": "pikachu",
     "imageSlug": "pikachu",
     "family": "10",
+    "types": [
+      "electric"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -436,6 +559,9 @@ export const pokemons = [
     "slug": "raichu",
     "imageSlug": "raichu",
     "family": "10",
+    "types": [
+      "electric"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -448,6 +574,9 @@ export const pokemons = [
     "slug": "bidoof",
     "imageSlug": "bidoof",
     "family": "207",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -460,6 +589,10 @@ export const pokemons = [
     "slug": "bibarel",
     "imageSlug": "bibarel",
     "family": "207",
+    "types": [
+      "normal",
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -472,6 +605,9 @@ export const pokemons = [
     "slug": "dunsparce",
     "imageSlug": "dunsparce",
     "family": "103",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -484,6 +620,10 @@ export const pokemons = [
     "slug": "azurill",
     "imageSlug": "azurill",
     "family": "90",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -496,6 +636,10 @@ export const pokemons = [
     "slug": "marill",
     "imageSlug": "marill",
     "family": "90",
+    "types": [
+      "water",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -508,6 +652,10 @@ export const pokemons = [
     "slug": "azumarill",
     "imageSlug": "azumarill",
     "family": "90",
+    "types": [
+      "water",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -520,6 +668,9 @@ export const pokemons = [
     "slug": "burmy",
     "imageSlug": "burmy",
     "family": "213",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -532,6 +683,7 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
+    "types": [],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -544,6 +696,10 @@ export const pokemons = [
     "slug": "mothim",
     "imageSlug": "mothim",
     "family": "213",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -556,6 +712,10 @@ export const pokemons = [
     "slug": "surskit",
     "imageSlug": "surskit",
     "family": "141",
+    "types": [
+      "bug",
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -568,6 +728,10 @@ export const pokemons = [
     "slug": "masquerain",
     "imageSlug": "masquerain",
     "family": "141",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -580,6 +744,9 @@ export const pokemons = [
     "slug": "magikarp",
     "imageSlug": "magikarp",
     "family": "64",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -592,6 +759,10 @@ export const pokemons = [
     "slug": "gyarados",
     "imageSlug": "gyarados",
     "family": "64",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -604,6 +775,9 @@ export const pokemons = [
     "slug": "corphish",
     "imageSlug": "corphish",
     "family": "174",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -616,6 +790,10 @@ export const pokemons = [
     "slug": "crawdaunt",
     "imageSlug": "crawdaunt",
     "family": "174",
+    "types": [
+      "water",
+      "dark"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -628,6 +806,9 @@ export const pokemons = [
     "slug": "goldeen",
     "imageSlug": "goldeen",
     "family": "55",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -640,6 +821,9 @@ export const pokemons = [
     "slug": "seaking",
     "imageSlug": "seaking",
     "family": "55",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -652,6 +836,10 @@ export const pokemons = [
     "slug": "carvanha",
     "imageSlug": "carvanha",
     "family": "160",
+    "types": [
+      "water",
+      "dark"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -664,6 +852,10 @@ export const pokemons = [
     "slug": "sharpedo",
     "imageSlug": "sharpedo",
     "family": "160",
+    "types": [
+      "water",
+      "dark"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -676,6 +868,10 @@ export const pokemons = [
     "slug": "litleo",
     "imageSlug": "litleo",
     "family": "343",
+    "types": [
+      "fire",
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -688,6 +884,7 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
+    "types": [],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -700,6 +897,9 @@ export const pokemons = [
     "slug": "psyduck",
     "imageSlug": "psyduck",
     "family": "23",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -712,6 +912,9 @@ export const pokemons = [
     "slug": "golduck",
     "imageSlug": "golduck",
     "family": "23",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -724,6 +927,10 @@ export const pokemons = [
     "slug": "farfetchd",
     "imageSlug": "farfetchd",
     "family": "35",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -736,6 +943,9 @@ export const pokemons = [
     "slug": "riolu",
     "imageSlug": "riolu",
     "family": "232",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -748,6 +958,10 @@ export const pokemons = [
     "slug": "lucario",
     "imageSlug": "lucario",
     "family": "232",
+    "types": [
+      "fighting",
+      "steel"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -760,6 +974,10 @@ export const pokemons = [
     "slug": "ralts",
     "imageSlug": "ralts",
     "family": "140",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -772,6 +990,10 @@ export const pokemons = [
     "slug": "kirlia",
     "imageSlug": "kirlia",
     "family": "140",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -784,6 +1006,10 @@ export const pokemons = [
     "slug": "gardevoir",
     "imageSlug": "gardevoir",
     "family": "140",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -796,6 +1022,10 @@ export const pokemons = [
     "slug": "gallade",
     "imageSlug": "gallade",
     "family": "140",
+    "types": [
+      "psychic",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -808,6 +1038,9 @@ export const pokemons = [
     "slug": "flabebe",
     "imageSlug": "flabebe",
     "family": "344",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -820,6 +1053,9 @@ export const pokemons = [
     "slug": "floette",
     "imageSlug": "floette",
     "family": "344",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -832,6 +1068,9 @@ export const pokemons = [
     "slug": "florges",
     "imageSlug": "florges",
     "family": "344",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -844,6 +1083,10 @@ export const pokemons = [
     "slug": "budew",
     "imageSlug": "budew",
     "family": "158",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -856,6 +1099,10 @@ export const pokemons = [
     "slug": "roselia",
     "imageSlug": "roselia",
     "family": "158",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -868,6 +1115,10 @@ export const pokemons = [
     "slug": "roserade",
     "imageSlug": "roserade",
     "family": "158",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -880,6 +1131,10 @@ export const pokemons = [
     "slug": "ledyba",
     "imageSlug": "ledyba",
     "family": "84",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -892,6 +1147,10 @@ export const pokemons = [
     "slug": "ledian",
     "imageSlug": "ledian",
     "family": "84",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -904,6 +1163,10 @@ export const pokemons = [
     "slug": "combee",
     "imageSlug": "combee",
     "family": "214",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -916,6 +1179,10 @@ export const pokemons = [
     "slug": "vespiquen",
     "imageSlug": "vespiquen",
     "family": "214",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -928,6 +1195,9 @@ export const pokemons = [
     "slug": "skitty",
     "imageSlug": "skitty",
     "family": "148",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -940,6 +1210,9 @@ export const pokemons = [
     "slug": "delcatty",
     "imageSlug": "delcatty",
     "family": "148",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -952,6 +1225,10 @@ export const pokemons = [
     "slug": "bulbasaur",
     "imageSlug": "bulbasaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -964,6 +1241,10 @@ export const pokemons = [
     "slug": "ivysaur",
     "imageSlug": "ivysaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -976,6 +1257,10 @@ export const pokemons = [
     "slug": "venusaur",
     "imageSlug": "venusaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -988,6 +1273,9 @@ export const pokemons = [
     "slug": "charmander",
     "imageSlug": "charmander",
     "family": "2",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1000,6 +1288,9 @@ export const pokemons = [
     "slug": "charmeleon",
     "imageSlug": "charmeleon",
     "family": "2",
+    "types": [
+      "fire"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1012,6 +1303,10 @@ export const pokemons = [
     "slug": "charizard",
     "imageSlug": "charizard",
     "family": "2",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1024,6 +1319,9 @@ export const pokemons = [
     "slug": "squirtle",
     "imageSlug": "squirtle",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1036,6 +1334,9 @@ export const pokemons = [
     "slug": "wartortle",
     "imageSlug": "wartortle",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1048,6 +1349,9 @@ export const pokemons = [
     "slug": "blastoise",
     "imageSlug": "blastoise",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1060,6 +1364,9 @@ export const pokemons = [
     "slug": "skiddo",
     "imageSlug": "skiddo",
     "family": "345",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1072,6 +1379,9 @@ export const pokemons = [
     "slug": "gogoat",
     "imageSlug": "gogoat",
     "family": "345",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1084,6 +1394,9 @@ export const pokemons = [
     "slug": "pancham",
     "imageSlug": "pancham",
     "family": "346",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1096,6 +1409,10 @@ export const pokemons = [
     "slug": "pangoro",
     "imageSlug": "pangoro",
     "family": "346",
+    "types": [
+      "fighting",
+      "dark"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1108,6 +1425,9 @@ export const pokemons = [
     "slug": "furfrou",
     "imageSlug": "furfrou",
     "family": "347",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1120,6 +1440,10 @@ export const pokemons = [
     "slug": "doduo",
     "imageSlug": "doduo",
     "family": "36",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1132,6 +1456,10 @@ export const pokemons = [
     "slug": "dodrio",
     "imageSlug": "dodrio",
     "family": "36",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1144,6 +1472,9 @@ export const pokemons = [
     "slug": "plusle",
     "imageSlug": "plusle",
     "family": "154",
+    "types": [
+      "electric"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1156,6 +1487,9 @@ export const pokemons = [
     "slug": "minun",
     "imageSlug": "minun",
     "family": "155",
+    "types": [
+      "electric"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1168,6 +1502,9 @@ export const pokemons = [
     "slug": "gulpin",
     "imageSlug": "gulpin",
     "family": "159",
+    "types": [
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1180,6 +1517,9 @@ export const pokemons = [
     "slug": "swalot",
     "imageSlug": "swalot",
     "family": "159",
+    "types": [
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1192,6 +1532,10 @@ export const pokemons = [
     "slug": "scraggy",
     "imageSlug": "scraggy",
     "family": "285",
+    "types": [
+      "dark",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1204,6 +1548,10 @@ export const pokemons = [
     "slug": "scrafty",
     "imageSlug": "scrafty",
     "family": "285",
+    "types": [
+      "dark",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1216,6 +1564,9 @@ export const pokemons = [
     "slug": "abra",
     "imageSlug": "abra",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1228,6 +1579,9 @@ export const pokemons = [
     "slug": "kadabra",
     "imageSlug": "kadabra",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1240,6 +1594,9 @@ export const pokemons = [
     "slug": "alakazam",
     "imageSlug": "alakazam",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1252,6 +1609,10 @@ export const pokemons = [
     "slug": "oddish",
     "imageSlug": "oddish",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1264,6 +1625,10 @@ export const pokemons = [
     "slug": "gloom",
     "imageSlug": "gloom",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1276,6 +1641,10 @@ export const pokemons = [
     "slug": "vileplume",
     "imageSlug": "vileplume",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1288,6 +1657,9 @@ export const pokemons = [
     "slug": "bellossom",
     "imageSlug": "bellossom",
     "family": "18",
+    "types": [
+      "grass"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1300,6 +1672,9 @@ export const pokemons = [
     "slug": "sentret",
     "imageSlug": "sentret",
     "family": "82",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1312,6 +1687,9 @@ export const pokemons = [
     "slug": "furret",
     "imageSlug": "furret",
     "family": "82",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1324,6 +1702,10 @@ export const pokemons = [
     "slug": "nincada",
     "imageSlug": "nincada",
     "family": "144",
+    "types": [
+      "bug",
+      "ground"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1336,6 +1718,10 @@ export const pokemons = [
     "slug": "ninjask",
     "imageSlug": "ninjask",
     "family": "144",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1348,6 +1734,10 @@ export const pokemons = [
     "slug": "shedinja",
     "imageSlug": "shedinja",
     "family": "144",
+    "types": [
+      "bug",
+      "ghost"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1360,6 +1750,9 @@ export const pokemons = [
     "slug": "espurr",
     "imageSlug": "espurr",
     "family": "348",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1372,6 +1765,7 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
+    "types": [],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1384,6 +1778,9 @@ export const pokemons = [
     "slug": "kecleon",
     "imageSlug": "kecleon",
     "family": "180",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1396,6 +1793,10 @@ export const pokemons = [
     "slug": "honedge",
     "imageSlug": "honedge",
     "family": "349",
+    "types": [
+      "steel",
+      "ghost"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1408,6 +1809,10 @@ export const pokemons = [
     "slug": "doublade",
     "imageSlug": "doublade",
     "family": "349",
+    "types": [
+      "steel",
+      "ghost"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1420,6 +1825,7 @@ export const pokemons = [
     "slug": "aegislash",
     "imageSlug": "aegislash",
     "family": "349",
+    "types": [],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1432,6 +1838,10 @@ export const pokemons = [
     "slug": "venipede",
     "imageSlug": "venipede",
     "family": "277",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1444,6 +1854,10 @@ export const pokemons = [
     "slug": "whirlipede",
     "imageSlug": "whirlipede",
     "family": "277",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1456,6 +1870,10 @@ export const pokemons = [
     "slug": "scolipede",
     "imageSlug": "scolipede",
     "family": "277",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1468,6 +1886,9 @@ export const pokemons = [
     "slug": "audino",
     "imageSlug": "audino",
     "family": "271",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1480,6 +1901,9 @@ export const pokemons = [
     "slug": "smeargle",
     "imageSlug": "smeargle",
     "family": "121",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1492,6 +1916,10 @@ export const pokemons = [
     "slug": "croagunk",
     "imageSlug": "croagunk",
     "family": "235",
+    "types": [
+      "poison",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1504,6 +1932,10 @@ export const pokemons = [
     "slug": "toxicroak",
     "imageSlug": "toxicroak",
     "family": "235",
+    "types": [
+      "poison",
+      "fighting"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1516,6 +1948,10 @@ export const pokemons = [
     "slug": "ducklett",
     "imageSlug": "ducklett",
     "family": "295",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1528,6 +1964,10 @@ export const pokemons = [
     "slug": "swanna",
     "imageSlug": "swanna",
     "family": "295",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1540,6 +1980,9 @@ export const pokemons = [
     "slug": "spritzee",
     "imageSlug": "spritzee",
     "family": "350",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1552,6 +1995,9 @@ export const pokemons = [
     "slug": "aromatisse",
     "imageSlug": "aromatisse",
     "family": "350",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1564,6 +2010,9 @@ export const pokemons = [
     "slug": "swirlix",
     "imageSlug": "swirlix",
     "family": "351",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1576,6 +2025,9 @@ export const pokemons = [
     "slug": "slurpuff",
     "imageSlug": "slurpuff",
     "family": "351",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1588,6 +2040,9 @@ export const pokemons = [
     "slug": "volbeat",
     "imageSlug": "volbeat",
     "family": "156",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1600,6 +2055,9 @@ export const pokemons = [
     "slug": "illumise",
     "imageSlug": "illumise",
     "family": "157",
+    "types": [
+      "bug"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1612,6 +2070,10 @@ export const pokemons = [
     "slug": "hoppip",
     "imageSlug": "hoppip",
     "family": "92",
+    "types": [
+      "grass",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1624,6 +2086,10 @@ export const pokemons = [
     "slug": "skiploom",
     "imageSlug": "skiploom",
     "family": "92",
+    "types": [
+      "grass",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1636,6 +2102,10 @@ export const pokemons = [
     "slug": "jumpluff",
     "imageSlug": "jumpluff",
     "family": "92",
+    "types": [
+      "grass",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1648,6 +2118,9 @@ export const pokemons = [
     "slug": "munchlax",
     "imageSlug": "munchlax",
     "family": "72",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1660,6 +2133,9 @@ export const pokemons = [
     "slug": "snorlax",
     "imageSlug": "snorlax",
     "family": "72",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1672,6 +2148,9 @@ export const pokemons = [
     "slug": "whismur",
     "imageSlug": "whismur",
     "family": "145",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1684,6 +2163,9 @@ export const pokemons = [
     "slug": "loudred",
     "imageSlug": "loudred",
     "family": "145",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1696,6 +2178,9 @@ export const pokemons = [
     "slug": "exploud",
     "imageSlug": "exploud",
     "family": "145",
+    "types": [
+      "normal"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1708,6 +2193,10 @@ export const pokemons = [
     "slug": "meditite",
     "imageSlug": "meditite",
     "family": "152",
+    "types": [
+      "fighting",
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1720,6 +2209,10 @@ export const pokemons = [
     "slug": "medicham",
     "imageSlug": "medicham",
     "family": "152",
+    "types": [
+      "fighting",
+      "psychic"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1732,6 +2225,10 @@ export const pokemons = [
     "slug": "zubat",
     "imageSlug": "zubat",
     "family": "17",
+    "types": [
+      "poison",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1744,6 +2241,10 @@ export const pokemons = [
     "slug": "golbat",
     "imageSlug": "golbat",
     "family": "17",
+    "types": [
+      "poison",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1756,6 +2257,10 @@ export const pokemons = [
     "slug": "crobat",
     "imageSlug": "crobat",
     "family": "17",
+    "types": [
+      "poison",
+      "flying"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1768,6 +2273,9 @@ export const pokemons = [
     "slug": "axew",
     "imageSlug": "axew",
     "family": "309",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1780,6 +2288,9 @@ export const pokemons = [
     "slug": "fraxure",
     "imageSlug": "fraxure",
     "family": "309",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1792,6 +2303,9 @@ export const pokemons = [
     "slug": "haxorus",
     "imageSlug": "haxorus",
     "family": "309",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1804,6 +2318,10 @@ export const pokemons = [
     "slug": "diancie",
     "imageSlug": "diancie",
     "family": "371",
+    "types": [
+      "rock",
+      "fairy"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1816,6 +2334,10 @@ export const pokemons = [
     "slug": "hoopa",
     "imageSlug": "hoopa",
     "family": "372",
+    "types": [
+      "psychic",
+      "ghost"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1828,6 +2350,10 @@ export const pokemons = [
     "slug": "volcanion",
     "imageSlug": "volcanion",
     "family": "373",
+    "types": [
+      "fire",
+      "water"
+    ],
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1840,6 +2366,10 @@ export const pokemons = [
     "slug": "drifloon",
     "imageSlug": "drifloon",
     "family": "219",
+    "types": [
+      "ghost",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1852,6 +2382,10 @@ export const pokemons = [
     "slug": "drifblim",
     "imageSlug": "drifblim",
     "family": "219",
+    "types": [
+      "ghost",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1864,6 +2398,9 @@ export const pokemons = [
     "slug": "mienfoo",
     "imageSlug": "mienfoo",
     "family": "314",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1876,6 +2413,9 @@ export const pokemons = [
     "slug": "mienshao",
     "imageSlug": "mienshao",
     "family": "314",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1888,6 +2428,9 @@ export const pokemons = [
     "slug": "zangoose",
     "imageSlug": "zangoose",
     "family": "169",
+    "types": [
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1900,6 +2443,9 @@ export const pokemons = [
     "slug": "seviper",
     "imageSlug": "seviper",
     "family": "170",
+    "types": [
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1912,6 +2458,9 @@ export const pokemons = [
     "slug": "spoink",
     "imageSlug": "spoink",
     "family": "164",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1924,6 +2473,9 @@ export const pokemons = [
     "slug": "grumpig",
     "imageSlug": "grumpig",
     "family": "164",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1936,6 +2488,9 @@ export const pokemons = [
     "slug": "absol",
     "imageSlug": "absol",
     "family": "185",
+    "types": [
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1948,6 +2503,10 @@ export const pokemons = [
     "slug": "inkay",
     "imageSlug": "inkay",
     "family": "352",
+    "types": [
+      "dark",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1960,6 +2519,10 @@ export const pokemons = [
     "slug": "malamar",
     "imageSlug": "malamar",
     "family": "352",
+    "types": [
+      "dark",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1972,6 +2535,10 @@ export const pokemons = [
     "slug": "lunatone",
     "imageSlug": "lunatone",
     "family": "171",
+    "types": [
+      "rock",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1984,6 +2551,10 @@ export const pokemons = [
     "slug": "solrock",
     "imageSlug": "solrock",
     "family": "172",
+    "types": [
+      "rock",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -1996,6 +2567,9 @@ export const pokemons = [
     "slug": "bagon",
     "imageSlug": "bagon",
     "family": "191",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2008,6 +2582,9 @@ export const pokemons = [
     "slug": "shelgon",
     "imageSlug": "shelgon",
     "family": "191",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2020,6 +2597,10 @@ export const pokemons = [
     "slug": "salamence",
     "imageSlug": "salamence",
     "family": "191",
+    "types": [
+      "dragon",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2032,6 +2613,10 @@ export const pokemons = [
     "slug": "wingull",
     "imageSlug": "wingull",
     "family": "139",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2044,6 +2629,10 @@ export const pokemons = [
     "slug": "pelipper",
     "imageSlug": "pelipper",
     "family": "139",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2056,6 +2645,10 @@ export const pokemons = [
     "slug": "taillow",
     "imageSlug": "taillow",
     "family": "138",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2068,6 +2661,10 @@ export const pokemons = [
     "slug": "swellow",
     "imageSlug": "swellow",
     "family": "138",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2080,6 +2677,10 @@ export const pokemons = [
     "slug": "binacle",
     "imageSlug": "binacle",
     "family": "353",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2092,6 +2693,10 @@ export const pokemons = [
     "slug": "barbaracle",
     "imageSlug": "barbaracle",
     "family": "353",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2104,6 +2709,10 @@ export const pokemons = [
     "slug": "dwebble",
     "imageSlug": "dwebble",
     "family": "284",
+    "types": [
+      "bug",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2116,6 +2725,10 @@ export const pokemons = [
     "slug": "crustle",
     "imageSlug": "crustle",
     "family": "284",
+    "types": [
+      "bug",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2128,6 +2741,10 @@ export const pokemons = [
     "slug": "tentacool",
     "imageSlug": "tentacool",
     "family": "30",
+    "types": [
+      "water",
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2140,6 +2757,10 @@ export const pokemons = [
     "slug": "tentacruel",
     "imageSlug": "tentacruel",
     "family": "30",
+    "types": [
+      "water",
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2152,6 +2773,9 @@ export const pokemons = [
     "slug": "wailmer",
     "imageSlug": "wailmer",
     "family": "161",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2164,6 +2788,9 @@ export const pokemons = [
     "slug": "wailord",
     "imageSlug": "wailord",
     "family": "161",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2176,6 +2803,9 @@ export const pokemons = [
     "slug": "luvdisc",
     "imageSlug": "luvdisc",
     "family": "190",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2188,6 +2818,10 @@ export const pokemons = [
     "slug": "skrelp",
     "imageSlug": "skrelp",
     "family": "354",
+    "types": [
+      "poison",
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2200,6 +2834,10 @@ export const pokemons = [
     "slug": "dragalge",
     "imageSlug": "dragalge",
     "family": "354",
+    "types": [
+      "poison",
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2212,6 +2850,9 @@ export const pokemons = [
     "slug": "clauncher",
     "imageSlug": "clauncher",
     "family": "355",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2224,6 +2865,9 @@ export const pokemons = [
     "slug": "clawitzer",
     "imageSlug": "clawitzer",
     "family": "355",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2236,6 +2880,9 @@ export const pokemons = [
     "slug": "staryu",
     "imageSlug": "staryu",
     "family": "56",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2248,6 +2895,10 @@ export const pokemons = [
     "slug": "starmie",
     "imageSlug": "starmie",
     "family": "56",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2260,6 +2911,9 @@ export const pokemons = [
     "slug": "shellder",
     "imageSlug": "shellder",
     "family": "39",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2272,6 +2926,10 @@ export const pokemons = [
     "slug": "cloyster",
     "imageSlug": "cloyster",
     "family": "39",
+    "types": [
+      "water",
+      "ice"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2284,6 +2942,10 @@ export const pokemons = [
     "slug": "qwilfish",
     "imageSlug": "qwilfish",
     "family": "106",
+    "types": [
+      "water",
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2296,6 +2958,9 @@ export const pokemons = [
     "slug": "horsea",
     "imageSlug": "horsea",
     "family": "54",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2308,6 +2973,9 @@ export const pokemons = [
     "slug": "seadra",
     "imageSlug": "seadra",
     "family": "54",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2320,6 +2988,10 @@ export const pokemons = [
     "slug": "kingdra",
     "imageSlug": "kingdra",
     "family": "54",
+    "types": [
+      "water",
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2332,6 +3004,10 @@ export const pokemons = [
     "slug": "relicanth",
     "imageSlug": "relicanth",
     "family": "189",
+    "types": [
+      "water",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2344,6 +3020,10 @@ export const pokemons = [
     "slug": "sandile",
     "imageSlug": "sandile",
     "family": "281",
+    "types": [
+      "ground",
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2356,6 +3036,10 @@ export const pokemons = [
     "slug": "krokorok",
     "imageSlug": "krokorok",
     "family": "281",
+    "types": [
+      "ground",
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2368,6 +3052,10 @@ export const pokemons = [
     "slug": "krookodile",
     "imageSlug": "krookodile",
     "family": "281",
+    "types": [
+      "ground",
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2380,6 +3068,10 @@ export const pokemons = [
     "slug": "helioptile",
     "imageSlug": "helioptile",
     "family": "356",
+    "types": [
+      "electric",
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2392,6 +3084,10 @@ export const pokemons = [
     "slug": "heliolisk",
     "imageSlug": "heliolisk",
     "family": "356",
+    "types": [
+      "electric",
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2404,6 +3100,9 @@ export const pokemons = [
     "slug": "hippopotas",
     "imageSlug": "hippopotas",
     "family": "233",
+    "types": [
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2416,6 +3115,9 @@ export const pokemons = [
     "slug": "hippowdon",
     "imageSlug": "hippowdon",
     "family": "233",
+    "types": [
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2428,6 +3130,10 @@ export const pokemons = [
     "slug": "rhyhorn",
     "imageSlug": "rhyhorn",
     "family": "50",
+    "types": [
+      "ground",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2440,6 +3146,10 @@ export const pokemons = [
     "slug": "rhydon",
     "imageSlug": "rhydon",
     "family": "50",
+    "types": [
+      "ground",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2452,6 +3162,10 @@ export const pokemons = [
     "slug": "rhyperior",
     "imageSlug": "rhyperior",
     "family": "50",
+    "types": [
+      "ground",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2464,6 +3178,10 @@ export const pokemons = [
     "slug": "onix",
     "imageSlug": "onix",
     "family": "41",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2476,6 +3194,10 @@ export const pokemons = [
     "slug": "steelix",
     "imageSlug": "steelix",
     "family": "41",
+    "types": [
+      "steel",
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2488,6 +3210,10 @@ export const pokemons = [
     "slug": "woobat",
     "imageSlug": "woobat",
     "family": "269",
+    "types": [
+      "psychic",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2500,6 +3226,10 @@ export const pokemons = [
     "slug": "swoobat",
     "imageSlug": "swoobat",
     "family": "269",
+    "types": [
+      "psychic",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2512,6 +3242,9 @@ export const pokemons = [
     "slug": "machop",
     "imageSlug": "machop",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2524,6 +3257,9 @@ export const pokemons = [
     "slug": "machoke",
     "imageSlug": "machoke",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2536,6 +3272,9 @@ export const pokemons = [
     "slug": "machamp",
     "imageSlug": "machamp",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2548,6 +3287,9 @@ export const pokemons = [
     "slug": "cubone",
     "imageSlug": "cubone",
     "family": "46",
+    "types": [
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2560,6 +3302,9 @@ export const pokemons = [
     "slug": "marowak",
     "imageSlug": "marowak",
     "family": "46",
+    "types": [
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2572,6 +3317,9 @@ export const pokemons = [
     "slug": "kangaskhan",
     "imageSlug": "kangaskhan",
     "family": "53",
+    "types": [
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2584,6 +3332,10 @@ export const pokemons = [
     "slug": "mawile",
     "imageSlug": "mawile",
     "family": "150",
+    "types": [
+      "steel",
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2596,6 +3348,10 @@ export const pokemons = [
     "slug": "tyrunt",
     "imageSlug": "tyrunt",
     "family": "357",
+    "types": [
+      "rock",
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2608,6 +3364,10 @@ export const pokemons = [
     "slug": "tyrantrum",
     "imageSlug": "tyrantrum",
     "family": "357",
+    "types": [
+      "rock",
+      "dragon"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2620,6 +3380,10 @@ export const pokemons = [
     "slug": "amaura",
     "imageSlug": "amaura",
     "family": "358",
+    "types": [
+      "rock",
+      "ice"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2632,6 +3396,10 @@ export const pokemons = [
     "slug": "aurorus",
     "imageSlug": "aurorus",
     "family": "358",
+    "types": [
+      "rock",
+      "ice"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2644,6 +3412,10 @@ export const pokemons = [
     "slug": "aerodactyl",
     "imageSlug": "aerodactyl",
     "family": "71",
+    "types": [
+      "rock",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2656,6 +3428,10 @@ export const pokemons = [
     "slug": "ferroseed",
     "imageSlug": "ferroseed",
     "family": "304",
+    "types": [
+      "grass",
+      "steel"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2668,6 +3444,10 @@ export const pokemons = [
     "slug": "ferrothorn",
     "imageSlug": "ferrothorn",
     "family": "304",
+    "types": [
+      "grass",
+      "steel"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2680,6 +3460,9 @@ export const pokemons = [
     "slug": "snubbull",
     "imageSlug": "snubbull",
     "family": "105",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2692,6 +3475,9 @@ export const pokemons = [
     "slug": "granbull",
     "imageSlug": "granbull",
     "family": "105",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2704,6 +3490,9 @@ export const pokemons = [
     "slug": "electrike",
     "imageSlug": "electrike",
     "family": "153",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2716,6 +3505,9 @@ export const pokemons = [
     "slug": "manectric",
     "imageSlug": "manectric",
     "family": "153",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2728,6 +3520,10 @@ export const pokemons = [
     "slug": "houndour",
     "imageSlug": "houndour",
     "family": "118",
+    "types": [
+      "dark",
+      "fire"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2740,6 +3536,10 @@ export const pokemons = [
     "slug": "houndoom",
     "imageSlug": "houndoom",
     "family": "118",
+    "types": [
+      "dark",
+      "fire"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2752,6 +3552,9 @@ export const pokemons = [
     "slug": "eevee",
     "imageSlug": "eevee",
     "family": "67",
+    "types": [
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2764,6 +3567,9 @@ export const pokemons = [
     "slug": "vaporeon",
     "imageSlug": "vaporeon",
     "family": "67",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2776,6 +3582,9 @@ export const pokemons = [
     "slug": "jolteon",
     "imageSlug": "jolteon",
     "family": "67",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2788,6 +3597,9 @@ export const pokemons = [
     "slug": "flareon",
     "imageSlug": "flareon",
     "family": "67",
+    "types": [
+      "fire"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2800,6 +3612,9 @@ export const pokemons = [
     "slug": "espeon",
     "imageSlug": "espeon",
     "family": "67",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2812,6 +3627,9 @@ export const pokemons = [
     "slug": "umbreon",
     "imageSlug": "umbreon",
     "family": "67",
+    "types": [
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2824,6 +3642,9 @@ export const pokemons = [
     "slug": "leafeon",
     "imageSlug": "leafeon",
     "family": "67",
+    "types": [
+      "grass"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2836,6 +3657,9 @@ export const pokemons = [
     "slug": "glaceon",
     "imageSlug": "glaceon",
     "family": "67",
+    "types": [
+      "ice"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2848,6 +3672,9 @@ export const pokemons = [
     "slug": "sylveon",
     "imageSlug": "sylveon",
     "family": "67",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2860,6 +3687,10 @@ export const pokemons = [
     "slug": "emolga",
     "imageSlug": "emolga",
     "family": "298",
+    "types": [
+      "electric",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2872,6 +3703,10 @@ export const pokemons = [
     "slug": "yanma",
     "imageSlug": "yanma",
     "family": "95",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2884,6 +3719,10 @@ export const pokemons = [
     "slug": "yanmega",
     "imageSlug": "yanmega",
     "family": "95",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2896,6 +3735,10 @@ export const pokemons = [
     "slug": "hawlucha",
     "imageSlug": "hawlucha",
     "family": "359",
+    "types": [
+      "fighting",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2908,6 +3751,10 @@ export const pokemons = [
     "slug": "sigilyph",
     "imageSlug": "sigilyph",
     "family": "286",
+    "types": [
+      "psychic",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2920,6 +3767,10 @@ export const pokemons = [
     "slug": "golett",
     "imageSlug": "golett",
     "family": "316",
+    "types": [
+      "ground",
+      "ghost"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2932,6 +3783,10 @@ export const pokemons = [
     "slug": "golurk",
     "imageSlug": "golurk",
     "family": "316",
+    "types": [
+      "ground",
+      "ghost"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2944,6 +3799,9 @@ export const pokemons = [
     "slug": "nosepass",
     "imageSlug": "nosepass",
     "family": "147",
+    "types": [
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2956,6 +3814,10 @@ export const pokemons = [
     "slug": "probopass",
     "imageSlug": "probopass",
     "family": "147",
+    "types": [
+      "rock",
+      "steel"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2968,6 +3830,9 @@ export const pokemons = [
     "slug": "makuhita",
     "imageSlug": "makuhita",
     "family": "146",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2980,6 +3845,9 @@ export const pokemons = [
     "slug": "hariyama",
     "imageSlug": "hariyama",
     "family": "146",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2992,6 +3860,9 @@ export const pokemons = [
     "slug": "throh",
     "imageSlug": "throh",
     "family": "274",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3004,6 +3875,9 @@ export const pokemons = [
     "slug": "sawk",
     "imageSlug": "sawk",
     "family": "275",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3016,6 +3890,10 @@ export const pokemons = [
     "slug": "starly",
     "imageSlug": "starly",
     "family": "206",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3028,6 +3906,10 @@ export const pokemons = [
     "slug": "staravia",
     "imageSlug": "staravia",
     "family": "206",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3040,6 +3922,10 @@ export const pokemons = [
     "slug": "staraptor",
     "imageSlug": "staraptor",
     "family": "206",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3052,6 +3938,10 @@ export const pokemons = [
     "slug": "stunky",
     "imageSlug": "stunky",
     "family": "223",
+    "types": [
+      "poison",
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3064,6 +3954,10 @@ export const pokemons = [
     "slug": "skuntank",
     "imageSlug": "skuntank",
     "family": "223",
+    "types": [
+      "poison",
+      "dark"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3076,6 +3970,9 @@ export const pokemons = [
     "slug": "nidoran-f",
     "imageSlug": "nidoran-f",
     "family": "12",
+    "types": [
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3088,6 +3985,9 @@ export const pokemons = [
     "slug": "nidorina",
     "imageSlug": "nidorina",
     "family": "12",
+    "types": [
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3100,6 +4000,10 @@ export const pokemons = [
     "slug": "nidoqueen",
     "imageSlug": "nidoqueen",
     "family": "12",
+    "types": [
+      "poison",
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3112,6 +4016,9 @@ export const pokemons = [
     "slug": "nidoran-m",
     "imageSlug": "nidoran-m",
     "family": "13",
+    "types": [
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3124,6 +4031,9 @@ export const pokemons = [
     "slug": "nidorino",
     "imageSlug": "nidorino",
     "family": "13",
+    "types": [
+      "poison"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3136,6 +4046,10 @@ export const pokemons = [
     "slug": "nidoking",
     "imageSlug": "nidoking",
     "family": "13",
+    "types": [
+      "poison",
+      "ground"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3148,6 +4062,10 @@ export const pokemons = [
     "slug": "dedenne",
     "imageSlug": "dedenne",
     "family": "360",
+    "types": [
+      "electric",
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3160,6 +4078,9 @@ export const pokemons = [
     "slug": "chingling",
     "imageSlug": "chingling",
     "family": "184",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3172,6 +4093,9 @@ export const pokemons = [
     "slug": "chimecho",
     "imageSlug": "chimecho",
     "family": "184",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3184,6 +4108,10 @@ export const pokemons = [
     "slug": "mime-jr",
     "imageSlug": "mime-jr",
     "family": "57",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3196,6 +4124,10 @@ export const pokemons = [
     "slug": "mr-mime",
     "imageSlug": "mr-mime",
     "family": "57",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3208,6 +4140,9 @@ export const pokemons = [
     "slug": "solosis",
     "imageSlug": "solosis",
     "family": "294",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3220,6 +4155,9 @@ export const pokemons = [
     "slug": "duosion",
     "imageSlug": "duosion",
     "family": "294",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3232,6 +4170,9 @@ export const pokemons = [
     "slug": "reuniclus",
     "imageSlug": "reuniclus",
     "family": "294",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3244,6 +4185,9 @@ export const pokemons = [
     "slug": "wynaut",
     "imageSlug": "wynaut",
     "family": "100",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3256,6 +4200,9 @@ export const pokemons = [
     "slug": "wobbuffet",
     "imageSlug": "wobbuffet",
     "family": "100",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3268,6 +4215,9 @@ export const pokemons = [
     "slug": "roggenrola",
     "imageSlug": "roggenrola",
     "family": "268",
+    "types": [
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3280,6 +4230,9 @@ export const pokemons = [
     "slug": "boldore",
     "imageSlug": "boldore",
     "family": "268",
+    "types": [
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3292,6 +4245,9 @@ export const pokemons = [
     "slug": "gigalith",
     "imageSlug": "gigalith",
     "family": "268",
+    "types": [
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3304,6 +4260,10 @@ export const pokemons = [
     "slug": "sableye",
     "imageSlug": "sableye",
     "family": "149",
+    "types": [
+      "dark",
+      "ghost"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3316,6 +4276,10 @@ export const pokemons = [
     "slug": "carbink",
     "imageSlug": "carbink",
     "family": "361",
+    "types": [
+      "rock",
+      "fairy"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3328,6 +4292,9 @@ export const pokemons = [
     "slug": "tauros",
     "imageSlug": "tauros",
     "family": "63",
+    "types": [
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3340,6 +4307,9 @@ export const pokemons = [
     "slug": "miltank",
     "imageSlug": "miltank",
     "family": "122",
+    "types": [
+      "normal"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3352,6 +4322,9 @@ export const pokemons = [
     "slug": "mareep",
     "imageSlug": "mareep",
     "family": "89",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3364,6 +4337,9 @@ export const pokemons = [
     "slug": "flaaffy",
     "imageSlug": "flaaffy",
     "family": "89",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3376,6 +4352,9 @@ export const pokemons = [
     "slug": "ampharos",
     "imageSlug": "ampharos",
     "family": "89",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3388,6 +4367,9 @@ export const pokemons = [
     "slug": "pinsir",
     "imageSlug": "pinsir",
     "family": "62",
+    "types": [
+      "bug"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3400,6 +4382,10 @@ export const pokemons = [
     "slug": "heracross",
     "imageSlug": "heracross",
     "family": "108",
+    "types": [
+      "bug",
+      "fighting"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3412,6 +4398,9 @@ export const pokemons = [
     "slug": "pachirisu",
     "imageSlug": "pachirisu",
     "family": "215",
+    "types": [
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3424,6 +4413,10 @@ export const pokemons = [
     "slug": "slowpoke",
     "imageSlug": "slowpoke",
     "family": "33",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3436,6 +4429,10 @@ export const pokemons = [
     "slug": "slowbro",
     "imageSlug": "slowbro",
     "family": "33",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3448,6 +4445,10 @@ export const pokemons = [
     "slug": "slowking",
     "imageSlug": "slowking",
     "family": "33",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3460,6 +4461,10 @@ export const pokemons = [
     "slug": "exeggcute",
     "imageSlug": "exeggcute",
     "family": "45",
+    "types": [
+      "grass",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3472,6 +4477,10 @@ export const pokemons = [
     "slug": "exeggutor",
     "imageSlug": "exeggutor",
     "family": "45",
+    "types": [
+      "grass",
+      "psychic"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3484,6 +4493,10 @@ export const pokemons = [
     "slug": "chatot",
     "imageSlug": "chatot",
     "family": "228",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3496,6 +4509,10 @@ export const pokemons = [
     "slug": "mantyke",
     "imageSlug": "mantyke",
     "family": "116",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3508,6 +4525,10 @@ export const pokemons = [
     "slug": "mantine",
     "imageSlug": "mantine",
     "family": "116",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3520,6 +4541,9 @@ export const pokemons = [
     "slug": "clamperl",
     "imageSlug": "clamperl",
     "family": "188",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3532,6 +4556,9 @@ export const pokemons = [
     "slug": "huntail",
     "imageSlug": "huntail",
     "family": "188",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3544,6 +4571,9 @@ export const pokemons = [
     "slug": "gorebyss",
     "imageSlug": "gorebyss",
     "family": "188",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3556,6 +4586,9 @@ export const pokemons = [
     "slug": "remoraid",
     "imageSlug": "remoraid",
     "family": "114",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3568,6 +4601,9 @@ export const pokemons = [
     "slug": "octillery",
     "imageSlug": "octillery",
     "family": "114",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3580,6 +4616,10 @@ export const pokemons = [
     "slug": "corsola",
     "imageSlug": "corsola",
     "family": "113",
+    "types": [
+      "water",
+      "rock"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3592,6 +4632,10 @@ export const pokemons = [
     "slug": "chinchou",
     "imageSlug": "chinchou",
     "family": "86",
+    "types": [
+      "water",
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3604,6 +4648,10 @@ export const pokemons = [
     "slug": "lanturn",
     "imageSlug": "lanturn",
     "family": "86",
+    "types": [
+      "water",
+      "electric"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3616,6 +4664,9 @@ export const pokemons = [
     "slug": "alomomola",
     "imageSlug": "alomomola",
     "family": "302",
+    "types": [
+      "water"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3628,6 +4679,10 @@ export const pokemons = [
     "slug": "lapras",
     "imageSlug": "lapras",
     "family": "65",
+    "types": [
+      "water",
+      "ice"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3640,6 +4695,10 @@ export const pokemons = [
     "slug": "articuno",
     "imageSlug": "articuno",
     "family": "73",
+    "types": [
+      "ice",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3652,6 +4711,10 @@ export const pokemons = [
     "slug": "zapdos",
     "imageSlug": "zapdos",
     "family": "74",
+    "types": [
+      "electric",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3664,6 +4727,10 @@ export const pokemons = [
     "slug": "moltres",
     "imageSlug": "moltres",
     "family": "75",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3676,6 +4743,9 @@ export const pokemons = [
     "slug": "diglett",
     "imageSlug": "diglett",
     "family": "21",
+    "types": [
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3688,6 +4758,9 @@ export const pokemons = [
     "slug": "dugtrio",
     "imageSlug": "dugtrio",
     "family": "21",
+    "types": [
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3700,6 +4773,9 @@ export const pokemons = [
     "slug": "trapinch",
     "imageSlug": "trapinch",
     "family": "166",
+    "types": [
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3712,6 +4788,10 @@ export const pokemons = [
     "slug": "vibrava",
     "imageSlug": "vibrava",
     "family": "166",
+    "types": [
+      "ground",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3724,6 +4804,10 @@ export const pokemons = [
     "slug": "flygon",
     "imageSlug": "flygon",
     "family": "166",
+    "types": [
+      "ground",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3736,6 +4820,10 @@ export const pokemons = [
     "slug": "gible",
     "imageSlug": "gible",
     "family": "230",
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3748,6 +4836,10 @@ export const pokemons = [
     "slug": "gabite",
     "imageSlug": "gabite",
     "family": "230",
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3760,6 +4852,10 @@ export const pokemons = [
     "slug": "garchomp",
     "imageSlug": "garchomp",
     "family": "230",
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3772,6 +4868,10 @@ export const pokemons = [
     "slug": "geodude",
     "imageSlug": "geodude",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3784,6 +4884,10 @@ export const pokemons = [
     "slug": "graveler",
     "imageSlug": "graveler",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3796,6 +4900,10 @@ export const pokemons = [
     "slug": "golem",
     "imageSlug": "golem",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3808,6 +4916,9 @@ export const pokemons = [
     "slug": "slugma",
     "imageSlug": "slugma",
     "family": "111",
+    "types": [
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3820,6 +4931,10 @@ export const pokemons = [
     "slug": "magcargo",
     "imageSlug": "magcargo",
     "family": "111",
+    "types": [
+      "fire",
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3832,6 +4947,10 @@ export const pokemons = [
     "slug": "shuckle",
     "imageSlug": "shuckle",
     "family": "107",
+    "types": [
+      "bug",
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3844,6 +4963,10 @@ export const pokemons = [
     "slug": "skorupi",
     "imageSlug": "skorupi",
     "family": "234",
+    "types": [
+      "poison",
+      "bug"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3856,6 +4979,10 @@ export const pokemons = [
     "slug": "drapion",
     "imageSlug": "drapion",
     "family": "234",
+    "types": [
+      "poison",
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3868,6 +4995,10 @@ export const pokemons = [
     "slug": "wooper",
     "imageSlug": "wooper",
     "family": "96",
+    "types": [
+      "water",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3880,6 +5011,10 @@ export const pokemons = [
     "slug": "quagsire",
     "imageSlug": "quagsire",
     "family": "96",
+    "types": [
+      "water",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3892,6 +5027,9 @@ export const pokemons = [
     "slug": "goomy",
     "imageSlug": "goomy",
     "family": "362",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3904,6 +5042,9 @@ export const pokemons = [
     "slug": "sliggoo",
     "imageSlug": "sliggoo",
     "family": "362",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3916,6 +5057,9 @@ export const pokemons = [
     "slug": "goodra",
     "imageSlug": "goodra",
     "family": "362",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3928,6 +5072,9 @@ export const pokemons = [
     "slug": "karrablast",
     "imageSlug": "karrablast",
     "family": "299",
+    "types": [
+      "bug"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3940,6 +5087,10 @@ export const pokemons = [
     "slug": "escavalier",
     "imageSlug": "escavalier",
     "family": "299",
+    "types": [
+      "bug",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3952,6 +5103,9 @@ export const pokemons = [
     "slug": "shelmet",
     "imageSlug": "shelmet",
     "family": "312",
+    "types": [
+      "bug"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3964,6 +5118,9 @@ export const pokemons = [
     "slug": "accelgor",
     "imageSlug": "accelgor",
     "family": "312",
+    "types": [
+      "bug"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3976,6 +5133,10 @@ export const pokemons = [
     "slug": "bellsprout",
     "imageSlug": "bellsprout",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -3988,6 +5149,10 @@ export const pokemons = [
     "slug": "weepinbell",
     "imageSlug": "weepinbell",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4000,6 +5165,10 @@ export const pokemons = [
     "slug": "victreebel",
     "imageSlug": "victreebel",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4012,6 +5181,9 @@ export const pokemons = [
     "slug": "carnivine",
     "imageSlug": "carnivine",
     "family": "236",
+    "types": [
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4024,6 +5196,10 @@ export const pokemons = [
     "slug": "gastly",
     "imageSlug": "gastly",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4036,6 +5212,10 @@ export const pokemons = [
     "slug": "haunter",
     "imageSlug": "haunter",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4048,6 +5228,10 @@ export const pokemons = [
     "slug": "gengar",
     "imageSlug": "gengar",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4060,6 +5244,9 @@ export const pokemons = [
     "slug": "poliwag",
     "imageSlug": "poliwag",
     "family": "26",
+    "types": [
+      "water"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4072,6 +5259,9 @@ export const pokemons = [
     "slug": "poliwhirl",
     "imageSlug": "poliwhirl",
     "family": "26",
+    "types": [
+      "water"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4084,6 +5274,10 @@ export const pokemons = [
     "slug": "poliwrath",
     "imageSlug": "poliwrath",
     "family": "26",
+    "types": [
+      "water",
+      "fighting"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4096,6 +5290,9 @@ export const pokemons = [
     "slug": "politoed",
     "imageSlug": "politoed",
     "family": "26",
+    "types": [
+      "water"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4108,6 +5305,9 @@ export const pokemons = [
     "slug": "ekans",
     "imageSlug": "ekans",
     "family": "9",
+    "types": [
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4120,6 +5320,9 @@ export const pokemons = [
     "slug": "arbok",
     "imageSlug": "arbok",
     "family": "9",
+    "types": [
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4132,6 +5335,10 @@ export const pokemons = [
     "slug": "stunfisk",
     "imageSlug": "stunfisk",
     "family": "313",
+    "types": [
+      "ground",
+      "electric"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4144,6 +5351,10 @@ export const pokemons = [
     "slug": "barboach",
     "imageSlug": "barboach",
     "family": "173",
+    "types": [
+      "water",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4156,6 +5367,10 @@ export const pokemons = [
     "slug": "whiscash",
     "imageSlug": "whiscash",
     "family": "173",
+    "types": [
+      "water",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4168,6 +5383,9 @@ export const pokemons = [
     "slug": "purrloin",
     "imageSlug": "purrloin",
     "family": "261",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4180,6 +5398,9 @@ export const pokemons = [
     "slug": "liepard",
     "imageSlug": "liepard",
     "family": "261",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4192,6 +5413,9 @@ export const pokemons = [
     "slug": "poochyena",
     "imageSlug": "poochyena",
     "family": "133",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4204,6 +5428,9 @@ export const pokemons = [
     "slug": "mightyena",
     "imageSlug": "mightyena",
     "family": "133",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4216,6 +5443,9 @@ export const pokemons = [
     "slug": "patrat",
     "imageSlug": "patrat",
     "family": "259",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4228,6 +5458,9 @@ export const pokemons = [
     "slug": "watchog",
     "imageSlug": "watchog",
     "family": "259",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4240,6 +5473,10 @@ export const pokemons = [
     "slug": "pawniard",
     "imageSlug": "pawniard",
     "family": "317",
+    "types": [
+      "dark",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4252,6 +5489,10 @@ export const pokemons = [
     "slug": "bisharp",
     "imageSlug": "bisharp",
     "family": "317",
+    "types": [
+      "dark",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4264,6 +5505,10 @@ export const pokemons = [
     "slug": "klefki",
     "imageSlug": "klefki",
     "family": "363",
+    "types": [
+      "steel",
+      "fairy"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4276,6 +5521,10 @@ export const pokemons = [
     "slug": "murkrow",
     "imageSlug": "murkrow",
     "family": "97",
+    "types": [
+      "dark",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4288,6 +5537,10 @@ export const pokemons = [
     "slug": "honchkrow",
     "imageSlug": "honchkrow",
     "family": "97",
+    "types": [
+      "dark",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4300,6 +5553,10 @@ export const pokemons = [
     "slug": "foongus",
     "imageSlug": "foongus",
     "family": "300",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4312,6 +5569,10 @@ export const pokemons = [
     "slug": "amoonguss",
     "imageSlug": "amoonguss",
     "family": "300",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4324,6 +5585,10 @@ export const pokemons = [
     "slug": "lotad",
     "imageSlug": "lotad",
     "family": "136",
+    "types": [
+      "water",
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4336,6 +5601,10 @@ export const pokemons = [
     "slug": "lombre",
     "imageSlug": "lombre",
     "family": "136",
+    "types": [
+      "water",
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4348,6 +5617,10 @@ export const pokemons = [
     "slug": "ludicolo",
     "imageSlug": "ludicolo",
     "family": "136",
+    "types": [
+      "water",
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4360,6 +5633,9 @@ export const pokemons = [
     "slug": "buizel",
     "imageSlug": "buizel",
     "family": "216",
+    "types": [
+      "water"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4372,6 +5648,9 @@ export const pokemons = [
     "slug": "floatzel",
     "imageSlug": "floatzel",
     "family": "216",
+    "types": [
+      "water"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4384,6 +5663,7 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
+    "types": [],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4396,6 +5676,10 @@ export const pokemons = [
     "slug": "phantump",
     "imageSlug": "phantump",
     "family": "364",
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4408,6 +5692,10 @@ export const pokemons = [
     "slug": "trevenant",
     "imageSlug": "trevenant",
     "family": "364",
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4420,6 +5708,7 @@ export const pokemons = [
     "slug": "pumpkaboo",
     "imageSlug": "pumpkaboo",
     "family": "365",
+    "types": [],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4432,6 +5721,7 @@ export const pokemons = [
     "slug": "gourgeist",
     "imageSlug": "gourgeist",
     "family": "365",
+    "types": [],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4444,6 +5734,10 @@ export const pokemons = [
     "slug": "litwick",
     "imageSlug": "litwick",
     "family": "308",
+    "types": [
+      "ghost",
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4456,6 +5750,10 @@ export const pokemons = [
     "slug": "lampent",
     "imageSlug": "lampent",
     "family": "308",
+    "types": [
+      "ghost",
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4468,6 +5766,10 @@ export const pokemons = [
     "slug": "chandelure",
     "imageSlug": "chandelure",
     "family": "308",
+    "types": [
+      "ghost",
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4480,6 +5782,10 @@ export const pokemons = [
     "slug": "rotom",
     "imageSlug": "rotom",
     "family": "240",
+    "types": [
+      "electric",
+      "ghost"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4492,6 +5798,10 @@ export const pokemons = [
     "slug": "magnemite",
     "imageSlug": "magnemite",
     "family": "34",
+    "types": [
+      "electric",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4504,6 +5814,10 @@ export const pokemons = [
     "slug": "magneton",
     "imageSlug": "magneton",
     "family": "34",
+    "types": [
+      "electric",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4516,6 +5830,10 @@ export const pokemons = [
     "slug": "magnezone",
     "imageSlug": "magnezone",
     "family": "34",
+    "types": [
+      "electric",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4528,6 +5846,9 @@ export const pokemons = [
     "slug": "voltorb",
     "imageSlug": "voltorb",
     "family": "44",
+    "types": [
+      "electric"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4540,6 +5861,9 @@ export const pokemons = [
     "slug": "electrode",
     "imageSlug": "electrode",
     "family": "44",
+    "types": [
+      "electric"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4552,6 +5876,9 @@ export const pokemons = [
     "slug": "trubbish",
     "imageSlug": "trubbish",
     "family": "290",
+    "types": [
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4564,6 +5891,9 @@ export const pokemons = [
     "slug": "garbodor",
     "imageSlug": "garbodor",
     "family": "290",
+    "types": [
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4576,6 +5906,10 @@ export const pokemons = [
     "slug": "swinub",
     "imageSlug": "swinub",
     "family": "112",
+    "types": [
+      "ice",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4588,6 +5922,10 @@ export const pokemons = [
     "slug": "piloswine",
     "imageSlug": "piloswine",
     "family": "112",
+    "types": [
+      "ice",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4600,6 +5938,10 @@ export const pokemons = [
     "slug": "mamoswine",
     "imageSlug": "mamoswine",
     "family": "112",
+    "types": [
+      "ice",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4612,6 +5954,9 @@ export const pokemons = [
     "slug": "bergmite",
     "imageSlug": "bergmite",
     "family": "366",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4624,6 +5969,9 @@ export const pokemons = [
     "slug": "avalugg",
     "imageSlug": "avalugg",
     "family": "366",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4636,6 +5984,9 @@ export const pokemons = [
     "slug": "cubchoo",
     "imageSlug": "cubchoo",
     "family": "310",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4648,6 +5999,9 @@ export const pokemons = [
     "slug": "beartic",
     "imageSlug": "beartic",
     "family": "310",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4660,6 +6014,10 @@ export const pokemons = [
     "slug": "smoochum",
     "imageSlug": "smoochum",
     "family": "59",
+    "types": [
+      "ice",
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4672,6 +6030,10 @@ export const pokemons = [
     "slug": "jynx",
     "imageSlug": "jynx",
     "family": "59",
+    "types": [
+      "ice",
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4684,6 +6046,9 @@ export const pokemons = [
     "slug": "vanillite",
     "imageSlug": "vanillite",
     "family": "296",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4696,6 +6061,9 @@ export const pokemons = [
     "slug": "vanillish",
     "imageSlug": "vanillish",
     "family": "296",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4708,6 +6076,9 @@ export const pokemons = [
     "slug": "vanilluxe",
     "imageSlug": "vanilluxe",
     "family": "296",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4720,6 +6091,10 @@ export const pokemons = [
     "slug": "snover",
     "imageSlug": "snover",
     "family": "239",
+    "types": [
+      "grass",
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4732,6 +6107,10 @@ export const pokemons = [
     "slug": "abomasnow",
     "imageSlug": "abomasnow",
     "family": "239",
+    "types": [
+      "grass",
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4744,6 +6123,10 @@ export const pokemons = [
     "slug": "delibird",
     "imageSlug": "delibird",
     "family": "115",
+    "types": [
+      "ice",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4756,6 +6139,10 @@ export const pokemons = [
     "slug": "sneasel",
     "imageSlug": "sneasel",
     "family": "109",
+    "types": [
+      "dark",
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4768,6 +6155,10 @@ export const pokemons = [
     "slug": "weavile",
     "imageSlug": "weavile",
     "family": "109",
+    "types": [
+      "dark",
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4780,6 +6171,9 @@ export const pokemons = [
     "slug": "timburr",
     "imageSlug": "timburr",
     "family": "272",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4792,6 +6186,9 @@ export const pokemons = [
     "slug": "gurdurr",
     "imageSlug": "gurdurr",
     "family": "272",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4804,6 +6201,9 @@ export const pokemons = [
     "slug": "conkeldurr",
     "imageSlug": "conkeldurr",
     "family": "272",
+    "types": [
+      "fighting"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4816,6 +6216,9 @@ export const pokemons = [
     "slug": "torkoal",
     "imageSlug": "torkoal",
     "family": "163",
+    "types": [
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4828,6 +6231,9 @@ export const pokemons = [
     "slug": "sandshrew",
     "imageSlug": "sandshrew",
     "family": "11",
+    "types": [
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4840,6 +6246,9 @@ export const pokemons = [
     "slug": "sandslash",
     "imageSlug": "sandslash",
     "family": "11",
+    "types": [
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4852,6 +6261,10 @@ export const pokemons = [
     "slug": "aron",
     "imageSlug": "aron",
     "family": "151",
+    "types": [
+      "steel",
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4864,6 +6277,10 @@ export const pokemons = [
     "slug": "lairon",
     "imageSlug": "lairon",
     "family": "151",
+    "types": [
+      "steel",
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4876,6 +6293,10 @@ export const pokemons = [
     "slug": "aggron",
     "imageSlug": "aggron",
     "family": "151",
+    "types": [
+      "steel",
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4888,6 +6309,10 @@ export const pokemons = [
     "slug": "larvitar",
     "imageSlug": "larvitar",
     "family": "126",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4900,6 +6325,10 @@ export const pokemons = [
     "slug": "pupitar",
     "imageSlug": "pupitar",
     "family": "126",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4912,6 +6341,10 @@ export const pokemons = [
     "slug": "tyranitar",
     "imageSlug": "tyranitar",
     "family": "126",
+    "types": [
+      "rock",
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4924,6 +6357,9 @@ export const pokemons = [
     "slug": "heatmor",
     "imageSlug": "heatmor",
     "family": "321",
+    "types": [
+      "fire"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4936,6 +6372,10 @@ export const pokemons = [
     "slug": "durant",
     "imageSlug": "durant",
     "family": "322",
+    "types": [
+      "bug",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4948,6 +6388,10 @@ export const pokemons = [
     "slug": "spinarak",
     "imageSlug": "spinarak",
     "family": "85",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4960,6 +6404,10 @@ export const pokemons = [
     "slug": "ariados",
     "imageSlug": "ariados",
     "family": "85",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4972,6 +6420,10 @@ export const pokemons = [
     "slug": "spearow",
     "imageSlug": "spearow",
     "family": "8",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4984,6 +6436,10 @@ export const pokemons = [
     "slug": "fearow",
     "imageSlug": "fearow",
     "family": "8",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4996,6 +6452,9 @@ export const pokemons = [
     "slug": "cryogonal",
     "imageSlug": "cryogonal",
     "family": "311",
+    "types": [
+      "ice"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5008,6 +6467,10 @@ export const pokemons = [
     "slug": "skarmory",
     "imageSlug": "skarmory",
     "family": "117",
+    "types": [
+      "steel",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5020,6 +6483,10 @@ export const pokemons = [
     "slug": "noibat",
     "imageSlug": "noibat",
     "family": "367",
+    "types": [
+      "flying",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5032,6 +6499,10 @@ export const pokemons = [
     "slug": "noivern",
     "imageSlug": "noivern",
     "family": "367",
+    "types": [
+      "flying",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5044,6 +6515,10 @@ export const pokemons = [
     "slug": "gligar",
     "imageSlug": "gligar",
     "family": "104",
+    "types": [
+      "ground",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5056,6 +6531,10 @@ export const pokemons = [
     "slug": "gliscor",
     "imageSlug": "gliscor",
     "family": "104",
+    "types": [
+      "ground",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5068,6 +6547,10 @@ export const pokemons = [
     "slug": "hoothoot",
     "imageSlug": "hoothoot",
     "family": "83",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5080,6 +6563,10 @@ export const pokemons = [
     "slug": "noctowl",
     "imageSlug": "noctowl",
     "family": "83",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5092,6 +6579,10 @@ export const pokemons = [
     "slug": "igglybuff",
     "imageSlug": "igglybuff",
     "family": "16",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5104,6 +6595,10 @@ export const pokemons = [
     "slug": "jigglypuff",
     "imageSlug": "jigglypuff",
     "family": "16",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5116,6 +6611,10 @@ export const pokemons = [
     "slug": "wigglytuff",
     "imageSlug": "wigglytuff",
     "family": "16",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5128,6 +6627,9 @@ export const pokemons = [
     "slug": "shuppet",
     "imageSlug": "shuppet",
     "family": "181",
+    "types": [
+      "ghost"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5140,6 +6642,9 @@ export const pokemons = [
     "slug": "banette",
     "imageSlug": "banette",
     "family": "181",
+    "types": [
+      "ghost"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5152,6 +6657,9 @@ export const pokemons = [
     "slug": "zorua",
     "imageSlug": "zorua",
     "family": "291",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5164,6 +6672,9 @@ export const pokemons = [
     "slug": "zoroark",
     "imageSlug": "zoroark",
     "family": "291",
+    "types": [
+      "dark"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5176,6 +6687,9 @@ export const pokemons = [
     "slug": "gothita",
     "imageSlug": "gothita",
     "family": "293",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5188,6 +6702,9 @@ export const pokemons = [
     "slug": "gothorita",
     "imageSlug": "gothorita",
     "family": "293",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5200,6 +6717,9 @@ export const pokemons = [
     "slug": "gothitelle",
     "imageSlug": "gothitelle",
     "family": "293",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5212,6 +6732,9 @@ export const pokemons = [
     "slug": "bonsly",
     "imageSlug": "bonsly",
     "family": "91",
+    "types": [
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5224,6 +6747,9 @@ export const pokemons = [
     "slug": "sudowoodo",
     "imageSlug": "sudowoodo",
     "family": "91",
+    "types": [
+      "rock"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5236,6 +6762,9 @@ export const pokemons = [
     "slug": "spinda",
     "imageSlug": "spinda",
     "family": "165",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5248,6 +6777,9 @@ export const pokemons = [
     "slug": "teddiursa",
     "imageSlug": "teddiursa",
     "family": "110",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5260,6 +6792,9 @@ export const pokemons = [
     "slug": "ursaring",
     "imageSlug": "ursaring",
     "family": "110",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5272,6 +6807,9 @@ export const pokemons = [
     "slug": "lickitung",
     "imageSlug": "lickitung",
     "family": "48",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5284,6 +6822,9 @@ export const pokemons = [
     "slug": "lickilicky",
     "imageSlug": "lickilicky",
     "family": "48",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5296,6 +6837,10 @@ export const pokemons = [
     "slug": "scyther",
     "imageSlug": "scyther",
     "family": "58",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5308,6 +6853,10 @@ export const pokemons = [
     "slug": "scizor",
     "imageSlug": "scizor",
     "family": "58",
+    "types": [
+      "bug",
+      "steel"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5320,6 +6869,9 @@ export const pokemons = [
     "slug": "ditto",
     "imageSlug": "ditto",
     "family": "66",
+    "types": [
+      "normal"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5332,6 +6884,10 @@ export const pokemons = [
     "slug": "swablu",
     "imageSlug": "swablu",
     "family": "168",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5344,6 +6900,10 @@ export const pokemons = [
     "slug": "altaria",
     "imageSlug": "altaria",
     "family": "168",
+    "types": [
+      "dragon",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5356,6 +6916,9 @@ export const pokemons = [
     "slug": "druddigon",
     "imageSlug": "druddigon",
     "family": "315",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5368,6 +6931,10 @@ export const pokemons = [
     "slug": "deino",
     "imageSlug": "deino",
     "family": "323",
+    "types": [
+      "dark",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5380,6 +6947,10 @@ export const pokemons = [
     "slug": "zweilous",
     "imageSlug": "zweilous",
     "family": "323",
+    "types": [
+      "dark",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5392,6 +6963,10 @@ export const pokemons = [
     "slug": "hydreigon",
     "imageSlug": "hydreigon",
     "family": "323",
+    "types": [
+      "dark",
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5404,6 +6979,9 @@ export const pokemons = [
     "slug": "dratini",
     "imageSlug": "dratini",
     "family": "76",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5416,6 +6994,9 @@ export const pokemons = [
     "slug": "dragonair",
     "imageSlug": "dragonair",
     "family": "76",
+    "types": [
+      "dragon"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5428,6 +7009,10 @@ export const pokemons = [
     "slug": "dragonite",
     "imageSlug": "dragonite",
     "family": "76",
+    "types": [
+      "dragon",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5440,6 +7025,9 @@ export const pokemons = [
     "slug": "xerneas",
     "imageSlug": "xerneas",
     "family": "368",
+    "types": [
+      "fairy"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5452,6 +7040,10 @@ export const pokemons = [
     "slug": "yveltal",
     "imageSlug": "yveltal",
     "family": "369",
+    "types": [
+      "dark",
+      "flying"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5464,6 +7056,7 @@ export const pokemons = [
     "slug": "zygarde",
     "imageSlug": "zygarde",
     "family": "370",
+    "types": [],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5476,6 +7069,9 @@ export const pokemons = [
     "slug": "mewtwo",
     "imageSlug": "mewtwo",
     "family": "77",
+    "types": [
+      "psychic"
+    ],
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {

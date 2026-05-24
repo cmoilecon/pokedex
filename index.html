@@ -8,8 +8,8 @@
   <title>Dex</title>
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="./style.css?v=25" />
-  <script type="module" src="./app.js?v=25" defer></script>
+  <link rel="stylesheet" href="./style.css?v=14" />
+  <script type="module" src="./app.js?v=14" defer></script>
 </head>
 
 <body>
@@ -45,11 +45,26 @@
           <select id="profileSelect"></select>
         </label>
 
-        <button id="newProfileBtn" class="btn">Nouveau profil</button>
-        <button id="editProfileBtn" class="btn">Modifier profil</button>
-        <button id="exportSaveBtn" class="btn good">Exporter</button>
-        <button id="importSaveBtn" class="btn warn">Importer</button>
-        <button id="deleteProfileBtn" class="btn danger">Supprimer profil</button>
+        <div class="topbar-dropdown-wrap">
+          <button id="profileActionsBtn" class="btn" type="button">Profils</button>
+          <div id="profileActionsMenu" class="topbar-dropdown hidden">
+            <button id="newProfileBtn" class="btn">Nouveau profil</button>
+            <button id="editProfileBtn" class="btn">Modifier profil</button>
+            <button id="exportSaveBtn" class="btn good">Exporter</button>
+            <button id="importSaveBtn" class="btn warn">Importer</button>
+            <button id="deleteProfileBtn" class="btn danger">Supprimer profil</button>
+          </div>
+        </div>
+
+        <div class="topbar-dropdown-wrap">
+          <button id="moreActionsBtn" class="btn" type="button">Plus</button>
+          <div id="moreActionsMenu" class="topbar-dropdown hidden">
+            <button id="statsPageBtn" class="btn quest" type="button">Stats</button>
+            <button id="achievementsPageBtn" class="btn quest" type="button">Succès</button>
+            <button id="aboutPageBtn" class="btn" type="button">À propos</button>
+            <button id="shareProfileBtn" class="btn good" type="button">Partager</button>
+          </div>
+        </div>
 
         <label>
           Lang :
@@ -92,6 +107,29 @@
             <option value="all">Tous</option>
           </select>
         </label>
+
+        <label id="generationFilterLabel">
+          Gen :
+          <select id="generationFilterSelect">
+            <option value="all">Toutes</option>
+          </select>
+        </label>
+
+        <label id="sortFilterLabel">
+          Tri :
+          <select id="sortFilterSelect">
+            <option value="dex">Ordre du Dex</option>
+            <option value="name-az">Nom A-Z</option>
+            <option value="name-za">Nom Z-A</option>
+            <option value="obtained-first">Obtenus d’abord</option>
+            <option value="missing-first">Manquants d’abord</option>
+            <option value="favorites-first">Favoris d’abord</option>
+          </select>
+        </label>
+
+        <button id="undoBtn" class="btn tiny undo-redo-btn" type="button" title="Annuler (Ctrl+Z)">↶ Annuler</button>
+        <button id="redoBtn" class="btn tiny undo-redo-btn" type="button" title="Refaire (Ctrl+Y)">↷ Refaire</button>
+        <button id="searchHelpBtn" class="btn tiny" type="button" title="Aide recherche">?</button>
 
         <button id="checkVisibleBtn" class="btn good">Tout cocher</button>
         <button id="uncheckVisibleBtn" class="btn warn">Tout décocher</button>
@@ -240,7 +278,13 @@
 
       <div class="backup-actions">
         <button id="copyBackupBtn" class="btn good">Copier</button>
+        <button id="downloadBackupBtn" class="btn good" type="button">Télécharger .json</button>
+
+        <label id="importBackupFileLabel" class="btn warn backup-file-label" for="importBackupFileInput">Importer fichier .json</label>
+        <input id="importBackupFileInput" class="backup-file-input" type="file" accept="application/json,.json">
+
         <button id="applyBackupBtn" class="btn warn">Importer ce JSON</button>
+        <button id="repairBackupBtn" class="btn quest" type="button">Réparer + importer</button>
         <button id="closeBackupBtn" class="btn danger">Fermer</button>
       </div>
     </div>
@@ -259,6 +303,16 @@
       <p id="achievementUnlockDesc">Succès obtenu</p>
     </div>
   </section>
+  <section id="genericModal" class="generic-modal hidden">
+    <div class="generic-modal-card">
+      <div class="generic-modal-header">
+        <h2 id="genericModalTitle">Fenêtre</h2>
+        <button id="genericModalCloseBtn" class="btn tiny danger" type="button">Fermer</button>
+      </div>
+      <div id="genericModalBody" class="generic-modal-body"></div>
+    </div>
+  </section>
+
   <div id="toastContainer" class="toast-container"></div>
 </body>
 

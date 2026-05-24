@@ -25,7 +25,7 @@ import { pokemons as Black2White2Pokemons } from "./data/ds/black-white-2.js";
 
 import { games } from "./games.js";
 
-const DEBUG_MODE = false;
+const DEBUG_MODE = localStorage.getItem("dex-debug-enabled-v1") === "1";
 const SHORTCUTS_MODE = true;
 
 const STORAGE_KEYS = {
@@ -37,7 +37,11 @@ const STORAGE_KEYS = {
   favoritesOnly: "dex-favorites-only-v1",
   hideCompletedDex: "switch-dex-hide-completed-v1",
   shortcutsVisible: "dex-switch-shortcuts-visible-v1",
-  sound: "dex-sound-enabled-v1"
+  sound: "dex-sound-enabled-v1",
+  sortMode: "dex-sort-mode-v1",
+  generationFilter: "dex-generation-filter-v1",
+  debugEnabled: "dex-debug-enabled-v1",
+  pokemonCardV2: "dex-pokemon-card-v2-v1"
 };
 
 const dexDataMap = {
@@ -64,7 +68,7 @@ const dexDataMap = {
   "platinum": PlatinumPokemons,
   "heartgold-soulsilver": HgssPokemons,
   "black-white": BlackWhitePokemons,
-  "black-2-white-2": Black2White2Pokemons
+  "black-white-2": Black2White2Pokemons
 };
 
 const TYPE_LABELS_FR = {
@@ -94,9 +98,173 @@ const TYPE_ORDER = [
   "rock", "ghost", "dragon", "dark", "steel", "fairy"
 ];
 
+const TYPE_ICON_SVGS = {
+  all: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l1.9 4.6 4.6 1.9-4.6 1.9-1.9 4.6-1.9-4.6-4.6-1.9 4.6-1.9L12 3.5zm6.4 11.8.8 2 .8-2 2-.8-2-.8-.8-2-.8 2-2 .8 2 .8z" fill="currentColor"/></svg>`,
+  normal: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/></svg>`,
+  fire: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 2.8c.2 1.9-.2 3.2-1 4.2-.9 1.1-1.3 1.9-1.1 3 .9-.4 1.7-1.2 2.3-2.3 2 1.4 3.4 3.5 3.4 6 0 3.9-3.1 7-7 7s-7-3.1-7-7c0-3 1.6-4.8 3.6-6.9C8.5 5.5 9.5 4.1 10 2.8c1.5.8 2.7 2.2 3 4 .4-.8.6-2 .6-4z" fill="currentColor"/></svg>`,
+  water: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2c3 4 5.4 6.9 5.4 10a5.4 5.4 0 11-10.8 0c0-3.1 2.4-6 5.4-10z" fill="currentColor"/></svg>`,
+  electric: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.7 2.5L6.8 13h4.5L9.8 21.5 17.2 10H13l.7-7.5z" fill="currentColor"/></svg>`,
+  grass: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.8 5.2c-5 .1-8.7 1.6-11.1 4.4-1.8 2.2-2.4 4.9-2.4 7.2 2.7 0 5.1-.8 7.1-2.5 3-2.4 4.8-6.1 5.2-10.9l1.2 1.8z" fill="currentColor"/><path d="M6.8 18.4c2.7-3 6.1-5.3 10.3-6.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  ice: `<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v16M5 8l14 8M5 16l14-8"/><path d="M12 4l-1.8 1.8M12 4l1.8 1.8M12 20l-1.8-1.8M12 20l1.8-1.8M5 8l2.4.5M5 8l.6-2.4M19 16l-2.4-.5M19 16l-.6 2.4M5 16l2.4-.5M5 16l.6 2.4M19 8l-2.4.5M19 8l-.6-2.4"/></g></svg>`,
+  fighting: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9V6.8c0-1.1.9-2 2-2h1.2V8h1.6V5.4H14c1.1 0 2 .9 2 2V9h1c1.1 0 2 .9 2 2v4.2c0 1.6-1.2 2.8-2.8 2.8H8.4c-1.5 0-2.7-1.2-2.7-2.7V11c0-1.1.9-2 2-2H8z" fill="currentColor"/></svg>`,
+  poison: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v2l-1.6 1.7a5.8 5.8 0 013.9 5.5A5.8 5.8 0 0111.5 19 5.8 5.8 0 016 13.2c0-2.3 1.3-4.4 3.4-5.4L9 6V4zm1.5 7.1a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2zm3 0a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2zm-3.6 4c.6.7 1.3 1 2.1 1 .8 0 1.5-.3 2.1-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  ground: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 14.8l4.2-5.1h10.8l-4.2 5.1H4.5z" fill="currentColor"/></svg>`,
+  flying: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14.2c4.5-4 9.2-5.8 16-6.2-3 2-5.2 4.6-6.8 7.8-1.5-1.4-3.4-2.4-5.7-3-1 .5-2 1-3.5 1.4z" fill="currentColor"/></svg>`,
+  psychic: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c4.7 0 8.2 2.8 10 6-1.8 3.2-5.3 6-10 6S3.8 15.2 2 12c1.8-3.2 5.3-6 10-6zm0 3.2a2.8 2.8 0 100 5.6 2.8 2.8 0 000-5.6z" fill="currentColor"/></svg>`,
+  bug: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.5c2.4 0 4.3 1.9 4.3 4.3v4c0 2.2-1.8 4-4 4h-.6c-2.2 0-4-1.8-4-4v-4c0-2.4 1.9-4.3 4.3-4.3zm0-3.3c1.2 0 2.2 1 2.2 2.2v.2H9.8v-.2c0-1.2 1-2.2 2.2-2.2z" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 9.2L5.5 7.5M15.5 9.2l3-1.7M7.8 13H4.8M19.2 13h-3M8.4 16.5l-2.7 2M15.6 16.5l2.7 2"/></g></svg>`,
+  rock: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.2l6.4 4.6-2.4 8H8L5.6 8.8 12 4.2z" fill="currentColor"/></svg>`,
+  ghost: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.8c-3.9 0-6.8 2.9-6.8 6.8v6.6l2-1.4 1.8 1.4 2-1.4 2 1.4 1.8-1.4 2 1.4v-6.6c0-3.9-2.9-6.8-6.8-6.8zm-2.2 6.1a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2zm4.4 0a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2z" fill="currentColor"/></svg>`,
+  dragon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8l6.2 6.2L12 20.2 5.8 10 12 3.8z" fill="currentColor"/></svg>`,
+  dark: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.9 4.6a7.8 7.8 0 100 14.8A8.8 8.8 0 0110 4.6a7.7 7.7 0 015.9 0z" fill="currentColor"/></svg>`,
+  steel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l6.9 4v8L12 20l-6.9-4V8L12 4zm0 4.2L8.7 10v4L12 15.8 15.3 14v-4L12 8.2z" fill="currentColor"/></svg>`,
+  fairy: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l1.8 4.4 4.7 1.8-4.7 1.9-1.8 4.4-1.8-4.4-4.7-1.9 4.7-1.8L12 3.5zm0 8.8l1 2.4 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1 1-2.4z" fill="currentColor"/></svg>`
+};
+
+const GENERATION_LABELS = {
+  1: "Gen 1",
+  2: "Gen 2",
+  3: "Gen 3",
+  4: "Gen 4",
+  5: "Gen 5",
+  6: "Gen 6",
+  7: "Gen 7",
+  8: "Gen 8",
+  9: "Gen 9"
+};
+
 function getTypeLabel(type) {
   return TYPE_LABELS_FR[type] || type;
 }
+
+function normalizeTypeKey(value) {
+  const clean = String(value || "").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+  return TYPE_ORDER.find(type => {
+    const label = getTypeLabel(type).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    return type === clean || label === clean;
+  }) || null;
+}
+
+function getTypeIconMarkup(type, extraClass = "") {
+  const key = type === "all" ? "all" : normalizeTypeKey(type);
+  const svg = TYPE_ICON_SVGS[key] || TYPE_ICON_SVGS.all;
+  const typeClass = key ? ` type-${key}` : "";
+  return `<span class="type-icon-badge${typeClass}${extraClass ? ` ${extraClass}` : ""}" aria-hidden="true">${svg}</span>`;
+}
+
+let typeFilterPickerReady = false;
+
+function closeTypeFilterPicker() {
+  const label = ui.typeFilterLabel;
+  if (!label) return;
+  label.classList.remove("type-picker-open");
+}
+
+function ensureTypeFilterPicker() {
+  const label = ui.typeFilterLabel;
+  const select = ui.typeFilterSelect;
+  if (!label || !select || typeFilterPickerReady) return;
+
+  label.classList.add("type-picker");
+  select.classList.add("type-picker-native");
+
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.id = "typeFilterTrigger";
+  trigger.className = "btn type-picker-trigger";
+  trigger.setAttribute("aria-haspopup", "dialog");
+  trigger.setAttribute("aria-expanded", "false");
+
+  const menu = document.createElement("div");
+  menu.id = "typeFilterMenu";
+  menu.className = "type-picker-menu";
+
+  label.appendChild(trigger);
+  label.appendChild(menu);
+
+  trigger.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    const willOpen = !label.classList.contains("type-picker-open");
+    document.querySelectorAll(".type-picker.type-picker-open").forEach(node => {
+      if (node !== label) node.classList.remove("type-picker-open");
+    });
+    label.classList.toggle("type-picker-open", willOpen);
+    trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
+  });
+
+  document.addEventListener("click", event => {
+    if (!label.contains(event.target)) {
+      closeTypeFilterPicker();
+      trigger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeTypeFilterPicker();
+      trigger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  typeFilterPickerReady = true;
+}
+
+function syncTypeFilterPicker(orderedTypes) {
+  ensureTypeFilterPicker();
+
+  const label = ui.typeFilterLabel;
+  const select = ui.typeFilterSelect;
+  const trigger = document.querySelector("#typeFilterTrigger");
+  const menu = document.querySelector("#typeFilterMenu");
+
+  if (!label || !select || !trigger || !menu) return;
+
+  const currentType = select.value || "all";
+  const currentLabel = currentType === "all" ? "Tous" : getTypeLabel(currentType);
+
+  trigger.innerHTML = `
+    <span class="type-picker-current">${getTypeIconMarkup(currentType, "type-picker-current-icon")}<span class="type-picker-current-text">${escapeHtml(currentLabel)}</span></span>
+    <span class="type-picker-caret" aria-hidden="true">▾</span>
+  `;
+  trigger.setAttribute("aria-expanded", label.classList.contains("type-picker-open") ? "true" : "false");
+
+  const items = ["all", ...orderedTypes];
+
+  menu.innerHTML = `
+    <div class="type-picker-popover">
+      <div class="type-picker-top-row">
+        ${renderTypePickerItem("all", currentType === "all")}
+      </div>
+      <div class="type-picker-grid">
+        ${orderedTypes.map(type => renderTypePickerItem(type, currentType === type)).join("")}
+      </div>
+    </div>
+  `;
+
+  menu.querySelectorAll("[data-type-value]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      const nextValue = button.dataset.typeValue || "all";
+      select.value = nextValue;
+      activeTypeFilter = nextValue;
+      closeTypeFilterPicker();
+      trigger.setAttribute("aria-expanded", "false");
+      renderDex();
+    });
+  });
+}
+
+function renderTypePickerItem(type, isActive) {
+  const label = type === "all" ? "Tous" : getTypeLabel(type);
+  return `
+    <button type="button" class="type-picker-item${isActive ? " active" : ""}" data-type-value="${escapeHtml(type)}">
+      ${getTypeIconMarkup(type, "type-picker-item-icon")}
+      <span class="type-picker-item-text">${escapeHtml(label)}</span>
+    </button>
+  `;
+}
+
 
 const $ = selector => document.querySelector(selector);
 
@@ -128,6 +296,14 @@ const ui = {
   exportSaveBtn: $("#exportSaveBtn"),
   importSaveBtn: $("#importSaveBtn"),
   deleteProfileBtn: $("#deleteProfileBtn"),
+  statsPageBtn: $("#statsPageBtn"),
+  achievementsPageBtn: $("#achievementsPageBtn"),
+  aboutPageBtn: $("#aboutPageBtn"),
+  shareProfileBtn: $("#shareProfileBtn"),
+  profileActionsBtn: $("#profileActionsBtn"),
+  profileActionsMenu: $("#profileActionsMenu"),
+  moreActionsBtn: $("#moreActionsBtn"),
+  moreActionsMenu: $("#moreActionsMenu"),
 
   homeProfileName: $("#homeProfileName"),
   profileSummaryPanel: $("#profileSummaryPanel"),
@@ -171,6 +347,13 @@ const ui = {
   favoritesOnlyMode: $("#favoritesOnlyMode"),
   typeFilterLabel: $("#typeFilterLabel"),
   typeFilterSelect: $("#typeFilterSelect"),
+  generationFilterLabel: $("#generationFilterLabel"),
+  generationFilterSelect: $("#generationFilterSelect"),
+  sortFilterLabel: $("#sortFilterLabel"),
+  sortFilterSelect: $("#sortFilterSelect"),
+  undoBtn: $("#undoBtn"),
+  redoBtn: $("#redoBtn"),
+  searchHelpBtn: $("#searchHelpBtn"),
   hideCompletedDexLabel: $("#hideCompletedDexLabel"),
   hideCompletedDexMode: $("#hideCompletedDexMode"),
   checkVisibleBtn: $("#checkVisibleBtn"),
@@ -181,12 +364,21 @@ const ui = {
   backupText: $("#backupText"),
   backupArea: $("#backupArea"),
   copyBackupBtn: $("#copyBackupBtn"),
+  downloadBackupBtn: $("#downloadBackupBtn"),
+  importBackupFileLabel: $("#importBackupFileLabel"),
+  importBackupFileInput: $("#importBackupFileInput"),
   applyBackupBtn: $("#applyBackupBtn"),
+  repairBackupBtn: $("#repairBackupBtn"),
   closeBackupBtn: $("#closeBackupBtn"),
   achievementUnlockOverlay: $("#achievementUnlockOverlay"),
   achievementUnlockImage: $("#achievementUnlockImage"),
   achievementUnlockName: $("#achievementUnlockName"),
   achievementUnlockDesc: $("#achievementUnlockDesc"),
+
+  genericModal: $("#genericModal"),
+  genericModalTitle: $("#genericModalTitle"),
+  genericModalBody: $("#genericModalBody"),
+  genericModalCloseBtn: $("#genericModalCloseBtn"),
 
   toastContainer: $("#toastContainer")
 };
@@ -208,9 +400,15 @@ let isShowingAchievementUnlock = false;
 let achievementAudioContext = null;
 let achievementSoundEnabled = true;
 let activeTypeFilter = "all";
+let activeGenerationFilter = "all";
+let activeSortMode = localStorage.getItem(STORAGE_KEYS.sortMode) || "dex";
+let undoStack = [];
+let redoStack = [];
 let shortcutObjectiveViewIndex = 0;
 let isDebugPanelVisible = true;
 let activeDexPlatformFilter = "all";
+let isPokemonCardV2Enabled = localStorage.getItem(STORAGE_KEYS.pokemonCardV2) === "1";
+let lastUpdatedPokemonKey = null;
 
 function loadProfiles() {
   try {
@@ -297,6 +495,143 @@ function showToast(message, type = "success") {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 250);
   }, 2800);
+}
+
+function openGenericModal(title, html) {
+  if (!ui.genericModal || !ui.genericModalTitle || !ui.genericModalBody) {
+    showToast(title, "success");
+    console.log(title, html);
+    return;
+  }
+
+  ui.genericModalTitle.textContent = title;
+  ui.genericModalBody.innerHTML = html;
+  ui.genericModal.classList.remove("hidden");
+}
+
+function closeGenericModal() {
+  ui.genericModal?.classList.add("hidden");
+  if (ui.genericModalBody) ui.genericModalBody.innerHTML = "";
+}
+
+function isTypingInForm(event = null) {
+  const target = event?.target || document.activeElement;
+  if (!target) return false;
+
+  return Boolean(target.closest("input, textarea, select, [contenteditable='true']"));
+}
+
+function updateUndoRedoButtons() {
+  if (ui.undoBtn) ui.undoBtn.disabled = undoStack.length === 0;
+  if (ui.redoBtn) ui.redoBtn.disabled = redoStack.length === 0;
+}
+
+function createHistorySnapshot(label = "Action") {
+  return {
+    label,
+    profiles: JSON.stringify(profiles),
+    activeProfileId,
+    currentGameId
+  };
+}
+
+function rememberHistory(label = "Action") {
+  undoStack.push(createHistorySnapshot(label));
+  if (undoStack.length > 40) undoStack.shift();
+  redoStack = [];
+  updateUndoRedoButtons();
+}
+
+function restoreHistorySnapshot(snapshot) {
+  if (!snapshot) return;
+
+  profiles = JSON.parse(snapshot.profiles);
+  activeProfileId = snapshot.activeProfileId;
+  currentGameId = snapshot.currentGameId;
+
+  saveProfiles();
+  saveActiveProfile();
+  syncProfilesWithGames();
+
+  if (currentGameId && getActiveProfile()?.enabledDexes?.includes(currentGameId)) {
+    openDex(currentGameId, false);
+  } else {
+    renderHome();
+  }
+}
+
+function undoLastAction() {
+  const snapshot = undoStack.pop();
+  if (!snapshot) {
+    showToast("Rien à annuler.", "warn");
+    return;
+  }
+
+  redoStack.push(createHistorySnapshot("Refaire"));
+  restoreHistorySnapshot(snapshot);
+  updateUndoRedoButtons();
+  showToast(`↶ Annulé : ${snapshot.label}`, "success");
+}
+
+function redoLastAction() {
+  const snapshot = redoStack.pop();
+  if (!snapshot) {
+    showToast("Rien à refaire.", "warn");
+    return;
+  }
+
+  undoStack.push(createHistorySnapshot("Annuler"));
+  restoreHistorySnapshot(snapshot);
+  updateUndoRedoButtons();
+  showToast("↷ Action refaite.", "success");
+}
+
+function getPokemonGeneration(pokemon) {
+  const fromData = Number(pokemon?.generation);
+  if (Number.isInteger(fromData) && fromData >= 1 && fromData <= 9) return fromData;
+
+  // Anciennes données : uniquement le National peut être deviné par numéro National.
+  if (currentGameId !== "national") return null;
+
+  const id = Number(pokemon?.id);
+  if (!Number.isFinite(id)) return null;
+  if (id <= 151) return 1;
+  if (id <= 251) return 2;
+  if (id <= 386) return 3;
+  if (id <= 493) return 4;
+  if (id <= 649) return 5;
+  if (id <= 721) return 6;
+  if (id <= 809) return 7;
+  if (id <= 905) return 8;
+  return 9;
+}
+
+function getPokemonTypesForPokemon(pokemon) {
+  const direct = Array.isArray(pokemon?.types) ? pokemon.types.filter(Boolean) : [];
+  if (direct.length) return direct;
+
+  const nationalMatch = nationalPokemons.find(item =>
+    (pokemon?.imageSlug && item.imageSlug === pokemon.imageSlug) ||
+    (pokemon?.slug && item.slug === pokemon.slug) ||
+    (pokemon?.speciesSlug && item.slug === pokemon.speciesSlug)
+  );
+
+  return Array.isArray(nationalMatch?.types) ? nationalMatch.types.filter(Boolean) : [];
+}
+
+function renderPokemonTypeIcons(pokemon) {
+  const types = getPokemonTypesForPokemon(pokemon);
+  if (types.length === 0) return "";
+
+  return `
+    <div class="pokemon-type-icons">
+      ${types.map(type => `
+        <span class="pokemon-type-icon type-${type}" title="${escapeHtml(getTypeLabel(type))}" aria-label="${escapeHtml(getTypeLabel(type))}">
+          ${TYPE_ICON_SVGS[type] || TYPE_ICON_SVGS.all}
+        </span>
+      `).join("")}
+    </div>
+  `;
 }
 
 function getProfileDexState(profile, gameId) {
@@ -407,17 +742,21 @@ function saveFavorites(favorites) {
 }
 
 function isPokemonFavorite(pokemon) {
-  return Boolean(getFavorites()[pokemon.id]);
+  const favorites = getFavorites();
+  return Boolean(favorites[getPokemonStorageKey(pokemon)] || favorites[pokemon.id]);
 }
 
 function toggleFavorite(pokemon) {
+  rememberHistory("favori");
   const favorites = { ...getFavorites() };
 
-  if (favorites[pokemon.id]) {
-    delete favorites[pokemon.id];
+  const key = getPokemonStorageKey(pokemon);
+
+  if (favorites[key]) {
+    delete favorites[key];
     playUiSound("remove");
   } else {
-    favorites[pokemon.id] = true;
+    favorites[key] = true;
     playUiSound("favorite");
   }
 
@@ -691,6 +1030,28 @@ function awardObjectiveXp(profile, objective) {
   return true;
 }
 
+function showDexCompletePopup(gameId) {
+  const game = getGame(gameId);
+  showToast(`🎉 Dex complété : ${game?.shortName || game?.name || gameId} !`, "success");
+
+  const popup = document.createElement("div");
+  popup.className = "dex-complete-popup";
+  popup.innerHTML = `
+    <div class="dex-complete-card">
+      <div class="dex-complete-spark">✨</div>
+      <h2>Dex complété !</h2>
+      <p>${escapeHtml(game?.name || gameId)}</p>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  setTimeout(() => popup.classList.add("show"), 20);
+  setTimeout(() => {
+    popup.classList.remove("show");
+    setTimeout(() => popup.remove(), 300);
+  }, 2200);
+}
+
 function awardCompletedDexBonus(profile, gameId) {
   const progress = getProfileProgress(profile);
 
@@ -948,6 +1309,96 @@ function getFamilyObjectiveCandidates(profile, gameId) {
   return candidates;
 }
 
+function getTypeObjectiveCandidates(profile, gameId) {
+  const pokemons = getPokemonsForGame(gameId);
+  const state = getProfileDexState(profile, gameId);
+  const obtained = state.obtained || {};
+  const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
+  const byType = new Map();
+
+  for (const pokemon of pokemons) {
+    if (obtained[pokemon.id] || alreadyTargeted.has(String(pokemon.id))) continue;
+
+    for (const type of getPokemonTypesForPokemon(pokemon)) {
+      if (!byType.has(type)) byType.set(type, []);
+      byType.get(type).push(pokemon);
+    }
+  }
+
+  const candidates = [];
+
+  for (const [type, typePokemons] of byType.entries()) {
+    const shuffled = shuffleArray(typePokemons);
+    const target = Math.min(5, shuffled.length);
+    if (target < 3) continue;
+
+    candidates.push({
+      gameId,
+      type: "catch_type",
+      title: `Capturer ${target} Pokémon ${getTypeLabel(type)}`,
+      target,
+      pokemonIds: shuffled.slice(0, target).map(pokemon => pokemon.id)
+    });
+  }
+
+  return candidates;
+}
+
+function getFavoriteObjectiveCandidates(profile, gameId) {
+  const state = getProfileDexState(profile, gameId);
+  const obtained = state.obtained || {};
+  const favorites = state.favorites || {};
+  const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
+  const missingFavorites = getPokemonsForGame(gameId)
+    .filter(pokemon => favorites[getPokemonStorageKey(pokemon)] || favorites[pokemon.id])
+    .filter(pokemon => !obtained[pokemon.id])
+    .filter(pokemon => !alreadyTargeted.has(String(pokemon.id)));
+
+  if (missingFavorites.length < 2) return [];
+
+  const selected = shuffleArray(missingFavorites).slice(0, Math.min(5, missingFavorites.length));
+
+  return [{
+    gameId,
+    type: "catch_favorites",
+    title: `Capturer ${selected.length} favoris manquants`,
+    target: selected.length,
+    pokemonIds: selected.map(pokemon => pokemon.id)
+  }];
+}
+
+function getGenerationObjectiveCandidates(profile, gameId) {
+  const state = getProfileDexState(profile, gameId);
+  const obtained = state.obtained || {};
+  const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
+  const byGeneration = new Map();
+
+  for (const pokemon of getPokemonsForGame(gameId)) {
+    if (obtained[pokemon.id] || alreadyTargeted.has(String(pokemon.id))) continue;
+    const generation = getPokemonGeneration(pokemon);
+    if (!generation) continue;
+    if (!byGeneration.has(generation)) byGeneration.set(generation, []);
+    byGeneration.get(generation).push(pokemon);
+  }
+
+  const candidates = [];
+
+  for (const [generation, generationPokemons] of byGeneration.entries()) {
+    const selected = shuffleArray(generationPokemons).slice(0, Math.min(5, generationPokemons.length));
+    if (selected.length < 3) continue;
+
+    candidates.push({
+      gameId,
+      type: "catch_generation",
+      title: `Capturer ${selected.length} Pokémon de Gen ${generation}`,
+      target: selected.length,
+      pokemonIds: selected.map(pokemon => pokemon.id)
+    });
+  }
+
+  return candidates;
+}
+
 function canCreateObjectiveType(profile, type, maxSameType = 2) {
   const sameTypeCount = getActiveObjectives(profile)
     .filter(objective => objective.type === type)
@@ -996,6 +1447,9 @@ function createRandomObjective(forcedGameId = null) {
 
   const familyCandidates = possibleGames.flatMap(item => getFamilyObjectiveCandidates(profile, item.gameId));
   const nearbyCandidates = possibleGames.flatMap(item => getNearbyMissingObjectiveCandidates(profile, item.gameId));
+  const typeCandidates = possibleGames.flatMap(item => getTypeObjectiveCandidates(profile, item.gameId));
+  const favoriteCandidates = possibleGames.flatMap(item => getFavoriteObjectiveCandidates(profile, item.gameId));
+  const generationCandidates = possibleGames.flatMap(item => getGenerationObjectiveCandidates(profile, item.gameId));
   const nextMissingCandidates = possibleGames
     .map(item => getNextMissingObjectiveCandidate(profile, item.gameId))
     .filter(Boolean);
@@ -1006,6 +1460,27 @@ function createRandomObjective(forcedGameId = null) {
     questGroups.push({
       type: "catch_family",
       candidates: familyCandidates
+    });
+  }
+
+  if (favoriteCandidates.length > 0 && canCreateObjectiveType(profile, "catch_favorites", 1)) {
+    questGroups.push({
+      type: "catch_favorites",
+      candidates: favoriteCandidates
+    });
+  }
+
+  if (typeCandidates.length > 0 && canCreateObjectiveType(profile, "catch_type")) {
+    questGroups.push({
+      type: "catch_type",
+      candidates: typeCandidates
+    });
+  }
+
+  if (generationCandidates.length > 0 && canCreateObjectiveType(profile, "catch_generation")) {
+    questGroups.push({
+      type: "catch_generation",
+      candidates: generationCandidates
     });
   }
 
@@ -1175,7 +1650,8 @@ function showObjectiveAdvanceNotifications(messages) {
 }
 
 function getFilteredPokemons() {
-  const search = ui.searchInput.value.trim().toLowerCase();
+  const rawSearch = ui.searchInput.value.trim();
+  const search = rawSearch.toLowerCase();
   const pokemons = getPokemonsForGame(currentGameId);
   const profile = getActiveProfile();
   let objectiveFilterIds = null;
@@ -1206,19 +1682,83 @@ function getFilteredPokemons() {
     }
   }
 
-  return pokemons.filter(pokemon => {
+  const commandTokens = search.split(/\s+/).filter(Boolean);
+  const simpleTerms = [];
+  const commandFilters = {
+    types: [],
+    generations: [],
+    fav: false,
+    missing: false,
+    obtained: false,
+    ids: []
+  };
+
+  for (const token of commandTokens) {
+    if (token.startsWith("type:")) {
+      const value = token.slice(5).trim();
+      const typeKey = normalizeTypeKey(value);
+      if (typeKey) commandFilters.types.push(typeKey);
+      continue;
+    }
+
+    if (token.startsWith("gen:")) {
+      const value = Number(token.slice(4).replace(/[^0-9]/g, ""));
+      if (value) commandFilters.generations.push(value);
+      continue;
+    }
+
+    if (token.startsWith("id:")) {
+      const value = token.slice(3).replace(/[^0-9]/g, "");
+      if (value) commandFilters.ids.push(value);
+      continue;
+    }
+
+    if (token === "favori" || token === "favoris") {
+      commandFilters.fav = true;
+      continue;
+    }
+
+    if (token === "manquant" || token === "manquants" || token === "missing") {
+      commandFilters.missing = true;
+      continue;
+    }
+
+    if (token === "obtenu" || token === "obtenus" || token === "obtained") {
+      commandFilters.obtained = true;
+      continue;
+    }
+
+    simpleTerms.push(token);
+  }
+
+  const filtered = pokemons.filter(pokemon => {
+    const generation = getPokemonGeneration(pokemon);
+    const isObtained = isPokemonObtained(pokemon);
+
     if (objectiveFilterIds && !objectiveFilterIds.has(String(pokemon.id))) return false;
-    if (ui.missingOnlyMode.checked && isPokemonObtained(pokemon)) return false;
+    if (ui.missingOnlyMode.checked && isObtained) return false;
     if (ui.favoritesOnlyMode?.checked && !isPokemonFavorite(pokemon)) return false;
-    if (activeTypeFilter !== "all" && !(pokemon.types || []).includes(activeTypeFilter)) return false;
+    const pokemonTypes = getPokemonTypesForPokemon(pokemon);
+    if (activeTypeFilter !== "all" && !pokemonTypes.includes(activeTypeFilter)) return false;
+    if (activeGenerationFilter !== "all" && generation !== Number(activeGenerationFilter)) return false;
+
+    if (commandFilters.types.length && !commandFilters.types.some(type => pokemonTypes.includes(type))) return false;
+    if (commandFilters.generations.length && !commandFilters.generations.includes(generation)) return false;
+    if (commandFilters.fav && !isPokemonFavorite(pokemon)) return false;
+    if (commandFilters.missing && isObtained) return false;
+    if (commandFilters.obtained && !isObtained) return false;
 
     const id = String(pokemon.id).padStart(3, "0");
+    if (commandFilters.ids.length && !commandFilters.ids.some(value => id.includes(value.padStart(3, "0")) || String(pokemon.id).includes(value))) return false;
+
     const frName = (pokemon.names?.fr || "").toLowerCase();
     const enName = (pokemon.names?.en || "").toLowerCase();
     const currentName = getPokemonName(pokemon).toLowerCase();
 
-    return id.includes(search) || frName.includes(search) || enName.includes(search) || currentName.includes(search);
+    return simpleTerms.every(term => id.includes(term) || frName.includes(term) || enName.includes(term) || currentName.includes(term));
   });
+
+  return applyPokemonSort(filtered);
 }
 
 function renderObjectives(profile, container, gameFilter = null, emptyText = "Aucun objectif actif.") {
@@ -2079,6 +2619,7 @@ function updateStats() {
 }
 
 function toggleShinyLock(id) {
+  rememberHistory("shiny lock");
   const obtained = { ...getObtained() };
   const shinyLocked = { ...getShinyLocked() };
 
@@ -2106,6 +2647,8 @@ function loadCurrentDexShinyMode() {
 }
 
 function togglePokemon(id) {
+  rememberHistory("cocher Pokémon");
+  lastUpdatedPokemonKey = String(id);
   const profile = getActiveProfile();
   const obtained = { ...getObtained() };
   const shinyLocked = { ...getShinyLocked() };
@@ -2126,7 +2669,7 @@ function togglePokemon(id) {
 
   if (profile && !wasObtained && obtained[id]) {
     awardPokemonXp(profile, currentGameId, id);
-    awardCompletedDexBonus(profile, currentGameId);
+    if (awardCompletedDexBonus(profile, currentGameId)) showDexCompletePopup(currentGameId);
     saveProfiles();
     showObjectiveAdvanceNotifications(getObjectiveAdvanceMessages(profile, currentGameId, [id]));
   }
@@ -2142,6 +2685,7 @@ function togglePokemon(id) {
 }
 
 function toggleFamily(family) {
+  rememberHistory("cocher famille");
   const profile = getActiveProfile();
   const pokemons = getPokemonsForGame(currentGameId);
   const obtained = { ...getObtained() };
@@ -2186,6 +2730,7 @@ function showView(view) {
 function setMenuOpen(open) {
   isMenuOpen = open;
   ui.topbarControls?.classList.toggle("collapsed", !isMenuOpen);
+  document.body.classList.toggle("topbar-menu-open", isMenuOpen);
 
   if (ui.menuToggleBtn) {
     ui.menuToggleBtn.textContent = isMenuOpen ? "Fermer" : "Menu";
@@ -2203,17 +2748,32 @@ function setObjectivesCollapsed(collapsed) {
 }
 
 function updateTopbarVisibility(mode) {
+  document.body.classList.toggle("view-dex", mode === "dex");
+  document.body.classList.toggle("view-home", mode === "home");
+  document.body.classList.toggle("view-setup", mode === "setup");
+
   const dexOnlyControls = [
     ui.shinyMode.closest("label"),
     ui.missingOnlyMode.closest("label"),
     ui.favoritesOnlyMode?.closest("label"),
     ui.typeFilterLabel,
+    ui.generationFilterLabel,
+    ui.sortFilterLabel,
+    ui.undoBtn,
+    ui.redoBtn,
+    ui.searchHelpBtn,
     ui.checkVisibleBtn,
     ui.uncheckVisibleBtn
   ];
 
   for (const element of dexOnlyControls) {
     if (element) element.style.display = mode === "dex" ? "" : "none";
+  }
+
+  // Sécurité : le filtre Type est uniquement pour un Dex ouvert, jamais sur l'accueil.
+  if (ui.typeFilterLabel) {
+    ui.typeFilterLabel.style.display = mode === "dex" ? "inline-flex" : "none";
+    ui.typeFilterLabel.classList.toggle("hidden", mode !== "dex");
   }
 
   ui.hideCompletedDexLabel.style.display = mode === "home" ? "" : "none";
@@ -2224,7 +2784,11 @@ function updateTopbarVisibility(mode) {
     ui.editProfileBtn,
     ui.exportSaveBtn,
     ui.importSaveBtn,
-    ui.deleteProfileBtn
+    ui.deleteProfileBtn,
+    ui.statsPageBtn,
+    ui.achievementsPageBtn,
+    ui.aboutPageBtn,
+    ui.shareProfileBtn
   ];
 
   for (const element of setupHiddenControls) {
@@ -2399,6 +2963,147 @@ function renderProfileSummary(profile) {
   ui.continueDexBtn.textContent = lastGame ? `▶ Continuer : ${lastGame.shortName || lastGame.name}` : "▶ Continuer";
 }
 
+function getAdvancedStatsHtml(profile) {
+  const summary = getProfileSummary(profile);
+  const rows = [];
+  let best = null;
+  let worst = null;
+
+  for (const gameId of profile.enabledDexes || []) {
+    const game = getGame(gameId);
+    const progress = calculateGameProgress(profile, gameId);
+    const state = getProfileDexState(profile, gameId);
+    const row = {
+      game: game?.shortName || game?.name || gameId,
+      platform: game?.platform || "?",
+      ...progress,
+      favorites: Object.values(state.favorites || {}).filter(Boolean).length,
+      shinyLocks: Object.values(state.shinyLocked || {}).filter(Boolean).length
+    };
+
+    rows.push(row);
+    if (!best || row.completion > best.completion) best = row;
+    if (!worst || row.completion < worst.completion) worst = row;
+  }
+
+  const objectives = profile.objectives || [];
+  const completed = objectives.filter(o => o.status === "completed").length;
+  const abandoned = objectives.filter(o => o.status === "abandoned").length;
+  const successRate = completed + abandoned === 0 ? 0 : Math.round((completed / (completed + abandoned)) * 100);
+
+  return `
+    <div class="modal-grid-stats">
+      <div><span>Pokémon</span><strong>${summary.obtainedPokemon} / ${summary.totalPokemon}</strong></div>
+      <div><span>Dex terminés</span><strong>${summary.completedDexes}</strong></div>
+      <div><span>Objectifs réussis</span><strong>${completed}</strong></div>
+      <div><span>Taux réussite objectifs</span><strong>${successRate}%</strong></div>
+      <div><span>Favoris</span><strong>${summary.favoriteCount}</strong></div>
+      <div><span>Meilleur Dex</span><strong>${escapeHtml(best?.game || "-")} (${best?.completion ?? 0}%)</strong></div>
+      <div><span>Dex à reprendre</span><strong>${escapeHtml(worst?.game || "-")} (${worst?.completion ?? 0}%)</strong></div>
+      <div><span>Rang</span><strong>${escapeHtml(getGlobalRank(profile).name)}</strong></div>
+    </div>
+
+    <h3>Détail par Dex</h3>
+    <div class="modal-table">
+      ${rows.map(row => `
+        <div class="modal-table-row">
+          <strong>${escapeHtml(row.game)}</strong>
+          <span>${row.done}/${row.total}</span>
+          <span>${row.completion}%</span>
+          <span>⭐ ${row.favorites}</span>
+          <span>🔒 ${row.shinyLocks}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function openStatsPage() {
+  const profile = getActiveProfile();
+  if (!profile) return;
+  openGenericModal("Statistiques avancées", getAdvancedStatsHtml(profile));
+}
+
+function openAchievementsPage() {
+  const profile = getActiveProfile();
+  if (!profile) return;
+
+  const achievements = getAchievementList(profile)
+    .filter(achievement => !(achievement.id.startsWith("collection-rare") && !achievement.unlocked));
+
+  openGenericModal("Succès / Badges", `
+    <div class="modal-badge-grid">
+      ${achievements.map(achievement => `
+        <article class="modal-badge-card ${achievement.unlocked ? "unlocked" : "locked"}">
+          <img src="${achievement.image}" alt="${escapeHtml(achievement.name)}" loading="lazy">
+          <strong>${escapeHtml(achievement.name)}</strong>
+          <span>${escapeHtml(achievement.desc)}</span>
+          <em>${achievement.unlocked ? "Débloqué" : "Verrouillé"}</em>
+        </article>
+      `).join("")}
+    </div>
+  `);
+}
+
+function openAboutPage() {
+  openGenericModal("À propos", `
+    <div class="about-content">
+      <p><strong>Dex</strong> est un outil personnel de suivi de Pokédex.</p>
+      <p>Données Pokédex et sprites : PokémonDB. Noms, types, générations et familles d'évolution : PokéAPI.</p>
+      <p>Ce projet est non officiel. Pokémon appartient à Nintendo, Game Freak et Creatures.</p>
+      <p>Site : <code>https://cmoilecon.github.io/pokedex/</code></p>
+    </div>
+  `);
+}
+
+function openSearchHelp() {
+  openGenericModal("Aide recherche", `
+    <div class="search-help-list">
+      <p><code>type:eau</code> filtre les Pokémon Eau.</p>
+      <p><code>gen:5</code> filtre la génération 5.</p>
+      <p><code>fav</code> ou <code>favoris</code> affiche les favoris.</p>
+      <p><code>manquant</code> affiche les non obtenus.</p>
+      <p><code>obtenu</code> affiche les obtenus.</p>
+      <p><code>id:25</code> cherche un numéro.</p>
+      <p>Tu peux combiner : <code>type:dragon gen:5 manquant</code></p>
+    </div>
+  `);
+}
+
+function openShareProfilePage() {
+  const profile = getActiveProfile();
+  if (!profile) return;
+
+  const summary = getProfileSummary(profile);
+  const rank = getGlobalRank(profile).name;
+  const unlockedAchievements = getAchievementList(profile).filter(achievement => achievement.unlocked);
+  const badgesHtml = unlockedAchievements.length > 0
+    ? `<div class="share-badges">${unlockedAchievements.map(achievement => `
+        <span class="share-badge" title="${escapeHtml(achievement.name)}">
+          <img src="${achievement.image}" alt="${escapeHtml(achievement.name)}" loading="lazy">
+        </span>
+      `).join("")}</div>`
+    : `<div class="share-badges-empty">Aucun badge débloqué pour l’instant.</div>`;
+
+  const text = `${profile.name} — ${rank}
+${summary.obtainedPokemon}/${summary.totalPokemon} Pokémon
+${summary.completedDexes} Dex terminés
+https://cmoilecon.github.io/pokedex/`;
+
+  openGenericModal("Partager le profil", `
+    <div class="share-card-preview">
+      <p class="summary-kicker">Dex</p>
+      <h2>${escapeHtml(profile.name)}</h2>
+      <p>${escapeHtml(rank)}</p>
+      <strong>${summary.obtainedPokemon} / ${summary.totalPokemon} Pokémon</strong>
+      <span>${summary.completedDexes} Dex terminés • ${summary.completedObjectives} objectifs réussis</span>
+      ${badgesHtml}
+      <code>cmoilecon.github.io/pokedex</code>
+    </div>
+    <textarea class="share-textarea" readonly>${escapeHtml(text)}</textarea>
+  `);
+}
+
 function renderTypeFilter() {
   if (!ui.typeFilterSelect || !currentGameId) return;
 
@@ -2406,7 +3111,7 @@ function renderTypeFilter() {
   const types = new Set();
 
   for (const pokemon of getPokemonsForGame(currentGameId)) {
-    for (const type of pokemon.types || []) types.add(type);
+    for (const type of getPokemonTypesForPokemon(pokemon)) types.add(type);
   }
 
   const orderedTypes = TYPE_ORDER.filter(type => types.has(type));
@@ -2423,6 +3128,54 @@ function renderTypeFilter() {
 
   ui.typeFilterSelect.value = activeTypeFilter;
   ui.typeFilterLabel?.classList.toggle("hidden", orderedTypes.length === 0);
+  syncTypeFilterPicker(orderedTypes);
+}
+
+function renderGenerationFilter() {
+  if (!ui.generationFilterSelect || !currentGameId) return;
+
+  const availableGenerations = new Set();
+
+  for (const pokemon of getPokemonsForGame(currentGameId)) {
+    const generation = getPokemonGeneration(pokemon);
+    if (generation) availableGenerations.add(generation);
+  }
+
+  const orderedGenerations = [...availableGenerations].sort((a, b) => a - b);
+  const currentValue = activeGenerationFilter;
+
+  activeGenerationFilter = currentValue === "all" || availableGenerations.has(Number(currentValue)) ? currentValue : "all";
+
+  ui.generationFilterSelect.innerHTML = `<option value="all">Toutes</option>`;
+
+  for (const generation of orderedGenerations) {
+    const option = document.createElement("option");
+    option.value = String(generation);
+    option.textContent = GENERATION_LABELS[generation] || `Gen ${generation}`;
+    ui.generationFilterSelect.appendChild(option);
+  }
+
+  ui.generationFilterSelect.value = activeGenerationFilter;
+  ui.generationFilterLabel?.classList.toggle("hidden", orderedGenerations.length <= 1);
+}
+
+function applyPokemonSort(pokemons) {
+  const profile = getActiveProfile();
+  const sorted = [...pokemons];
+
+  const byDexOrder = (a, b) => getPokemonsForGame(currentGameId).indexOf(a) - getPokemonsForGame(currentGameId).indexOf(b);
+  const byName = (a, b) => getPokemonName(a).localeCompare(getPokemonName(b), "fr", { sensitivity: "base" });
+  const byObtained = (a, b) => Number(isPokemonObtained(b)) - Number(isPokemonObtained(a)) || byDexOrder(a, b);
+  const byMissing = (a, b) => Number(isPokemonObtained(a)) - Number(isPokemonObtained(b)) || byDexOrder(a, b);
+  const byFavorite = (a, b) => Number(isPokemonFavorite(b)) - Number(isPokemonFavorite(a)) || byDexOrder(a, b);
+
+  if (activeSortMode === "name-az") sorted.sort(byName);
+  else if (activeSortMode === "name-za") sorted.sort((a, b) => -byName(a, b));
+  else if (activeSortMode === "obtained-first") sorted.sort(byObtained);
+  else if (activeSortMode === "missing-first") sorted.sort(byMissing);
+  else if (activeSortMode === "favorites-first") sorted.sort(byFavorite);
+
+  return sorted;
 }
 
 function renderHome() {
@@ -2524,7 +3277,9 @@ function openDex(gameId, rememberLastDex = true) {
 
   loadCurrentDexShinyMode();
   activeTypeFilter = "all";
+  activeGenerationFilter = localStorage.getItem(STORAGE_KEYS.generationFilter) || "all";
   ui.searchInput.value = "";
+  if (ui.sortFilterSelect) ui.sortFilterSelect.value = activeSortMode;
   ui.appTitle.textContent = `Dex — ${game.shortName}`;
   ui.appSubtitle.textContent = game.subtitle;
 
@@ -2536,6 +3291,8 @@ function openDex(gameId, rememberLastDex = true) {
 function renderDex() {
   completeFinishedObjectives(false);
   renderTypeFilter();
+  renderGenerationFilter();
+  updateUndoRedoButtons();
   ui.dex.innerHTML = "";
 
   let lastSectionId = null;
@@ -2558,7 +3315,8 @@ function renderDex() {
     const name = getPokemonName(pokemon);
     const card = document.createElement("article");
 
-    card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""}`;
+    const pokemonKey = getPokemonStorageKey(pokemon);
+    card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
@@ -2569,6 +3327,8 @@ function renderDex() {
         <div class="name">${escapeHtml(name)}</div>
         <div class="check">${isObtained ? (isLocked && ui.shinyMode.checked ? "🔒" : "✅") : "☐"}</div>
       </div>
+
+      ${renderPokemonTypeIcons(pokemon)}
 
       <div class="card-actions">
         <button class="favorite-btn ${isFavorite ? "active" : ""}" type="button" title="Favori">${isFavorite ? "⭐" : "☆"}</button>
@@ -2611,6 +3371,13 @@ function renderDex() {
   updateStats();
   renderDexObjectives();
   renderTopbarAchievements();
+
+  if (lastUpdatedPokemonKey) {
+    setTimeout(() => {
+      document.querySelectorAll(".pokemon-just-updated").forEach(element => element.classList.remove("pokemon-just-updated"));
+      lastUpdatedPokemonKey = null;
+    }, 520);
+  }
 }
 
 function createProfile(name, enabledDexes, nationalLinked = false) {
@@ -2728,7 +3495,7 @@ function deleteActiveProfile() {
   goToLastPlaceForActiveProfile();
 }
 
-function syncProfilesWithGames() {
+function syncProfilesWithGames(saveAfterSync = true) {
   const gameIds = games.map(game => game.id);
 
   for (const profile of Object.values(profiles)) {
@@ -2736,9 +3503,23 @@ function syncProfilesWithGames() {
 
     profile.settings ||= { nationalLinked: false };
     profile.dexData ||= {};
+
+    // Migration depuis une ancienne v2 ratée : black-2-white-2 -> black-white-2
+    if (profile.dexData["black-2-white-2"] && !profile.dexData["black-white-2"]) {
+      profile.dexData["black-white-2"] = profile.dexData["black-2-white-2"];
+    }
+    delete profile.dexData["black-2-white-2"];
+
+    if (Array.isArray(profile.enabledDexes)) {
+      profile.enabledDexes = profile.enabledDexes.map(gameId => gameId === "black-2-white-2" ? "black-white-2" : gameId);
+    }
+
+    if (profile.lastDex === "black-2-white-2") profile.lastDex = "black-white-2";
+
     profile.objectives ||= [];
 
     for (const objective of profile.objectives) {
+      if (objective.gameId === "black-2-white-2") objective.gameId = "black-white-2";
       objective.status ||= "active";
     }
 
@@ -2766,7 +3547,7 @@ function syncProfilesWithGames() {
     }
   }
 
-  saveProfiles();
+  if (saveAfterSync) saveProfiles();
 }
 
 function loadGlobalSettings() {
@@ -2779,6 +3560,10 @@ function loadGlobalSettings() {
   ui.missingOnlyMode.checked = localStorage.getItem(STORAGE_KEYS.missingOnly) === "1";
   if (ui.favoritesOnlyMode) ui.favoritesOnlyMode.checked = localStorage.getItem(STORAGE_KEYS.favoritesOnly) === "1";
   ui.hideCompletedDexMode.checked = localStorage.getItem(STORAGE_KEYS.hideCompletedDex) === "1";
+
+  activeSortMode = localStorage.getItem(STORAGE_KEYS.sortMode) || "dex";
+  activeGenerationFilter = localStorage.getItem(STORAGE_KEYS.generationFilter) || "all";
+  if (ui.sortFilterSelect) ui.sortFilterSelect.value = activeSortMode;
 
   const savedLang = localStorage.getItem(STORAGE_KEYS.lang);
 
@@ -2843,7 +3628,10 @@ function openBackupExport() {
   ui.backupText.textContent = "Copie ce JSON compact et garde-le quelque part. Tu peux aussi te l'envoyer sur téléphone.";
   ui.backupArea.value = JSON.stringify(backup);
   ui.copyBackupBtn.style.display = "";
+  if (ui.downloadBackupBtn) ui.downloadBackupBtn.style.display = "";
+  if (ui.importBackupFileLabel) ui.importBackupFileLabel.style.display = "none";
   ui.applyBackupBtn.style.display = "none";
+  if (ui.repairBackupBtn) ui.repairBackupBtn.style.display = "none";
   ui.backupModal.classList.remove("hidden");
   ui.backupArea.focus();
   ui.backupArea.select();
@@ -2854,7 +3642,10 @@ function openBackupImport() {
   ui.backupText.textContent = "Colle ici le JSON exporté depuis ton Dex, puis clique sur Importer.";
   ui.backupArea.value = "";
   ui.copyBackupBtn.style.display = "none";
+  if (ui.downloadBackupBtn) ui.downloadBackupBtn.style.display = "none";
+  if (ui.importBackupFileLabel) ui.importBackupFileLabel.style.display = "";
   ui.applyBackupBtn.style.display = "";
+  if (ui.repairBackupBtn) ui.repairBackupBtn.style.display = "";
   ui.backupModal.classList.remove("hidden");
   ui.backupArea.focus();
 }
@@ -2875,9 +3666,80 @@ async function copyBackupText() {
   }
 }
 
+function downloadBackupFile() {
+  const content = ui.backupArea.value || JSON.stringify(getBackupData(), null, 2);
+  const blob = new Blob([content], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const date = new Date().toISOString().slice(0, 10);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = `dex-backup-${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast("✅ Fichier de sauvegarde créé.", "success");
+}
+
+async function readBackupFile(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  try {
+    ui.backupArea.value = await file.text();
+    showToast("✅ Fichier chargé. Tu peux importer.", "success");
+  } catch {
+    showToast("❌ Impossible de lire ce fichier.", "danger");
+  } finally {
+    event.target.value = "";
+  }
+}
+
+function normalizeBackupData(data) {
+  if (!validateBackupData(data)) return data;
+
+  data.profiles ||= {};
+
+  for (const profile of Object.values(data.profiles)) {
+    profile.dexData ||= {};
+
+    if (profile.dexData["black-2-white-2"] && !profile.dexData["black-white-2"]) {
+      profile.dexData["black-white-2"] = profile.dexData["black-2-white-2"];
+    }
+    delete profile.dexData["black-2-white-2"];
+
+    if (Array.isArray(profile.enabledDexes)) {
+      profile.enabledDexes = profile.enabledDexes.map(gameId => gameId === "black-2-white-2" ? "black-white-2" : gameId);
+    } else {
+      profile.enabledDexes = [];
+    }
+
+    if (profile.lastDex === "black-2-white-2") profile.lastDex = "black-white-2";
+
+    profile.settings ||= { nationalLinked: false };
+    profile.objectives ||= [];
+
+    for (const objective of profile.objectives) {
+      if (objective.gameId === "black-2-white-2") objective.gameId = "black-white-2";
+      objective.status ||= "active";
+    }
+
+    for (const gameId of profile.enabledDexes) {
+      profile.dexData[gameId] ||= { obtained: {}, shinyMode: false, shinyLocked: {}, favorites: {} };
+      profile.dexData[gameId].obtained ||= {};
+      profile.dexData[gameId].shinyLocked ||= {};
+      profile.dexData[gameId].favorites ||= {};
+      if (typeof profile.dexData[gameId].shinyMode !== "boolean") profile.dexData[gameId].shinyMode = false;
+    }
+  }
+
+  return data;
+}
+
 function applyBackupImport() {
   try {
-    const data = JSON.parse(ui.backupArea.value);
+    const data = normalizeBackupData(JSON.parse(ui.backupArea.value));
 
     if (!validateBackupData(data)) {
       showToast("⚠️ JSON invalide : ce n'est pas une sauvegarde Dex Switch.", "warn");
@@ -2911,6 +3773,10 @@ function applyBackupImport() {
   } catch {
     showToast("❌ Impossible de lire ce JSON.", "danger");
   }
+}
+
+function repairAndApplyBackupImport() {
+  applyBackupImport();
 }
 
 function getFirstActiveObjective() {
@@ -3636,15 +4502,24 @@ function debugTestButton(name, action, report) {
 }
 
 function toggleDebugPanelVisibility() {
-  const panel = document.querySelector("#debugPanel");
-  const btn = document.querySelector("#toggleDebugMenuBtn");
+  let panel = document.querySelector("#debugPanel");
+  let btn = document.querySelector("#toggleDebugMenuBtn");
 
-  if (!panel || !btn) return;
+  if (!panel) {
+    localStorage.setItem(STORAGE_KEYS.debugEnabled, "1");
+    createDebugMenu();
+    createDebugToggleButton();
+    panel = document.querySelector("#debugPanel");
+    btn = document.querySelector("#toggleDebugMenuBtn");
+  }
+
+  if (!panel) return;
 
   isDebugPanelVisible = !isDebugPanelVisible;
+  localStorage.setItem(STORAGE_KEYS.debugEnabled, isDebugPanelVisible ? "1" : "0");
 
   panel.classList.toggle("hidden", !isDebugPanelVisible);
-  btn.classList.toggle("debug-toggle-off", !isDebugPanelVisible);
+  btn?.classList.toggle("debug-toggle-off", !isDebugPanelVisible);
 }
 
 function debugRunFullTest() {
@@ -3841,7 +4716,7 @@ function createDebugMenu() {
   createFloatingPanel({
     id: "debugPanel",
     title: "Debug",
-    enabled: DEBUG_MODE,
+    enabled: localStorage.getItem(STORAGE_KEYS.debugEnabled) === "1",
     className: "debug-panel-full",
     sections: [
       {
@@ -4010,6 +4885,12 @@ function createDebugMenu() {
             handler: debugToggleDark
           },
           {
+            id: "debugCardV2Btn",
+            label: "Cartes V2",
+            className: "quest",
+            handler: togglePokemonCardV2
+          },
+          {
             id: "debugLangBtn",
             label: "Lang",
             handler: debugToggleLang
@@ -4067,7 +4948,8 @@ function setShortcutsVisible(visible) {
 
   const btn = document.querySelector("#toggleShortcutsMenuBtn");
   if (btn) {
-    btn.textContent = "Raccourcis";
+    btn.textContent = "R";
+    btn.title = "Raccourcis (touche R)";
     btn.classList.toggle("shortcut-toggle-off", !visible);
   }
 }
@@ -4079,7 +4961,8 @@ function createShortcutsToggleButton() {
   button.id = "toggleShortcutsMenuBtn";
   button.className = "btn";
   button.type = "button";
-  button.textContent = "Raccourcis";
+  button.textContent = "R";
+  button.title = "Raccourcis (touche R)";
 
   button.addEventListener("click", () => {
     setShortcutsVisible(!areShortcutsVisible());
@@ -4091,7 +4974,47 @@ function createShortcutsToggleButton() {
   setShortcutsVisible(areShortcutsVisible());
 }
 
+function togglePokemonCardV2() {
+  isPokemonCardV2Enabled = !isPokemonCardV2Enabled;
+  localStorage.setItem(STORAGE_KEYS.pokemonCardV2, isPokemonCardV2Enabled ? "1" : "0");
+  if (currentGameId) renderDex();
+  showToast(isPokemonCardV2Enabled ? "🧪 Cartes Pokémon V2 activées." : "🧪 Cartes Pokémon V2 désactivées.", "success");
+}
+
+function createDebugToggleButton() {
+  document.querySelector("#toggleDebugMenuBtn")?.remove();
+}
+
 function bindEvents() {
+
+  function closeTopbarDropdowns(except = null) {
+    [ui.profileActionsMenu, ui.moreActionsMenu].forEach(menu => {
+      if (menu && menu !== except) menu.classList.add("hidden");
+    });
+  }
+
+  ui.profileActionsBtn?.addEventListener("click", event => {
+    event.stopPropagation();
+    const menu = ui.profileActionsMenu;
+    if (!menu) return;
+    const willOpen = menu.classList.contains("hidden");
+    closeTopbarDropdowns(menu);
+    menu.classList.toggle("hidden", !willOpen);
+  });
+
+  ui.moreActionsBtn?.addEventListener("click", event => {
+    event.stopPropagation();
+    const menu = ui.moreActionsMenu;
+    if (!menu) return;
+    const willOpen = menu.classList.contains("hidden");
+    closeTopbarDropdowns(menu);
+    menu.classList.toggle("hidden", !willOpen);
+  });
+
+  document.addEventListener("click", event => {
+    if (!event.target.closest(".topbar-dropdown-wrap")) closeTopbarDropdowns();
+  });
+
 
 
 
@@ -4103,16 +5026,8 @@ function bindEvents() {
     renderHome();
   });
 
-  if (DEBUG_MODE && ui.profileSelectLabel && !document.querySelector("#toggleDebugMenuBtn")) {
-    const debugToggleBtn = document.createElement("button");
-    debugToggleBtn.id = "toggleDebugMenuBtn";
-    debugToggleBtn.className = "btn";
-    debugToggleBtn.type = "button";
-    debugToggleBtn.textContent = "Debug";
-
-    debugToggleBtn.addEventListener("click", toggleDebugPanelVisibility);
-
-    ui.profileSelectLabel.parentElement.insertBefore(debugToggleBtn, ui.profileSelectLabel);
+  if (localStorage.getItem(STORAGE_KEYS.debugEnabled) === "1") {
+    createDebugToggleButton();
   }
 
   document.addEventListener("click", event => {
@@ -4207,9 +5122,20 @@ function bindEvents() {
   ui.exportSaveBtn.addEventListener("click", openBackupExport);
   ui.importSaveBtn.addEventListener("click", openBackupImport);
   ui.deleteProfileBtn.addEventListener("click", deleteActiveProfile);
+  ui.statsPageBtn?.addEventListener("click", openStatsPage);
+  ui.achievementsPageBtn?.addEventListener("click", openAchievementsPage);
+  ui.aboutPageBtn?.addEventListener("click", openAboutPage);
+  ui.shareProfileBtn?.addEventListener("click", openShareProfilePage);
+  ui.genericModalCloseBtn?.addEventListener("click", closeGenericModal);
+  ui.genericModal?.addEventListener("click", event => {
+    if (event.target === ui.genericModal) closeGenericModal();
+  });
 
   ui.copyBackupBtn.addEventListener("click", copyBackupText);
+  ui.downloadBackupBtn?.addEventListener("click", downloadBackupFile);
+  ui.importBackupFileInput?.addEventListener("change", readBackupFile);
   ui.applyBackupBtn.addEventListener("click", applyBackupImport);
+  ui.repairBackupBtn?.addEventListener("click", repairAndApplyBackupImport);
   ui.closeBackupBtn.addEventListener("click", closeBackupModal);
 
   ui.backupModal.addEventListener("click", event => {
@@ -4219,6 +5145,90 @@ function bindEvents() {
   });
 
   ui.searchInput.addEventListener("input", renderDex);
+
+  ui.generationFilterSelect?.addEventListener("change", () => {
+    activeGenerationFilter = ui.generationFilterSelect.value || "all";
+    saveGlobalSetting(STORAGE_KEYS.generationFilter, activeGenerationFilter);
+    if (currentGameId) renderDex();
+  });
+
+  ui.sortFilterSelect?.addEventListener("change", () => {
+    activeSortMode = ui.sortFilterSelect.value || "dex";
+    saveGlobalSetting(STORAGE_KEYS.sortMode, activeSortMode);
+    if (currentGameId) renderDex();
+  });
+
+  ui.undoBtn?.addEventListener("click", undoLastAction);
+  ui.redoBtn?.addEventListener("click", redoLastAction);
+
+  ui.searchHelpBtn?.addEventListener("click", openSearchHelp);
+
+  document.addEventListener("keydown", event => {
+    if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "d") {
+      event.preventDefault();
+      const enabled = localStorage.getItem(STORAGE_KEYS.debugEnabled) === "1";
+      localStorage.setItem(STORAGE_KEYS.debugEnabled, enabled ? "0" : "1");
+      createDebugMenu();
+      createDebugToggleButton();
+      const panel = document.querySelector("#debugPanel");
+      isDebugPanelVisible = !enabled;
+      panel?.classList.toggle("hidden", enabled);
+      showToast(enabled ? "Debug désactivé." : "Debug activé.", "success");
+      return;
+    }
+
+    if (isTypingInForm(event)) return;
+
+    if (event.ctrlKey && !event.shiftKey && event.key.toLowerCase() === "z") {
+      event.preventDefault();
+      undoLastAction();
+      return;
+    }
+
+    if (event.ctrlKey && !event.shiftKey && event.key.toLowerCase() === "y") {
+      event.preventDefault();
+      redoLastAction();
+      return;
+    }
+
+    if (event.key === "/") {
+      event.preventDefault();
+      ui.searchInput?.focus();
+      return;
+    }
+
+    if (currentGameId && event.key.toLowerCase() === "m") {
+      ui.missingOnlyMode.checked = !ui.missingOnlyMode.checked;
+      saveGlobalSetting(STORAGE_KEYS.missingOnly, ui.missingOnlyMode.checked ? "1" : "0");
+      renderDex();
+      return;
+    }
+
+    if (currentGameId && event.key.toLowerCase() === "f") {
+      ui.favoritesOnlyMode.checked = !ui.favoritesOnlyMode.checked;
+      saveGlobalSetting(STORAGE_KEYS.favoritesOnly, ui.favoritesOnlyMode.checked ? "1" : "0");
+      renderDex();
+      return;
+    }
+
+    if (currentGameId && event.key.toLowerCase() === "s") {
+      ui.shinyMode.checked = !ui.shinyMode.checked;
+      saveCurrentDexShinyMode();
+      renderDex();
+      return;
+    }
+
+    if (event.key === "Escape") {
+      if (ui.genericModal && !ui.genericModal.classList.contains("hidden")) {
+        closeGenericModal();
+      } else if (currentGameId) {
+        renderHome();
+      } else if (isMenuOpen) {
+        setMenuOpen(false);
+      }
+      return;
+    }
+  });
 
   ui.langSelect.addEventListener("change", () => {
     saveGlobalSetting(STORAGE_KEYS.lang, ui.langSelect.value);
@@ -4268,6 +5278,7 @@ function bindEvents() {
   });
 
   ui.checkVisibleBtn.addEventListener("click", () => {
+    rememberHistory("tout cocher");
     const profile = getActiveProfile();
     const obtained = { ...getObtained() };
     const newlyObtainedIds = [];
@@ -4285,7 +5296,7 @@ function bindEvents() {
     saveObtained(obtained);
 
     if (profile) {
-      awardCompletedDexBonus(profile, currentGameId);
+      if (awardCompletedDexBonus(profile, currentGameId)) showDexCompletePopup(currentGameId);
       saveProfiles();
       showObjectiveAdvanceNotifications(getObjectiveAdvanceMessages(profile, currentGameId, newlyObtainedIds));
       completeFinishedObjectives(true);
@@ -4298,6 +5309,7 @@ function bindEvents() {
   });
 
   ui.uncheckVisibleBtn.addEventListener("click", () => {
+    rememberHistory("tout décocher");
     const obtained = { ...getObtained() };
 
     for (const pokemon of getFilteredPokemons()) {

@@ -127,12 +127,12 @@ export const games = [
     coverPokemonIds: [1, 4, 7],
   },
   {
-    id: "black-2-white-2",
+    id: "black-white-2",
     platform: "ds",
     name: "Pokémon Noir 2/Blanc 2",
     shortName: "Noir 2/Blanc 2",
     subtitle: "Unys Pokédex étendu",
-    dexUrl: "https://pokemondb.net/pokedex/game/black-2-white-2",
+    dexUrl: "https://pokemondb.net/pokedex/game/black-white-2",
     coverPokemonIds: [646, 647, 648],
     coverSprites: [
       { slug: "kyurem-black", name: "Kyurem Noir" },

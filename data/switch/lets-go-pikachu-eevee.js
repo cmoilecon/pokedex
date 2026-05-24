@@ -4,6 +4,10 @@ export const pokemons = [
     "slug": "bulbasaur",
     "imageSlug": "bulbasaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -16,6 +20,10 @@ export const pokemons = [
     "slug": "ivysaur",
     "imageSlug": "ivysaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -28,6 +36,10 @@ export const pokemons = [
     "slug": "venusaur",
     "imageSlug": "venusaur",
     "family": "1",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -40,6 +52,9 @@ export const pokemons = [
     "slug": "charmander",
     "imageSlug": "charmander",
     "family": "2",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -52,6 +67,9 @@ export const pokemons = [
     "slug": "charmeleon",
     "imageSlug": "charmeleon",
     "family": "2",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -64,6 +82,10 @@ export const pokemons = [
     "slug": "charizard",
     "imageSlug": "charizard",
     "family": "2",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -76,6 +98,9 @@ export const pokemons = [
     "slug": "squirtle",
     "imageSlug": "squirtle",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -88,6 +113,9 @@ export const pokemons = [
     "slug": "wartortle",
     "imageSlug": "wartortle",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -100,6 +128,9 @@ export const pokemons = [
     "slug": "blastoise",
     "imageSlug": "blastoise",
     "family": "3",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -112,6 +143,9 @@ export const pokemons = [
     "slug": "caterpie",
     "imageSlug": "caterpie",
     "family": "4",
+    "types": [
+      "bug"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -124,6 +158,9 @@ export const pokemons = [
     "slug": "metapod",
     "imageSlug": "metapod",
     "family": "4",
+    "types": [
+      "bug"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -136,6 +173,10 @@ export const pokemons = [
     "slug": "butterfree",
     "imageSlug": "butterfree",
     "family": "4",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -148,6 +189,10 @@ export const pokemons = [
     "slug": "weedle",
     "imageSlug": "weedle",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -160,6 +205,10 @@ export const pokemons = [
     "slug": "kakuna",
     "imageSlug": "kakuna",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -172,6 +221,10 @@ export const pokemons = [
     "slug": "beedrill",
     "imageSlug": "beedrill",
     "family": "5",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -184,6 +237,10 @@ export const pokemons = [
     "slug": "pidgey",
     "imageSlug": "pidgey",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -196,6 +253,10 @@ export const pokemons = [
     "slug": "pidgeotto",
     "imageSlug": "pidgeotto",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -208,6 +269,10 @@ export const pokemons = [
     "slug": "pidgeot",
     "imageSlug": "pidgeot",
     "family": "6",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -220,6 +285,9 @@ export const pokemons = [
     "slug": "rattata",
     "imageSlug": "rattata",
     "family": "7",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -232,6 +300,9 @@ export const pokemons = [
     "slug": "raticate",
     "imageSlug": "raticate",
     "family": "7",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -244,6 +315,10 @@ export const pokemons = [
     "slug": "spearow",
     "imageSlug": "spearow",
     "family": "8",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -256,6 +331,10 @@ export const pokemons = [
     "slug": "fearow",
     "imageSlug": "fearow",
     "family": "8",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -268,6 +347,9 @@ export const pokemons = [
     "slug": "ekans",
     "imageSlug": "ekans",
     "family": "9",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -280,6 +362,9 @@ export const pokemons = [
     "slug": "arbok",
     "imageSlug": "arbok",
     "family": "9",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -292,6 +377,9 @@ export const pokemons = [
     "slug": "pikachu",
     "imageSlug": "pikachu",
     "family": "10",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -304,6 +392,9 @@ export const pokemons = [
     "slug": "raichu",
     "imageSlug": "raichu",
     "family": "10",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -316,6 +407,9 @@ export const pokemons = [
     "slug": "sandshrew",
     "imageSlug": "sandshrew",
     "family": "11",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -328,6 +422,9 @@ export const pokemons = [
     "slug": "sandslash",
     "imageSlug": "sandslash",
     "family": "11",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -340,6 +437,9 @@ export const pokemons = [
     "slug": "nidoran-f",
     "imageSlug": "nidoran-f",
     "family": "12",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -352,6 +452,9 @@ export const pokemons = [
     "slug": "nidorina",
     "imageSlug": "nidorina",
     "family": "12",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -364,6 +467,10 @@ export const pokemons = [
     "slug": "nidoqueen",
     "imageSlug": "nidoqueen",
     "family": "12",
+    "types": [
+      "poison",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -376,6 +483,9 @@ export const pokemons = [
     "slug": "nidoran-m",
     "imageSlug": "nidoran-m",
     "family": "13",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -388,6 +498,9 @@ export const pokemons = [
     "slug": "nidorino",
     "imageSlug": "nidorino",
     "family": "13",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -400,6 +513,10 @@ export const pokemons = [
     "slug": "nidoking",
     "imageSlug": "nidoking",
     "family": "13",
+    "types": [
+      "poison",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -412,6 +529,9 @@ export const pokemons = [
     "slug": "clefairy",
     "imageSlug": "clefairy",
     "family": "14",
+    "types": [
+      "fairy"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -424,6 +544,9 @@ export const pokemons = [
     "slug": "clefable",
     "imageSlug": "clefable",
     "family": "14",
+    "types": [
+      "fairy"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -436,6 +559,9 @@ export const pokemons = [
     "slug": "vulpix",
     "imageSlug": "vulpix",
     "family": "15",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -448,6 +574,9 @@ export const pokemons = [
     "slug": "ninetales",
     "imageSlug": "ninetales",
     "family": "15",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -460,6 +589,10 @@ export const pokemons = [
     "slug": "jigglypuff",
     "imageSlug": "jigglypuff",
     "family": "16",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -472,6 +605,10 @@ export const pokemons = [
     "slug": "wigglytuff",
     "imageSlug": "wigglytuff",
     "family": "16",
+    "types": [
+      "normal",
+      "fairy"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -484,6 +621,10 @@ export const pokemons = [
     "slug": "zubat",
     "imageSlug": "zubat",
     "family": "17",
+    "types": [
+      "poison",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -496,6 +637,10 @@ export const pokemons = [
     "slug": "golbat",
     "imageSlug": "golbat",
     "family": "17",
+    "types": [
+      "poison",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -508,6 +653,10 @@ export const pokemons = [
     "slug": "oddish",
     "imageSlug": "oddish",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -520,6 +669,10 @@ export const pokemons = [
     "slug": "gloom",
     "imageSlug": "gloom",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -532,6 +685,10 @@ export const pokemons = [
     "slug": "vileplume",
     "imageSlug": "vileplume",
     "family": "18",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -544,6 +701,10 @@ export const pokemons = [
     "slug": "paras",
     "imageSlug": "paras",
     "family": "19",
+    "types": [
+      "bug",
+      "grass"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -556,6 +717,10 @@ export const pokemons = [
     "slug": "parasect",
     "imageSlug": "parasect",
     "family": "19",
+    "types": [
+      "bug",
+      "grass"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -568,6 +733,10 @@ export const pokemons = [
     "slug": "venonat",
     "imageSlug": "venonat",
     "family": "20",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -580,6 +749,10 @@ export const pokemons = [
     "slug": "venomoth",
     "imageSlug": "venomoth",
     "family": "20",
+    "types": [
+      "bug",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -592,6 +765,9 @@ export const pokemons = [
     "slug": "diglett",
     "imageSlug": "diglett",
     "family": "21",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -604,6 +780,9 @@ export const pokemons = [
     "slug": "dugtrio",
     "imageSlug": "dugtrio",
     "family": "21",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -616,6 +795,9 @@ export const pokemons = [
     "slug": "meowth",
     "imageSlug": "meowth",
     "family": "22",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -628,6 +810,9 @@ export const pokemons = [
     "slug": "persian",
     "imageSlug": "persian",
     "family": "22",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -640,6 +825,9 @@ export const pokemons = [
     "slug": "psyduck",
     "imageSlug": "psyduck",
     "family": "23",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -652,6 +840,9 @@ export const pokemons = [
     "slug": "golduck",
     "imageSlug": "golduck",
     "family": "23",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -664,6 +855,9 @@ export const pokemons = [
     "slug": "mankey",
     "imageSlug": "mankey",
     "family": "24",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -676,6 +870,9 @@ export const pokemons = [
     "slug": "primeape",
     "imageSlug": "primeape",
     "family": "24",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -688,6 +885,9 @@ export const pokemons = [
     "slug": "growlithe",
     "imageSlug": "growlithe",
     "family": "25",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -700,6 +900,9 @@ export const pokemons = [
     "slug": "arcanine",
     "imageSlug": "arcanine",
     "family": "25",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -712,6 +915,9 @@ export const pokemons = [
     "slug": "poliwag",
     "imageSlug": "poliwag",
     "family": "26",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -724,6 +930,9 @@ export const pokemons = [
     "slug": "poliwhirl",
     "imageSlug": "poliwhirl",
     "family": "26",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -736,6 +945,10 @@ export const pokemons = [
     "slug": "poliwrath",
     "imageSlug": "poliwrath",
     "family": "26",
+    "types": [
+      "water",
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -748,6 +961,9 @@ export const pokemons = [
     "slug": "abra",
     "imageSlug": "abra",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -760,6 +976,9 @@ export const pokemons = [
     "slug": "kadabra",
     "imageSlug": "kadabra",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -772,6 +991,9 @@ export const pokemons = [
     "slug": "alakazam",
     "imageSlug": "alakazam",
     "family": "27",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -784,6 +1006,9 @@ export const pokemons = [
     "slug": "machop",
     "imageSlug": "machop",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -796,6 +1021,9 @@ export const pokemons = [
     "slug": "machoke",
     "imageSlug": "machoke",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -808,6 +1036,9 @@ export const pokemons = [
     "slug": "machamp",
     "imageSlug": "machamp",
     "family": "28",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -820,6 +1051,10 @@ export const pokemons = [
     "slug": "bellsprout",
     "imageSlug": "bellsprout",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -832,6 +1067,10 @@ export const pokemons = [
     "slug": "weepinbell",
     "imageSlug": "weepinbell",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -844,6 +1083,10 @@ export const pokemons = [
     "slug": "victreebel",
     "imageSlug": "victreebel",
     "family": "29",
+    "types": [
+      "grass",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -856,6 +1099,10 @@ export const pokemons = [
     "slug": "tentacool",
     "imageSlug": "tentacool",
     "family": "30",
+    "types": [
+      "water",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -868,6 +1115,10 @@ export const pokemons = [
     "slug": "tentacruel",
     "imageSlug": "tentacruel",
     "family": "30",
+    "types": [
+      "water",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -880,6 +1131,10 @@ export const pokemons = [
     "slug": "geodude",
     "imageSlug": "geodude",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -892,6 +1147,10 @@ export const pokemons = [
     "slug": "graveler",
     "imageSlug": "graveler",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -904,6 +1163,10 @@ export const pokemons = [
     "slug": "golem",
     "imageSlug": "golem",
     "family": "31",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -916,6 +1179,9 @@ export const pokemons = [
     "slug": "ponyta",
     "imageSlug": "ponyta",
     "family": "32",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -928,6 +1194,9 @@ export const pokemons = [
     "slug": "rapidash",
     "imageSlug": "rapidash",
     "family": "32",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -940,6 +1209,10 @@ export const pokemons = [
     "slug": "slowpoke",
     "imageSlug": "slowpoke",
     "family": "33",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -952,6 +1225,10 @@ export const pokemons = [
     "slug": "slowbro",
     "imageSlug": "slowbro",
     "family": "33",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -964,6 +1241,10 @@ export const pokemons = [
     "slug": "magnemite",
     "imageSlug": "magnemite",
     "family": "34",
+    "types": [
+      "electric",
+      "steel"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -976,6 +1257,10 @@ export const pokemons = [
     "slug": "magneton",
     "imageSlug": "magneton",
     "family": "34",
+    "types": [
+      "electric",
+      "steel"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -988,6 +1273,10 @@ export const pokemons = [
     "slug": "farfetchd",
     "imageSlug": "farfetchd",
     "family": "35",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1000,6 +1289,10 @@ export const pokemons = [
     "slug": "doduo",
     "imageSlug": "doduo",
     "family": "36",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1012,6 +1305,10 @@ export const pokemons = [
     "slug": "dodrio",
     "imageSlug": "dodrio",
     "family": "36",
+    "types": [
+      "normal",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1024,6 +1321,9 @@ export const pokemons = [
     "slug": "seel",
     "imageSlug": "seel",
     "family": "37",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1036,6 +1336,10 @@ export const pokemons = [
     "slug": "dewgong",
     "imageSlug": "dewgong",
     "family": "37",
+    "types": [
+      "water",
+      "ice"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1048,6 +1352,9 @@ export const pokemons = [
     "slug": "grimer",
     "imageSlug": "grimer",
     "family": "38",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1060,6 +1367,9 @@ export const pokemons = [
     "slug": "muk",
     "imageSlug": "muk",
     "family": "38",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1072,6 +1382,9 @@ export const pokemons = [
     "slug": "shellder",
     "imageSlug": "shellder",
     "family": "39",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1084,6 +1397,10 @@ export const pokemons = [
     "slug": "cloyster",
     "imageSlug": "cloyster",
     "family": "39",
+    "types": [
+      "water",
+      "ice"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1096,6 +1413,10 @@ export const pokemons = [
     "slug": "gastly",
     "imageSlug": "gastly",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1108,6 +1429,10 @@ export const pokemons = [
     "slug": "haunter",
     "imageSlug": "haunter",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1120,6 +1445,10 @@ export const pokemons = [
     "slug": "gengar",
     "imageSlug": "gengar",
     "family": "40",
+    "types": [
+      "ghost",
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1132,6 +1461,10 @@ export const pokemons = [
     "slug": "onix",
     "imageSlug": "onix",
     "family": "41",
+    "types": [
+      "rock",
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1144,6 +1477,9 @@ export const pokemons = [
     "slug": "drowzee",
     "imageSlug": "drowzee",
     "family": "42",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1156,6 +1492,9 @@ export const pokemons = [
     "slug": "hypno",
     "imageSlug": "hypno",
     "family": "42",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1168,6 +1507,9 @@ export const pokemons = [
     "slug": "krabby",
     "imageSlug": "krabby",
     "family": "43",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1180,6 +1522,9 @@ export const pokemons = [
     "slug": "kingler",
     "imageSlug": "kingler",
     "family": "43",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1192,6 +1537,9 @@ export const pokemons = [
     "slug": "voltorb",
     "imageSlug": "voltorb",
     "family": "44",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1204,6 +1552,9 @@ export const pokemons = [
     "slug": "electrode",
     "imageSlug": "electrode",
     "family": "44",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1216,6 +1567,10 @@ export const pokemons = [
     "slug": "exeggcute",
     "imageSlug": "exeggcute",
     "family": "45",
+    "types": [
+      "grass",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1228,6 +1583,10 @@ export const pokemons = [
     "slug": "exeggutor",
     "imageSlug": "exeggutor",
     "family": "45",
+    "types": [
+      "grass",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1240,6 +1599,9 @@ export const pokemons = [
     "slug": "cubone",
     "imageSlug": "cubone",
     "family": "46",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1252,6 +1614,9 @@ export const pokemons = [
     "slug": "marowak",
     "imageSlug": "marowak",
     "family": "46",
+    "types": [
+      "ground"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1264,6 +1629,9 @@ export const pokemons = [
     "slug": "hitmonlee",
     "imageSlug": "hitmonlee",
     "family": "47",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1276,6 +1644,9 @@ export const pokemons = [
     "slug": "hitmonchan",
     "imageSlug": "hitmonchan",
     "family": "47",
+    "types": [
+      "fighting"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1288,6 +1659,9 @@ export const pokemons = [
     "slug": "lickitung",
     "imageSlug": "lickitung",
     "family": "48",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1300,6 +1674,9 @@ export const pokemons = [
     "slug": "koffing",
     "imageSlug": "koffing",
     "family": "49",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1312,6 +1689,9 @@ export const pokemons = [
     "slug": "weezing",
     "imageSlug": "weezing",
     "family": "49",
+    "types": [
+      "poison"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1324,6 +1704,10 @@ export const pokemons = [
     "slug": "rhyhorn",
     "imageSlug": "rhyhorn",
     "family": "50",
+    "types": [
+      "ground",
+      "rock"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1336,6 +1720,10 @@ export const pokemons = [
     "slug": "rhydon",
     "imageSlug": "rhydon",
     "family": "50",
+    "types": [
+      "ground",
+      "rock"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1348,6 +1736,9 @@ export const pokemons = [
     "slug": "chansey",
     "imageSlug": "chansey",
     "family": "51",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1360,6 +1751,9 @@ export const pokemons = [
     "slug": "tangela",
     "imageSlug": "tangela",
     "family": "52",
+    "types": [
+      "grass"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1372,6 +1766,9 @@ export const pokemons = [
     "slug": "kangaskhan",
     "imageSlug": "kangaskhan",
     "family": "53",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1384,6 +1781,9 @@ export const pokemons = [
     "slug": "horsea",
     "imageSlug": "horsea",
     "family": "54",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1396,6 +1796,9 @@ export const pokemons = [
     "slug": "seadra",
     "imageSlug": "seadra",
     "family": "54",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1408,6 +1811,9 @@ export const pokemons = [
     "slug": "goldeen",
     "imageSlug": "goldeen",
     "family": "55",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1420,6 +1826,9 @@ export const pokemons = [
     "slug": "seaking",
     "imageSlug": "seaking",
     "family": "55",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1432,6 +1841,9 @@ export const pokemons = [
     "slug": "staryu",
     "imageSlug": "staryu",
     "family": "56",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1444,6 +1856,10 @@ export const pokemons = [
     "slug": "starmie",
     "imageSlug": "starmie",
     "family": "56",
+    "types": [
+      "water",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1456,6 +1872,10 @@ export const pokemons = [
     "slug": "mr-mime",
     "imageSlug": "mr-mime",
     "family": "57",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1468,6 +1888,10 @@ export const pokemons = [
     "slug": "scyther",
     "imageSlug": "scyther",
     "family": "58",
+    "types": [
+      "bug",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1480,6 +1904,10 @@ export const pokemons = [
     "slug": "jynx",
     "imageSlug": "jynx",
     "family": "59",
+    "types": [
+      "ice",
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1492,6 +1920,9 @@ export const pokemons = [
     "slug": "electabuzz",
     "imageSlug": "electabuzz",
     "family": "60",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1504,6 +1935,9 @@ export const pokemons = [
     "slug": "magmar",
     "imageSlug": "magmar",
     "family": "61",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1516,6 +1950,9 @@ export const pokemons = [
     "slug": "pinsir",
     "imageSlug": "pinsir",
     "family": "62",
+    "types": [
+      "bug"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1528,6 +1965,9 @@ export const pokemons = [
     "slug": "tauros",
     "imageSlug": "tauros",
     "family": "63",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1540,6 +1980,9 @@ export const pokemons = [
     "slug": "magikarp",
     "imageSlug": "magikarp",
     "family": "64",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1552,6 +1995,10 @@ export const pokemons = [
     "slug": "gyarados",
     "imageSlug": "gyarados",
     "family": "64",
+    "types": [
+      "water",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1564,6 +2011,10 @@ export const pokemons = [
     "slug": "lapras",
     "imageSlug": "lapras",
     "family": "65",
+    "types": [
+      "water",
+      "ice"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1576,6 +2027,9 @@ export const pokemons = [
     "slug": "ditto",
     "imageSlug": "ditto",
     "family": "66",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1588,6 +2042,9 @@ export const pokemons = [
     "slug": "eevee",
     "imageSlug": "eevee",
     "family": "67",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1600,6 +2057,9 @@ export const pokemons = [
     "slug": "vaporeon",
     "imageSlug": "vaporeon",
     "family": "67",
+    "types": [
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1612,6 +2072,9 @@ export const pokemons = [
     "slug": "jolteon",
     "imageSlug": "jolteon",
     "family": "67",
+    "types": [
+      "electric"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1624,6 +2087,9 @@ export const pokemons = [
     "slug": "flareon",
     "imageSlug": "flareon",
     "family": "67",
+    "types": [
+      "fire"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1636,6 +2102,9 @@ export const pokemons = [
     "slug": "porygon",
     "imageSlug": "porygon",
     "family": "68",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1648,6 +2117,10 @@ export const pokemons = [
     "slug": "omanyte",
     "imageSlug": "omanyte",
     "family": "69",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1660,6 +2133,10 @@ export const pokemons = [
     "slug": "omastar",
     "imageSlug": "omastar",
     "family": "69",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1672,6 +2149,10 @@ export const pokemons = [
     "slug": "kabuto",
     "imageSlug": "kabuto",
     "family": "70",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1684,6 +2165,10 @@ export const pokemons = [
     "slug": "kabutops",
     "imageSlug": "kabutops",
     "family": "70",
+    "types": [
+      "rock",
+      "water"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1696,6 +2181,10 @@ export const pokemons = [
     "slug": "aerodactyl",
     "imageSlug": "aerodactyl",
     "family": "71",
+    "types": [
+      "rock",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1708,6 +2197,9 @@ export const pokemons = [
     "slug": "snorlax",
     "imageSlug": "snorlax",
     "family": "72",
+    "types": [
+      "normal"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1720,6 +2212,10 @@ export const pokemons = [
     "slug": "articuno",
     "imageSlug": "articuno",
     "family": "73",
+    "types": [
+      "ice",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1732,6 +2228,10 @@ export const pokemons = [
     "slug": "zapdos",
     "imageSlug": "zapdos",
     "family": "74",
+    "types": [
+      "electric",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1744,6 +2244,10 @@ export const pokemons = [
     "slug": "moltres",
     "imageSlug": "moltres",
     "family": "75",
+    "types": [
+      "fire",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1756,6 +2260,9 @@ export const pokemons = [
     "slug": "dratini",
     "imageSlug": "dratini",
     "family": "76",
+    "types": [
+      "dragon"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1768,6 +2275,9 @@ export const pokemons = [
     "slug": "dragonair",
     "imageSlug": "dragonair",
     "family": "76",
+    "types": [
+      "dragon"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1780,6 +2290,10 @@ export const pokemons = [
     "slug": "dragonite",
     "imageSlug": "dragonite",
     "family": "76",
+    "types": [
+      "dragon",
+      "flying"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1792,6 +2306,9 @@ export const pokemons = [
     "slug": "mewtwo",
     "imageSlug": "mewtwo",
     "family": "77",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1804,6 +2321,9 @@ export const pokemons = [
     "slug": "mew",
     "imageSlug": "mew",
     "family": "78",
+    "types": [
+      "psychic"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1816,6 +2336,9 @@ export const pokemons = [
     "slug": "meltan",
     "imageSlug": "meltan",
     "family": "428",
+    "types": [
+      "steel"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1828,6 +2351,9 @@ export const pokemons = [
     "slug": "melmetal",
     "imageSlug": "melmetal",
     "family": "429",
+    "types": [
+      "steel"
+    ],
     "sectionId": null,
     "sectionName": null,
     "names": {

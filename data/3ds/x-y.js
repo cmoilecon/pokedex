@@ -7,6 +7,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -22,6 +23,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -38,6 +40,7 @@ export const pokemons = [
       "grass",
       "fighting"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -53,6 +56,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -68,6 +72,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -84,6 +89,7 @@ export const pokemons = [
       "fire",
       "psychic"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -99,6 +105,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -114,6 +121,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -130,6 +138,7 @@ export const pokemons = [
       "water",
       "dark"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -145,6 +154,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -161,6 +171,7 @@ export const pokemons = [
       "normal",
       "ground"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -176,6 +187,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -191,6 +203,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -207,6 +220,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -223,6 +237,7 @@ export const pokemons = [
       "fire",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -239,6 +254,7 @@ export const pokemons = [
       "fire",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -255,6 +271,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -271,6 +288,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -287,6 +305,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -302,6 +321,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -317,6 +337,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -333,6 +354,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -348,6 +370,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -363,6 +386,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -379,6 +403,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -395,6 +420,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -411,6 +437,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -427,6 +454,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -442,6 +470,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -457,6 +486,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -472,6 +502,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -487,6 +518,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -502,6 +534,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -517,6 +550,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -532,6 +566,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -547,6 +582,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -562,6 +598,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -577,6 +614,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -593,6 +631,7 @@ export const pokemons = [
       "normal",
       "water"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -608,6 +647,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -624,6 +664,7 @@ export const pokemons = [
       "normal",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -640,6 +681,7 @@ export const pokemons = [
       "water",
       "fairy"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -656,6 +698,7 @@ export const pokemons = [
       "water",
       "fairy"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -671,6 +714,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -683,7 +727,11 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
-    "types": [],
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -700,6 +748,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -716,6 +765,7 @@ export const pokemons = [
       "bug",
       "water"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -732,6 +782,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -747,6 +798,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -763,6 +815,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -778,6 +831,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -794,6 +848,7 @@ export const pokemons = [
       "water",
       "dark"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -809,6 +864,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -824,6 +880,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -840,6 +897,7 @@ export const pokemons = [
       "water",
       "dark"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -856,6 +914,7 @@ export const pokemons = [
       "water",
       "dark"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -872,6 +931,7 @@ export const pokemons = [
       "fire",
       "normal"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -884,7 +944,11 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [],
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -900,6 +964,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -915,6 +980,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -931,6 +997,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -946,6 +1013,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -962,6 +1030,7 @@ export const pokemons = [
       "fighting",
       "steel"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -978,6 +1047,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -994,6 +1064,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1010,6 +1081,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1026,6 +1098,7 @@ export const pokemons = [
       "psychic",
       "fighting"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1041,6 +1114,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1056,6 +1130,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1071,6 +1146,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1087,6 +1163,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1103,6 +1180,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1119,6 +1197,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1135,6 +1214,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1151,6 +1231,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1167,6 +1248,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1183,6 +1265,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1198,6 +1281,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1213,6 +1297,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1229,6 +1314,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1245,6 +1331,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1261,6 +1348,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1276,6 +1364,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1291,6 +1380,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1307,6 +1397,7 @@ export const pokemons = [
       "fire",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1322,6 +1413,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1337,6 +1429,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1352,6 +1445,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1367,6 +1461,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1382,6 +1477,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1397,6 +1493,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1413,6 +1510,7 @@ export const pokemons = [
       "fighting",
       "dark"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1428,6 +1526,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1444,6 +1543,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1460,6 +1560,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1475,6 +1576,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1490,6 +1592,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1505,6 +1608,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1520,6 +1624,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1536,6 +1641,7 @@ export const pokemons = [
       "dark",
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1552,6 +1658,7 @@ export const pokemons = [
       "dark",
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1567,6 +1674,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1582,6 +1690,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1597,6 +1706,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1613,6 +1723,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1629,6 +1740,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1645,6 +1757,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1660,6 +1773,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1675,6 +1789,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1690,6 +1805,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1706,6 +1822,7 @@ export const pokemons = [
       "bug",
       "ground"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1722,6 +1839,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1738,6 +1856,7 @@ export const pokemons = [
       "bug",
       "ghost"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1753,6 +1872,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1765,7 +1885,10 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
-    "types": [],
+    "types": [
+      "psychic"
+    ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1781,6 +1904,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1797,6 +1921,7 @@ export const pokemons = [
       "steel",
       "ghost"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1813,6 +1938,7 @@ export const pokemons = [
       "steel",
       "ghost"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1825,7 +1951,11 @@ export const pokemons = [
     "slug": "aegislash",
     "imageSlug": "aegislash",
     "family": "349",
-    "types": [],
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1842,6 +1972,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1858,6 +1989,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1874,6 +2006,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1889,6 +2022,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1904,6 +2038,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1920,6 +2055,7 @@ export const pokemons = [
       "poison",
       "fighting"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1936,6 +2072,7 @@ export const pokemons = [
       "poison",
       "fighting"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1952,6 +2089,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1968,6 +2106,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1983,6 +2122,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -1998,6 +2138,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2013,6 +2154,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2028,6 +2170,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2043,6 +2186,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2058,6 +2202,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2074,6 +2219,7 @@ export const pokemons = [
       "grass",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2090,6 +2236,7 @@ export const pokemons = [
       "grass",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2106,6 +2253,7 @@ export const pokemons = [
       "grass",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2121,6 +2269,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2136,6 +2285,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2151,6 +2301,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2166,6 +2317,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2181,6 +2333,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2197,6 +2350,7 @@ export const pokemons = [
       "fighting",
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2213,6 +2367,7 @@ export const pokemons = [
       "fighting",
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2229,6 +2384,7 @@ export const pokemons = [
       "poison",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2245,6 +2401,7 @@ export const pokemons = [
       "poison",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2261,6 +2418,7 @@ export const pokemons = [
       "poison",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2276,6 +2434,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2291,6 +2450,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2306,6 +2466,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2322,6 +2483,7 @@ export const pokemons = [
       "rock",
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2338,6 +2500,7 @@ export const pokemons = [
       "psychic",
       "ghost"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2354,6 +2517,7 @@ export const pokemons = [
       "fire",
       "water"
     ],
+    "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
     "names": {
@@ -2370,6 +2534,7 @@ export const pokemons = [
       "ghost",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2386,6 +2551,7 @@ export const pokemons = [
       "ghost",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2401,6 +2567,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2416,6 +2583,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2431,6 +2599,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2446,6 +2615,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2461,6 +2631,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2476,6 +2647,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2491,6 +2663,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2507,6 +2680,7 @@ export const pokemons = [
       "dark",
       "psychic"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2523,6 +2697,7 @@ export const pokemons = [
       "dark",
       "psychic"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2539,6 +2714,7 @@ export const pokemons = [
       "rock",
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2555,6 +2731,7 @@ export const pokemons = [
       "rock",
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2570,6 +2747,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2585,6 +2763,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2601,6 +2780,7 @@ export const pokemons = [
       "dragon",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2617,6 +2797,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2633,6 +2814,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2649,6 +2831,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2665,6 +2848,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2681,6 +2865,7 @@ export const pokemons = [
       "rock",
       "water"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2697,6 +2882,7 @@ export const pokemons = [
       "rock",
       "water"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2713,6 +2899,7 @@ export const pokemons = [
       "bug",
       "rock"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2729,6 +2916,7 @@ export const pokemons = [
       "bug",
       "rock"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2745,6 +2933,7 @@ export const pokemons = [
       "water",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2761,6 +2950,7 @@ export const pokemons = [
       "water",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2776,6 +2966,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2791,6 +2982,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2806,6 +2998,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2822,6 +3015,7 @@ export const pokemons = [
       "poison",
       "water"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2838,6 +3032,7 @@ export const pokemons = [
       "poison",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2853,6 +3048,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2868,6 +3064,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2883,6 +3080,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2899,6 +3097,7 @@ export const pokemons = [
       "water",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2914,6 +3113,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2930,6 +3130,7 @@ export const pokemons = [
       "water",
       "ice"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2946,6 +3147,7 @@ export const pokemons = [
       "water",
       "poison"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2961,6 +3163,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2976,6 +3179,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -2992,6 +3196,7 @@ export const pokemons = [
       "water",
       "dragon"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3008,6 +3213,7 @@ export const pokemons = [
       "water",
       "rock"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3024,6 +3230,7 @@ export const pokemons = [
       "ground",
       "dark"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3040,6 +3247,7 @@ export const pokemons = [
       "ground",
       "dark"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3056,6 +3264,7 @@ export const pokemons = [
       "ground",
       "dark"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3072,6 +3281,7 @@ export const pokemons = [
       "electric",
       "normal"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3088,6 +3298,7 @@ export const pokemons = [
       "electric",
       "normal"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3103,6 +3314,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3118,6 +3330,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3134,6 +3347,7 @@ export const pokemons = [
       "ground",
       "rock"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3150,6 +3364,7 @@ export const pokemons = [
       "ground",
       "rock"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3166,6 +3381,7 @@ export const pokemons = [
       "ground",
       "rock"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3182,6 +3398,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3198,6 +3415,7 @@ export const pokemons = [
       "steel",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3214,6 +3432,7 @@ export const pokemons = [
       "psychic",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3230,6 +3449,7 @@ export const pokemons = [
       "psychic",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3245,6 +3465,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3260,6 +3481,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3275,6 +3497,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3290,6 +3513,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3305,6 +3529,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3320,6 +3545,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3336,6 +3562,7 @@ export const pokemons = [
       "steel",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3352,6 +3579,7 @@ export const pokemons = [
       "rock",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3368,6 +3596,7 @@ export const pokemons = [
       "rock",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3384,6 +3613,7 @@ export const pokemons = [
       "rock",
       "ice"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3400,6 +3630,7 @@ export const pokemons = [
       "rock",
       "ice"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3416,6 +3647,7 @@ export const pokemons = [
       "rock",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3432,6 +3664,7 @@ export const pokemons = [
       "grass",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3448,6 +3681,7 @@ export const pokemons = [
       "grass",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3463,6 +3697,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3478,6 +3713,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3493,6 +3729,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3508,6 +3745,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3524,6 +3762,7 @@ export const pokemons = [
       "dark",
       "fire"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3540,6 +3779,7 @@ export const pokemons = [
       "dark",
       "fire"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3555,6 +3795,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3570,6 +3811,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3585,6 +3827,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3600,6 +3843,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3615,6 +3859,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3630,6 +3875,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3645,6 +3891,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3660,6 +3907,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3675,6 +3923,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3691,6 +3940,7 @@ export const pokemons = [
       "electric",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3707,6 +3957,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3723,6 +3974,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3739,6 +3991,7 @@ export const pokemons = [
       "fighting",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3755,6 +4008,7 @@ export const pokemons = [
       "psychic",
       "flying"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3771,6 +4025,7 @@ export const pokemons = [
       "ground",
       "ghost"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3787,6 +4042,7 @@ export const pokemons = [
       "ground",
       "ghost"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3802,6 +4058,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3818,6 +4075,7 @@ export const pokemons = [
       "rock",
       "steel"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3833,6 +4091,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3848,6 +4107,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3863,6 +4123,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3878,6 +4139,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3894,6 +4156,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3910,6 +4173,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3926,6 +4190,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3942,6 +4207,7 @@ export const pokemons = [
       "poison",
       "dark"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3958,6 +4224,7 @@ export const pokemons = [
       "poison",
       "dark"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3973,6 +4240,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -3988,6 +4256,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4004,6 +4273,7 @@ export const pokemons = [
       "poison",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4019,6 +4289,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4034,6 +4305,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4050,6 +4322,7 @@ export const pokemons = [
       "poison",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4066,6 +4339,7 @@ export const pokemons = [
       "electric",
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4081,6 +4355,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4096,6 +4371,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4112,6 +4388,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4128,6 +4405,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4143,6 +4421,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4158,6 +4437,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4173,6 +4453,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4188,6 +4469,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4203,6 +4485,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4218,6 +4501,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4233,6 +4517,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4248,6 +4533,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4264,6 +4550,7 @@ export const pokemons = [
       "dark",
       "ghost"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4280,6 +4567,7 @@ export const pokemons = [
       "rock",
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4295,6 +4583,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4310,6 +4599,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4325,6 +4615,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4340,6 +4631,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4355,6 +4647,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4370,6 +4663,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4386,6 +4680,7 @@ export const pokemons = [
       "bug",
       "fighting"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4401,6 +4696,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4417,6 +4713,7 @@ export const pokemons = [
       "water",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4433,6 +4730,7 @@ export const pokemons = [
       "water",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4449,6 +4747,7 @@ export const pokemons = [
       "water",
       "psychic"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4465,6 +4764,7 @@ export const pokemons = [
       "grass",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4481,6 +4781,7 @@ export const pokemons = [
       "grass",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4497,6 +4798,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4513,6 +4815,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4529,6 +4832,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4544,6 +4848,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4559,6 +4864,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4574,6 +4880,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4589,6 +4896,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4604,6 +4912,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4620,6 +4929,7 @@ export const pokemons = [
       "water",
       "rock"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4636,6 +4946,7 @@ export const pokemons = [
       "water",
       "electric"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4652,6 +4963,7 @@ export const pokemons = [
       "water",
       "electric"
     ],
+    "generation": 2,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4667,6 +4979,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 5,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4683,6 +4996,7 @@ export const pokemons = [
       "water",
       "ice"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4699,6 +5013,7 @@ export const pokemons = [
       "ice",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4715,6 +5030,7 @@ export const pokemons = [
       "electric",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4731,6 +5047,7 @@ export const pokemons = [
       "fire",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "coastal-kalos",
     "sectionName": "Côte de Kalos",
     "names": {
@@ -4746,6 +5063,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4761,6 +5079,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4776,6 +5095,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4792,6 +5112,7 @@ export const pokemons = [
       "ground",
       "dragon"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4808,6 +5129,7 @@ export const pokemons = [
       "ground",
       "dragon"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4824,6 +5146,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4840,6 +5163,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4856,6 +5180,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4872,6 +5197,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4888,6 +5214,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4904,6 +5231,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4919,6 +5247,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4935,6 +5264,7 @@ export const pokemons = [
       "fire",
       "rock"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4951,6 +5281,7 @@ export const pokemons = [
       "bug",
       "rock"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4967,6 +5298,7 @@ export const pokemons = [
       "poison",
       "bug"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4983,6 +5315,7 @@ export const pokemons = [
       "poison",
       "dark"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -4999,6 +5332,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5015,6 +5349,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5030,6 +5365,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5045,6 +5381,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5060,6 +5397,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5075,6 +5413,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5091,6 +5430,7 @@ export const pokemons = [
       "bug",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5106,6 +5446,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5121,6 +5462,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5137,6 +5479,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5153,6 +5496,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5169,6 +5513,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5184,6 +5529,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5200,6 +5546,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5216,6 +5563,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5232,6 +5580,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5247,6 +5596,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5262,6 +5612,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5278,6 +5629,7 @@ export const pokemons = [
       "water",
       "fighting"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5293,6 +5645,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5308,6 +5661,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5323,6 +5677,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5339,6 +5694,7 @@ export const pokemons = [
       "ground",
       "electric"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5355,6 +5711,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5371,6 +5728,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5386,6 +5744,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5401,6 +5760,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5416,6 +5776,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5431,6 +5792,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5446,6 +5808,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5461,6 +5824,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5477,6 +5841,7 @@ export const pokemons = [
       "dark",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5493,6 +5858,7 @@ export const pokemons = [
       "dark",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5509,6 +5875,7 @@ export const pokemons = [
       "steel",
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5525,6 +5892,7 @@ export const pokemons = [
       "dark",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5541,6 +5909,7 @@ export const pokemons = [
       "dark",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5557,6 +5926,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5573,6 +5943,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5589,6 +5960,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5605,6 +5977,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5621,6 +5994,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5636,6 +6010,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5651,6 +6026,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5663,7 +6039,10 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5680,6 +6059,7 @@ export const pokemons = [
       "ghost",
       "grass"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5696,6 +6076,7 @@ export const pokemons = [
       "ghost",
       "grass"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5708,7 +6089,11 @@ export const pokemons = [
     "slug": "pumpkaboo",
     "imageSlug": "pumpkaboo",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5721,7 +6106,11 @@ export const pokemons = [
     "slug": "gourgeist",
     "imageSlug": "gourgeist",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5738,6 +6127,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5754,6 +6144,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5770,6 +6161,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5786,6 +6178,7 @@ export const pokemons = [
       "electric",
       "ghost"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5802,6 +6195,7 @@ export const pokemons = [
       "electric",
       "steel"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5818,6 +6212,7 @@ export const pokemons = [
       "electric",
       "steel"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5834,6 +6229,7 @@ export const pokemons = [
       "electric",
       "steel"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5849,6 +6245,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5864,6 +6261,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5879,6 +6277,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5894,6 +6293,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5910,6 +6310,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5926,6 +6327,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5942,6 +6344,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5957,6 +6360,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5972,6 +6376,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -5987,6 +6392,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6002,6 +6408,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6018,6 +6425,7 @@ export const pokemons = [
       "ice",
       "psychic"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6034,6 +6442,7 @@ export const pokemons = [
       "ice",
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6049,6 +6458,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6064,6 +6474,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6079,6 +6490,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6095,6 +6507,7 @@ export const pokemons = [
       "grass",
       "ice"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6111,6 +6524,7 @@ export const pokemons = [
       "grass",
       "ice"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6127,6 +6541,7 @@ export const pokemons = [
       "ice",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6143,6 +6558,7 @@ export const pokemons = [
       "dark",
       "ice"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6159,6 +6575,7 @@ export const pokemons = [
       "dark",
       "ice"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6174,6 +6591,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6189,6 +6607,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6204,6 +6623,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6219,6 +6639,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6234,6 +6655,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6249,6 +6671,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6265,6 +6688,7 @@ export const pokemons = [
       "steel",
       "rock"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6281,6 +6705,7 @@ export const pokemons = [
       "steel",
       "rock"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6297,6 +6722,7 @@ export const pokemons = [
       "steel",
       "rock"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6313,6 +6739,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6329,6 +6756,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6345,6 +6773,7 @@ export const pokemons = [
       "rock",
       "dark"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6360,6 +6789,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6376,6 +6806,7 @@ export const pokemons = [
       "bug",
       "steel"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6392,6 +6823,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6408,6 +6840,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6424,6 +6857,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6440,6 +6874,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6455,6 +6890,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6471,6 +6907,7 @@ export const pokemons = [
       "steel",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6487,6 +6924,7 @@ export const pokemons = [
       "flying",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6503,6 +6941,7 @@ export const pokemons = [
       "flying",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6519,6 +6958,7 @@ export const pokemons = [
       "ground",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6535,6 +6975,7 @@ export const pokemons = [
       "ground",
       "flying"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6551,6 +6992,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6567,6 +7009,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6583,6 +7026,7 @@ export const pokemons = [
       "normal",
       "fairy"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6599,6 +7043,7 @@ export const pokemons = [
       "normal",
       "fairy"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6615,6 +7060,7 @@ export const pokemons = [
       "normal",
       "fairy"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6630,6 +7076,7 @@ export const pokemons = [
     "types": [
       "ghost"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6645,6 +7092,7 @@ export const pokemons = [
     "types": [
       "ghost"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6660,6 +7108,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6675,6 +7124,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6690,6 +7140,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6705,6 +7156,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6720,6 +7172,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6735,6 +7188,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6750,6 +7204,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6765,6 +7220,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6780,6 +7236,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6795,6 +7252,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6810,6 +7268,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6825,6 +7284,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 4,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6841,6 +7301,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6857,6 +7318,7 @@ export const pokemons = [
       "bug",
       "steel"
     ],
+    "generation": 2,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6872,6 +7334,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6888,6 +7351,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6904,6 +7368,7 @@ export const pokemons = [
       "dragon",
       "flying"
     ],
+    "generation": 3,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6919,6 +7384,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6935,6 +7401,7 @@ export const pokemons = [
       "dark",
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6951,6 +7418,7 @@ export const pokemons = [
       "dark",
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6967,6 +7435,7 @@ export const pokemons = [
       "dark",
       "dragon"
     ],
+    "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6982,6 +7451,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -6997,6 +7467,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -7013,6 +7484,7 @@ export const pokemons = [
       "dragon",
       "flying"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -7028,6 +7500,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -7044,6 +7517,7 @@ export const pokemons = [
       "dark",
       "flying"
     ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -7056,7 +7530,11 @@ export const pokemons = [
     "slug": "zygarde",
     "imageSlug": "zygarde",
     "family": "370",
-    "types": [],
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {
@@ -7072,6 +7550,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 1,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
     "names": {

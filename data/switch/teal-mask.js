@@ -8,6 +8,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -24,6 +25,7 @@ export const pokemons = [
       "bug",
       "poison"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -40,6 +42,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -56,6 +59,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -72,6 +76,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -88,6 +93,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -103,6 +109,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -118,6 +125,7 @@ export const pokemons = [
     "types": [
       "dark"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -133,6 +141,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -148,6 +157,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -163,6 +173,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -179,6 +190,7 @@ export const pokemons = [
       "water",
       "dark"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -195,6 +207,7 @@ export const pokemons = [
       "bug",
       "grass"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -211,6 +224,7 @@ export const pokemons = [
       "bug",
       "grass"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -227,6 +241,7 @@ export const pokemons = [
       "bug",
       "grass"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -243,6 +258,7 @@ export const pokemons = [
       "bug",
       "fairy"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -259,6 +275,7 @@ export const pokemons = [
       "bug",
       "fairy"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -274,6 +291,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -289,6 +307,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -304,6 +323,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -319,6 +339,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -334,6 +355,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -350,6 +372,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -366,6 +389,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -382,6 +406,7 @@ export const pokemons = [
       "grass",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -397,6 +422,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -412,6 +438,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -428,6 +455,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -444,6 +472,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -460,6 +489,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -475,6 +505,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -490,6 +521,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -506,6 +538,7 @@ export const pokemons = [
       "grass",
       "dragon"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -522,6 +555,7 @@ export const pokemons = [
       "grass",
       "dragon"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -538,6 +572,7 @@ export const pokemons = [
       "grass",
       "dragon"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -554,6 +589,7 @@ export const pokemons = [
       "grass",
       "dragon"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -569,6 +605,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -584,6 +621,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -599,6 +637,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -614,6 +653,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -630,6 +670,7 @@ export const pokemons = [
       "water",
       "fighting"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -645,6 +686,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -660,6 +702,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -676,6 +719,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -692,6 +736,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -708,6 +753,7 @@ export const pokemons = [
       "normal",
       "flying"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -723,6 +769,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -738,6 +785,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -754,6 +802,7 @@ export const pokemons = [
       "bug",
       "fighting"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -770,6 +819,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -786,6 +836,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -802,6 +853,7 @@ export const pokemons = [
       "ice",
       "ground"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -817,6 +869,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -832,6 +885,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -848,6 +902,7 @@ export const pokemons = [
       "grass",
       "dark"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -864,6 +919,7 @@ export const pokemons = [
       "grass",
       "dark"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -880,6 +936,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -896,6 +953,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -912,6 +970,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -928,6 +987,7 @@ export const pokemons = [
       "psychic",
       "fighting"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -943,6 +1003,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -958,6 +1019,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -973,6 +1035,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -988,6 +1051,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1004,6 +1068,7 @@ export const pokemons = [
       "fighting",
       "steel"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1019,6 +1084,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1034,6 +1100,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1050,6 +1117,7 @@ export const pokemons = [
       "ghost",
       "grass"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1066,6 +1134,7 @@ export const pokemons = [
       "ghost",
       "grass"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1081,6 +1150,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1093,7 +1163,10 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [],
+    "types": [
+      "rock"
+    ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1109,6 +1182,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1124,6 +1198,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1140,6 +1215,7 @@ export const pokemons = [
       "ground",
       "grass"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1156,6 +1232,7 @@ export const pokemons = [
       "ground",
       "grass"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1172,6 +1249,7 @@ export const pokemons = [
       "grass",
       "ghost"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1188,6 +1266,7 @@ export const pokemons = [
       "grass",
       "ghost"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1203,6 +1282,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1218,6 +1298,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1234,6 +1315,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1250,6 +1332,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1266,6 +1349,7 @@ export const pokemons = [
       "rock",
       "ground"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1281,6 +1365,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1296,6 +1381,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1311,6 +1397,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1326,6 +1413,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1341,6 +1429,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1357,6 +1446,7 @@ export const pokemons = [
       "flying",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1373,6 +1463,7 @@ export const pokemons = [
       "flying",
       "dragon"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1388,6 +1479,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1403,6 +1495,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1418,6 +1511,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1433,6 +1527,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1449,6 +1544,7 @@ export const pokemons = [
       "psychic",
       "fairy"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1461,7 +1557,11 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1477,6 +1577,7 @@ export const pokemons = [
     "types": [
       "steel"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1492,6 +1593,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1504,7 +1606,10 @@ export const pokemons = [
     "slug": "maushold",
     "imageSlug": "maushold",
     "family": "485",
-    "types": [],
+    "types": [
+      "normal"
+    ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1520,6 +1625,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1535,6 +1641,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1551,6 +1658,7 @@ export const pokemons = [
       "fighting",
       "ghost"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1566,6 +1674,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1581,6 +1690,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1597,6 +1707,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1613,6 +1724,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1629,6 +1741,7 @@ export const pokemons = [
       "water",
       "grass"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1644,6 +1757,7 @@ export const pokemons = [
     "types": [
       "rock"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1660,6 +1774,7 @@ export const pokemons = [
       "rock",
       "steel"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1675,6 +1790,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1690,6 +1806,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1705,6 +1822,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1720,6 +1838,7 @@ export const pokemons = [
     "types": [
       "bug"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1736,6 +1855,7 @@ export const pokemons = [
       "bug",
       "electric"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1752,6 +1872,7 @@ export const pokemons = [
       "bug",
       "electric"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1764,7 +1885,11 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [],
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1780,6 +1905,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1795,6 +1921,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1811,6 +1938,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1827,6 +1955,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1843,6 +1972,7 @@ export const pokemons = [
       "ghost",
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1859,6 +1989,7 @@ export const pokemons = [
       "ground",
       "flying"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1875,6 +2006,7 @@ export const pokemons = [
       "ground",
       "flying"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1891,6 +2023,7 @@ export const pokemons = [
       "dark",
       "fire"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1907,6 +2040,7 @@ export const pokemons = [
       "dark",
       "fire"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1922,6 +2056,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1937,6 +2072,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1953,6 +2089,7 @@ export const pokemons = [
       "dark",
       "flying"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1969,6 +2106,7 @@ export const pokemons = [
       "dark",
       "flying"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1984,6 +2122,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1999,6 +2138,7 @@ export const pokemons = [
     "types": [
       "ground"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2014,6 +2154,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2030,6 +2171,7 @@ export const pokemons = [
       "dragon",
       "fighting"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2046,6 +2188,7 @@ export const pokemons = [
       "dragon",
       "fighting"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2062,6 +2205,7 @@ export const pokemons = [
       "flying",
       "dark"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2077,6 +2221,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2092,6 +2237,7 @@ export const pokemons = [
     "types": [
       "poison"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2107,6 +2253,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2122,6 +2269,7 @@ export const pokemons = [
     "types": [
       "fighting"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2137,6 +2285,7 @@ export const pokemons = [
     "types": [
       "ghost"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2152,6 +2301,7 @@ export const pokemons = [
     "types": [
       "ghost"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2167,6 +2317,7 @@ export const pokemons = [
     "types": [
       "ghost"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2182,6 +2333,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2197,6 +2349,7 @@ export const pokemons = [
     "types": [
       "psychic"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2212,6 +2365,7 @@ export const pokemons = [
     "types": [
       "fire"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2228,6 +2382,7 @@ export const pokemons = [
       "fire",
       "rock"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2244,6 +2399,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2260,6 +2416,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2276,6 +2433,7 @@ export const pokemons = [
       "ghost",
       "fire"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2292,6 +2450,7 @@ export const pokemons = [
       "bug",
       "water"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2308,6 +2467,7 @@ export const pokemons = [
       "bug",
       "flying"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2323,6 +2483,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2338,6 +2499,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2353,6 +2515,7 @@ export const pokemons = [
     "types": [
       "fairy"
     ],
+    "generation": 1,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2369,6 +2532,7 @@ export const pokemons = [
       "steel",
       "psychic"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2385,6 +2549,7 @@ export const pokemons = [
       "steel",
       "psychic"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2401,6 +2566,7 @@ export const pokemons = [
       "rock",
       "poison"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2417,6 +2583,7 @@ export const pokemons = [
       "rock",
       "poison"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2432,6 +2599,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2447,6 +2615,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2462,6 +2631,7 @@ export const pokemons = [
     "types": [
       "normal"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2474,7 +2644,10 @@ export const pokemons = [
     "slug": "dudunsparce",
     "imageSlug": "dudunsparce",
     "family": "103",
-    "types": [],
+    "types": [
+      "normal"
+    ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2491,6 +2664,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2507,6 +2681,7 @@ export const pokemons = [
       "water",
       "ground"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2523,6 +2698,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2539,6 +2715,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2555,6 +2732,7 @@ export const pokemons = [
       "dragon",
       "ground"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2571,6 +2749,7 @@ export const pokemons = [
       "rock",
       "fairy"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2587,6 +2766,7 @@ export const pokemons = [
       "poison",
       "fire"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2603,6 +2783,7 @@ export const pokemons = [
       "poison",
       "fire"
     ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2619,6 +2800,7 @@ export const pokemons = [
       "dark",
       "ice"
     ],
+    "generation": 2,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2635,6 +2817,7 @@ export const pokemons = [
       "dark",
       "ice"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2650,6 +2833,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2665,6 +2849,7 @@ export const pokemons = [
     "types": [
       "ice"
     ],
+    "generation": 3,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2681,6 +2866,7 @@ export const pokemons = [
       "ice",
       "ghost"
     ],
+    "generation": 4,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2696,6 +2882,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2711,6 +2898,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2726,6 +2914,7 @@ export const pokemons = [
     "types": [
       "electric"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2741,6 +2930,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2756,6 +2946,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2771,6 +2962,7 @@ export const pokemons = [
     "types": [
       "dragon"
     ],
+    "generation": 6,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2787,6 +2979,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2803,6 +2996,7 @@ export const pokemons = [
       "water",
       "flying"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2818,6 +3012,7 @@ export const pokemons = [
     "types": [
       "water"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2834,6 +3029,7 @@ export const pokemons = [
       "water",
       "rock"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2850,6 +3046,7 @@ export const pokemons = [
       "flying",
       "water"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2866,6 +3063,7 @@ export const pokemons = [
       "dark",
       "steel"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2882,6 +3080,7 @@ export const pokemons = [
       "dark",
       "steel"
     ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2898,6 +3097,7 @@ export const pokemons = [
       "dark",
       "steel"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2910,7 +3110,11 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "generation": 7,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2927,6 +3131,7 @@ export const pokemons = [
       "dark",
       "fairy"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2943,6 +3148,7 @@ export const pokemons = [
       "dark",
       "fairy"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2959,6 +3165,7 @@ export const pokemons = [
       "dark",
       "fairy"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2971,7 +3178,11 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2984,7 +3195,10 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
+    "generation": 5,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2997,7 +3211,11 @@ export const pokemons = [
     "slug": "basculegion",
     "imageSlug": "basculegion",
     "family": "280",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3014,6 +3232,7 @@ export const pokemons = [
       "ground",
       "normal"
     ],
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3030,6 +3249,7 @@ export const pokemons = [
       "poison",
       "fighting"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3046,6 +3266,7 @@ export const pokemons = [
       "poison",
       "psychic"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3062,6 +3283,7 @@ export const pokemons = [
       "poison",
       "fairy"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3077,6 +3299,7 @@ export const pokemons = [
     "types": [
       "grass"
     ],
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {

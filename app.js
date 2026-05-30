@@ -918,6 +918,22 @@ function getVisiblePokemonsForGame(profile, gameId) {
   return pokemons.filter(pokemon => !isPokemonAlreadyInBaseGame(profile, gameId, pokemon));
 }
 
+function getPokemonDisplayNumber(pokemon, gameId = currentGameId, profile = getActiveProfile()) {
+  const visiblePokemons = getVisiblePokemonsForGame(profile, gameId);
+
+  const directIndex = visiblePokemons.indexOf(pokemon);
+  if (directIndex >= 0) return directIndex + 1;
+
+  const pokemonKey = getPokemonStorageKey(pokemon);
+  const keyIndex = visiblePokemons.findIndex(item => getPokemonStorageKey(item) === pokemonKey);
+  if (keyIndex >= 0) return keyIndex + 1;
+
+  const sameIndex = visiblePokemons.findIndex(item => isSamePokemonForLink(item, pokemon));
+  if (sameIndex >= 0) return sameIndex + 1;
+
+  return Number(pokemon?.id) || 0;
+}
+
 function cleanDlcBaseDuplicates(profile) {
   if (!profile || !isDlcOnlyNewMode(profile)) return 0;
 
@@ -1982,13 +1998,17 @@ function getFilteredPokemons() {
     if (commandFilters.obtained && !isObtained) return false;
 
     const id = String(pokemon.id).padStart(3, "0");
-    if (commandFilters.ids.length && !commandFilters.ids.some(value => id.includes(value.padStart(3, "0")) || String(pokemon.id).includes(value))) return false;
+    const displayId = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
+    if (commandFilters.ids.length && !commandFilters.ids.some(value => {
+      const padded = value.padStart(3, "0");
+      return id.includes(padded) || displayId.includes(padded) || String(pokemon.id).includes(value) || String(getPokemonDisplayNumber(pokemon)).includes(value);
+    })) return false;
 
     const frName = (pokemon.names?.fr || "").toLowerCase();
     const enName = (pokemon.names?.en || "").toLowerCase();
     const currentName = getPokemonName(pokemon).toLowerCase();
 
-    return simpleTerms.every(term => id.includes(term) || frName.includes(term) || enName.includes(term) || currentName.includes(term));
+    return simpleTerms.every(term => id.includes(term) || displayId.includes(term) || frName.includes(term) || enName.includes(term) || currentName.includes(term));
   });
 
   return applyPokemonSort(filtered);
@@ -3567,7 +3587,8 @@ function updateDisplayedPokemonPanel(pokemons) {
   if (!count || !detail) return;
 
   const displayedTotal = pokemons.length;
-  const dexTotal = getPokemonsForGame(currentGameId).length;
+  const profile = getActiveProfile();
+  const dexTotal = getVisiblePokemonsForGame(profile, currentGameId).length;
 
   count.textContent = String(displayedTotal);
 
@@ -3617,7 +3638,7 @@ function renderDex() {
       </div>
 
       <div class="info-zone">
-        <div class="number">${String(pokemon.id).padStart(3, "0")}</div>
+        <div class="number">${String(getPokemonDisplayNumber(pokemon)).padStart(3, "0")}</div>
         <div class="name">${escapeHtml(name)}</div>
         <div class="check">${isObtained ? (isLocked && ui.shinyMode.checked ? "🔒" : "✅") : "☐"}</div>
       </div>

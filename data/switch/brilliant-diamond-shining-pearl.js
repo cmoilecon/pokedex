@@ -746,10 +746,7 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
-    "types": [
-      "bug",
-      "grass"
-    ],
+    "types": [],
     "generation": 4,
     "sectionId": null,
     "sectionName": null,

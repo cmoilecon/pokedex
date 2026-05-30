@@ -603,10 +603,7 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [
-      "fire",
-      "normal"
-    ],
+    "types": [],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -1214,10 +1211,7 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [
-      "fire",
-      "flying"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1727,9 +1721,7 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
-    "types": [
-      "psychic"
-    ],
+    "types": [],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -1743,10 +1735,7 @@ export const pokemons = [
     "slug": "minior",
     "imageSlug": "minior",
     "family": "400",
-    "types": [
-      "rock",
-      "flying"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,

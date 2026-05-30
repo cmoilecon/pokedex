@@ -171,10 +171,10 @@ export const pokemons = [
     "imageSlug": "mr-mime-galarian",
     "family": "57",
     "types": [
-      "ice",
-      "psychic"
+      "psychic",
+      "fairy"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -747,10 +747,7 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [
-      "ghost",
-      "fairy"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1043,9 +1040,7 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [
-      "water"
-    ],
+    "types": [],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -1158,10 +1153,9 @@ export const pokemons = [
     "imageSlug": "zigzagoon-galarian",
     "family": "134",
     "types": [
-      "dark",
       "normal"
     ],
-    "generation": 3,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1175,10 +1169,9 @@ export const pokemons = [
     "imageSlug": "linoone-galarian",
     "family": "134",
     "types": [
-      "dark",
       "normal"
     ],
-    "generation": 3,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1470,9 +1463,7 @@ export const pokemons = [
     "slug": "eiscue",
     "imageSlug": "eiscue",
     "family": "457",
-    "types": [
-      "ice"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1687,9 +1678,9 @@ export const pokemons = [
     "imageSlug": "darumaka-galarian",
     "family": "282",
     "types": [
-      "ice"
+      "fire"
     ],
-    "generation": 5,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1702,9 +1693,7 @@ export const pokemons = [
     "slug": "darmanitan",
     "imageSlug": "darmanitan-galarian-standard",
     "family": "282",
-    "types": [
-      "ice"
-    ],
+    "types": [],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -1719,9 +1708,9 @@ export const pokemons = [
     "imageSlug": "ponyta-galarian",
     "family": "32",
     "types": [
-      "psychic"
+      "fire"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1735,10 +1724,9 @@ export const pokemons = [
     "imageSlug": "rapidash-galarian",
     "family": "32",
     "types": [
-      "psychic",
-      "fairy"
+      "fire"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -2586,10 +2574,7 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [
-      "electric",
-      "dark"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -2819,10 +2804,7 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [
-      "psychic",
-      "normal"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3335,10 +3317,10 @@ export const pokemons = [
     "imageSlug": "articuno-galarian",
     "family": "73",
     "types": [
-      "psychic",
+      "ice",
       "flying"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3352,10 +3334,10 @@ export const pokemons = [
     "imageSlug": "zapdos-galarian",
     "family": "74",
     "types": [
-      "fighting",
+      "electric",
       "flying"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -3369,10 +3351,10 @@ export const pokemons = [
     "imageSlug": "moltres-galarian",
     "family": "75",
     "types": [
-      "dark",
+      "fire",
       "flying"
     ],
-    "generation": 1,
+    "generation": 8,
     "sectionId": null,
     "sectionName": null,
     "names": {

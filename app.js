@@ -291,6 +291,7 @@ const ui = {
   setupDexChoices: $("#setupDexChoices"),
   setupNationalLinked: $("#setupNationalLinked"),
   setupDlcLinked: $("#setupDlcLinked"),
+  setupDlcOnlyNew: $("#setupDlcOnlyNew"),
   selectAllDexBtn: $("#selectAllDexBtn"),
   unselectAllDexBtn: $("#unselectAllDexBtn"),
   createFirstProfileBtn: $("#createFirstProfileBtn"),
@@ -594,6 +595,13 @@ function redoLastAction() {
 }
 
 function getPokemonGeneration(pokemon) {
+  const formSlug = `${pokemon?.imageSlug || ""}-${pokemon?.slug || ""}`.toLowerCase();
+
+  if (formSlug.includes("galar")) return 8;
+  if (formSlug.includes("alola")) return 7;
+  if (formSlug.includes("hisui")) return 8;
+  if (formSlug.includes("paldea")) return 9;
+
   const fromData = Number(pokemon?.generation);
   if (Number.isInteger(fromData) && fromData >= 1 && fromData <= 9) return fromData;
 
@@ -816,6 +824,10 @@ function getPokeBipSlug(pokemon) {
     .replace(/['’]/g, "")
     .replace(/\./g, "")
     .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-de-galar$/g, "-galar")
+    .replace(/-d-alola$/g, "-alola")
+    .replace(/-de-hisui$/g, "-hisui")
+    .replace(/-de-paldea$/g, "-paldea")
     .replace(/^-|-$/g, "");
 }
 
@@ -833,6 +845,10 @@ function isNationalLinked(profile = getActiveProfile()) {
 
 function isDlcLinked(profile = getActiveProfile()) {
   return Boolean(profile?.settings?.dlcLinked);
+}
+
+function isDlcOnlyNewMode(profile = getActiveProfile()) {
+  return Boolean(profile?.settings?.dlcOnlyNew);
 }
 
 function getDlcLinkGroup(gameId) {
@@ -883,10 +899,63 @@ function isSamePokemonForLink(sourcePokemon, targetPokemon) {
     || (sourcePokemon.slug && sourcePokemon.slug === targetPokemon.slug);
 }
 
+function isPokemonAlreadyInBaseGame(profile, gameId, pokemon) {
+  if (!profile || !isDlcGameForDlcLink(gameId)) return false;
+
+  const baseGameId = getDlcBaseGameId(gameId);
+  if (!baseGameId || !(profile.enabledDexes || []).includes(baseGameId)) return false;
+
+  return getPokemonsForGame(baseGameId).some(basePokemon => isSamePokemonForLink(basePokemon, pokemon));
+}
+
+function getVisiblePokemonsForGame(profile, gameId) {
+  const pokemons = getPokemonsForGame(gameId);
+
+  if (!profile || !isDlcOnlyNewMode(profile) || !isDlcGameForDlcLink(gameId)) {
+    return pokemons;
+  }
+
+  return pokemons.filter(pokemon => !isPokemonAlreadyInBaseGame(profile, gameId, pokemon));
+}
+
+function cleanDlcBaseDuplicates(profile) {
+  if (!profile || !isDlcOnlyNewMode(profile)) return 0;
+
+  let removed = 0;
+
+  for (const group of DLC_LINK_GROUPS) {
+    const baseGameId = group[0];
+    if (!(profile.enabledDexes || []).includes(baseGameId)) continue;
+
+    for (const dlcGameId of group.slice(1)) {
+      if (!(profile.enabledDexes || []).includes(dlcGameId)) continue;
+
+      const state = getProfileDexState(profile, dlcGameId);
+      state.obtained ||= {};
+      state.shinyLocked ||= {};
+
+      for (const dlcPokemon of getPokemonsForGame(dlcGameId)) {
+        if (!isPokemonAlreadyInBaseGame(profile, dlcGameId, dlcPokemon)) continue;
+
+        const key = getPokemonStorageKey(dlcPokemon);
+        if (state.obtained[key] || state.obtained[dlcPokemon.id] || state.shinyLocked[key] || state.shinyLocked[dlcPokemon.id]) {
+          delete state.obtained[key];
+          delete state.obtained[dlcPokemon.id];
+          delete state.shinyLocked[key];
+          delete state.shinyLocked[dlcPokemon.id];
+          removed++;
+        }
+      }
+    }
+  }
+
+  return removed;
+}
+
 function getLinkedPokemonTargets(profile, gameId, pokemon) {
   const targets = [{ gameId, pokemon, key: getPokemonStorageKey(pokemon) }];
 
-  if (!profile || !isDlcLinked(profile) || !isBaseGameForDlcLink(gameId)) {
+  if (!profile || !isDlcLinked(profile) || isDlcOnlyNewMode(profile) || !isBaseGameForDlcLink(gameId)) {
     return targets;
   }
 
@@ -926,7 +995,7 @@ function isPokemonObtainedInGame(profile, gameId, pokemon) {
     }
   }
 
-  if (gameId !== "national" && isDlcLinked(profile) && isDlcGameForDlcLink(gameId)) {
+  if (gameId !== "national" && isDlcLinked(profile) && !isDlcOnlyNewMode(profile) && isDlcGameForDlcLink(gameId)) {
     const baseGameId = getDlcBaseGameId(gameId);
 
     if (baseGameId && (profile.enabledDexes || []).includes(baseGameId)) {
@@ -970,7 +1039,7 @@ function setPokemonObtainedLinked(profile, gameId, pokemon, value) {
 }
 
 function syncDlcLinksForProfile(profile) {
-  if (!profile || !isDlcLinked(profile)) return 0;
+  if (!profile || !isDlcLinked(profile) || isDlcOnlyNewMode(profile)) return 0;
 
   const enabled = new Set(profile.enabledDexes || []);
   let syncedCount = 0;
@@ -1019,7 +1088,7 @@ function isPokemonShinyLocked(pokemon) {
 }
 
 function calculateGameProgress(profile, gameId) {
-  const pokemons = getPokemonsForGame(gameId);
+  const pokemons = getVisiblePokemonsForGame(profile, gameId);
   const total = pokemons.length;
   let done = 0;
 
@@ -1046,7 +1115,7 @@ function getDexLevelFromCompletion(completion) {
 
 function isDexShinyComplete(profile, gameId, includeShinyLocks = false) {
   const state = getProfileDexState(profile, gameId);
-  const pokemons = getPokemonsForGame(gameId);
+  const pokemons = getVisiblePokemonsForGame(profile, gameId);
   const obtained = state.obtained || {};
   const shinyLocked = state.shinyLocked || {};
 
@@ -1354,7 +1423,7 @@ function getMissingPokemonIdsForObjective(profile, gameId) {
   const obtained = state.obtained || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
 
-  return getPokemonsForGame(gameId)
+  return getVisiblePokemonsForGame(profile, gameId)
     .filter(pokemon => !isPokemonObtainedInGame(profile, gameId, pokemon))
     .filter(pokemon => !alreadyTargeted.has(String(pokemon.id)))
     .map(pokemon => pokemon.id);
@@ -1386,7 +1455,7 @@ function getNextMissingObjectiveCandidate(profile, gameId) {
   const obtained = state.obtained || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
 
-  const nextMissing = getPokemonsForGame(gameId)
+  const nextMissing = getVisiblePokemonsForGame(profile, gameId)
     .filter(pokemon => !isPokemonObtainedInGame(profile, gameId, pokemon))
     .filter(pokemon => !alreadyTargeted.has(String(pokemon.id)))
     .slice(0, 3);
@@ -1408,7 +1477,7 @@ function getNearbyMissingObjectiveCandidates(profile, gameId) {
   const state = getProfileDexState(profile, gameId);
   const obtained = state.obtained || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
-  const pokemons = getPokemonsForGame(gameId);
+  const pokemons = getVisiblePokemonsForGame(profile, gameId);
 
   const candidates = [];
 
@@ -1434,7 +1503,7 @@ function getNearbyMissingObjectiveCandidates(profile, gameId) {
 }
 
 function getFamilyObjectiveCandidates(profile, gameId) {
-  const pokemons = getPokemonsForGame(gameId);
+  const pokemons = getVisiblePokemonsForGame(profile, gameId);
   const state = getProfileDexState(profile, gameId);
   const obtained = state.obtained || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
@@ -1474,7 +1543,7 @@ function getFamilyObjectiveCandidates(profile, gameId) {
 }
 
 function getTypeObjectiveCandidates(profile, gameId) {
-  const pokemons = getPokemonsForGame(gameId);
+  const pokemons = getVisiblePokemonsForGame(profile, gameId);
   const state = getProfileDexState(profile, gameId);
   const obtained = state.obtained || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
@@ -1513,7 +1582,7 @@ function getFavoriteObjectiveCandidates(profile, gameId) {
   const obtained = state.obtained || {};
   const favorites = state.favorites || {};
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
-  const missingFavorites = getPokemonsForGame(gameId)
+  const missingFavorites = getVisiblePokemonsForGame(profile, gameId)
     .filter(pokemon => favorites[getPokemonStorageKey(pokemon)] || favorites[pokemon.id])
     .filter(pokemon => !isPokemonObtainedInGame(profile, gameId, pokemon))
     .filter(pokemon => !alreadyTargeted.has(String(pokemon.id)));
@@ -1537,7 +1606,7 @@ function getGenerationObjectiveCandidates(profile, gameId) {
   const alreadyTargeted = getAlreadyTargetedPokemonIds(profile, gameId);
   const byGeneration = new Map();
 
-  for (const pokemon of getPokemonsForGame(gameId)) {
+  for (const pokemon of getVisiblePokemonsForGame(profile, gameId)) {
     if (isPokemonObtainedInGame(profile, gameId, pokemon) || alreadyTargeted.has(String(pokemon.id))) continue;
     const generation = getPokemonGeneration(pokemon);
     if (!generation) continue;
@@ -1816,8 +1885,8 @@ function showObjectiveAdvanceNotifications(messages) {
 function getFilteredPokemons() {
   const rawSearch = ui.searchInput.value.trim();
   const search = rawSearch.toLowerCase();
-  const pokemons = getPokemonsForGame(currentGameId);
   const profile = getActiveProfile();
+  const pokemons = getVisiblePokemonsForGame(profile, currentGameId);
   let objectiveFilterIds = null;
 
   if (profile && activeObjectiveFilterId) {
@@ -3286,7 +3355,8 @@ function renderTypeFilter() {
   const currentValue = activeTypeFilter;
   const types = new Set();
 
-  for (const pokemon of getPokemonsForGame(currentGameId)) {
+  const profile = getActiveProfile();
+  for (const pokemon of getVisiblePokemonsForGame(profile, currentGameId)) {
     for (const type of getPokemonTypesForPokemon(pokemon)) types.add(type);
   }
 
@@ -3312,7 +3382,8 @@ function renderGenerationFilter() {
 
   const availableGenerations = new Set();
 
-  for (const pokemon of getPokemonsForGame(currentGameId)) {
+  const profile = getActiveProfile();
+  for (const pokemon of getVisiblePokemonsForGame(profile, currentGameId)) {
     const generation = getPokemonGeneration(pokemon);
     if (generation) availableGenerations.add(generation);
   }
@@ -3339,7 +3410,8 @@ function applyPokemonSort(pokemons) {
   const profile = getActiveProfile();
   const sorted = [...pokemons];
 
-  const byDexOrder = (a, b) => getPokemonsForGame(currentGameId).indexOf(a) - getPokemonsForGame(currentGameId).indexOf(b);
+  const dexOrder = getVisiblePokemonsForGame(profile, currentGameId);
+  const byDexOrder = (a, b) => dexOrder.indexOf(a) - dexOrder.indexOf(b);
   const byName = (a, b) => getPokemonName(a).localeCompare(getPokemonName(b), "fr", { sensitivity: "base" });
   const byObtained = (a, b) => Number(isPokemonObtained(b)) - Number(isPokemonObtained(a)) || byDexOrder(a, b);
   const byMissing = (a, b) => Number(isPokemonObtained(a)) - Number(isPokemonObtained(b)) || byDexOrder(a, b);
@@ -3464,6 +3536,48 @@ function openDex(gameId, rememberLastDex = true) {
   renderDex();
 }
 
+
+function ensureDisplayedPokemonPanel() {
+  if (document.querySelector("#displayedPokemonPanel")) return;
+  if (!ui.searchInput) return;
+
+  const searchBox = ui.searchInput.closest(".search-box");
+  if (!searchBox) return;
+
+  const panel = document.createElement("section");
+  panel.id = "displayedPokemonPanel";
+  panel.className = "displayed-pokemon-panel displayed-pokemon-count-panel";
+  panel.innerHTML = `
+    <div class="displayed-pokemon-panel-head displayed-pokemon-count-head">
+      <span class="displayed-pokemon-count-title">Pokémon affichés</span>
+      <strong id="displayedPokemonPanelCount" class="displayed-pokemon-count">0</strong>
+      <span id="displayedPokemonPanelDetail" class="displayed-pokemon-count-detail">avec les filtres actuels</span>
+    </div>
+  `;
+
+  searchBox.insertAdjacentElement("afterend", panel);
+}
+
+function updateDisplayedPokemonPanel(pokemons) {
+  ensureDisplayedPokemonPanel();
+
+  const count = document.querySelector("#displayedPokemonPanelCount");
+  const detail = document.querySelector("#displayedPokemonPanelDetail");
+
+  if (!count || !detail) return;
+
+  const displayedTotal = pokemons.length;
+  const dexTotal = getPokemonsForGame(currentGameId).length;
+
+  count.textContent = String(displayedTotal);
+
+  if (displayedTotal === dexTotal) {
+    detail.textContent = `sur ${dexTotal} Pokémon du Dex`;
+  } else {
+    detail.textContent = `sur ${dexTotal} Pokémon du Dex avec les filtres actuels`;
+  }
+}
+
 function renderDex() {
   completeFinishedObjectives(false);
   renderTypeFilter();
@@ -3471,9 +3585,12 @@ function renderDex() {
   updateUndoRedoButtons();
   ui.dex.innerHTML = "";
 
+  const displayedPokemons = getFilteredPokemons();
+  updateDisplayedPokemonPanel(displayedPokemons);
+
   let lastSectionId = null;
 
-  for (const pokemon of getFilteredPokemons()) {
+  for (const pokemon of displayedPokemons) {
     if (pokemon.sectionId && pokemon.sectionId !== lastSectionId) {
       lastSectionId = pokemon.sectionId;
 
@@ -3493,6 +3610,7 @@ function renderDex() {
 
     const pokemonKey = getPokemonStorageKey(pokemon);
     card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
+    card.dataset.pokemonKey = pokemonKey;
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
@@ -3556,7 +3674,7 @@ function renderDex() {
   }
 }
 
-function createProfile(name, enabledDexes, nationalLinked = false, dlcLinked = false) {
+function createProfile(name, enabledDexes, nationalLinked = false, dlcLinked = false, dlcOnlyNew = false) {
   const id = createIdFromName(name);
   const dexData = {};
 
@@ -3570,7 +3688,7 @@ function createProfile(name, enabledDexes, nationalLinked = false, dlcLinked = f
     enabledDexes,
     lastView: "dex",
     lastDex: enabledDexes[0],
-    settings: { nationalLinked, dlcLinked },
+    settings: { nationalLinked, dlcLinked, dlcOnlyNew },
     dexData,
     objectives: [],
     progress: {
@@ -3589,7 +3707,7 @@ function createProfile(name, enabledDexes, nationalLinked = false, dlcLinked = f
   return profiles[id];
 }
 
-function updateProfileDexes(enabledDexes, nationalLinked, dlcLinked) {
+function updateProfileDexes(enabledDexes, nationalLinked, dlcLinked, dlcOnlyNew = false) {
   const profile = getActiveProfile();
   if (!profile) return;
 
@@ -3597,6 +3715,7 @@ function updateProfileDexes(enabledDexes, nationalLinked, dlcLinked) {
   profile.settings ||= {};
   profile.settings.nationalLinked = nationalLinked;
   profile.settings.dlcLinked = dlcLinked;
+  profile.settings.dlcOnlyNew = dlcOnlyNew;
   profile.dexData ||= {};
   profile.objectives ||= [];
 
@@ -3606,7 +3725,11 @@ function updateProfileDexes(enabledDexes, nationalLinked, dlcLinked) {
     getProfileDexState(profile, gameId);
   }
 
-  syncDlcLinksForProfile(profile);
+  if (profile.settings.dlcOnlyNew) {
+    cleanDlcBaseDuplicates(profile);
+  } else {
+    syncDlcLinksForProfile(profile);
+  }
 
   if (!profile.enabledDexes.includes(profile.lastDex)) {
     profile.lastDex = profile.enabledDexes[0];
@@ -3627,6 +3750,7 @@ function showSetupCreate() {
   ui.setupProfileName.disabled = false;
   ui.setupNationalLinked.checked = false;
   if (ui.setupDlcLinked) ui.setupDlcLinked.checked = false;
+  if (ui.setupDlcOnlyNew) ui.setupDlcOnlyNew.checked = false;
   ui.createFirstProfileBtn.textContent = "Créer le profil";
 
   renderSetupDexChoices([]);
@@ -3645,6 +3769,7 @@ function showSetupEdit() {
   ui.setupProfileName.disabled = true;
   ui.setupNationalLinked.checked = Boolean(profile.settings?.nationalLinked);
   if (ui.setupDlcLinked) ui.setupDlcLinked.checked = Boolean(profile.settings?.dlcLinked);
+  if (ui.setupDlcOnlyNew) ui.setupDlcOnlyNew.checked = Boolean(profile.settings?.dlcOnlyNew);
   ui.createFirstProfileBtn.textContent = "Enregistrer les modifications";
 
   renderSetupDexChoices(profile.enabledDexes);
@@ -3682,8 +3807,9 @@ function syncProfilesWithGames(saveAfterSync = true) {
   for (const profile of Object.values(profiles)) {
     if (!Array.isArray(profile.enabledDexes)) profile.enabledDexes = [];
 
-    profile.settings ||= { nationalLinked: false, dlcLinked: false };
+    profile.settings ||= { nationalLinked: false, dlcLinked: false, dlcOnlyNew: false };
     if (typeof profile.settings.dlcLinked !== "boolean") profile.settings.dlcLinked = false;
+    if (typeof profile.settings.dlcOnlyNew !== "boolean") profile.settings.dlcOnlyNew = false;
     profile.dexData ||= {};
 
     // Migration depuis une ancienne v2 ratée : black-2-white-2 -> black-white-2
@@ -3711,7 +3837,11 @@ function syncProfilesWithGames(saveAfterSync = true) {
       getProfileDexState(profile, gameId);
     }
 
+    if (profile.settings.dlcOnlyNew) {
+    cleanDlcBaseDuplicates(profile);
+  } else {
     syncDlcLinksForProfile(profile);
+  }
 
     migrateExistingProgress(profile);
     markCurrentAchievementsAsSeen(profile);
@@ -3901,8 +4031,9 @@ function normalizeBackupData(data) {
 
     if (profile.lastDex === "black-2-white-2") profile.lastDex = "black-white-2";
 
-    profile.settings ||= { nationalLinked: false, dlcLinked: false };
+    profile.settings ||= { nationalLinked: false, dlcLinked: false, dlcOnlyNew: false };
     if (typeof profile.settings.dlcLinked !== "boolean") profile.settings.dlcLinked = false;
+    if (typeof profile.settings.dlcOnlyNew !== "boolean") profile.settings.dlcOnlyNew = false;
     profile.objectives ||= [];
 
     for (const objective of profile.objectives) {
@@ -5263,13 +5394,13 @@ function bindEvents() {
         return;
       }
 
-      const profile = createProfile(name, enabledDexes, ui.setupNationalLinked.checked, Boolean(ui.setupDlcLinked?.checked));
+      const profile = createProfile(name, enabledDexes, ui.setupNationalLinked.checked, Boolean(ui.setupDlcLinked?.checked), Boolean(ui.setupDlcOnlyNew?.checked));
       showToast("✅ Profil créé !", "success");
       openDex(profile.lastDex);
       return;
     }
 
-    updateProfileDexes(enabledDexes, ui.setupNationalLinked.checked, Boolean(ui.setupDlcLinked?.checked));
+    updateProfileDexes(enabledDexes, ui.setupNationalLinked.checked, Boolean(ui.setupDlcLinked?.checked), Boolean(ui.setupDlcOnlyNew?.checked));
     showToast("✅ Profil modifié !", "success");
     renderHome();
   });

@@ -167,9 +167,7 @@ export const pokemons = [
     "slug": "oinkologne",
     "imageSlug": "oinkologne",
     "family": "481",
-    "types": [
-      "normal"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -860,10 +858,10 @@ export const pokemons = [
     "imageSlug": "wooper-paldean",
     "family": "96",
     "types": [
-      "poison",
+      "water",
       "ground"
     ],
-    "generation": 2,
+    "generation": 9,
     "sectionId": null,
     "sectionName": null,
     "names": {
@@ -1176,9 +1174,7 @@ export const pokemons = [
     "slug": "maushold",
     "imageSlug": "maushold",
     "family": "485",
-    "types": [
-      "normal"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -1467,9 +1463,7 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [
-      "rock"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1632,10 +1626,7 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [
-      "fire",
-      "flying"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1845,10 +1836,7 @@ export const pokemons = [
     "slug": "squawkabilly",
     "imageSlug": "squawkabilly",
     "family": "488",
-    "types": [
-      "normal",
-      "flying"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -2255,9 +2243,7 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [
-      "water"
-    ],
+    "types": [],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3089,9 +3075,7 @@ export const pokemons = [
     "slug": "dudunsparce",
     "imageSlug": "dudunsparce",
     "family": "103",
-    "types": [
-      "normal"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -3254,10 +3238,7 @@ export const pokemons = [
     "slug": "toxtricity",
     "imageSlug": "toxtricity",
     "family": "446",
-    "types": [
-      "electric",
-      "poison"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3650,7 +3631,7 @@ export const pokemons = [
     "imageSlug": "tauros-paldean-combat",
     "family": "63",
     "types": [
-      "fighting"
+      "normal"
     ],
     "generation": 1,
     "sectionId": null,
@@ -3682,10 +3663,7 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [
-      "fire",
-      "normal"
-    ],
+    "types": [],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3913,10 +3891,7 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [
-      "ghost",
-      "fairy"
-    ],
+    "types": [],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -3947,10 +3922,7 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [
-      "psychic",
-      "normal"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -4792,9 +4764,7 @@ export const pokemons = [
     "slug": "palafin",
     "imageSlug": "palafin",
     "family": "504",
-    "types": [
-      "water"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -5258,9 +5228,7 @@ export const pokemons = [
     "slug": "eiscue",
     "imageSlug": "eiscue",
     "family": "457",
-    "types": [
-      "ice"
-    ],
+    "types": [],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -6168,10 +6136,7 @@ export const pokemons = [
     "slug": "tatsugiri",
     "imageSlug": "tatsugiri",
     "family": "514",
-    "types": [
-      "dragon",
-      "water"
-    ],
+    "types": [],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,

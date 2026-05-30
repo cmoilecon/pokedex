@@ -746,10 +746,7 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
-    "types": [
-      "bug",
-      "grass"
-    ],
+    "types": [],
     "generation": 4,
     "sectionId": null,
     "sectionName": null,
@@ -1538,7 +1535,8 @@ export const pokemons = [
     "imageSlug": "mime-jr",
     "family": "57",
     "types": [
-      "psychic"
+      "psychic",
+      "fairy"
     ],
     "generation": 4,
     "sectionId": null,
@@ -1554,7 +1552,8 @@ export const pokemons = [
     "imageSlug": "mr-mime",
     "family": "57",
     "types": [
-      "psychic"
+      "psychic",
+      "fairy"
     ],
     "generation": 1,
     "sectionId": null,
@@ -1618,7 +1617,7 @@ export const pokemons = [
     "imageSlug": "cleffa",
     "family": "14",
     "types": [
-      "normal"
+      "fairy"
     ],
     "generation": 2,
     "sectionId": null,
@@ -1634,7 +1633,7 @@ export const pokemons = [
     "imageSlug": "clefairy",
     "family": "14",
     "types": [
-      "normal"
+      "fairy"
     ],
     "generation": 1,
     "sectionId": null,
@@ -1650,7 +1649,7 @@ export const pokemons = [
     "imageSlug": "clefable",
     "family": "14",
     "types": [
-      "normal"
+      "fairy"
     ],
     "generation": 1,
     "sectionId": null,
@@ -2031,7 +2030,8 @@ export const pokemons = [
     "imageSlug": "azurill",
     "family": "90",
     "types": [
-      "normal"
+      "normal",
+      "fairy"
     ],
     "generation": 3,
     "sectionId": null,
@@ -2047,7 +2047,8 @@ export const pokemons = [
     "imageSlug": "marill",
     "family": "90",
     "types": [
-      "water"
+      "water",
+      "fairy"
     ],
     "generation": 2,
     "sectionId": null,
@@ -2063,7 +2064,8 @@ export const pokemons = [
     "imageSlug": "azumarill",
     "family": "90",
     "types": [
-      "water"
+      "water",
+      "fairy"
     ],
     "generation": 2,
     "sectionId": null,

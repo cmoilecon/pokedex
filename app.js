@@ -3825,6 +3825,7 @@ function renderDex() {
     const pokemonKey = getPokemonStorageKey(pokemon);
     card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${isDexMinimizedView ? "card-mini" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
     card.dataset.pokemonKey = pokemonKey;
+    card.dataset.displayNumber = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
@@ -4130,7 +4131,7 @@ function applyMinimizedViewState() {
 
   if (ui.minimizedViewBtn) {
     ui.minimizedViewBtn.classList.toggle("active-filter", isDexMinimizedView);
-    ui.minimizedViewBtn.textContent = isDexMinimizedView ? "Mini : ON" : "Mini : OFF";
+    ui.minimizedViewBtn.textContent = "Mini";
     ui.minimizedViewBtn.title = "Mode mini : afficher seulement les images des Pokémon (V)";
   }
 }

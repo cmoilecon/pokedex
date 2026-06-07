@@ -649,6 +649,78 @@ function renderPokemonTypeIcons(pokemon) {
   `;
 }
 
+function getDexSourceDisplayLabel(gameId, game) {
+  const labels = {
+    "lets-go-pikachu-eevee": "Let’s Go",
+    "sword-shield": "Épée/Bouclier",
+    "isle-of-armor": "Isolarmure",
+    "crown-tundra": "Couronneige",
+    "brilliant-diamond-shining-pearl": "BDSP",
+    "legends-arceus": "Arceus",
+    "scarlet-violet": "Écarlate/Violet",
+    "teal-mask": "Septentria",
+    "indigo-disk": "Myrtille",
+    "legends-z-a": "Z-A",
+    "mega-dimension": "Mega Dim.",
+    "x-y": "X/Y",
+    "omega-ruby-alpha-sapphire": "ROSA",
+    "sun-moon": "Soleil/Lune",
+    "ultra-sun-ultra-moon": "USUL",
+    "diamond-pearl": "D/P",
+    "platinum": "Platine",
+    "heartgold-soulsilver": "HGSS",
+    "black-white": "Noir/Blanc",
+    "black-white-2": "NB2"
+  };
+
+  return labels[gameId] || game?.shortName || game?.name || gameId;
+}
+
+function renderNationalDexSourceBadges(pokemon) {
+  const profile = getActiveProfile();
+
+  if (currentGameId !== "national" || !profile || !isNationalLinked(profile)) {
+    return "";
+  }
+
+  const sources = getNationalLinkedDexSources(profile, pokemon);
+  if (sources.length === 0) return "";
+
+  const uniqueSources = [];
+  const seen = new Set();
+
+  for (const source of sources) {
+    if (seen.has(source.gameId)) continue;
+    seen.add(source.gameId);
+    uniqueSources.push(source);
+  }
+
+  const tooltip = uniqueSources
+    .map(source => `${getDexSourceDisplayLabel(source.gameId, source.game)}${source.locked ? " • Shiny Lock" : ""}`)
+    .join(", ");
+
+  return `
+    <div class="national-source-panel" title="Coché dans : ${escapeHtml(tooltip).replaceAll('"', '&quot;')}">
+      <div class="national-source-label">Coché dans</div>
+      <div class="national-source-badges">
+        ${uniqueSources.map(source => {
+          const label = getDexSourceDisplayLabel(source.gameId, source.game);
+          const fullLabel = source.game?.name || label;
+          const platform = source.game?.platform || "global";
+
+          return `
+            <button class="dex-source-badge dex-source-${escapeHtml(platform)} ${source.locked ? "dex-source-locked" : ""}" type="button" data-source-game-id="${escapeHtml(source.gameId)}" title="Ouvrir ${escapeHtml(fullLabel)}${source.locked ? " • Shiny Lock" : ""}">
+              <span class="dex-source-dot" aria-hidden="true"></span>
+              <span class="dex-source-name">${escapeHtml(label)}</span>
+              ${source.locked ? `<span class="dex-source-lock" aria-label="Shiny Lock">🔒</span>` : ""}
+            </button>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function getProfileDexState(profile, gameId) {
   profile.dexData ||= {};
 
@@ -991,6 +1063,27 @@ function getLinkedPokemonTargets(profile, gameId, pokemon) {
   return targets;
 }
 
+function isDexCurrentlyShinyForLink(profile, gameId) {
+  if (!profile || !gameId) return false;
+
+  if (gameId === currentGameId && ui?.shinyMode) {
+    return Boolean(ui.shinyMode.checked);
+  }
+
+  return Boolean(getProfileDexState(profile, gameId).shinyMode);
+}
+
+function canLinkedDexCountForNational(profile, nationalState, linkedGameId) {
+  if (!profile || !nationalState) return false;
+
+  // En National normal : les Dex liés comptent comme avant.
+  if (!nationalState.shinyMode) return true;
+
+  // En National Shiny Dex : on ne valide que les Pokémon venant
+  // de Dex qui sont eux aussi en mode Shiny Dex.
+  return Boolean(getProfileDexState(profile, linkedGameId).shinyMode);
+}
+
 function isPokemonObtainedInGame(profile, gameId, pokemon) {
   const state = getProfileDexState(profile, gameId);
   const obtained = state.obtained || {};
@@ -1001,6 +1094,7 @@ function isPokemonObtainedInGame(profile, gameId, pokemon) {
   if (gameId === "national" && isNationalLinked(profile)) {
     for (const linkedGameId of profile.enabledDexes || []) {
       if (linkedGameId === "national") continue;
+      if (!canLinkedDexCountForNational(profile, state, linkedGameId)) continue;
 
       const linkedPokemon = getPokemonsForGame(linkedGameId).find(item => isSamePokemonForLink(pokemon, item));
       const linkedState = getProfileDexState(profile, linkedGameId);
@@ -1099,8 +1193,85 @@ function isPokemonObtained(pokemon) {
   return Boolean(profile && currentGameId && isPokemonObtainedInGame(profile, currentGameId, pokemon));
 }
 
+function isPokemonLocallyObtainedAndLocked(profile, gameId, pokemon) {
+  if (!profile || !gameId || !pokemon) return { obtained: false, locked: false };
+
+  const state = getProfileDexState(profile, gameId);
+  const key = getPokemonStorageKey(pokemon);
+  const obtained = Boolean(state.obtained?.[key] || state.obtained?.[pokemon.id]);
+  const locked = Boolean(state.shinyLocked?.[key] || state.shinyLocked?.[pokemon.id]);
+
+  return { obtained, locked };
+}
+
+function getNationalLinkedDexSources(profile, pokemon) {
+  if (!profile || !pokemon || !isNationalLinked(profile)) return [];
+
+  const sources = [];
+  const nationalState = getProfileDexState(profile, "national");
+
+  for (const gameId of profile.enabledDexes || []) {
+    if (gameId === "national") continue;
+    if (!canLinkedDexCountForNational(profile, nationalState, gameId)) continue;
+
+    const matches = getPokemonsForGame(gameId).filter(item => isSamePokemonForLink(pokemon, item));
+    if (matches.length === 0) continue;
+
+    const game = getGame(gameId);
+
+    for (const linkedPokemon of matches) {
+      const state = isPokemonLocallyObtainedAndLocked(profile, gameId, linkedPokemon);
+      if (!state.obtained) continue;
+
+      sources.push({
+        gameId,
+        game,
+        pokemon: linkedPokemon,
+        locked: state.locked
+      });
+    }
+  }
+
+  return sources;
+}
+
+function isNationalPokemonLinkedShinyLocked(profile, pokemon) {
+  if (!profile || currentGameId !== "national" || !isNationalLinked(profile)) {
+    return false;
+  }
+
+  const nationalState = getProfileDexState(profile, "national");
+  const nationalLocal = isPokemonLocallyObtainedAndLocked(profile, "national", pokemon);
+  const obtainedSources = [];
+
+  if (nationalLocal.obtained) {
+    obtainedSources.push(nationalLocal);
+  }
+
+  for (const source of getNationalLinkedDexSources(profile, pokemon)) {
+    obtainedSources.push({ obtained: true, locked: source.locked });
+  }
+
+  if (obtainedSources.length === 0) return false;
+
+  // En National normal, le verrou reste seulement local au National.
+  // En National Shiny Dex lié, il reflète les Dex Shiny liés.
+  if (!nationalState.shinyMode) return nationalLocal.locked;
+
+  // Si au moins un Dex Shiny possède ce Pokémon sans verrou shiny, le National ne doit pas l'afficher verrouillé.
+  return obtainedSources.every(source => source.locked);
+}
+
 function isPokemonShinyLocked(pokemon) {
-  return Boolean(getShinyLocked()[pokemon.id]);
+  const profile = getActiveProfile();
+  const key = getPokemonStorageKey(pokemon);
+
+  if (currentGameId === "national" && isNationalLinked(profile)) {
+    return isNationalPokemonLinkedShinyLocked(profile, pokemon);
+  }
+
+  const shinyLocked = getShinyLocked();
+  return Boolean(shinyLocked[key] || shinyLocked[pokemon.id]);
 }
 
 function calculateGameProgress(profile, gameId) {
@@ -1280,6 +1451,14 @@ function awardObjectiveXp(profile, objective) {
 function showDexCompletePopup(gameId) {
   const game = getGame(gameId);
   showToast(`🎉 Dex complété : ${game?.shortName || game?.name || gameId} !`, "success");
+
+  // Évite le bug visuel : popup Dex complété + popup Badge superposées.
+  // Si un badge est en train d'apparaître, le toast suffit.
+  if (isShowingAchievementUnlock || achievementUnlockQueue.length > 0 || ui.achievementUnlockOverlay?.classList.contains("show")) {
+    return;
+  }
+
+  document.querySelectorAll(".dex-complete-popup").forEach(node => node.remove());
 
   const popup = document.createElement("div");
   popup.className = "dex-complete-popup";
@@ -3322,8 +3501,9 @@ function openAboutPage() {
 }
 
 function openSearchHelp() {
-  openGenericModal("Aide recherche", `
+  openGenericModal("Aide recherche & raccourcis", `
     <div class="search-help-list">
+      <h3>Recherche</h3>
       <p><code>type:eau</code> filtre les Pokémon Eau.</p>
       <p><code>gen:5</code> filtre la génération 5.</p>
       <p><code>fav</code> ou <code>favoris</code> affiche les favoris.</p>
@@ -3331,6 +3511,15 @@ function openSearchHelp() {
       <p><code>obtenu</code> affiche les obtenus.</p>
       <p><code>id:25</code> cherche un numéro.</p>
       <p>Tu peux combiner : <code>type:dragon gen:5 manquant</code></p>
+
+      <h3>Raccourcis clavier</h3>
+      <p><code>/</code> placer le curseur dans la recherche.</p>
+      <p><code>M</code> activer/désactiver Manquants.</p>
+      <p><code>F</code> activer/désactiver Favoris.</p>
+      <p><code>S</code> activer/désactiver Shiny Dex.</p>
+      <p><code>R</code> afficher/masquer le panneau Raccourcis.</p>
+      <p><code>Échap</code> fermer une fenêtre ou revenir à l’accueil.</p>
+      <p><code>Ctrl + Z</code> annuler, <code>Ctrl + Y</code> refaire.</p>
     </div>
   `);
 }
@@ -3644,6 +3833,7 @@ function renderDex() {
       </div>
 
       ${renderPokemonTypeIcons(pokemon)}
+      ${renderNationalDexSourceBadges(pokemon)}
 
       <div class="card-actions">
         <button class="favorite-btn ${isFavorite ? "active" : ""}" type="button" title="Favori">${isFavorite ? "⭐" : "☆"}</button>
@@ -3657,6 +3847,24 @@ function renderDex() {
     card.querySelector(".favorite-btn")?.addEventListener("click", event => {
       event.stopPropagation();
       toggleFavorite(pokemon);
+    });
+
+    card.querySelectorAll(".dex-source-badge[data-source-game-id]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const sourceGameId = button.dataset.sourceGameId;
+        const sourceGame = getGame(sourceGameId);
+
+        if (!sourceGameId || !getActiveProfile()?.enabledDexes?.includes(sourceGameId)) {
+          showToast("⚠️ Ce Dex n'est pas activé dans ce profil.", "warn");
+          return;
+        }
+
+        openDex(sourceGameId);
+        showToast(`Ouverture : ${sourceGame?.shortName || sourceGame?.name || sourceGameId}`, "success");
+      });
     });
 
     card.querySelector(".lock-btn")?.addEventListener("click", event => {
@@ -5046,6 +5254,13 @@ function createShortcutMenu() {
             label: "Dark",
             title: "Activer/désactiver le thème sombre",
             handler: debugToggleDark
+          },
+          {
+            id: "shortcutHelpBtn",
+            label: "Aide",
+            title: "Voir la liste des raccourcis et commandes de recherche",
+            className: "quest",
+            handler: openSearchHelp
           }
         ]
       }
@@ -5519,6 +5734,12 @@ function bindEvents() {
     }
 
     if (isTypingInForm(event)) return;
+
+    if (!event.ctrlKey && !event.altKey && !event.metaKey && event.key.toLowerCase() === "r") {
+      event.preventDefault();
+      setShortcutsVisible(!areShortcutsVisible());
+      return;
+    }
 
     if (event.ctrlKey && !event.shiftKey && event.key.toLowerCase() === "z") {
       event.preventDefault();

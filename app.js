@@ -41,7 +41,8 @@ const STORAGE_KEYS = {
   sortMode: "dex-sort-mode-v1",
   generationFilter: "dex-generation-filter-v1",
   debugEnabled: "dex-debug-enabled-v1",
-  pokemonCardV2: "dex-pokemon-card-v2-v1"
+  pokemonCardV2: "dex-pokemon-card-v2-v1",
+  minimizedView: "dex-minimized-view-v1"
 };
 
 const dexDataMap = {
@@ -362,6 +363,7 @@ const ui = {
   undoBtn: $("#undoBtn"),
   redoBtn: $("#redoBtn"),
   searchHelpBtn: $("#searchHelpBtn"),
+  minimizedViewBtn: $("#minimizedViewBtn"),
   hideCompletedDexLabel: $("#hideCompletedDexLabel"),
   hideCompletedDexMode: $("#hideCompletedDexMode"),
   checkVisibleBtn: $("#checkVisibleBtn"),
@@ -416,6 +418,7 @@ let shortcutObjectiveViewIndex = 0;
 let isDebugPanelVisible = true;
 let activeDexPlatformFilter = "all";
 let isPokemonCardV2Enabled = localStorage.getItem(STORAGE_KEYS.pokemonCardV2) === "1";
+let isDexMinimizedView = localStorage.getItem(STORAGE_KEYS.minimizedView) === "1";
 let lastUpdatedPokemonKey = null;
 
 function loadProfiles() {
@@ -3517,6 +3520,7 @@ function openSearchHelp() {
       <p><code>M</code> activer/désactiver Manquants.</p>
       <p><code>F</code> activer/désactiver Favoris.</p>
       <p><code>S</code> activer/désactiver Shiny Dex.</p>
+      <p><code>V</code> activer/désactiver le mode mini avec images seules.</p>
       <p><code>R</code> afficher/masquer le panneau Raccourcis.</p>
       <p><code>Échap</code> fermer une fenêtre ou revenir à l’accueil.</p>
       <p><code>Ctrl + Z</code> annuler, <code>Ctrl + Y</code> refaire.</p>
@@ -3819,7 +3823,7 @@ function renderDex() {
     const card = document.createElement("article");
 
     const pokemonKey = getPokemonStorageKey(pokemon);
-    card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
+    card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${isDexMinimizedView ? "card-mini" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
     card.dataset.pokemonKey = pokemonKey;
     card.innerHTML = `
       <div class="image-zone">
@@ -4106,6 +4110,8 @@ function loadGlobalSettings() {
 
   activeSortMode = localStorage.getItem(STORAGE_KEYS.sortMode) || "dex";
   activeGenerationFilter = localStorage.getItem(STORAGE_KEYS.generationFilter) || "all";
+  isDexMinimizedView = localStorage.getItem(STORAGE_KEYS.minimizedView) === "1";
+  applyMinimizedViewState();
   if (ui.sortFilterSelect) ui.sortFilterSelect.value = activeSortMode;
 
   const savedLang = localStorage.getItem(STORAGE_KEYS.lang);
@@ -4117,6 +4123,28 @@ function loadGlobalSettings() {
 
 function saveGlobalSetting(key, value) {
   localStorage.setItem(key, value);
+}
+
+function applyMinimizedViewState() {
+  document.body.classList.toggle("dex-mini-mode", isDexMinimizedView);
+
+  if (ui.minimizedViewBtn) {
+    ui.minimizedViewBtn.classList.toggle("active-filter", isDexMinimizedView);
+    ui.minimizedViewBtn.textContent = isDexMinimizedView ? "Mini : ON" : "Mini : OFF";
+    ui.minimizedViewBtn.title = "Mode mini : afficher seulement les images des Pokémon (V)";
+  }
+}
+
+function toggleMinimizedView() {
+  isDexMinimizedView = !isDexMinimizedView;
+  saveGlobalSetting(STORAGE_KEYS.minimizedView, isDexMinimizedView ? "1" : "0");
+  applyMinimizedViewState();
+
+  if (currentGameId) {
+    renderDex();
+  }
+
+  showToast(isDexMinimizedView ? "Mode mini activé : images seules." : "Mode mini désactivé.", "success");
 }
 
 function goToLastPlaceForActiveProfile() {
@@ -5179,6 +5207,13 @@ function createShortcutMenu() {
             title: "Activer/désactiver le mode shiny",
             className: "quest",
             handler: () => runDexShortcut(debugToggleShinyMode)
+          },
+          {
+            id: "shortcutMiniBtn",
+            label: "Mini",
+            title: "Afficher seulement les images des Pokémon",
+            className: "quest",
+            handler: toggleMinimizedView
           }
         ]
       },
@@ -5718,6 +5753,7 @@ function bindEvents() {
   ui.redoBtn?.addEventListener("click", redoLastAction);
 
   ui.searchHelpBtn?.addEventListener("click", openSearchHelp);
+  ui.minimizedViewBtn?.addEventListener("click", toggleMinimizedView);
 
   document.addEventListener("keydown", event => {
     if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "d") {
@@ -5777,6 +5813,12 @@ function bindEvents() {
       ui.shinyMode.checked = !ui.shinyMode.checked;
       saveCurrentDexShinyMode();
       renderDex();
+      return;
+    }
+
+    if (currentGameId && event.key.toLowerCase() === "v") {
+      event.preventDefault();
+      toggleMinimizedView();
       return;
     }
 

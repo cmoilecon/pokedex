@@ -1163,7 +1163,9 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [],
+    "types": [
+      "rock"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1555,7 +1557,10 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1601,7 +1606,9 @@ export const pokemons = [
     "slug": "maushold",
     "imageSlug": "maushold",
     "family": "485",
-    "types": [],
+    "types": [
+      "normal"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -1878,7 +1885,10 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [],
+    "types": [
+      "fire",
+      "flying"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -2634,7 +2644,9 @@ export const pokemons = [
     "slug": "dudunsparce",
     "imageSlug": "dudunsparce",
     "family": "103",
-    "types": [],
+    "types": [
+      "normal"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -3098,7 +3110,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -3163,7 +3178,10 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3177,7 +3195,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3191,7 +3211,10 @@ export const pokemons = [
     "slug": "basculegion",
     "imageSlug": "basculegion",
     "family": "280",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,

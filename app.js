@@ -702,26 +702,171 @@ function renderNationalDexSourceBadges(pokemon) {
     .map(source => `${getDexSourceDisplayLabel(source.gameId, source.game)}${source.locked ? " • Shiny Lock" : ""}`)
     .join(", ");
 
+  const visibleSources = uniqueSources.slice(0, 2);
+  const hiddenCount = Math.max(0, uniqueSources.length - visibleSources.length);
+
   return `
     <div class="national-source-panel" title="Coché dans : ${escapeHtml(tooltip).replaceAll('"', '&quot;')}">
-      <div class="national-source-label">Coché dans</div>
       <div class="national-source-badges">
-        ${uniqueSources.map(source => {
-          const label = getDexSourceDisplayLabel(source.gameId, source.game);
-          const fullLabel = source.game?.name || label;
-          const platform = source.game?.platform || "global";
+        ${visibleSources.map(source => renderDexSourceBadge(source)).join("")}
+        ${hiddenCount > 0 ? `
+          <button class="dex-source-badge dex-source-more" type="button" data-source-more="1" title="Voir les ${uniqueSources.length} Dex où ce Pokémon est coché">
+            +${hiddenCount}
+          </button>
+        ` : ""}
+      </div>
+    </div>
+  `;
+}
 
+function renderDexSourceBadge(source, extraClass = "") {
+  const label = getDexSourceDisplayLabel(source.gameId, source.game);
+  const fullLabel = source.game?.name || label;
+  const platform = source.game?.platform || "global";
+
+  return `
+    <button class="dex-source-badge dex-source-${escapeHtml(platform)} ${source.locked ? "dex-source-locked" : ""} ${extraClass}" type="button" data-source-game-id="${escapeHtml(source.gameId)}" title="Ouvrir ${escapeHtml(fullLabel)}${source.locked ? " • Shiny Lock" : ""}">
+      <span class="dex-source-dot" aria-hidden="true"></span>
+      <span class="dex-source-name">${escapeHtml(label)}</span>
+      ${source.locked ? `<span class="dex-source-lock" aria-label="Shiny Lock">🔒</span>` : ""}
+    </button>
+  `;
+}
+
+function openNationalDexSourcesModal(pokemon) {
+  const profile = getActiveProfile();
+  if (!profile) return;
+
+  const uniqueSources = [];
+  const seen = new Set();
+
+  for (const source of getNationalLinkedDexSources(profile, pokemon)) {
+    if (seen.has(source.gameId)) continue;
+    seen.add(source.gameId);
+    uniqueSources.push(source);
+  }
+
+  if (uniqueSources.length === 0) return;
+
+  const name = getPokemonName(pokemon);
+  const html = `
+    <div class="national-source-modal-list">
+      ${uniqueSources.map(source => renderDexSourceBadge(source, "dex-source-large")).join("")}
+    </div>
+  `;
+
+  openGenericModal(`Coché dans — ${name}`, html);
+
+  ui.genericModalBody?.querySelectorAll(".dex-source-badge[data-source-game-id]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const sourceGameId = button.dataset.sourceGameId;
+      const sourceGame = getGame(sourceGameId);
+
+      if (!sourceGameId || !getActiveProfile()?.enabledDexes?.includes(sourceGameId)) {
+        showToast("⚠️ Ce Dex n'est pas activé dans ce profil.", "warn");
+        return;
+      }
+
+      closeGenericModal();
+      openDex(sourceGameId);
+      showToast(`Ouverture : ${sourceGame?.shortName || sourceGame?.name || sourceGameId}`, "success");
+    });
+  });
+}
+
+
+function isExactFormPokemon(pokemon) {
+  if (!pokemon) return false;
+  const imageSlug = pokemon.imageSlug || pokemon.slug || "";
+  const slug = pokemon.slug || "";
+  return Boolean(imageSlug && slug && imageSlug !== slug);
+}
+
+function isSamePokemonForAvailability(sourcePokemon, targetPokemon) {
+  if (!sourcePokemon || !targetPokemon) return false;
+
+  const sourceImageSlug = sourcePokemon.imageSlug || sourcePokemon.slug;
+  const targetImageSlug = targetPokemon.imageSlug || targetPokemon.slug;
+
+  // Pour les formes, on reste strict : Ramoloss de Galar ≠ Ramoloss normal.
+  if (isExactFormPokemon(sourcePokemon) || isExactFormPokemon(targetPokemon)) {
+    return Boolean(sourceImageSlug && targetImageSlug && sourceImageSlug === targetImageSlug);
+  }
+
+  return Boolean(
+    (sourceImageSlug && targetImageSlug && sourceImageSlug === targetImageSlug) ||
+    (sourcePokemon.slug && targetPokemon.slug && sourcePokemon.slug === targetPokemon.slug)
+  );
+}
+
+function getPokemonAvailableDexes(pokemon) {
+  if (!pokemon) return [];
+
+  return games
+    .filter(game => game.id !== "national")
+    .map(game => {
+      const matches = getPokemonsForGame(game.id).filter(item => isSamePokemonForAvailability(pokemon, item));
+      return { game, matches };
+    })
+    .filter(item => item.matches.length > 0);
+}
+
+function renderPokemonAvailabilityButton(pokemon) {
+  const availableDexes = getPokemonAvailableDexes(pokemon);
+  if (availableDexes.length === 0) return "";
+
+  return `
+    <button class="pokemon-available-dex-btn" type="button" title="Voir les Dex où ce Pokémon est disponible">
+      Dispo
+    </button>
+  `;
+}
+
+function openPokemonAvailabilityModal(pokemon) {
+  const availableDexes = getPokemonAvailableDexes(pokemon);
+  const name = getPokemonName(pokemon);
+  const enabledDexes = new Set(getActiveProfile()?.enabledDexes || []);
+
+  if (availableDexes.length === 0) {
+    showToast("Aucun Dex disponible trouvé pour ce Pokémon.", "warn");
+    return;
+  }
+
+  const html = `
+    <div class="pokemon-availability-modal">
+      <div class="pokemon-availability-list">
+        ${availableDexes.map(({ game }) => {
+          const enabled = enabledDexes.has(game.id);
           return `
-            <button class="dex-source-badge dex-source-${escapeHtml(platform)} ${source.locked ? "dex-source-locked" : ""}" type="button" data-source-game-id="${escapeHtml(source.gameId)}" title="Ouvrir ${escapeHtml(fullLabel)}${source.locked ? " • Shiny Lock" : ""}">
-              <span class="dex-source-dot" aria-hidden="true"></span>
-              <span class="dex-source-name">${escapeHtml(label)}</span>
-              ${source.locked ? `<span class="dex-source-lock" aria-label="Shiny Lock">🔒</span>` : ""}
+            <button class="pokemon-availability-chip ${enabled ? "enabled" : "disabled"}" type="button" data-open-game-id="${escapeHtml(game.id)}">
+              <strong>${escapeHtml(game.shortName || game.name)}</strong>
+              <span>${escapeHtml(game.subtitle || game.platform)}</span>
             </button>
           `;
         }).join("")}
       </div>
+      <p class="availability-note">Les Dex grisés existent, mais ne sont pas activés dans ton profil.</p>
     </div>
   `;
+
+  openGenericModal(`Disponible — ${name}`, html);
+
+  ui.genericModalBody?.querySelectorAll("[data-open-game-id]").forEach(button => {
+    button.addEventListener("click", () => {
+      const gameId = button.dataset.openGameId;
+
+      if (!gameId || !enabledDexes.has(gameId)) {
+        showToast("Ce Dex n'est pas activé dans ce profil.", "warn");
+        return;
+      }
+
+      closeGenericModal();
+      openDex(gameId);
+    });
+  });
 }
 
 function getProfileDexState(profile, gameId) {
@@ -3829,11 +3974,12 @@ function renderDex() {
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
+        ${renderPokemonAvailabilityButton(pokemon)}
       </div>
 
       <div class="info-zone">
         <div class="number">${String(getPokemonDisplayNumber(pokemon)).padStart(3, "0")}</div>
-        <div class="name">${escapeHtml(name)}</div>
+        <div class="name ${name.length > 16 ? "name-long" : ""} ${name.length > 24 ? "name-very-long" : ""}">${escapeHtml(name)}</div>
         <div class="check">${isObtained ? (isLocked && ui.shinyMode.checked ? "🔒" : "✅") : "☐"}</div>
       </div>
 
@@ -3870,6 +4016,18 @@ function renderDex() {
         openDex(sourceGameId);
         showToast(`Ouverture : ${sourceGame?.shortName || sourceGame?.name || sourceGameId}`, "success");
       });
+    });
+
+    card.querySelector(".dex-source-more[data-source-more]")?.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      openNationalDexSourcesModal(pokemon);
+    });
+
+    card.querySelector(".pokemon-available-dex-btn")?.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      openPokemonAvailabilityModal(pokemon);
     });
 
     card.querySelector(".lock-btn")?.addEventListener("click", event => {

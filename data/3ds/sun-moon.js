@@ -237,6 +237,7 @@ export const pokemons = [
     "imageSlug": "rattata-alolan",
     "family": "7",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 7,
@@ -253,6 +254,7 @@ export const pokemons = [
     "imageSlug": "raticate-alolan",
     "family": "7",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 7,
@@ -418,7 +420,8 @@ export const pokemons = [
     "imageSlug": "raichu-alolan",
     "family": "10",
     "types": [
-      "electric"
+      "electric",
+      "psychic"
     ],
     "generation": 7,
     "sectionId": null,
@@ -729,7 +732,7 @@ export const pokemons = [
     "imageSlug": "meowth-alolan",
     "family": "22",
     "types": [
-      "normal"
+      "dark"
     ],
     "generation": 7,
     "sectionId": null,
@@ -745,7 +748,7 @@ export const pokemons = [
     "imageSlug": "persian-alolan",
     "family": "22",
     "types": [
-      "normal"
+      "dark"
     ],
     "generation": 7,
     "sectionId": null,
@@ -812,7 +815,8 @@ export const pokemons = [
     "imageSlug": "grimer-alolan",
     "family": "38",
     "types": [
-      "poison"
+      "poison",
+      "dark"
     ],
     "generation": 7,
     "sectionId": null,
@@ -828,7 +832,8 @@ export const pokemons = [
     "imageSlug": "muk-alolan",
     "family": "38",
     "types": [
-      "poison"
+      "poison",
+      "dark"
     ],
     "generation": 7,
     "sectionId": null,
@@ -1157,7 +1162,8 @@ export const pokemons = [
     "imageSlug": "diglett-alolan",
     "family": "21",
     "types": [
-      "ground"
+      "ground",
+      "steel"
     ],
     "generation": 7,
     "sectionId": null,
@@ -1173,7 +1179,8 @@ export const pokemons = [
     "imageSlug": "dugtrio-alolan",
     "family": "21",
     "types": [
-      "ground"
+      "ground",
+      "steel"
     ],
     "generation": 7,
     "sectionId": null,
@@ -1339,7 +1346,10 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [],
+    "types": [
+      "fire",
+      "flying"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1698,7 +1708,9 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [],
+    "types": [
+      "rock"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1794,7 +1806,9 @@ export const pokemons = [
     "slug": "wishiwashi",
     "imageSlug": "wishiwashi",
     "family": "384",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -2679,7 +2693,8 @@ export const pokemons = [
     "imageSlug": "marowak-alolan",
     "family": "46",
     "types": [
-      "ground"
+      "fire",
+      "ghost"
     ],
     "generation": 7,
     "sectionId": null,
@@ -3353,7 +3368,10 @@ export const pokemons = [
     "slug": "zygarde",
     "imageSlug": "zygarde",
     "family": "370",
-    "types": [],
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3480,7 +3498,10 @@ export const pokemons = [
     "slug": "minior",
     "imageSlug": "minior",
     "family": "400",
-    "types": [],
+    "types": [
+      "rock",
+      "flying"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -3742,7 +3763,7 @@ export const pokemons = [
     "family": "31",
     "types": [
       "rock",
-      "ground"
+      "electric"
     ],
     "generation": 7,
     "sectionId": null,
@@ -3759,7 +3780,7 @@ export const pokemons = [
     "family": "31",
     "types": [
       "rock",
-      "ground"
+      "electric"
     ],
     "generation": 7,
     "sectionId": null,
@@ -3776,7 +3797,7 @@ export const pokemons = [
     "family": "31",
     "types": [
       "rock",
-      "ground"
+      "electric"
     ],
     "generation": 7,
     "sectionId": null,
@@ -3960,7 +3981,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -4108,7 +4132,8 @@ export const pokemons = [
     "imageSlug": "sandshrew-alolan",
     "family": "11",
     "types": [
-      "ground"
+      "ice",
+      "steel"
     ],
     "generation": 7,
     "sectionId": null,
@@ -4124,7 +4149,8 @@ export const pokemons = [
     "imageSlug": "sandslash-alolan",
     "family": "11",
     "types": [
-      "ground"
+      "ice",
+      "steel"
     ],
     "generation": 7,
     "sectionId": null,
@@ -4140,7 +4166,7 @@ export const pokemons = [
     "imageSlug": "vulpix-alolan",
     "family": "15",
     "types": [
-      "fire"
+      "ice"
     ],
     "generation": 7,
     "sectionId": null,
@@ -4156,7 +4182,8 @@ export const pokemons = [
     "imageSlug": "ninetales-alolan",
     "family": "15",
     "types": [
-      "fire"
+      "ice",
+      "fairy"
     ],
     "generation": 7,
     "sectionId": null,
@@ -4420,7 +4447,7 @@ export const pokemons = [
     "family": "45",
     "types": [
       "grass",
-      "psychic"
+      "dragon"
     ],
     "generation": 7,
     "sectionId": null,

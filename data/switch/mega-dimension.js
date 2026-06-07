@@ -497,7 +497,10 @@ export const pokemons = [
     "slug": "tatsugiri",
     "imageSlug": "tatsugiri",
     "family": "514",
-    "types": [],
+    "types": [
+      "dragon",
+      "water"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -841,7 +844,10 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1098,7 +1104,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1129,7 +1138,10 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1392,7 +1404,10 @@ export const pokemons = [
     "slug": "squawkabilly",
     "imageSlug": "squawkabilly",
     "family": "488",
-    "types": [],
+    "types": [
+      "normal",
+      "flying"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -1669,7 +1684,10 @@ export const pokemons = [
     "slug": "toxtricity",
     "imageSlug": "toxtricity",
     "family": "446",
-    "types": [],
+    "types": [
+      "electric",
+      "poison"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1919,7 +1937,10 @@ export const pokemons = [
     "slug": "keldeo",
     "imageSlug": "keldeo",
     "family": "334",
-    "types": [],
+    "types": [
+      "water",
+      "fighting"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -1933,7 +1954,10 @@ export const pokemons = [
     "slug": "meloetta",
     "imageSlug": "meloetta",
     "family": "335",
-    "types": [],
+    "types": [
+      "normal",
+      "psychic"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,

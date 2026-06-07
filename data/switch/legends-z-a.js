@@ -712,7 +712,9 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
-    "types": [],
+    "types": [
+      "psychic"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -743,7 +745,10 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [],
+    "types": [
+      "fire",
+      "normal"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -1185,7 +1190,10 @@ export const pokemons = [
     "slug": "aegislash",
     "imageSlug": "aegislash",
     "family": "349",
-    "types": [],
+    "types": [
+      "steel",
+      "ghost"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3351,7 +3359,10 @@ export const pokemons = [
     "slug": "pumpkaboo",
     "imageSlug": "pumpkaboo",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3365,7 +3376,10 @@ export const pokemons = [
     "slug": "gourgeist",
     "imageSlug": "gourgeist",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3776,7 +3790,10 @@ export const pokemons = [
     "slug": "zygarde",
     "imageSlug": "zygarde",
     "family": "370",
-    "types": [],
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,

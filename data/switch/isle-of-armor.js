@@ -5,7 +5,6 @@ export const pokemons = [
     "imageSlug": "slowpoke-galarian",
     "family": "33",
     "types": [
-      "water",
       "psychic"
     ],
     "generation": 8,
@@ -22,7 +21,7 @@ export const pokemons = [
     "imageSlug": "slowbro-galarian",
     "family": "33",
     "types": [
-      "water",
+      "poison",
       "psychic"
     ],
     "generation": 8,
@@ -39,7 +38,7 @@ export const pokemons = [
     "imageSlug": "slowking-galarian",
     "family": "33",
     "types": [
-      "water",
+      "poison",
       "psychic"
     ],
     "generation": 8,
@@ -1652,7 +1651,10 @@ export const pokemons = [
     "slug": "urshifu",
     "imageSlug": "urshifu",
     "family": "470",
-    "types": [],
+    "types": [
+      "fighting",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1700,7 +1702,10 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1799,7 +1804,9 @@ export const pokemons = [
     "slug": "wishiwashi",
     "imageSlug": "wishiwashi",
     "family": "384",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -2590,7 +2597,9 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [],
+    "types": [
+      "rock"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -3152,7 +3161,10 @@ export const pokemons = [
     "slug": "frillish",
     "imageSlug": "frillish",
     "family": "301",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3166,7 +3178,10 @@ export const pokemons = [
     "slug": "jellicent",
     "imageSlug": "jellicent",
     "family": "301",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,

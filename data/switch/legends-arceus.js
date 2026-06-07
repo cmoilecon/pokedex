@@ -40,7 +40,7 @@ export const pokemons = [
     "family": "374",
     "types": [
       "grass",
-      "ghost"
+      "fighting"
     ],
     "generation": 8,
     "sectionId": null,
@@ -88,7 +88,8 @@ export const pokemons = [
     "imageSlug": "typhlosion-hisuian",
     "family": "80",
     "types": [
-      "fire"
+      "fire",
+      "ghost"
     ],
     "generation": 8,
     "sectionId": null,
@@ -136,7 +137,8 @@ export const pokemons = [
     "imageSlug": "samurott-hisuian",
     "family": "258",
     "types": [
-      "water"
+      "water",
+      "dark"
     ],
     "generation": 8,
     "sectionId": null,
@@ -706,7 +708,10 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
-    "types": [],
+    "types": [
+      "bug",
+      "grass"
+    ],
     "generation": 4,
     "sectionId": null,
     "sectionName": null,
@@ -1364,7 +1369,7 @@ export const pokemons = [
     "imageSlug": "qwilfish-hisuian",
     "family": "106",
     "types": [
-      "water",
+      "dark",
       "poison"
     ],
     "generation": 8,
@@ -1529,7 +1534,8 @@ export const pokemons = [
     "imageSlug": "lilligant-hisuian",
     "family": "279",
     "types": [
-      "grass"
+      "grass",
+      "fighting"
     ],
     "generation": 8,
     "sectionId": null,
@@ -1894,6 +1900,7 @@ export const pokemons = [
     "imageSlug": "sliggoo-hisuian",
     "family": "362",
     "types": [
+      "steel",
       "dragon"
     ],
     "generation": 8,
@@ -1910,6 +1917,7 @@ export const pokemons = [
     "imageSlug": "goodra-hisuian",
     "family": "362",
     "types": [
+      "steel",
       "dragon"
     ],
     "generation": 8,
@@ -2457,7 +2465,8 @@ export const pokemons = [
     "imageSlug": "growlithe-hisuian",
     "family": "25",
     "types": [
-      "fire"
+      "fire",
+      "rock"
     ],
     "generation": 8,
     "sectionId": null,
@@ -2473,7 +2482,8 @@ export const pokemons = [
     "imageSlug": "arcanine-hisuian",
     "family": "25",
     "types": [
-      "fire"
+      "fire",
+      "rock"
     ],
     "generation": 8,
     "sectionId": null,
@@ -2716,7 +2726,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -2730,7 +2742,10 @@ export const pokemons = [
     "slug": "basculegion",
     "imageSlug": "basculegion",
     "family": "280",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3142,7 +3157,8 @@ export const pokemons = [
     "imageSlug": "voltorb-hisuian",
     "family": "44",
     "types": [
-      "electric"
+      "electric",
+      "grass"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3158,7 +3174,8 @@ export const pokemons = [
     "imageSlug": "electrode-hisuian",
     "family": "44",
     "types": [
-      "electric"
+      "electric",
+      "grass"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3303,8 +3320,8 @@ export const pokemons = [
     "imageSlug": "sneasel-hisuian",
     "family": "109",
     "types": [
-      "dark",
-      "ice"
+      "fighting",
+      "poison"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3536,7 +3553,8 @@ export const pokemons = [
     "imageSlug": "avalugg-hisuian",
     "family": "366",
     "types": [
-      "ice"
+      "ice",
+      "rock"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3586,7 +3604,8 @@ export const pokemons = [
     "imageSlug": "zorua-hisuian",
     "family": "291",
     "types": [
-      "dark"
+      "normal",
+      "ghost"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3602,7 +3621,8 @@ export const pokemons = [
     "imageSlug": "zoroark-hisuian",
     "family": "291",
     "types": [
-      "dark"
+      "normal",
+      "ghost"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3635,7 +3655,7 @@ export const pokemons = [
     "imageSlug": "braviary-hisuian",
     "family": "319",
     "types": [
-      "normal",
+      "psychic",
       "flying"
     ],
     "generation": 8,
@@ -3781,7 +3801,9 @@ export const pokemons = [
     "slug": "tornadus",
     "imageSlug": "tornadus",
     "family": "328",
-    "types": [],
+    "types": [
+      "flying"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3795,7 +3817,10 @@ export const pokemons = [
     "slug": "thundurus",
     "imageSlug": "thundurus",
     "family": "329",
-    "types": [],
+    "types": [
+      "electric",
+      "flying"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3809,7 +3834,10 @@ export const pokemons = [
     "slug": "landorus",
     "imageSlug": "landorus",
     "family": "332",
-    "types": [],
+    "types": [
+      "ground",
+      "flying"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3823,7 +3851,10 @@ export const pokemons = [
     "slug": "enamorus",
     "imageSlug": "enamorus",
     "family": "477",
-    "types": [],
+    "types": [
+      "fairy",
+      "flying"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3871,7 +3902,10 @@ export const pokemons = [
     "slug": "giratina",
     "imageSlug": "giratina",
     "family": "248",
-    "types": [],
+    "types": [
+      "ghost",
+      "dragon"
+    ],
     "generation": 4,
     "sectionId": null,
     "sectionName": null,
@@ -3933,7 +3967,9 @@ export const pokemons = [
     "slug": "shaymin",
     "imageSlug": "shaymin",
     "family": "253",
-    "types": [],
+    "types": [
+      "grass"
+    ],
     "generation": 4,
     "sectionId": null,
     "sectionName": null,

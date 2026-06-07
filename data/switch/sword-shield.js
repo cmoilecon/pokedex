@@ -496,6 +496,7 @@ export const pokemons = [
     "imageSlug": "zigzagoon-galarian",
     "family": "134",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 8,
@@ -512,6 +513,7 @@ export const pokemons = [
     "imageSlug": "linoone-galarian",
     "family": "134",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 8,
@@ -2524,7 +2526,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -2538,7 +2542,9 @@ export const pokemons = [
     "slug": "wishiwashi",
     "imageSlug": "wishiwashi",
     "family": "384",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -2980,7 +2986,7 @@ export const pokemons = [
     "imageSlug": "meowth-galarian",
     "family": "22",
     "types": [
-      "normal"
+      "steel"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3127,7 +3133,10 @@ export const pokemons = [
     "slug": "pumpkaboo",
     "imageSlug": "pumpkaboo",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3141,7 +3150,10 @@ export const pokemons = [
     "slug": "gourgeist",
     "imageSlug": "gourgeist",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3414,7 +3426,9 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
-    "types": [],
+    "types": [
+      "psychic"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3559,8 +3573,7 @@ export const pokemons = [
     "imageSlug": "farfetchd-galarian",
     "family": "35",
     "types": [
-      "normal",
-      "flying"
+      "fighting"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3695,7 +3708,7 @@ export const pokemons = [
     "family": "313",
     "types": [
       "ground",
-      "electric"
+      "steel"
     ],
     "generation": 8,
     "sectionId": null,
@@ -3863,8 +3876,7 @@ export const pokemons = [
     "imageSlug": "corsola-galarian",
     "family": "113",
     "types": [
-      "water",
-      "rock"
+      "ghost"
     ],
     "generation": 8,
     "sectionId": null,
@@ -4112,7 +4124,8 @@ export const pokemons = [
     "imageSlug": "weezing-galarian",
     "family": "49",
     "types": [
-      "poison"
+      "poison",
+      "fairy"
     ],
     "generation": 8,
     "sectionId": null,
@@ -4936,7 +4949,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -4999,7 +5015,10 @@ export const pokemons = [
     "slug": "frillish",
     "imageSlug": "frillish",
     "family": "301",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -5013,7 +5032,10 @@ export const pokemons = [
     "slug": "jellicent",
     "imageSlug": "jellicent",
     "family": "301",
-    "types": [],
+    "types": [
+      "water",
+      "ghost"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -5095,7 +5117,10 @@ export const pokemons = [
     "slug": "toxtricity",
     "imageSlug": "toxtricity",
     "family": "446",
-    "types": [],
+    "types": [
+      "electric",
+      "poison"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -5356,6 +5381,7 @@ export const pokemons = [
     "imageSlug": "yamask-galarian",
     "family": "287",
     "types": [
+      "ground",
       "ghost"
     ],
     "generation": 8,
@@ -5438,7 +5464,10 @@ export const pokemons = [
     "slug": "aegislash",
     "imageSlug": "aegislash",
     "family": "349",
-    "types": [],
+    "types": [
+      "steel",
+      "ghost"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -5453,7 +5482,7 @@ export const pokemons = [
     "imageSlug": "ponyta-galarian",
     "family": "32",
     "types": [
-      "fire"
+      "psychic"
     ],
     "generation": 8,
     "sectionId": null,
@@ -5469,7 +5498,8 @@ export const pokemons = [
     "imageSlug": "rapidash-galarian",
     "family": "32",
     "types": [
-      "fire"
+      "psychic",
+      "fairy"
     ],
     "generation": 8,
     "sectionId": null,
@@ -5516,7 +5546,10 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -5631,7 +5664,10 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -5978,8 +6014,8 @@ export const pokemons = [
     "imageSlug": "mr-mime-galarian",
     "family": "57",
     "types": [
-      "psychic",
-      "fairy"
+      "ice",
+      "psychic"
     ],
     "generation": 8,
     "sectionId": null,
@@ -6012,7 +6048,7 @@ export const pokemons = [
     "imageSlug": "darumaka-galarian",
     "family": "282",
     "types": [
-      "fire"
+      "ice"
     ],
     "generation": 8,
     "sectionId": null,
@@ -6027,7 +6063,9 @@ export const pokemons = [
     "slug": "darmanitan",
     "imageSlug": "darmanitan-galarian-standard",
     "family": "282",
-    "types": [],
+    "types": [
+      "ice"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -6057,7 +6095,9 @@ export const pokemons = [
     "slug": "eiscue",
     "imageSlug": "eiscue",
     "family": "457",
-    "types": [],
+    "types": [
+      "ice"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,

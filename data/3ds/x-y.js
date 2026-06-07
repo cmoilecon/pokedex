@@ -727,7 +727,10 @@ export const pokemons = [
     "slug": "wormadam",
     "imageSlug": "wormadam",
     "family": "213",
-    "types": [],
+    "types": [
+      "bug",
+      "grass"
+    ],
     "generation": 4,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
@@ -941,7 +944,10 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [],
+    "types": [
+      "fire",
+      "normal"
+    ],
     "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
@@ -1879,7 +1885,9 @@ export const pokemons = [
     "slug": "meowstic",
     "imageSlug": "meowstic",
     "family": "348",
-    "types": [],
+    "types": [
+      "psychic"
+    ],
     "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
@@ -1943,7 +1951,10 @@ export const pokemons = [
     "slug": "aegislash",
     "imageSlug": "aegislash",
     "family": "349",
-    "types": [],
+    "types": [
+      "steel",
+      "ghost"
+    ],
     "generation": 6,
     "sectionId": "central-kalos",
     "sectionName": "Centre de Kalos",
@@ -6028,7 +6039,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
@@ -6076,7 +6089,10 @@ export const pokemons = [
     "slug": "pumpkaboo",
     "imageSlug": "pumpkaboo",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
@@ -6090,7 +6106,10 @@ export const pokemons = [
     "slug": "gourgeist",
     "imageSlug": "gourgeist",
     "family": "365",
-    "types": [],
+    "types": [
+      "ghost",
+      "grass"
+    ],
     "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",
@@ -7511,7 +7530,10 @@ export const pokemons = [
     "slug": "zygarde",
     "imageSlug": "zygarde",
     "family": "370",
-    "types": [],
+    "types": [
+      "dragon",
+      "ground"
+    ],
     "generation": 6,
     "sectionId": "mountain-kalos",
     "sectionName": "Monts de Kalos",

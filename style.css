@@ -5903,3 +5903,212 @@ body.dex-mini-mode .card.shiny-locked::after {
     max-height: 84px;
   }
 }
+
+
+/* =========================================================
+   PATCH STABLE : National sans texte + bouton Disponible
+========================================================= */
+.national-source-label {
+  display: none !important;
+}
+
+.national-source-panel {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.pokemon-availability-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px 7px;
+}
+
+.pokemon-available-dex-btn {
+  min-height: 24px;
+  padding: 4px 10px;
+  border: 1px solid rgba(74, 222, 128, 0.70);
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.10);
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pokemon-available-dex-btn:hover,
+.pokemon-available-dex-btn:focus-visible {
+  border-color: rgba(74, 222, 128, 0.95);
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.14), 0 0 14px rgba(74, 222, 128, 0.18);
+  outline: none;
+}
+
+.pokemon-availability-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pokemon-availability-chip {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.pokemon-availability-chip strong {
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.pokemon-availability-chip span {
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.72;
+}
+
+.pokemon-availability-chip.enabled:hover,
+.pokemon-availability-chip.enabled:focus-visible {
+  border-color: rgba(74, 222, 128, 0.95);
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.14);
+  outline: none;
+}
+
+.pokemon-availability-chip.disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  filter: grayscale(0.75);
+}
+
+.availability-note {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.72;
+}
+
+body.dex-mini-mode .card .pokemon-availability-inline {
+  display: none !important;
+}
+
+/* =========================================================
+   PATCH URGENT : DISPO SUR IMAGE + BADGES RÉDUITS + NOMS
+========================================================= */
+.image-zone {
+  position: relative;
+}
+
+.image-zone .pokemon-available-dex-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.pokemon-availability-inline {
+  display: contents !important;
+  padding: 0 !important;
+}
+
+.pokemon-available-dex-btn {
+  min-height: 24px;
+  padding: 4px 10px;
+  border: 1px solid rgba(74, 222, 128, 0.82);
+  border-radius: 999px;
+  background: rgba(10, 20, 16, 0.76);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.pokemon-available-dex-btn:hover,
+.pokemon-available-dex-btn:focus-visible {
+  border-color: rgba(74, 222, 128, 1);
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.14), 0 0 14px rgba(74, 222, 128, 0.20);
+  outline: none;
+}
+
+.national-source-panel {
+  padding: 4px 6px 5px;
+}
+
+.national-source-badges {
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.dex-source-badge {
+  max-width: 86px;
+}
+
+.dex-source-more {
+  min-width: 28px;
+  padding-inline: 7px;
+  border-color: rgba(255,255,255,.30);
+  background: rgba(0,0,0,.38);
+  color: #fff;
+}
+
+.national-source-modal-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.dex-source-large {
+  width: 100%;
+  max-width: none;
+  min-height: 38px;
+  justify-content: flex-start;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+.dex-source-large .dex-source-dot {
+  width: 10px;
+  height: 10px;
+  flex-basis: 10px;
+}
+
+.name {
+  min-width: 0;
+  line-height: 1.12;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.name.name-long {
+  font-size: 13px;
+  line-height: 1.08;
+}
+
+.name.name-very-long {
+  font-size: 12px;
+  line-height: 1.05;
+}
+
+.card.card-v2 .name.name-long {
+  font-size: 13px;
+}
+
+.card.card-v2 .name.name-very-long {
+  font-size: 12px;
+}
+
+body.dark .pokemon-available-dex-btn {
+  background: rgba(10, 10, 10, 0.78);
+  color: #ffffff;
+}

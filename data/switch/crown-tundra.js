@@ -171,8 +171,8 @@ export const pokemons = [
     "imageSlug": "mr-mime-galarian",
     "family": "57",
     "types": [
-      "psychic",
-      "fairy"
+      "ice",
+      "psychic"
     ],
     "generation": 8,
     "sectionId": null,
@@ -747,7 +747,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1040,7 +1043,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -1153,6 +1158,7 @@ export const pokemons = [
     "imageSlug": "zigzagoon-galarian",
     "family": "134",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 8,
@@ -1169,6 +1175,7 @@ export const pokemons = [
     "imageSlug": "linoone-galarian",
     "family": "134",
     "types": [
+      "dark",
       "normal"
     ],
     "generation": 8,
@@ -1463,7 +1470,9 @@ export const pokemons = [
     "slug": "eiscue",
     "imageSlug": "eiscue",
     "family": "457",
-    "types": [],
+    "types": [
+      "ice"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -1678,7 +1687,7 @@ export const pokemons = [
     "imageSlug": "darumaka-galarian",
     "family": "282",
     "types": [
-      "fire"
+      "ice"
     ],
     "generation": 8,
     "sectionId": null,
@@ -1693,7 +1702,9 @@ export const pokemons = [
     "slug": "darmanitan",
     "imageSlug": "darmanitan-galarian-standard",
     "family": "282",
-    "types": [],
+    "types": [
+      "ice"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -1708,7 +1719,7 @@ export const pokemons = [
     "imageSlug": "ponyta-galarian",
     "family": "32",
     "types": [
-      "fire"
+      "psychic"
     ],
     "generation": 8,
     "sectionId": null,
@@ -1724,7 +1735,8 @@ export const pokemons = [
     "imageSlug": "rapidash-galarian",
     "family": "32",
     "types": [
-      "fire"
+      "psychic",
+      "fairy"
     ],
     "generation": 8,
     "sectionId": null,
@@ -2574,7 +2586,10 @@ export const pokemons = [
     "slug": "morpeko",
     "imageSlug": "morpeko",
     "family": "459",
-    "types": [],
+    "types": [
+      "electric",
+      "dark"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -2804,7 +2819,10 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3317,7 +3335,7 @@ export const pokemons = [
     "imageSlug": "articuno-galarian",
     "family": "73",
     "types": [
-      "ice",
+      "psychic",
       "flying"
     ],
     "generation": 8,
@@ -3334,7 +3352,7 @@ export const pokemons = [
     "imageSlug": "zapdos-galarian",
     "family": "74",
     "types": [
-      "electric",
+      "fighting",
       "flying"
     ],
     "generation": 8,
@@ -3351,7 +3369,7 @@ export const pokemons = [
     "imageSlug": "moltres-galarian",
     "family": "75",
     "types": [
-      "fire",
+      "dark",
       "flying"
     ],
     "generation": 8,

@@ -167,7 +167,9 @@ export const pokemons = [
     "slug": "oinkologne",
     "imageSlug": "oinkologne",
     "family": "481",
-    "types": [],
+    "types": [
+      "normal"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -858,7 +860,7 @@ export const pokemons = [
     "imageSlug": "wooper-paldean",
     "family": "96",
     "types": [
-      "water",
+      "poison",
       "ground"
     ],
     "generation": 9,
@@ -1174,7 +1176,9 @@ export const pokemons = [
     "slug": "maushold",
     "imageSlug": "maushold",
     "family": "485",
-    "types": [],
+    "types": [
+      "normal"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -1463,7 +1467,9 @@ export const pokemons = [
     "slug": "lycanroc",
     "imageSlug": "lycanroc",
     "family": "383",
-    "types": [],
+    "types": [
+      "rock"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1626,7 +1632,10 @@ export const pokemons = [
     "slug": "oricorio",
     "imageSlug": "oricorio",
     "family": "381",
-    "types": [],
+    "types": [
+      "fire",
+      "flying"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -1836,7 +1845,10 @@ export const pokemons = [
     "slug": "squawkabilly",
     "imageSlug": "squawkabilly",
     "family": "488",
-    "types": [],
+    "types": [
+      "normal",
+      "flying"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -2243,7 +2255,9 @@ export const pokemons = [
     "slug": "basculin",
     "imageSlug": "basculin",
     "family": "280",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 5,
     "sectionId": null,
     "sectionName": null,
@@ -3075,7 +3089,9 @@ export const pokemons = [
     "slug": "dudunsparce",
     "imageSlug": "dudunsparce",
     "family": "103",
-    "types": [],
+    "types": [
+      "normal"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -3238,7 +3254,10 @@ export const pokemons = [
     "slug": "toxtricity",
     "imageSlug": "toxtricity",
     "family": "446",
-    "types": [],
+    "types": [
+      "electric",
+      "poison"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -3631,7 +3650,7 @@ export const pokemons = [
     "imageSlug": "tauros-paldean-combat",
     "family": "63",
     "types": [
-      "normal"
+      "fighting"
     ],
     "generation": 1,
     "sectionId": null,
@@ -3663,7 +3682,10 @@ export const pokemons = [
     "slug": "pyroar",
     "imageSlug": "pyroar",
     "family": "343",
-    "types": [],
+    "types": [
+      "fire",
+      "normal"
+    ],
     "generation": 6,
     "sectionId": null,
     "sectionName": null,
@@ -3891,7 +3913,10 @@ export const pokemons = [
     "slug": "mimikyu",
     "imageSlug": "mimikyu",
     "family": "404",
-    "types": [],
+    "types": [
+      "ghost",
+      "fairy"
+    ],
     "generation": 7,
     "sectionId": null,
     "sectionName": null,
@@ -3922,7 +3947,10 @@ export const pokemons = [
     "slug": "indeedee",
     "imageSlug": "indeedee",
     "family": "458",
-    "types": [],
+    "types": [
+      "psychic",
+      "normal"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -4764,7 +4792,9 @@ export const pokemons = [
     "slug": "palafin",
     "imageSlug": "palafin",
     "family": "504",
-    "types": [],
+    "types": [
+      "water"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,
@@ -5228,7 +5258,9 @@ export const pokemons = [
     "slug": "eiscue",
     "imageSlug": "eiscue",
     "family": "457",
-    "types": [],
+    "types": [
+      "ice"
+    ],
     "generation": 8,
     "sectionId": null,
     "sectionName": null,
@@ -6136,7 +6168,10 @@ export const pokemons = [
     "slug": "tatsugiri",
     "imageSlug": "tatsugiri",
     "family": "514",
-    "types": [],
+    "types": [
+      "dragon",
+      "water"
+    ],
     "generation": 9,
     "sectionId": null,
     "sectionName": null,

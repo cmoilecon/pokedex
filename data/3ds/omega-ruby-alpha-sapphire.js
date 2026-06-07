@@ -3471,7 +3471,9 @@ export const pokemons = [
     "slug": "deoxys",
     "imageSlug": "deoxys",
     "family": "202",
-    "types": [],
+    "types": [
+      "psychic"
+    ],
     "generation": 3,
     "sectionId": null,
     "sectionName": null,

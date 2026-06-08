@@ -1,6 +1,34 @@
 export const games = [
   // Global — toujours en premier
   { id: "national", platform: "global", name: "Pokédex National", shortName: "National", subtitle: "Tous les Pokémon", dexUrl: "https://pokemondb.net/pokedex/national", coverPokemonIds: [1, 4, 7] },
+  {
+    id: "forms",
+    platform: "global",
+    name: "Dex Formes",
+    shortName: "Formes",
+    subtitle: "Formes régionales / spéciales",
+    dexUrl: "https://pokemondb.net/pokedex/national",
+    coverPokemonIds: [79, 144, 724],
+    coverSprites: [
+      { slug: "slowpoke-galar", name: "Ramoloss de Galar" },
+      { slug: "articuno-galar", name: "Artikodin de Galar" },
+      { slug: "decidueye-hisui", name: "Archéduc de Hisui" }
+    ]
+  },
+  {
+    id: "unown-forms",
+    platform: "global",
+    name: "Zarbi Dex",
+    shortName: "Zarbi",
+    subtitle: "Toutes les formes de Zarbi",
+    dexUrl: "https://pokemondb.net/pokedex/unown",
+    coverPokemonIds: [201, 201, 201],
+    coverSprites: [
+      { slug: "unown-a", name: "Zarbi A" },
+      { slug: "unown-q", name: "Zarbi Q" },
+      { slug: "unown-question", name: "Zarbi ?" }
+    ]
+  },
 
   // Switch
   { id: "lets-go-pikachu-eevee", platform: "switch", name: "Pokémon Let's Go Pikachu/Évoli", shortName: "Let's Go", subtitle: "Kanto Pokédex", dexUrl: "https://pokemondb.net/pokedex/game/lets-go-pikachu-eevee", coverPokemonIds: [25, 133, 150] },

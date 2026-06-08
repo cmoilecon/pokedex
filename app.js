@@ -45,6 +45,221 @@ const STORAGE_KEYS = {
   minimizedView: "dex-minimized-view-v1"
 };
 
+const FORM_DEX_GAME_ID = "forms";
+const UNOWN_DEX_GAME_ID = "unown-forms";
+const AUXILIARY_DEX_IDS = new Set([FORM_DEX_GAME_ID, UNOWN_DEX_GAME_ID]);
+let formsDexCache = null;
+let unownDexCache = null;
+
+function isAuxiliaryDex(gameId) {
+  return AUXILIARY_DEX_IDS.has(gameId);
+}
+
+function getRealEnabledDexes(profile) {
+  return (profile?.enabledDexes || []).filter(gameId => !isAuxiliaryDex(gameId));
+}
+
+function canOpenAuxiliaryDex(profile, gameId) {
+  return Boolean(profile?.enabledDexes?.includes("national") && isAuxiliaryDex(gameId));
+}
+
+// Formes fixes à ajouter même si elles ne remontent pas toutes depuis les pages Dex.
+// On évite volontairement les formes sexe/micro-changements et les gros sets cosmétiques
+// type Météno couleurs / Charmilly 60+ variantes.
+const MANUAL_FIXED_FORM_POKEMONS = [
+  {
+    baseSlug: "lycanroc",
+    forms: [
+      { imageSlug: "lycanroc-midday", fr: "Lougaroc Diurne", en: "Lycanroc Midday Form", generation: 7, types: ["rock"] },
+      { imageSlug: "lycanroc-midnight", fr: "Lougaroc Nocturne", en: "Lycanroc Midnight Form", generation: 7, types: ["rock"] },
+      { imageSlug: "lycanroc-dusk", fr: "Lougaroc Crépusculaire", en: "Lycanroc Dusk Form", generation: 7, types: ["rock"] }
+    ]
+  },
+  {
+    baseSlug: "oricorio",
+    forms: [
+      { imageSlug: "oricorio-baile", fr: "Plumeline Style Flamenco", en: "Oricorio Baile Style", generation: 7, types: ["fire", "flying"] },
+      { imageSlug: "oricorio-pom-pom", fr: "Plumeline Style Pom-Pom", en: "Oricorio Pom-Pom Style", generation: 7, types: ["electric", "flying"] },
+      { imageSlug: "oricorio-pau", fr: "Plumeline Style Hula", en: "Oricorio Pa'u Style", generation: 7, types: ["psychic", "flying"] },
+      { imageSlug: "oricorio-sensu", fr: "Plumeline Style Buyō", en: "Oricorio Sensu Style", generation: 7, types: ["ghost", "flying"] }
+    ]
+  },
+  {
+    baseSlug: "wishiwashi",
+    forms: [
+      { imageSlug: "wishiwashi-solo", fr: "Froussardine Solitaire", en: "Wishiwashi Solo Form", generation: 7, types: ["water"] },
+      { imageSlug: "wishiwashi-school", fr: "Froussardine Banc", en: "Wishiwashi School Form", generation: 7, types: ["water"] }
+    ]
+  },
+  {
+    baseSlug: "zygarde",
+    forms: [
+      { imageSlug: "zygarde-10", fr: "Zygarde 10%", en: "Zygarde 10% Forme", generation: 7, types: ["dragon", "ground"] },
+      { imageSlug: "zygarde-50", fr: "Zygarde 50%", en: "Zygarde 50% Forme", generation: 7, types: ["dragon", "ground"] },
+      { imageSlug: "zygarde-complete", fr: "Zygarde Forme Parfaite", en: "Zygarde Complete Forme", generation: 7, types: ["dragon", "ground"] }
+    ]
+  },
+  {
+    baseSlug: "necrozma",
+    forms: [
+      { imageSlug: "necrozma-dusk-mane", fr: "Necrozma Crinière du Couchant", en: "Necrozma Dusk Mane", generation: 7, types: ["psychic", "steel"] },
+      { imageSlug: "necrozma-dawn-wings", fr: "Necrozma Ailes de l'Aurore", en: "Necrozma Dawn Wings", generation: 7, types: ["psychic", "ghost"] },
+      { imageSlug: "necrozma-ultra", fr: "Ultra-Necrozma", en: "Ultra Necrozma", generation: 7, types: ["psychic", "dragon"] }
+    ]
+  },
+  {
+    baseSlug: "toxtricity",
+    forms: [
+      { imageSlug: "toxtricity-amped", fr: "Salarsen Forme Aiguë", en: "Toxtricity Amped Form", generation: 8, types: ["electric", "poison"] },
+      { imageSlug: "toxtricity-low-key", fr: "Salarsen Forme Grave", en: "Toxtricity Low Key Form", generation: 8, types: ["electric", "poison"] }
+    ]
+  },
+  {
+    baseSlug: "eiscue",
+    forms: [
+      { imageSlug: "eiscue-ice", fr: "Bekaglaçon Tête de Gel", en: "Eiscue Ice Face", generation: 8, types: ["ice"] },
+      { imageSlug: "eiscue-noice", fr: "Bekaglaçon Tête Dégel", en: "Eiscue Noice Face", generation: 8, types: ["ice"] }
+    ]
+  },
+  {
+    baseSlug: "urshifu",
+    forms: [
+      { imageSlug: "urshifu-single-strike", fr: "Shifours Poing Final", en: "Urshifu Single Strike Style", generation: 8, types: ["fighting", "dark"] },
+      { imageSlug: "urshifu-rapid-strike", fr: "Shifours Mille Poings", en: "Urshifu Rapid Strike Style", generation: 8, types: ["fighting", "water"] }
+    ]
+  },
+  {
+    baseSlug: "calyrex",
+    forms: [
+      { imageSlug: "calyrex", fr: "Sylveroy", en: "Calyrex", generation: 8, types: ["psychic", "grass"] },
+      { imageSlug: "calyrex-ice-rider", fr: "Sylveroy Cavalier du Froid", en: "Calyrex Ice Rider", generation: 8, types: ["psychic", "ice"] },
+      { imageSlug: "calyrex-shadow-rider", fr: "Sylveroy Cavalier d'Effroi", en: "Calyrex Shadow Rider", generation: 8, types: ["psychic", "ghost"] }
+    ]
+  },
+  {
+    baseSlug: "basculegion",
+    forms: [
+      { imageSlug: "basculegion-male", fr: "Paragruel Mâle", en: "Basculegion Male", generation: 8, types: ["water", "ghost"] },
+      { imageSlug: "basculegion-female", fr: "Paragruel Femelle", en: "Basculegion Female", generation: 8, types: ["water", "ghost"] }
+    ]
+  },
+  {
+    baseSlug: "oinkologne",
+    forms: [
+      { imageSlug: "oinkologne-male", fr: "Fragroin Mâle", en: "Oinkologne Male", generation: 9, types: ["normal"] },
+      { imageSlug: "oinkologne-female", fr: "Fragroin Femelle", en: "Oinkologne Female", generation: 9, types: ["normal"] }
+    ]
+  },
+  {
+    baseSlug: "maushold",
+    forms: [
+      { imageSlug: "maushold-family4", fr: "Famignol Famille de Quatre", en: "Maushold Family of Four", generation: 9, types: ["normal"] },
+      { imageSlug: "maushold-family3", fr: "Famignol Famille de Trois", en: "Maushold Family of Three", generation: 9, types: ["normal"] }
+    ]
+  },
+  {
+    baseSlug: "tatsugiri",
+    forms: [
+      { imageSlug: "tatsugiri-curly", fr: "Nigirigon Forme Courbée", en: "Tatsugiri Curly Form", generation: 9, types: ["dragon", "water"] },
+      { imageSlug: "tatsugiri-droopy", fr: "Nigirigon Forme Affalée", en: "Tatsugiri Droopy Form", generation: 9, types: ["dragon", "water"] },
+      { imageSlug: "tatsugiri-stretchy", fr: "Nigirigon Forme Raide", en: "Tatsugiri Stretchy Form", generation: 9, types: ["dragon", "water"] }
+    ]
+  },
+  {
+    baseSlug: "squawkabilly",
+    forms: [
+      { imageSlug: "squawkabilly-green", fr: "Tapatoès Plumage Vert", en: "Squawkabilly Green Plumage", generation: 9, types: ["normal", "flying"] },
+      { imageSlug: "squawkabilly-blue", fr: "Tapatoès Plumage Bleu", en: "Squawkabilly Blue Plumage", generation: 9, types: ["normal", "flying"] },
+      { imageSlug: "squawkabilly-yellow", fr: "Tapatoès Plumage Jaune", en: "Squawkabilly Yellow Plumage", generation: 9, types: ["normal", "flying"] },
+      { imageSlug: "squawkabilly-white", fr: "Tapatoès Plumage Blanc", en: "Squawkabilly White Plumage", generation: 9, types: ["normal", "flying"] }
+    ]
+  },
+  {
+    baseSlug: "deoxys",
+    forms: [
+      { imageSlug: "deoxys-normal", fr: "Deoxys Normal", en: "Deoxys Normal Forme", generation: 3, types: ["psychic"] },
+      { imageSlug: "deoxys-attack", fr: "Deoxys Attaque", en: "Deoxys Attack Forme", generation: 3, types: ["psychic"] },
+      { imageSlug: "deoxys-defense", fr: "Deoxys Défense", en: "Deoxys Defense Forme", generation: 3, types: ["psychic"] },
+      { imageSlug: "deoxys-speed", fr: "Deoxys Vitesse", en: "Deoxys Speed Forme", generation: 3, types: ["psychic"] }
+    ]
+  },
+  {
+    baseSlug: "rotom",
+    forms: [
+      { imageSlug: "rotom", fr: "Motisma", en: "Rotom", generation: 4, types: ["electric", "ghost"] },
+      { imageSlug: "rotom-heat", fr: "Motisma Chaleur", en: "Heat Rotom", generation: 4, types: ["electric", "fire"] },
+      { imageSlug: "rotom-wash", fr: "Motisma Lavage", en: "Wash Rotom", generation: 4, types: ["electric", "water"] },
+      { imageSlug: "rotom-frost", fr: "Motisma Froid", en: "Frost Rotom", generation: 4, types: ["electric", "ice"] },
+      { imageSlug: "rotom-fan", fr: "Motisma Hélice", en: "Fan Rotom", generation: 4, types: ["electric", "flying"] },
+      { imageSlug: "rotom-mow", fr: "Motisma Tonte", en: "Mow Rotom", generation: 4, types: ["electric", "grass"] }
+    ]
+  },
+  {
+    baseSlug: "giratina",
+    forms: [
+      { imageSlug: "giratina-altered", fr: "Giratina Alternative", en: "Giratina Altered Forme", generation: 4, types: ["ghost", "dragon"] },
+      { imageSlug: "giratina-origin", fr: "Giratina Originelle", en: "Giratina Origin Forme", generation: 4, types: ["ghost", "dragon"] }
+    ]
+  },
+  {
+    baseSlug: "shaymin",
+    forms: [
+      { imageSlug: "shaymin-land", fr: "Shaymin Terrestre", en: "Shaymin Land Forme", generation: 4, types: ["grass"] },
+      { imageSlug: "shaymin-sky", fr: "Shaymin Céleste", en: "Shaymin Sky Forme", generation: 4, types: ["grass", "flying"] }
+    ]
+  },
+  {
+    baseSlug: "tornadus",
+    forms: [
+      { imageSlug: "tornadus-incarnate", fr: "Boréas Avatar", en: "Tornadus Incarnate Forme", generation: 5, types: ["flying"] },
+      { imageSlug: "tornadus-therian", fr: "Boréas Totémique", en: "Tornadus Therian Forme", generation: 5, types: ["flying"] }
+    ]
+  },
+  {
+    baseSlug: "thundurus",
+    forms: [
+      { imageSlug: "thundurus-incarnate", fr: "Fulguris Avatar", en: "Thundurus Incarnate Forme", generation: 5, types: ["electric", "flying"] },
+      { imageSlug: "thundurus-therian", fr: "Fulguris Totémique", en: "Thundurus Therian Forme", generation: 5, types: ["electric", "flying"] }
+    ]
+  },
+  {
+    baseSlug: "landorus",
+    forms: [
+      { imageSlug: "landorus-incarnate", fr: "Démétéros Avatar", en: "Landorus Incarnate Forme", generation: 5, types: ["ground", "flying"] },
+      { imageSlug: "landorus-therian", fr: "Démétéros Totémique", en: "Landorus Therian Forme", generation: 5, types: ["ground", "flying"] }
+    ]
+  },
+  {
+    baseSlug: "kyurem",
+    forms: [
+      { imageSlug: "kyurem", fr: "Kyurem", en: "Kyurem", generation: 5, types: ["dragon", "ice"] },
+      { imageSlug: "kyurem-black", fr: "Kyurem Noir", en: "Black Kyurem", generation: 5, types: ["dragon", "ice"] },
+      { imageSlug: "kyurem-white", fr: "Kyurem Blanc", en: "White Kyurem", generation: 5, types: ["dragon", "ice"] }
+    ]
+  },
+  {
+    baseSlug: "meloetta",
+    forms: [
+      { imageSlug: "meloetta-aria", fr: "Meloetta Chant", en: "Meloetta Aria Forme", generation: 5, types: ["normal", "psychic"] },
+      { imageSlug: "meloetta-pirouette", fr: "Meloetta Danse", en: "Meloetta Pirouette Forme", generation: 5, types: ["normal", "fighting"] }
+    ]
+  },
+  {
+    baseSlug: "aegislash",
+    forms: [
+      { imageSlug: "aegislash-shield", fr: "Exagide Parade", en: "Aegislash Shield Forme", generation: 6, types: ["steel", "ghost"] },
+      { imageSlug: "aegislash-blade", fr: "Exagide Assaut", en: "Aegislash Blade Forme", generation: 6, types: ["steel", "ghost"] }
+    ]
+  },
+  {
+    baseSlug: "hoopa",
+    forms: [
+      { imageSlug: "hoopa", fr: "Hoopa Enchaîné", en: "Hoopa Confined", generation: 6, types: ["psychic", "ghost"] },
+      { imageSlug: "hoopa-unbound", fr: "Hoopa Déchaîné", en: "Hoopa Unbound", generation: 6, types: ["psychic", "dark"] }
+    ]
+  }
+];
+
 const dexDataMap = {
   national: nationalPokemons,
   //switch
@@ -102,7 +317,12 @@ const TYPE_ORDER = [
 const DLC_LINK_GROUPS = [
   ["sword-shield", "isle-of-armor", "crown-tundra"],
   ["scarlet-violet", "teal-mask", "indigo-disk"],
-  ["legends-z-a", "mega-dimension"]
+  ["legends-z-a", "mega-dimension"],
+
+  // Dex liés comme extensions / versions avancées
+  ["sun-moon", "ultra-sun-ultra-moon"],
+  ["diamond-pearl", "platinum"],
+  ["black-white", "black-white-2"]
 ];
 
 const TYPE_ICON_SVGS = {
@@ -445,7 +665,235 @@ function getActiveProfile() {
   return profiles[activeProfileId] || null;
 }
 
+function getPokemonGenerationValue(pokemon) {
+  const value = Number(pokemon?.generation);
+  return Number.isInteger(value) && value > 0 ? value : getPokemonGeneration(pokemon);
+}
+
+function getFormAppearanceGeneration(pokemon) {
+  const joined = `${pokemon?.imageSlug || ""} ${pokemon?.slug || ""} ${pokemon?.speciesSlug || ""} ${pokemon?.names?.fr || ""} ${pokemon?.names?.en || ""}`
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  if (/\b(alola|alolan|d'alola)\b/.test(joined)) return 7;
+  if (/\b(galar|galarian|hisui|hisuian)\b/.test(joined)) return 8;
+  if (/\b(paldea|paldean)\b/.test(joined)) return 9;
+  if (/\blycanroc-(midday|midnight|dusk)\b|lougaroc/.test(joined)) return 7;
+  if (/\boricorio|zygarde-(10|50|complete)|wishiwashi-school|necrozma|minior/.test(joined)) return 7;
+  if (/\bmega\b|\bprimal\b/.test(joined)) return 6;
+  if (/\btherian\b|\bincarnate\b|\bblack\b|\bwhite\b/.test(joined)) return 5;
+  if (/\borigin\b|\bsky\b|\bwash\b|\bheat\b|\bfan\b|\bfrost\b|\bmow\b|\bblade\b|\bshield\b/.test(joined)) return 4;
+  if (/\battack\b|\bdefense\b|\bspeed\b/.test(joined)) return 3;
+
+  return getPokemonGenerationValue(pokemon) || 99;
+}
+
+function isExcludedCosmeticForm(pokemon) {
+  const joined = `${pokemon?.imageSlug || ""} ${pokemon?.slug || ""} ${pokemon?.speciesSlug || ""} ${pokemon?.names?.fr || ""} ${pokemon?.names?.en || ""}`
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  // Pas de formes sexe / différences minuscules.
+  if (/\b(female|male|femelle|male-only|female-only)\b/.test(joined)) return true;
+
+  // Pas les sets cosmétiques énormes : Météno couleurs / Charmilly crèmes.
+  if (/\bminior-(red|orange|yellow|green|blue|indigo|violet)\b/.test(joined)) return true;
+  if (/\balcremie-|charmilly/.test(joined)) return true;
+
+  return false;
+}
+
+function isLikelyFormPokemonForDex(pokemon) {
+  if (!pokemon || (!pokemon.formDexSourceGameId && isExcludedCosmeticForm(pokemon))) return false;
+
+  const imageSlug = String(pokemon.imageSlug || pokemon.slug || "").toLowerCase();
+  const slug = String(pokemon.slug || "").toLowerCase();
+  const frName = String(pokemon.names?.fr || "").toLowerCase();
+  const enName = String(pokemon.names?.en || "").toLowerCase();
+  const joined = `${imageSlug} ${slug} ${frName} ${enName}`;
+
+  return Boolean(
+    (imageSlug && slug && imageSlug !== slug) ||
+    /\b(galar|galarian|alola|alolan|hisui|hisuian|paldea|paldean|mega|primal|origin|therian|incarnate|altered|sky|land|wash|heat|fan|frost|mow|attack|defense|speed|blade|shield|complete|10|50|white|black|dusk|dawn|ultra|school|solo|amped|low-key|rapid-strike|single-strike|ice-rider|shadow-rider|terastal|stellar|midday|midnight)\b/.test(joined) ||
+    joined.includes(" de galar") || joined.includes(" d'alola") || joined.includes(" de hisui") || joined.includes(" de paldea")
+  );
+}
+
+function getFormDexSortRank(generation) {
+  // Ordre logique des générations : 1G, 2G, 3G...
+  const order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 99];
+  const index = order.indexOf(generation);
+  return index === -1 ? order.length : index;
+}
+
+function getBasePokemonForManualForm(baseSlug) {
+  return nationalPokemons.find(item => item.slug === baseSlug || item.speciesSlug === baseSlug) || null;
+}
+
+function buildManualFixedFormPokemons() {
+  const forms = [];
+
+  for (const group of MANUAL_FIXED_FORM_POKEMONS) {
+    const base = getBasePokemonForManualForm(group.baseSlug);
+    if (!base) continue;
+
+    group.forms.forEach((form, formIndex) => {
+      forms.push({
+        ...base,
+        id: base.id,
+        slug: base.slug,
+        speciesSlug: base.speciesSlug || base.slug,
+        imageSlug: form.imageSlug,
+        names: { fr: form.fr, en: form.en },
+        types: form.types || base.types || [],
+        generation: form.generation,
+        formAppearanceGeneration: form.generation,
+        formDexOrder: form.order ?? formIndex,
+        formDexSourceGameId: "manual-fixed-forms",
+        formDexSourceGameName: "Formes fixes"
+      });
+    });
+  }
+
+  return forms;
+}
+
+function getFormDexSectionName(generation) {
+  const labels = {
+    7: "★ 7G — Alola",
+    8: "★ 8G — Galar / Hisui",
+    9: "★ 9G — Paldea",
+    6: "★ 6G — Kalos / Méga",
+    5: "★ 5G — Unys",
+    4: "★ 4G — Sinnoh",
+    3: "★ 3G — Hoenn"
+  };
+
+  return labels[generation] || `★ Gen ${generation || "?"}`;
+}
+
+function buildFormsDexPokemons() {
+  const items = [];
+  const seen = new Set();
+
+  const addPokemon = (pokemon, sourceGame = null) => {
+    if (!pokemon || !isLikelyFormPokemonForDex(pokemon)) return;
+
+    const key = pokemon.imageSlug || pokemon.slug || `${sourceGame?.id || "forms"}-${pokemon.id}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+
+    items.push({
+      ...pokemon,
+      formAppearanceGeneration: getFormAppearanceGeneration(pokemon),
+      formDexSourceGameId: sourceGame?.id || pokemon.formDexSourceGameId || "forms",
+      formDexSourceGameName: sourceGame ? (sourceGame.shortName || sourceGame.name || sourceGame.id) : (pokemon.formDexSourceGameName || "Formes")
+    });
+  };
+
+  // D'abord les formes fixes manuelles : ça impose l'ordre propre
+  // (ex : Froussardine Solitaire puis Banc, Lougaroc Diurne/Nocturne/Crépusculaire)
+  // et ça évite que les doublons récupérés depuis les autres Dex prennent la mauvaise place.
+  for (const pokemon of buildManualFixedFormPokemons()) {
+    addPokemon(pokemon, null);
+  }
+
+  for (const game of games) {
+    if (!game || game.id === "national" || game.id === FORM_DEX_GAME_ID || game.id === UNOWN_DEX_GAME_ID) continue;
+
+    const pokemons = dexDataMap[game.id] || [];
+    for (const pokemon of pokemons) {
+      addPokemon(pokemon, game);
+    }
+  }
+
+  items.sort((a, b) => {
+    const genA = getFormAppearanceGeneration(a);
+    const genB = getFormAppearanceGeneration(b);
+    const rankDiff = getFormDexSortRank(genA) - getFormDexSortRank(genB);
+    if (rankDiff !== 0) return rankDiff;
+
+    const nationalA = getPokemonNationalNumber(a) || Number(a.id) || 9999;
+    const nationalB = getPokemonNationalNumber(b) || Number(b.id) || 9999;
+    if (nationalA !== nationalB) return nationalA - nationalB;
+
+    const orderA = Number.isFinite(Number(a.formDexOrder)) ? Number(a.formDexOrder) : 999;
+    const orderB = Number.isFinite(Number(b.formDexOrder)) ? Number(b.formDexOrder) : 999;
+    if (orderA !== orderB) return orderA - orderB;
+
+    return String(a.imageSlug || a.slug || "").localeCompare(String(b.imageSlug || b.slug || ""));
+  });
+
+  return items.map((pokemon, index) => {
+    const gen = getFormAppearanceGeneration(pokemon);
+
+    return {
+      ...pokemon,
+      id: `F${String(index + 1).padStart(3, "0")}`,
+      formDexIndex: index + 1,
+      sectionId: `forms-gen-${gen}`,
+      sectionName: getFormDexSectionName(gen)
+    };
+  });
+}
+
+function getFormsDexPokemons() {
+  if (!formsDexCache) {
+    formsDexCache = buildFormsDexPokemons();
+  }
+
+  return formsDexCache;
+}
+
+const UNOWN_FORM_LETTERS = [
+  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+];
+
+function buildUnownDexPokemons() {
+  const base = getBasePokemonForManualForm("unown") || {
+    id: 201,
+    slug: "unown",
+    speciesSlug: "unown",
+    names: { fr: "Zarbi", en: "Unown" },
+    types: ["psychic"],
+    generation: 2
+  };
+
+  const forms = [
+    ...UNOWN_FORM_LETTERS.map(letter => ({ suffix: letter, label: letter.toUpperCase() })),
+    { suffix: "em", label: "!" },
+    { suffix: "qm", label: "?" }
+  ];
+
+  return forms.map((form, index) => ({
+    ...base,
+    id: `Z${String(index + 1).padStart(3, "0")}`,
+    slug: base.slug,
+    speciesSlug: base.speciesSlug || base.slug,
+    imageSlug: `unown-${form.suffix}`,
+    names: {
+      fr: `Zarbi ${form.label}`,
+      en: `Unown ${form.label}`
+    },
+    types: ["psychic"],
+    generation: 2,
+    unownDexIndex: index + 1
+  }));
+}
+
+function getUnownDexPokemons() {
+  if (!unownDexCache) {
+    unownDexCache = buildUnownDexPokemons();
+  }
+
+  return unownDexCache;
+}
+
 function getPokemonsForGame(gameId) {
+  if (gameId === FORM_DEX_GAME_ID) return getFormsDexPokemons();
+  if (gameId === UNOWN_DEX_GAME_ID) return getUnownDexPokemons();
   return dexDataMap[gameId] || [];
 }
 
@@ -906,15 +1354,54 @@ function getPokemonNationalNumber(pokemon) {
   return Number.isInteger(nationalId) && nationalId > 0 ? nationalId : null;
 }
 
+function getPokemon3DSlugVariants(imageSlug, baseSlug) {
+  const variants = [];
+  const add = value => {
+    const clean = String(value || "").toLowerCase().trim();
+    if (clean && !variants.includes(clean)) variants.push(clean);
+  };
+
+  add(imageSlug);
+  add(baseSlug);
+
+  const regionalPairs = [
+    ["alola", "alolan"],
+    ["galar", "galarian"],
+    ["hisui", "hisuian"],
+    ["paldea", "paldean"]
+  ];
+
+  for (const [shortForm, longForm] of regionalPairs) {
+    if (imageSlug.endsWith(`-${shortForm}`)) {
+      const root = imageSlug.replace(new RegExp(`-${shortForm}$`), "");
+      add(`${root}-${longForm}`);
+      add(`${longForm}-${root}`);
+      add(`${shortForm}-${root}`);
+      // Ne pas ajouter le slug de base ici : pour une forme, ça peut charger le mauvais modèle normal.
+    }
+
+    if (imageSlug.endsWith(`-${longForm}`)) {
+      const root = imageSlug.replace(new RegExp(`-${longForm}$`), "");
+      add(`${root}-${shortForm}`);
+      add(`${longForm}-${root}`);
+      add(`${shortForm}-${root}`);
+      // Ne pas ajouter le slug de base ici : pour une forme, ça peut charger le mauvais modèle normal.
+    }
+  }
+
+  return variants;
+}
+
 function getPokemon3DModelCandidates(pokemon) {
   const id = getPokemonNationalNumber(pokemon);
   if (!Number.isFinite(id)) return [];
 
   const base = "https://raw.githubusercontent.com/Pokemon-3D-api/assets/main/models/opt";
   const imageSlug = String(pokemon?.imageSlug || pokemon?.slug || "").toLowerCase();
-  const baseSlug = String(pokemon?.slug || "").toLowerCase();
+  const baseSlug = String(pokemon?.slug || pokemon?.speciesSlug || "").toLowerCase();
   const isManualShiny = isPokemonShinyObtained(pokemon);
   const isShiny = isManualShiny || (ui.shinyMode?.checked && isPokemonObtained(pokemon) && !isPokemonShinyLocked(pokemon));
+  const isForm = Boolean(imageSlug && baseSlug && imageSlug !== baseSlug);
 
   const candidates = [];
   const add = (url, label, kind = "regular") => {
@@ -922,30 +1409,60 @@ function getPokemon3DModelCandidates(pokemon) {
     candidates.push({ url, label, kind });
   };
 
+  const addInDirs = (dirs, names, label, kind = "regular") => {
+    for (const dir of dirs) {
+      for (const name of names) {
+        if (!name) continue;
+        add(`${base}/${dir}/${name}.glb`, label, kind);
+      }
+    }
+  };
+
+  const idText = String(id);
+  const idPadded = String(id).padStart(3, "0");
+  const slugVariants = getPokemon3DSlugVariants(imageSlug, baseSlug);
+  const formNames = isForm
+    ? slugVariants.filter(name => name && name !== baseSlug && name !== idText && name !== idPadded)
+    : [...slugVariants, idPadded, idText].filter(Boolean);
+  const regularNames = [idText, idPadded, baseSlug, imageSlug].filter(Boolean);
+
+  const formDirs = [];
+  if (imageSlug.includes("galar") || imageSlug.includes("galarian")) formDirs.push("galarian", "galar", "forms/galarian", "forms/galar", "regional/galarian", "regional/galar");
+  if (imageSlug.includes("alola") || imageSlug.includes("alolan")) formDirs.push("alolan", "alola", "forms/alolan", "forms/alola", "regional/alolan", "regional/alola");
+  if (imageSlug.includes("hisui") || imageSlug.includes("hisuian")) formDirs.push("hisuian", "hisui", "forms/hisuian", "forms/hisui", "regional/hisuian", "regional/hisui");
+  if (imageSlug.includes("paldea") || imageSlug.includes("paldean")) formDirs.push("paldean", "paldea", "forms/paldean", "forms/paldea", "regional/paldean", "regional/paldea");
+  if (imageSlug.includes("mega")) formDirs.push("mega", "megas", "forms/mega");
+  if (imageSlug.includes("origin")) formDirs.push("origin", "forms/origin");
+  if (imageSlug.includes("midday") || imageSlug.includes("midnight") || imageSlug.includes("dusk")) formDirs.push("forms", "multi", "special");
+  if (isForm) formDirs.push("multi", "forms", "special", "other");
+
   if (isShiny) {
-    // On tente d'abord les vrais modèles/textures shiny.
-    // Si aucun GLB shiny n'existe, on continue ensuite sur le modèle normal
-    // au lieu de bloquer en 2D.
-    add(`${base}/shiny/${id}.glb`, "Shiny 3D", "shiny");
-    if (imageSlug && imageSlug !== baseSlug) {
-      add(`${base}/shiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
-      add(`${base}/mega-shiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
-      add(`${base}/megashiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
-      add(`${base}/multi/${imageSlug}-shiny.glb`, "Shiny 3D", "shiny");
+    // Shiny + forme : on tente d'abord la vraie forme shiny.
+    if (formDirs.length) {
+      addInDirs(formDirs.map(dir => `${dir}-shiny`), formNames, "Shiny 3D", "shiny");
+      addInDirs(formDirs.map(dir => `shiny-${dir}`), formNames, "Shiny 3D", "shiny");
+      addInDirs(["shiny", "shinies"], formNames, "Shiny 3D", "shiny");
+      addInDirs(formDirs, formNames.map(name => `${name}-shiny`), "Shiny 3D", "shiny");
+    } else {
+      addInDirs(["shiny", "shinies"], [idText, idPadded, imageSlug, baseSlug], "Shiny 3D", "shiny");
     }
   }
 
-  // Les formes ne sont pas toutes rangées pareil dans l'API 3D.
-  // On tente plusieurs dossiers, et si aucun modèle ne charge on repasse en image 2D.
-  if (imageSlug.includes("galar")) add(`${base}/galarian/${id}.glb`, "Forme de Galar 3D");
-  if (imageSlug.includes("alola")) add(`${base}/alolan/${id}.glb`, "Forme d'Alola 3D");
-  if (imageSlug.includes("hisui")) add(`${base}/hisuian/${id}.glb`, "Forme de Hisui 3D");
-  if (imageSlug.includes("paldea")) add(`${base}/paldean/${id}.glb`, "Forme de Paldea 3D");
-  if (imageSlug.includes("mega")) add(`${base}/mega/${imageSlug}.glb`, "Méga-évolution 3D");
-  if (imageSlug.includes("origin")) add(`${base}/origin/${imageSlug}.glb`, "Forme origine 3D");
-  if (imageSlug !== baseSlug) add(`${base}/multi/${imageSlug}.glb`, "Forme spéciale 3D");
+  // Forme normale : on tente le slug exact AVANT tout modèle de l'espèce.
+  // Ça évite Rattatac d'Alola -> Rattatac normal si la vraie forme n'a pas encore répondu.
+  if (isForm) {
+    addInDirs(formDirs, formNames, "Forme 3D", "form");
+    add(`${base}/multi/${imageSlug}.glb`, "Forme 3D", "form");
+    add(`${base}/forms/${imageSlug}.glb`, "Forme 3D", "form");
 
-  add(`${base}/regular/${id}.glb`, "Modèle 3D");
+    // Important : pour une forme, on NE retombe plus sur regular/028.glb.
+    // Sinon le viewer montre une mauvaise forme et c'est plus trompeur qu'une image 2D.
+    return candidates;
+  }
+
+  // Pokémon normal : fallback classique.
+  addInDirs(["regular"], regularNames, "Modèle 3D");
+
   return candidates;
 }
 
@@ -954,7 +1471,8 @@ function openPokemonImageModal(pokemon) {
 
   const name = getPokemonName(pokemon);
   const imageUrl = getImageUrl(pokemon);
-  const displayNumber = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
+  const rawDisplayNumber = getPokemonDisplayNumber(pokemon);
+  const displayNumber = currentGameId === FORM_DEX_GAME_ID ? `F${String(rawDisplayNumber).padStart(3, "0")}` : currentGameId === UNOWN_DEX_GAME_ID ? `Z${String(rawDisplayNumber).padStart(3, "0")}` : String(rawDisplayNumber).padStart(3, "0");
   const isShiny = isPokemonShinyObtained(pokemon) || (ui.shinyMode?.checked && isPokemonObtained(pokemon) && !isPokemonShinyLocked(pokemon));
   const modelCandidates = getPokemon3DModelCandidates(pokemon);
   const firstModel = modelCandidates[0];
@@ -1908,7 +2426,7 @@ function getGlobalRank(profile) {
   let dexAt50 = 0;
   let dexAt25 = 0;
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     const progress = calculateGameProgress(profile, gameId);
 
     if (progress.completion === 100) completedDexCount++;
@@ -1929,7 +2447,7 @@ function getGlobalRank(profile) {
 }
 
 function hasAnyShinyLockSelected(profile, includeNational = true) {
-  let dexes = profile.enabledDexes || [];
+  let dexes = getRealEnabledDexes(profile);
 
   if (!includeNational) {
     dexes = dexes.filter(gameId => gameId !== "national");
@@ -1962,7 +2480,7 @@ function getRareGlobalRank(profile) {
     return "Niveau max — Collectionneur de Pokémon rares ✦✦✦";
   }
 
-  const enabledDexes = profile.enabledDexes || [];
+  const enabledDexes = getRealEnabledDexes(profile);
   const gameDexes = enabledDexes.filter(gameId => gameId !== "national");
   const hasNational = enabledDexes.includes("national");
   const allGameDexesShinyComplete = gameDexes.length > 0 && gameDexes.every(gameId => isDexShinyComplete(profile, gameId, false));
@@ -1986,7 +2504,7 @@ function getGlobalCompletionPercent(profile) {
   let total = 0;
   let done = 0;
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     const progress = calculateGameProgress(profile, gameId);
     total += progress.total;
     done += progress.done;
@@ -2070,7 +2588,7 @@ function awardAllCompletedDexBonuses(profile) {
 
   let awarded = false;
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     if (awardCompletedDexBonus(profile, gameId)) {
       awarded = true;
     }
@@ -2083,7 +2601,7 @@ function awardAllCompletedDexBonuses(profile) {
 function migrateExistingProgress(profile) {
   const progress = getProfileProgress(profile);
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     const state = getProfileDexState(profile, gameId);
     progress.dexXp[gameId] ||= 0;
 
@@ -2200,7 +2718,7 @@ function getRandomObjectiveTarget(missingCount) {
 }
 
 function getPossibleObjectiveGames(profile) {
-  const enabledDexes = profile.enabledDexes || [];
+  const enabledDexes = getRealEnabledDexes(profile);
   const normalDexes = enabledDexes.filter(gameId => gameId !== "national");
   const nationalDexes = enabledDexes.filter(gameId => gameId === "national");
 
@@ -2888,7 +3406,7 @@ function renderObjectiveHistory() {
 
     ui.historyDexFilter.innerHTML = `<option value="all">Tous les Dex</option>`;
 
-    for (const gameId of profile.enabledDexes || []) {
+    for (const gameId of getRealEnabledDexes(profile)) {
       const game = getGame(gameId);
       const option = document.createElement("option");
 
@@ -3058,13 +3576,13 @@ function getCompletedObjectiveCount(profile) {
 }
 
 function getCompletedDexCount(profile) {
-  return (profile.enabledDexes || [])
+  return getRealEnabledDexes(profile)
     .filter(gameId => calculateGameProgress(profile, gameId).completion === 100)
     .length;
 }
 
 function getShinyCompletedDexCount(profile) {
-  return (profile.enabledDexes || [])
+  return getRealEnabledDexes(profile)
     .filter(gameId => isDexShinyComplete(profile, gameId, false))
     .length;
 }
@@ -3881,6 +4399,7 @@ function renderSetupDexChoices(selectedDexes = []) {
   ui.setupDexChoices.innerHTML = "";
 
   for (const game of games) {
+    if (isAuxiliaryDex(game.id)) continue;
     const label = document.createElement("label");
     label.className = "dex-choice";
     label.innerHTML = `
@@ -3892,7 +4411,7 @@ function renderSetupDexChoices(selectedDexes = []) {
 }
 
 function getSelectedSetupDexes() {
-  return [...ui.setupDexChoices.querySelectorAll("input:checked")].map(input => input.value);
+  return [...ui.setupDexChoices.querySelectorAll("input:checked")].map(input => input.value).filter(gameId => !isAuxiliaryDex(gameId));
 }
 
 function getGameSpritePreview(gameId) {
@@ -3939,11 +4458,46 @@ function getGameSpritePreview(gameId) {
   }).join("");
 }
 
+function getHomeNestedDlcIds(profile) {
+  const enabled = new Set(getRealEnabledDexes(profile));
+  const nested = new Set();
+
+  for (const group of DLC_LINK_GROUPS) {
+    const baseGameId = group[0];
+    if (!enabled.has(baseGameId)) continue;
+
+    for (const dlcGameId of group.slice(1)) {
+      if (enabled.has(dlcGameId)) nested.add(dlcGameId);
+    }
+  }
+
+  return nested;
+}
+
+function getHomeDlcGamesForBase(profile, baseGameId) {
+  const enabled = new Set(getRealEnabledDexes(profile));
+  const group = DLC_LINK_GROUPS.find(items => items[0] === baseGameId);
+  if (!group || !enabled.has(baseGameId)) return [];
+
+  return group
+    .slice(1)
+    .filter(dlcGameId => enabled.has(dlcGameId))
+    .map(dlcGameId => getGame(dlcGameId))
+    .filter(Boolean)
+    .filter(game => {
+      if (activeDexPlatformFilter === "all") return true;
+      return game.platform === activeDexPlatformFilter;
+    });
+}
+
 function getFilteredHomeGames(profile) {
-  const enabled = new Set(profile.enabledDexes || []);
+  const enabled = new Set(getRealEnabledDexes(profile));
+  const nestedDlcIds = getHomeNestedDlcIds(profile);
 
   return games
     .filter(game => enabled.has(game.id))
+    .filter(game => !isAuxiliaryDex(game.id))
+    .filter(game => !nestedDlcIds.has(game.id))
     .filter(game => {
       if (game.id === "national") return true;
       if (activeDexPlatformFilter === "all") return true;
@@ -3954,6 +4508,78 @@ function getFilteredHomeGames(profile) {
       if (b.id === "national") return 1;
       return 0;
     });
+}
+
+function getVisibleHomeDlcGames(profile, baseGameId) {
+  return getHomeDlcGamesForBase(profile, baseGameId)
+    .filter(game => {
+      if (!ui.hideCompletedDexMode?.checked) return true;
+      return calculateGameProgress(profile, game.id).completion < 100;
+    });
+}
+
+function renderHomeDlcMiniCards(profile, baseGameId) {
+  const dlcGames = getVisibleHomeDlcGames(profile, baseGameId);
+
+  if (dlcGames.length === 0) return "";
+
+  const bestProgress = Math.round(
+    dlcGames.reduce((sum, game) => sum + calculateGameProgress(profile, game.id).completion, 0) / dlcGames.length
+  );
+
+  return `
+    <div class="home-extra-dex-row home-dlc-row" aria-label="Extensions liées">
+      <span class="home-extra-dex-label">Extensions :</span>
+      <button class="home-extra-dex-btn home-dlc-trigger" type="button" data-home-dlc-list-base-game-id="${escapeHtml(baseGameId)}" style="--dlc-progress:${bestProgress}%" title="Voir les extensions liées">
+        ${dlcGames.length} Dex
+      </button>
+    </div>
+  `;
+}
+
+function renderHomeDlcModalCard(game, profile) {
+  const progress = calculateGameProgress(profile, game.id);
+  const dexRank = getDexDisplayRank(profile, game.id);
+
+  return `
+    <button class="home-dlc-modal-card" type="button" data-home-dlc-game-id="${escapeHtml(game.id)}" style="--dlc-progress:${progress.completion}%">
+      <div class="home-dlc-modal-sprites">${getGameSpritePreview(game.id)}</div>
+      <div class="home-dlc-modal-content">
+        <strong>${escapeHtml(game.shortName || game.name)}</strong>
+        <span>${progress.done} / ${progress.total} • ${progress.completion}%</span>
+        <em class="${dexRank.isRare ? "rare" : ""}">${escapeHtml(dexRank.text)}</em>
+      </div>
+    </button>
+  `;
+}
+
+function openHomeDlcModal(baseGameId) {
+  const profile = getActiveProfile();
+  if (!profile) return;
+
+  const baseGame = getGame(baseGameId);
+  const dlcGames = getVisibleHomeDlcGames(profile, baseGameId);
+
+  if (dlcGames.length === 0) {
+    showToast("Aucune extension visible.", "warn");
+    return;
+  }
+
+  openGenericModal(`Extensions — ${baseGame?.shortName || baseGame?.name || baseGameId}`, `
+    <div class="home-dlc-modal-list">
+      ${dlcGames.map(game => renderHomeDlcModalCard(game, profile)).join("")}
+    </div>
+  `);
+
+  ui.genericModalBody?.querySelectorAll("[data-home-dlc-game-id]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const gameId = button.dataset.homeDlcGameId;
+      closeGenericModal();
+      openDex(gameId);
+    });
+  });
 }
 
 function updateDexPlatformFilterButtons() {
@@ -3970,7 +4596,7 @@ function getProfileSummary(profile) {
   let completedDexes = 0;
   let favoriteCount = 0;
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     const progress = calculateGameProgress(profile, gameId);
     totalPokemon += progress.total;
     obtainedPokemon += progress.done;
@@ -3996,7 +4622,8 @@ function renderProfileSummary(profile) {
   if (!ui.summaryProfileName || !ui.summaryStatsGrid || !ui.continueDexBtn || !profile) return;
 
   const summary = getProfileSummary(profile);
-  const lastGame = getGame(profile.lastDex);
+  const lastDexId = isAuxiliaryDex(profile.lastDex) ? (getRealEnabledDexes(profile)[0] || null) : profile.lastDex;
+  const lastGame = getGame(lastDexId);
   const globalRank = getGlobalRank(profile);
 
   ui.summaryProfileName.textContent = `${profile.name} - ${globalRank.name}`;
@@ -4023,7 +4650,7 @@ function getAdvancedStatsHtml(profile) {
   let best = null;
   let worst = null;
 
-  for (const gameId of profile.enabledDexes || []) {
+  for (const gameId of getRealEnabledDexes(profile)) {
     const game = getGame(gameId);
     const progress = calculateGameProgress(profile, gameId);
     const state = getProfileDexState(profile, gameId);
@@ -4283,6 +4910,14 @@ function renderHome() {
     card.className = "game-card";
     card.dataset.gameId = game.id;
     card.dataset.platform = game.platform;
+    const nationalExtraButtons = game.id === "national" ? `
+      <div class="home-extra-dex-row national-extra-dex-row" aria-label="Catégories bonus du National">
+        <span class="home-extra-dex-label national-extra-dex-label">Autre Dex :</span>
+        <button class="home-extra-dex-btn national-extra-dex-btn" type="button" data-national-extra-dex="${FORM_DEX_GAME_ID}" title="Ouvrir le Dex Formes">Formes</button>
+        <button class="home-extra-dex-btn national-extra-dex-btn" type="button" data-national-extra-dex="${UNOWN_DEX_GAME_ID}" title="Ouvrir le Zarbi Dex">Zarbi</button>
+      </div>
+    ` : "";
+
     card.innerHTML = `
       <div class="game-sprites">${getGameSpritePreview(game.id)}</div>
 
@@ -4300,10 +4935,29 @@ function renderHome() {
         </div>
 
         <div class="game-level-info ${dexRank.isRare ? "rare" : ""}">${dexRank.text}</div>
+        ${nationalExtraButtons}
+        ${renderHomeDlcMiniCards(profile, game.id)}
       </div>
     `;
 
     card.addEventListener("click", () => openDex(game.id));
+
+    card.querySelectorAll("[data-home-dlc-list-base-game-id]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        openHomeDlcModal(button.dataset.homeDlcListBaseGameId);
+      });
+    });
+
+    card.querySelectorAll("[data-national-extra-dex]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        openDex(button.dataset.nationalExtraDex, false);
+      });
+    });
+
     ui.gameGrid.appendChild(card);
   }
 
@@ -4334,10 +4988,15 @@ function openDex(gameId, rememberLastDex = true) {
   const game = getGame(gameId);
 
   if (!profile || !game) return;
+  if (isAuxiliaryDex(gameId) && !canOpenAuxiliaryDex(profile, gameId)) {
+    showToast("Active le Pokédex National pour ouvrir cette catégorie.", "warn");
+    return;
+  }
 
   currentGameId = gameId;
+  const shouldRememberLastDex = rememberLastDex && !isAuxiliaryDex(gameId);
 
-  if (rememberLastDex) {
+  if (shouldRememberLastDex) {
     profile.lastView = "dex";
     profile.lastDex = gameId;
     saveProfiles();
@@ -4433,7 +5092,9 @@ function renderDex() {
     const pokemonKey = getPokemonStorageKey(pokemon);
     card.className = `card ${isObtained ? "obtained" : ""} ${isShinyObtained ? "shiny-obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${isDexMinimizedView ? "card-mini" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
     card.dataset.pokemonKey = pokemonKey;
-    card.dataset.displayNumber = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
+    const rawDisplayNumber = getPokemonDisplayNumber(pokemon);
+    const displayNumber = currentGameId === FORM_DEX_GAME_ID ? `F${String(rawDisplayNumber).padStart(3, "0")}` : currentGameId === UNOWN_DEX_GAME_ID ? `Z${String(rawDisplayNumber).padStart(3, "0")}` : String(rawDisplayNumber).padStart(3, "0");
+    card.dataset.displayNumber = displayNumber;
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
@@ -4442,7 +5103,7 @@ function renderDex() {
       </div>
 
       <div class="info-zone">
-        <div class="number">${String(getPokemonDisplayNumber(pokemon)).padStart(3, "0")}</div>
+        <div class="number">${displayNumber}</div>
         <div class="name ${name.length > 16 ? "name-long" : ""} ${name.length > 24 ? "name-very-long" : ""}">${escapeHtml(name)}</div>
         <div class="check">${isObtained ? (isLocked && ui.shinyMode.checked ? "🔒" : "✅") : "☐"}</div>
       </div>
@@ -4674,6 +5335,10 @@ function syncProfilesWithGames(saveAfterSync = true) {
 
   for (const profile of Object.values(profiles)) {
     if (!Array.isArray(profile.enabledDexes)) profile.enabledDexes = [];
+
+    // Dex Formes et Zarbi Dex sont maintenant des catégories du National :
+    // ils ne sont plus stockés comme de vrais Dex actifs.
+    profile.enabledDexes = profile.enabledDexes.filter(gameId => !isAuxiliaryDex(gameId));
 
     profile.settings ||= { nationalLinked: false, dlcLinked: false, dlcOnlyNew: false };
     if (typeof profile.settings.dlcLinked !== "boolean") profile.settings.dlcLinked = false;
@@ -6327,7 +6992,8 @@ function bindEvents() {
 
   ui.continueDexBtn?.addEventListener("click", () => {
     const profile = getActiveProfile();
-    const gameId = profile?.lastDex || profile?.enabledDexes?.[0];
+    const fallbackDexId = getRealEnabledDexes(profile)[0];
+    const gameId = isAuxiliaryDex(profile?.lastDex) ? fallbackDexId : (profile?.lastDex || fallbackDexId);
 
     if (!gameId) {
       showToast("⚠️ Aucun Dex à continuer.", "warn");

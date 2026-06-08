@@ -6329,7 +6329,9 @@ body.dark .card.shiny-obtained .shiny-owned-btn {
 }
 
 body.dex-mini-mode .pokemon-image-zoom-btn {
-  display: none !important;
+  display: grid !important;
+  left: 8px;
+  bottom: 8px;
 }
 
 .pokemon-image-viewer {
@@ -6495,4 +6497,53 @@ body.dark .pokemon-image-zoom-btn {
 
 .pokemon-3d-viewer .pokemon-image-viewer-stage.image-fallback-mode.is-dragging {
   cursor: grabbing;
+}
+
+
+/* =========================================================
+   PATCH : contrôles animation 3D / T-Pose / recentrage
+========================================================= */
+.pokemon-viewer-play-btn.active,
+.pokemon-image-viewer-actions .btn.active {
+  border-color: rgba(74, 222, 128, 0.95) !important;
+  background: rgba(34, 197, 94, 0.14) !important;
+  color: #4ade80 !important;
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.16),
+    0 0 14px rgba(74, 222, 128, 0.22) !important;
+}
+
+.pokemon-image-viewer-actions .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.pokemon-3d-stage model-viewer {
+  contain: content;
+}
+
+/* PATCH 3D/2D — shiny fallback + déplacement 2D */
+.pokemon-image-viewer-stage.image-fallback-mode {
+  cursor: grab;
+}
+
+.pokemon-image-viewer-stage.image-fallback-mode.is-dragging {
+  cursor: grabbing;
+}
+
+.pokemon-image-viewer-stage.image-fallback-mode img {
+  will-change: transform;
+  transition: transform 0.03s linear;
+}
+
+.pokemon-image-viewer-actions .btn.active,
+.pokemon-image-viewer-actions .btn[aria-pressed="true"] {
+  border-color: rgba(74, 222, 128, 0.95) !important;
+  background: rgba(34, 197, 94, 0.12) !important;
+  color: #4ade80 !important;
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.16),
+    0 0 14px rgba(74, 222, 128, 0.24) !important;
 }

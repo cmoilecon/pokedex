@@ -912,16 +912,28 @@ function getPokemon3DModelCandidates(pokemon) {
 
   const base = "https://raw.githubusercontent.com/Pokemon-3D-api/assets/main/models/opt";
   const imageSlug = String(pokemon?.imageSlug || pokemon?.slug || "").toLowerCase();
+  const baseSlug = String(pokemon?.slug || "").toLowerCase();
   const isManualShiny = isPokemonShinyObtained(pokemon);
   const isShiny = isManualShiny || (ui.shinyMode?.checked && isPokemonObtained(pokemon) && !isPokemonShinyLocked(pokemon));
 
   const candidates = [];
-  const add = (url, label) => {
+  const add = (url, label, kind = "regular") => {
     if (!url || candidates.some(item => item.url === url)) return;
-    candidates.push({ url, label });
+    candidates.push({ url, label, kind });
   };
 
-  if (isShiny) add(`${base}/shiny/${id}.glb`, "Shiny 3D");
+  if (isShiny) {
+    // On tente d'abord les vrais modèles/textures shiny.
+    // Si aucun GLB shiny n'existe, on continue ensuite sur le modèle normal
+    // au lieu de bloquer en 2D.
+    add(`${base}/shiny/${id}.glb`, "Shiny 3D", "shiny");
+    if (imageSlug && imageSlug !== baseSlug) {
+      add(`${base}/shiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
+      add(`${base}/mega-shiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
+      add(`${base}/megashiny/${imageSlug}.glb`, "Shiny 3D", "shiny");
+      add(`${base}/multi/${imageSlug}-shiny.glb`, "Shiny 3D", "shiny");
+    }
+  }
 
   // Les formes ne sont pas toutes rangées pareil dans l'API 3D.
   // On tente plusieurs dossiers, et si aucun modèle ne charge on repasse en image 2D.
@@ -931,7 +943,7 @@ function getPokemon3DModelCandidates(pokemon) {
   if (imageSlug.includes("paldea")) add(`${base}/paldean/${id}.glb`, "Forme de Paldea 3D");
   if (imageSlug.includes("mega")) add(`${base}/mega/${imageSlug}.glb`, "Méga-évolution 3D");
   if (imageSlug.includes("origin")) add(`${base}/origin/${imageSlug}.glb`, "Forme origine 3D");
-  if (imageSlug !== String(pokemon?.slug || "").toLowerCase()) add(`${base}/multi/${imageSlug}.glb`, "Forme spéciale 3D");
+  if (imageSlug !== baseSlug) add(`${base}/multi/${imageSlug}.glb`, "Forme spéciale 3D");
 
   add(`${base}/regular/${id}.glb`, "Modèle 3D");
   return candidates;
@@ -958,6 +970,10 @@ function openPokemonImageModal(pokemon) {
             camera-controls
             auto-rotate
             autoplay
+            camera-orbit="0deg 75deg 145%"
+            field-of-view="38deg"
+            min-field-of-view="18deg"
+            max-field-of-view="55deg"
             shadow-intensity="0.85"
             exposure="1.05"
             interaction-prompt="none"
@@ -976,13 +992,14 @@ function openPokemonImageModal(pokemon) {
       </div>
 
       <div class="pokemon-image-viewer-actions">
+        <button class="btn tiny pokemon-viewer-play-btn" type="button" data-viewer-playpause="1" ${firstModel ? "" : "disabled"}>⏸ Pause</button>
         <button class="btn tiny" type="button" data-viewer-rotate="1">Rotation auto</button>
-        <button class="btn tiny" type="button" data-viewer-reset="1">Reset caméra</button>
+        <button class="btn tiny" type="button" data-viewer-reset="1">Recentrer</button>
         <button class="btn tiny" type="button" data-viewer-3d="1" ${firstModel ? "" : "disabled"}>Modèle 3D</button>
         <button class="btn tiny" type="button" data-viewer-2d="1">Image 2D</button>
       </div>
 
-      <p class="pokemon-image-viewer-help">3D : glisse pour tourner, molette/pincement pour zoomer. Si le modèle n’existe pas, le site revient en image 2D.</p>
+      <p class="pokemon-image-viewer-help">3D : glisse pour tourner, molette/pincement pour zoomer. Image 2D : clic gauche maintenu pour déplacer, molette pour zoomer.</p>
     </div>
   `;
 
@@ -996,12 +1013,86 @@ function openPokemonImageModal(pokemon) {
 
   let candidateIndex = 0;
   let is2DMode = !model;
-  let rotateY = 0;
-  let rotateX = 0;
+  let panX = 0;
+  let panY = 0;
   let scale = 1;
   let isDragging = false;
   let lastX = 0;
   let lastY = 0;
+  let isAnimationPlaying = Boolean(model);
+
+  const playPauseButton = ui.genericModalBody?.querySelector("[data-viewer-playpause]");
+  const rotateButton = ui.genericModalBody?.querySelector("[data-viewer-rotate]");
+  const view3DButton = ui.genericModalBody?.querySelector("[data-viewer-3d]");
+  const view2DButton = ui.genericModalBody?.querySelector("[data-viewer-2d]");
+
+  const syncPlayPauseButton = () => {
+    if (!playPauseButton) return;
+    playPauseButton.textContent = isAnimationPlaying ? "⏸ Pause" : "▶ Lire";
+    playPauseButton.classList.toggle("active", isAnimationPlaying);
+  };
+
+  const syncRotateButton = () => {
+    if (!rotateButton) return;
+    const active = Boolean(model && !is2DMode && model.autoRotate);
+    rotateButton.classList.toggle("active", active);
+    rotateButton.setAttribute("aria-pressed", active ? "true" : "false");
+  };
+
+  const syncViewerModeButtons = () => {
+    if (view3DButton) {
+      view3DButton.classList.toggle("hidden", !is2DMode);
+    }
+    if (view2DButton) {
+      view2DButton.classList.toggle("hidden", is2DMode);
+    }
+  };
+
+  const recenter3DModel = () => {
+    if (!model) return;
+
+    // Beaucoup de modèles GLB ont une origine bizarre ou une animation qui monte trop haut.
+    // On zoome un peu plus loin que le défaut et on force le cadrage au centre.
+    model.cameraOrbit = "0deg 75deg 145%";
+    model.fieldOfView = "38deg";
+    model.cameraTarget = "auto auto auto";
+    model.autoRotate = true;
+
+    requestAnimationFrame(() => {
+      try { model.updateFraming?.(); } catch {}
+      try { model.jumpCameraToGoal?.(); } catch {}
+    });
+  };
+
+  const play3DAnimation = () => {
+    if (!model) return;
+
+    const animations = Array.isArray(model.availableAnimations) ? model.availableAnimations : [];
+    if (animations.length > 0 && !model.animationName) {
+      model.animationName = animations[0];
+    }
+
+    model.autoplay = true;
+    try { model.play?.(); } catch {}
+    isAnimationPlaying = true;
+    syncPlayPauseButton();
+  };
+
+  const pause3DAnimation = () => {
+    if (!model) return;
+    try { model.pause?.(); } catch {}
+    isAnimationPlaying = false;
+    syncPlayPauseButton();
+  };
+
+  const set3DTpose = () => {
+    if (!model) return;
+    pause3DAnimation();
+    try { model.currentTime = 0; } catch {}
+    model.autoRotate = false;
+    recenter3DModel();
+    model.autoRotate = false;
+  };
 
   const set2DMode = (message = "Image 2D") => {
     is2DMode = true;
@@ -1012,6 +1103,8 @@ function openPokemonImageModal(pokemon) {
       status.textContent = message;
       status.classList.add("unavailable");
     }
+    syncViewerModeButtons();
+    syncRotateButton();
   };
 
   const set3DMode = () => {
@@ -1029,6 +1122,10 @@ function openPokemonImageModal(pokemon) {
       status.textContent = modelCandidates[candidateIndex]?.label || "3D";
       status.classList.remove("unavailable");
     }
+
+    syncPlayPauseButton();
+    syncViewerModeButtons();
+    syncRotateButton();
   };
 
   const tryNext3DModel = () => {
@@ -1049,17 +1146,27 @@ function openPokemonImageModal(pokemon) {
     model.addEventListener("load", () => {
       if (is2DMode) return;
       set3DMode();
+
+      // Si le GLB contient une vraie animation, on la lance.
+      // Sinon il reste en pose fixe/T-pose, ce qui est normal pour beaucoup de modèles.
+      const animations = Array.isArray(model.availableAnimations) ? model.availableAnimations : [];
+      if (animations.length > 0) {
+        play3DAnimation();
+      } else {
+        pause3DAnimation();
+      }
     });
   }
 
   const syncTransform = () => {
-    image.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+    image.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
   };
 
-  const clampScale = value => Math.max(0.75, Math.min(2.4, value));
+  const clampScale = value => Math.max(0.75, Math.min(3, value));
 
   stage.addEventListener("pointerdown", event => {
-    if (!is2DMode) return;
+    if (!is2DMode || event.button !== 0) return;
+    event.preventDefault();
     isDragging = true;
     lastX = event.clientX;
     lastY = event.clientY;
@@ -1069,14 +1176,15 @@ function openPokemonImageModal(pokemon) {
 
   stage.addEventListener("pointermove", event => {
     if (!isDragging || !is2DMode) return;
+    event.preventDefault();
 
     const dx = event.clientX - lastX;
     const dy = event.clientY - lastY;
     lastX = event.clientX;
     lastY = event.clientY;
 
-    rotateY += dx * 0.35;
-    rotateX = Math.max(-18, Math.min(18, rotateX - dy * 0.22));
+    panX += dx;
+    panY += dy;
     syncTransform();
   });
 
@@ -1095,9 +1203,19 @@ function openPokemonImageModal(pokemon) {
     syncTransform();
   }, { passive: false });
 
-  ui.genericModalBody?.querySelector("[data-viewer-rotate]")?.addEventListener("click", () => {
+  ui.genericModalBody?.querySelector("[data-viewer-playpause]")?.addEventListener("click", () => {
+    if (!model || is2DMode) return;
+    if (isAnimationPlaying) {
+      pause3DAnimation();
+    } else {
+      play3DAnimation();
+    }
+  });
+
+  rotateButton?.addEventListener("click", () => {
     if (!model || is2DMode) return;
     model.autoRotate = !model.autoRotate;
+    syncRotateButton();
   });
 
   ui.genericModalBody?.querySelector("[data-viewer-3d]")?.addEventListener("click", () => {
@@ -1110,18 +1228,19 @@ function openPokemonImageModal(pokemon) {
 
   ui.genericModalBody?.querySelector("[data-viewer-reset]")?.addEventListener("click", () => {
     if (model && !is2DMode) {
-      model.cameraOrbit = "0deg 75deg auto";
-      model.fieldOfView = "30deg";
-      model.autoRotate = true;
+      recenter3DModel();
       return;
     }
 
-    rotateY = 0;
-    rotateX = 0;
+    panX = 0;
+    panY = 0;
     scale = 1;
     syncTransform();
   });
 
+  syncPlayPauseButton();
+  syncViewerModeButtons();
+  syncRotateButton();
   syncTransform();
 }
 

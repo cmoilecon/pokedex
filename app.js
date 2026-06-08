@@ -4461,10 +4461,19 @@ function getGameSpritePreview(gameId) {
 function getHomeNestedDlcIds(profile) {
   const enabled = new Set(getRealEnabledDexes(profile));
   const nested = new Set();
+  const hideCompletedDexes = Boolean(ui.hideCompletedDexMode?.checked);
 
   for (const group of DLC_LINK_GROUPS) {
     const baseGameId = group[0];
     if (!enabled.has(baseGameId)) continue;
+
+    const baseProgress = calculateGameProgress(profile, baseGameId);
+    const baseIsCompleted = baseProgress.completion === 100;
+
+    // Si “Masquer les dex complets” est actif et que le jeu principal est fini,
+    // on ne cache plus ses extensions derrière lui.
+    // Résultat : les extensions non complètes ressortent comme cartes normales dans le Home.
+    if (hideCompletedDexes && baseIsCompleted) continue;
 
     for (const dlcGameId of group.slice(1)) {
       if (enabled.has(dlcGameId)) nested.add(dlcGameId);

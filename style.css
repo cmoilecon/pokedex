@@ -7034,3 +7034,10 @@ body:not(.dark) .national-extra-dex-label {
 .home-dlc-row .home-dlc-trigger {
   min-width: 74px;
 }
+
+
+/* =========================================================
+   PATCH v39 — Masquer complets + extensions
+   Quand un jeu principal est complet mais ses extensions ne le sont pas,
+   les extensions ressortent dans le menu principal.
+========================================================= */

@@ -876,6 +876,7 @@ function getProfileDexState(profile, gameId) {
     obtained: {},
     shinyMode: false,
     shinyLocked: {},
+    shinyObtained: {},
     favorites: {}
   };
 
@@ -883,6 +884,7 @@ function getProfileDexState(profile, gameId) {
 
   state.obtained ||= {};
   state.shinyLocked ||= {};
+  state.shinyObtained ||= {};
   state.favorites ||= {};
 
   if (typeof state.shinyMode !== "boolean") {
@@ -1011,6 +1013,32 @@ function saveShinyLocked(shinyLocked) {
   saveProfiles();
 }
 
+function getShinyObtained() {
+  return getCurrentDexState()?.shinyObtained || {};
+}
+
+function saveShinyObtained(shinyObtained) {
+  const state = getCurrentDexState();
+  if (!state) return;
+
+  state.shinyObtained = shinyObtained;
+  saveProfiles();
+}
+
+function isPokemonShinyObtainedInGame(profile, gameId, pokemon) {
+  if (!profile || !gameId || !pokemon) return false;
+
+  const state = getProfileDexState(profile, gameId);
+  const key = getPokemonStorageKey(pokemon);
+
+  return Boolean(state.shinyObtained?.[key] || state.shinyObtained?.[pokemon.id]);
+}
+
+function isPokemonShinyObtained(pokemon) {
+  const profile = getActiveProfile();
+  return Boolean(profile && currentGameId && isPokemonShinyObtainedInGame(profile, currentGameId, pokemon));
+}
+
 function getPokemonName(pokemon) {
   const lang = ui.langSelect.value;
   return pokemon.names?.[lang] || pokemon.names?.fr || pokemon.names?.en || pokemon.slug || `#${pokemon.id}`;
@@ -1024,7 +1052,8 @@ function getPokemonNameFromGame(gameId, pokemonId) {
 function getImageUrl(pokemon) {
   const isObtained = isPokemonObtained(pokemon);
   const isLocked = isPokemonShinyLocked(pokemon);
-  const useShiny = ui.shinyMode.checked && isObtained && !isLocked;
+  const isManualShiny = isPokemonShinyObtained(pokemon);
+  const useShiny = ((ui.shinyMode.checked && isObtained) || isManualShiny) && !isLocked;
   const form = useShiny ? "shiny" : "normal";
   const imageSlug = pokemon.imageSlug || pokemon.slug;
 
@@ -1235,19 +1264,31 @@ function canLinkedDexCountForNational(profile, nationalState, linkedGameId) {
 function isPokemonObtainedInGame(profile, gameId, pokemon) {
   const state = getProfileDexState(profile, gameId);
   const obtained = state.obtained || {};
+  const shinyObtained = state.shinyObtained || {};
   const localKey = getPokemonStorageKey(pokemon);
 
-  if (obtained[localKey] || obtained[pokemon.id]) return true;
+  if (state.shinyMode) {
+    if (shinyObtained[localKey] || shinyObtained[pokemon.id] || obtained[localKey] || obtained[pokemon.id]) return true;
+  } else if (obtained[localKey] || obtained[pokemon.id] || shinyObtained[localKey] || shinyObtained[pokemon.id]) {
+    return true;
+  }
 
   if (gameId === "national" && isNationalLinked(profile)) {
     for (const linkedGameId of profile.enabledDexes || []) {
       if (linkedGameId === "national") continue;
-      if (!canLinkedDexCountForNational(profile, state, linkedGameId)) continue;
-
       const linkedPokemon = getPokemonsForGame(linkedGameId).find(item => isSamePokemonForLink(pokemon, item));
-      const linkedState = getProfileDexState(profile, linkedGameId);
+      if (!linkedPokemon) continue;
 
-      if (linkedPokemon && (linkedState.obtained?.[getPokemonStorageKey(linkedPokemon)] || linkedState.obtained?.[linkedPokemon.id])) {
+      const linkedState = getProfileDexState(profile, linkedGameId);
+      const linkedKey = getPokemonStorageKey(linkedPokemon);
+      const linkedObtained = Boolean(linkedState.obtained?.[linkedKey] || linkedState.obtained?.[linkedPokemon.id]);
+      const linkedShinyObtained = Boolean(linkedState.shinyObtained?.[linkedKey] || linkedState.shinyObtained?.[linkedPokemon.id]);
+
+      if (state.shinyMode) {
+        if (linkedShinyObtained || (canLinkedDexCountForNational(profile, state, linkedGameId) && linkedObtained)) {
+          return true;
+        }
+      } else if (linkedObtained || linkedShinyObtained) {
         return true;
       }
     }
@@ -1277,6 +1318,7 @@ function setPokemonObtainedLinked(profile, gameId, pokemon, value) {
     const state = getProfileDexState(profile, target.gameId);
     state.obtained ||= {};
     state.shinyLocked ||= {};
+    state.shinyObtained ||= {};
 
     const wasObtained = Boolean(state.obtained[target.key] || state.obtained[target.pokemon.id]);
 
@@ -1346,10 +1388,11 @@ function isPokemonLocallyObtainedAndLocked(profile, gameId, pokemon) {
 
   const state = getProfileDexState(profile, gameId);
   const key = getPokemonStorageKey(pokemon);
-  const obtained = Boolean(state.obtained?.[key] || state.obtained?.[pokemon.id]);
+  const shinyObtained = Boolean(state.shinyObtained?.[key] || state.shinyObtained?.[pokemon.id]);
+  const obtained = Boolean(state.obtained?.[key] || state.obtained?.[pokemon.id] || shinyObtained);
   const locked = Boolean(state.shinyLocked?.[key] || state.shinyLocked?.[pokemon.id]);
 
-  return { obtained, locked };
+  return { obtained, locked, shinyObtained };
 }
 
 function getNationalLinkedDexSources(profile, pokemon) {
@@ -1360,7 +1403,6 @@ function getNationalLinkedDexSources(profile, pokemon) {
 
   for (const gameId of profile.enabledDexes || []) {
     if (gameId === "national") continue;
-    if (!canLinkedDexCountForNational(profile, nationalState, gameId)) continue;
 
     const matches = getPokemonsForGame(gameId).filter(item => isSamePokemonForLink(pokemon, item));
     if (matches.length === 0) continue;
@@ -1369,13 +1411,18 @@ function getNationalLinkedDexSources(profile, pokemon) {
 
     for (const linkedPokemon of matches) {
       const state = isPokemonLocallyObtainedAndLocked(profile, gameId, linkedPokemon);
-      if (!state.obtained) continue;
+      const countsForNational = nationalState.shinyMode
+        ? (state.shinyObtained || (canLinkedDexCountForNational(profile, nationalState, gameId) && state.obtained))
+        : state.obtained;
+
+      if (!countsForNational) continue;
 
       sources.push({
         gameId,
         game,
         pokemon: linkedPokemon,
-        locked: state.locked
+        locked: state.shinyObtained ? false : state.locked,
+        shinyObtained: state.shinyObtained
       });
     }
   }
@@ -3198,18 +3245,58 @@ function updateStats() {
   updateMiniStats(progress);
 }
 
-function toggleShinyLock(id) {
+function toggleShinyLock(pokemonOrId) {
   rememberHistory("shiny lock");
+  const pokemon = typeof pokemonOrId === "object"
+    ? pokemonOrId
+    : getPokemonsForGame(currentGameId).find(item => String(getPokemonStorageKey(item)) === String(pokemonOrId) || String(item.id) === String(pokemonOrId));
+
+  if (!pokemon) return;
+
+  const key = getPokemonStorageKey(pokemon);
   const obtained = { ...getObtained() };
   const shinyLocked = { ...getShinyLocked() };
 
-  obtained[id] = true;
-  shinyLocked[id] = !shinyLocked[id];
+  obtained[key] = true;
+  shinyLocked[key] = !shinyLocked[key];
 
-  if (!shinyLocked[id]) delete shinyLocked[id];
+  if (!shinyLocked[key]) delete shinyLocked[key];
 
   saveObtained(obtained);
   saveShinyLocked(shinyLocked);
+  renderDex();
+}
+
+function toggleShinyObtained(pokemonOrId) {
+  rememberHistory("cocher shiny");
+  const pokemon = typeof pokemonOrId === "object"
+    ? pokemonOrId
+    : getPokemonsForGame(currentGameId).find(item => String(getPokemonStorageKey(item)) === String(pokemonOrId) || String(item.id) === String(pokemonOrId));
+
+  if (!pokemon) return;
+
+  const key = getPokemonStorageKey(pokemon);
+  const obtained = { ...getObtained() };
+  const shinyObtained = { ...getShinyObtained() };
+  const shinyLocked = { ...getShinyLocked() };
+  const nextValue = !Boolean(shinyObtained[key] || shinyObtained[pokemon.id]);
+
+  if (nextValue) {
+    shinyObtained[key] = true;
+    obtained[key] = true;
+    delete shinyLocked[key];
+    delete shinyLocked[pokemon.id];
+  } else {
+    delete shinyObtained[key];
+    delete shinyObtained[pokemon.id];
+  }
+
+  saveObtained(obtained);
+  saveShinyObtained(shinyObtained);
+  saveShinyLocked(shinyLocked);
+
+  lastUpdatedPokemonKey = key;
+  playUiSound(nextValue ? "favorite" : "remove");
   renderDex();
 }
 
@@ -3964,11 +4051,12 @@ function renderDex() {
     const isObtained = isPokemonObtained(pokemon);
     const isLocked = isPokemonShinyLocked(pokemon);
     const isFavorite = isPokemonFavorite(pokemon);
+    const isShinyObtained = isPokemonShinyObtained(pokemon);
     const name = getPokemonName(pokemon);
     const card = document.createElement("article");
 
     const pokemonKey = getPokemonStorageKey(pokemon);
-    card.className = `card ${isObtained ? "obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${isDexMinimizedView ? "card-mini" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
+    card.className = `card ${isObtained ? "obtained" : ""} ${isShinyObtained ? "shiny-obtained" : ""} ${isLocked && ui.shinyMode.checked ? "shiny-locked" : ""} ${isPokemonCardV2Enabled ? "card-v2" : ""} ${isDexMinimizedView ? "card-mini" : ""} ${(lastUpdatedPokemonKey === pokemonKey || lastUpdatedPokemonKey === String(pokemon.id)) ? "pokemon-just-updated" : ""}`;
     card.dataset.pokemonKey = pokemonKey;
     card.dataset.displayNumber = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
     card.innerHTML = `
@@ -3988,9 +4076,10 @@ function renderDex() {
 
       <div class="card-actions">
         <button class="favorite-btn ${isFavorite ? "active" : ""}" type="button" title="Favori">${isFavorite ? "⭐" : "☆"}</button>
+        <button class="shiny-owned-btn ${isShinyObtained ? "active" : ""}" type="button" title="Marquer ce Pokémon comme shiny obtenu">${isShinyObtained ? "✨ Shiny" : "☆ Shiny"}</button>
         <a class="info-link" href="${getPokemonInfoUrl(pokemon)}" target="_blank" rel="noopener noreferrer">Infos ↗</a>
-        ${ui.shinyMode.checked && isObtained
-        ? `<button class="lock-btn ${isLocked ? "active" : ""}" type="button">${isLocked ? "🔒 Shiny Lock" : "🔓 Shiny Lock"}</button>`
+        ${(ui.shinyMode.checked && isObtained) || isShinyObtained
+        ? `<button class="lock-btn compact-lock-btn ${isLocked ? "active" : ""}" type="button" title="${isLocked ? "Retirer le Shiny Lock" : "Mettre en Shiny Lock"}" aria-label="${isLocked ? "Retirer le Shiny Lock" : "Mettre en Shiny Lock"}">${isLocked ? "🔒" : "🔓"}</button>`
         : ""}
       </div>
     `;
@@ -3998,6 +4087,11 @@ function renderDex() {
     card.querySelector(".favorite-btn")?.addEventListener("click", event => {
       event.stopPropagation();
       toggleFavorite(pokemon);
+    });
+
+    card.querySelector(".shiny-owned-btn")?.addEventListener("click", event => {
+      event.stopPropagation();
+      toggleShinyObtained(pokemon);
     });
 
     card.querySelectorAll(".dex-source-badge[data-source-game-id]").forEach(button => {
@@ -4032,7 +4126,7 @@ function renderDex() {
 
     card.querySelector(".lock-btn")?.addEventListener("click", event => {
       event.stopPropagation();
-      toggleShinyLock(pokemon.id);
+      toggleShinyLock(pokemon);
     });
 
     let clickTimer;

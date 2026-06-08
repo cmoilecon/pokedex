@@ -6112,3 +6112,182 @@ body.dark .pokemon-available-dex-btn {
   background: rgba(10, 10, 10, 0.78);
   color: #ffffff;
 }
+
+/* =========================================================
+   PATCH : Shiny manuel même hors Shiny Dex
+========================================================= */
+.shiny-owned-btn {
+  flex: 0 0 auto;
+  min-width: 74px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 9px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--text);
+  font-weight: 900;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.shiny-owned-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.shiny-owned-btn.active,
+.card.shiny-obtained .shiny-owned-btn {
+  border-color: rgba(251, 191, 36, 0.95);
+  background: rgba(250, 204, 21, 0.22);
+  color: #facc15;
+  box-shadow:
+    0 0 0 2px rgba(250, 204, 21, 0.18),
+    0 0 14px rgba(250, 204, 21, 0.18);
+}
+
+.card.shiny-obtained .image-zone::after {
+  content: "✨";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(250, 204, 21, 0.9);
+  background: rgba(10, 10, 10, 0.58);
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.20);
+  font-size: 14px;
+}
+
+.card-actions {
+  flex-wrap: wrap;
+}
+
+.card-actions .info-link {
+  flex: 1 1 104px;
+}
+
+body.dark .shiny-owned-btn {
+  background: #181818;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.dark .shiny-owned-btn.active,
+body.dark .card.shiny-obtained .shiny-owned-btn {
+  background: rgba(250, 204, 21, 0.18);
+  color: #fde68a;
+  border-color: rgba(250, 204, 21, 0.90);
+}
+
+@media (max-width: 820px) {
+  .shiny-owned-btn {
+    min-width: 0;
+    min-height: 38px;
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .card-actions {
+    grid-template-columns: auto auto 1fr;
+  }
+
+  .card-actions .lock-btn {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* =========================================================
+   PATCH : Shiny Lock compact à côté d'Infos
+   Objectif : ne plus agrandir les cartes avec un gros bouton en dessous.
+========================================================= */
+.card-actions {
+  display: grid !important;
+  grid-template-columns: 42px minmax(62px, 76px) minmax(0, 1fr) 38px;
+  align-items: stretch;
+  gap: 7px;
+}
+
+.card-actions .favorite-btn,
+.card-actions .shiny-owned-btn,
+.card-actions .info-link,
+.card-actions .compact-lock-btn {
+  min-height: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.card-actions .favorite-btn {
+  width: 42px;
+  min-width: 42px;
+  padding: 0;
+}
+
+.card-actions .shiny-owned-btn {
+  min-width: 0;
+  width: 100%;
+  padding: 6px 5px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.card-actions .info-link {
+  width: 100%;
+  min-width: 0;
+  padding: 7px 8px;
+}
+
+.card-actions .compact-lock-btn {
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.card-actions:not(:has(.compact-lock-btn)) {
+  grid-template-columns: 42px minmax(62px, 76px) minmax(0, 1fr);
+}
+
+@media (max-width: 820px) {
+  .card-actions {
+    grid-template-columns: 38px minmax(54px, 1fr) minmax(62px, 1.2fr) 34px !important;
+    gap: 5px !important;
+  }
+
+  .card-actions:not(:has(.compact-lock-btn)) {
+    grid-template-columns: 38px minmax(54px, 1fr) minmax(62px, 1.2fr) !important;
+  }
+
+  .card-actions .favorite-btn,
+  .card-actions .shiny-owned-btn,
+  .card-actions .info-link,
+  .card-actions .compact-lock-btn {
+    min-height: 36px !important;
+    height: 36px !important;
+    border-radius: 12px;
+  }
+
+  .card-actions .favorite-btn {
+    width: 38px !important;
+    min-width: 38px !important;
+  }
+
+  .card-actions .compact-lock-btn {
+    width: 34px !important;
+    min-width: 34px !important;
+    grid-column: auto !important;
+  }
+
+  .card-actions .shiny-owned-btn {
+    font-size: 10px !important;
+    padding: 4px 3px !important;
+  }
+}

@@ -869,6 +869,262 @@ function openPokemonAvailabilityModal(pokemon) {
   });
 }
 
+function getPokemonNationalNumber(pokemon) {
+  if (!pokemon) return null;
+
+  const directNationalId = Number(pokemon.nationalId || pokemon.nationalDex || pokemon.nationalNumber);
+  if (Number.isInteger(directNationalId) && directNationalId > 0) return directNationalId;
+
+  if (currentGameId === "national") {
+    const nationalCurrentId = Number(pokemon.id);
+    if (Number.isInteger(nationalCurrentId) && nationalCurrentId > 0) return nationalCurrentId;
+  }
+
+  const imageSlug = String(pokemon.imageSlug || "").toLowerCase();
+  const slug = String(pokemon.slug || "").toLowerCase();
+  const speciesSlug = String(pokemon.speciesSlug || "").toLowerCase();
+
+  const exactMatch = nationalPokemons.find(item => {
+    const itemImageSlug = String(item.imageSlug || "").toLowerCase();
+    const itemSlug = String(item.slug || "").toLowerCase();
+    return Boolean(
+      (imageSlug && itemImageSlug && itemImageSlug === imageSlug) ||
+      (slug && itemSlug && itemSlug === slug)
+    );
+  });
+
+  const fallbackMatch = exactMatch || nationalPokemons.find(item => {
+    const itemSlug = String(item.slug || "").toLowerCase();
+    const itemSpeciesSlug = String(item.speciesSlug || "").toLowerCase();
+    return Boolean(
+      (speciesSlug && (itemSlug === speciesSlug || itemSpeciesSlug === speciesSlug)) ||
+      (slug && itemSpeciesSlug && itemSpeciesSlug === slug)
+    );
+  });
+
+  const nationalId = Number(fallbackMatch?.id);
+  return Number.isInteger(nationalId) && nationalId > 0 ? nationalId : null;
+}
+
+function getPokemon3DModelCandidates(pokemon) {
+  const id = getPokemonNationalNumber(pokemon);
+  if (!Number.isFinite(id)) return [];
+
+  const base = "https://raw.githubusercontent.com/Pokemon-3D-api/assets/main/models/opt";
+  const imageSlug = String(pokemon?.imageSlug || pokemon?.slug || "").toLowerCase();
+  const isManualShiny = isPokemonShinyObtained(pokemon);
+  const isShiny = isManualShiny || (ui.shinyMode?.checked && isPokemonObtained(pokemon) && !isPokemonShinyLocked(pokemon));
+
+  const candidates = [];
+  const add = (url, label) => {
+    if (!url || candidates.some(item => item.url === url)) return;
+    candidates.push({ url, label });
+  };
+
+  if (isShiny) add(`${base}/shiny/${id}.glb`, "Shiny 3D");
+
+  // Les formes ne sont pas toutes rangées pareil dans l'API 3D.
+  // On tente plusieurs dossiers, et si aucun modèle ne charge on repasse en image 2D.
+  if (imageSlug.includes("galar")) add(`${base}/galarian/${id}.glb`, "Forme de Galar 3D");
+  if (imageSlug.includes("alola")) add(`${base}/alolan/${id}.glb`, "Forme d'Alola 3D");
+  if (imageSlug.includes("hisui")) add(`${base}/hisuian/${id}.glb`, "Forme de Hisui 3D");
+  if (imageSlug.includes("paldea")) add(`${base}/paldean/${id}.glb`, "Forme de Paldea 3D");
+  if (imageSlug.includes("mega")) add(`${base}/mega/${imageSlug}.glb`, "Méga-évolution 3D");
+  if (imageSlug.includes("origin")) add(`${base}/origin/${imageSlug}.glb`, "Forme origine 3D");
+  if (imageSlug !== String(pokemon?.slug || "").toLowerCase()) add(`${base}/multi/${imageSlug}.glb`, "Forme spéciale 3D");
+
+  add(`${base}/regular/${id}.glb`, "Modèle 3D");
+  return candidates;
+}
+
+function openPokemonImageModal(pokemon) {
+  if (!pokemon) return;
+
+  const name = getPokemonName(pokemon);
+  const imageUrl = getImageUrl(pokemon);
+  const displayNumber = String(getPokemonDisplayNumber(pokemon)).padStart(3, "0");
+  const isShiny = isPokemonShinyObtained(pokemon) || (ui.shinyMode?.checked && isPokemonObtained(pokemon) && !isPokemonShinyLocked(pokemon));
+  const modelCandidates = getPokemon3DModelCandidates(pokemon);
+  const firstModel = modelCandidates[0];
+
+  const html = `
+    <div class="pokemon-image-viewer pokemon-3d-viewer">
+      <div class="pokemon-image-viewer-stage pokemon-3d-stage" id="pokemonImageViewerStage">
+        ${firstModel ? `
+          <model-viewer
+            id="pokemon3DViewerModel"
+            src="${escapeHtml(firstModel.url)}"
+            alt="${escapeHtml(name)} en 3D"
+            camera-controls
+            auto-rotate
+            autoplay
+            shadow-intensity="0.85"
+            exposure="1.05"
+            interaction-prompt="none"
+            ar>
+          </model-viewer>
+          <img id="pokemonImageViewerImg" class="pokemon-3d-fallback-img hidden" src="${imageUrl}" alt="${escapeHtml(name)}" draggable="false">
+        ` : `
+          <img id="pokemonImageViewerImg" src="${imageUrl}" alt="${escapeHtml(name)}" draggable="false">
+        `}
+      </div>
+
+      <div class="pokemon-image-viewer-info">
+        <strong>#${displayNumber} ${escapeHtml(name)}</strong>
+        ${isShiny ? `<span class="pokemon-image-viewer-shiny">✨ Shiny</span>` : ""}
+        ${firstModel ? `<span id="pokemon3DStatus" class="pokemon-3d-status">3D</span>` : `<span class="pokemon-3d-status unavailable">Image 2D</span>`}
+      </div>
+
+      <div class="pokemon-image-viewer-actions">
+        <button class="btn tiny" type="button" data-viewer-rotate="1">Rotation auto</button>
+        <button class="btn tiny" type="button" data-viewer-reset="1">Reset caméra</button>
+        <button class="btn tiny" type="button" data-viewer-3d="1" ${firstModel ? "" : "disabled"}>Modèle 3D</button>
+        <button class="btn tiny" type="button" data-viewer-2d="1">Image 2D</button>
+      </div>
+
+      <p class="pokemon-image-viewer-help">3D : glisse pour tourner, molette/pincement pour zoomer. Si le modèle n’existe pas, le site revient en image 2D.</p>
+    </div>
+  `;
+
+  openGenericModal(`Voir — ${name}`, html);
+
+  const stage = ui.genericModalBody?.querySelector("#pokemonImageViewerStage");
+  const model = ui.genericModalBody?.querySelector("#pokemon3DViewerModel");
+  const image = ui.genericModalBody?.querySelector("#pokemonImageViewerImg");
+  const status = ui.genericModalBody?.querySelector("#pokemon3DStatus");
+  if (!stage || !image) return;
+
+  let candidateIndex = 0;
+  let is2DMode = !model;
+  let rotateY = 0;
+  let rotateX = 0;
+  let scale = 1;
+  let isDragging = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  const set2DMode = (message = "Image 2D") => {
+    is2DMode = true;
+    model?.classList.add("hidden");
+    image.classList.remove("hidden");
+    stage.classList.add("image-fallback-mode");
+    if (status) {
+      status.textContent = message;
+      status.classList.add("unavailable");
+    }
+  };
+
+  const set3DMode = () => {
+    if (!model || modelCandidates.length === 0) {
+      set2DMode("3D indispo");
+      return;
+    }
+
+    is2DMode = false;
+    image.classList.add("hidden");
+    model.classList.remove("hidden");
+    stage.classList.remove("image-fallback-mode");
+
+    if (status) {
+      status.textContent = modelCandidates[candidateIndex]?.label || "3D";
+      status.classList.remove("unavailable");
+    }
+  };
+
+  const tryNext3DModel = () => {
+    if (!model) return set2DMode();
+    candidateIndex += 1;
+    const next = modelCandidates[candidateIndex];
+    if (!next) {
+      set2DMode("3D indispo");
+      return;
+    }
+    if (status) status.textContent = next.label || "3D";
+    model.src = next.url;
+  };
+
+  if (model && status) {
+    status.textContent = firstModel?.label || "3D";
+    model.addEventListener("error", tryNext3DModel);
+    model.addEventListener("load", () => {
+      if (is2DMode) return;
+      set3DMode();
+    });
+  }
+
+  const syncTransform = () => {
+    image.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+  };
+
+  const clampScale = value => Math.max(0.75, Math.min(2.4, value));
+
+  stage.addEventListener("pointerdown", event => {
+    if (!is2DMode) return;
+    isDragging = true;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    stage.setPointerCapture?.(event.pointerId);
+    stage.classList.add("is-dragging");
+  });
+
+  stage.addEventListener("pointermove", event => {
+    if (!isDragging || !is2DMode) return;
+
+    const dx = event.clientX - lastX;
+    const dy = event.clientY - lastY;
+    lastX = event.clientX;
+    lastY = event.clientY;
+
+    rotateY += dx * 0.35;
+    rotateX = Math.max(-18, Math.min(18, rotateX - dy * 0.22));
+    syncTransform();
+  });
+
+  const stopDrag = event => {
+    isDragging = false;
+    stage.releasePointerCapture?.(event.pointerId);
+    stage.classList.remove("is-dragging");
+  };
+
+  stage.addEventListener("pointerup", stopDrag);
+  stage.addEventListener("pointercancel", stopDrag);
+  stage.addEventListener("wheel", event => {
+    if (!is2DMode) return;
+    event.preventDefault();
+    scale = clampScale(scale + (event.deltaY < 0 ? 0.08 : -0.08));
+    syncTransform();
+  }, { passive: false });
+
+  ui.genericModalBody?.querySelector("[data-viewer-rotate]")?.addEventListener("click", () => {
+    if (!model || is2DMode) return;
+    model.autoRotate = !model.autoRotate;
+  });
+
+  ui.genericModalBody?.querySelector("[data-viewer-3d]")?.addEventListener("click", () => {
+    set3DMode();
+  });
+
+  ui.genericModalBody?.querySelector("[data-viewer-2d]")?.addEventListener("click", () => {
+    set2DMode("Image 2D");
+  });
+
+  ui.genericModalBody?.querySelector("[data-viewer-reset]")?.addEventListener("click", () => {
+    if (model && !is2DMode) {
+      model.cameraOrbit = "0deg 75deg auto";
+      model.fieldOfView = "30deg";
+      model.autoRotate = true;
+      return;
+    }
+
+    rotateY = 0;
+    rotateX = 0;
+    scale = 1;
+    syncTransform();
+  });
+
+  syncTransform();
+}
+
 function getProfileDexState(profile, gameId) {
   profile.dexData ||= {};
 
@@ -4062,6 +4318,7 @@ function renderDex() {
     card.innerHTML = `
       <div class="image-zone">
         <img src="${getImageUrl(pokemon)}" alt="${escapeHtml(name)}" loading="lazy">
+        <button class="pokemon-image-zoom-btn" type="button" title="Voir en 3D / agrandir" aria-label="Voir ${escapeHtml(name)} en 3D ou en grand">3D</button>
         ${renderPokemonAvailabilityButton(pokemon)}
       </div>
 
@@ -4122,6 +4379,12 @@ function renderDex() {
       event.preventDefault();
       event.stopPropagation();
       openPokemonAvailabilityModal(pokemon);
+    });
+
+    card.querySelector(".pokemon-image-zoom-btn")?.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      openPokemonImageModal(pokemon);
     });
 
     card.querySelector(".lock-btn")?.addEventListener("click", event => {

@@ -6291,3 +6291,208 @@ body.dark .card.shiny-obtained .shiny-owned-btn {
     padding: 4px 3px !important;
   }
 }
+
+/* =========================================================
+   PATCH : Agrandir l'image Pokémon
+========================================================= */
+.pokemon-image-zoom-btn {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 3;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(147, 197, 253, 0.92);
+  border-radius: 999px;
+  background: rgba(10, 20, 30, 0.72);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.18);
+}
+
+.pokemon-image-zoom-btn:hover,
+.pokemon-image-zoom-btn:focus-visible {
+  border-color: rgba(147, 197, 253, 1);
+  box-shadow:
+    0 0 0 2px rgba(96, 165, 250, 0.16),
+    0 0 16px rgba(96, 165, 250, 0.26);
+  outline: none;
+}
+
+.card.shiny-obtained .pokemon-image-zoom-btn {
+  bottom: 8px;
+}
+
+body.dex-mini-mode .pokemon-image-zoom-btn {
+  display: none !important;
+}
+
+.pokemon-image-viewer {
+  display: grid;
+  gap: 14px;
+  place-items: center;
+  padding: 4px 0 2px;
+}
+
+.pokemon-image-viewer-stage {
+  width: min(560px, 82vw);
+  height: min(520px, 62vh);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid rgba(74, 222, 128, 0.55);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(74, 222, 128, 0.18), transparent 36%),
+    radial-gradient(circle at 20% 18%, rgba(96, 165, 250, 0.12), transparent 28%),
+    rgba(10, 20, 16, 0.62);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.pokemon-image-viewer-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.pokemon-image-viewer-stage img {
+  max-width: 82%;
+  max-height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 22px rgba(0, 0, 0, 0.40));
+  transform-origin: center center;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+.pokemon-image-viewer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.pokemon-image-viewer-shiny {
+  padding: 4px 9px;
+  border: 1px solid rgba(250, 204, 21, 0.85);
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.pokemon-image-viewer-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pokemon-image-viewer-help {
+  margin: -4px 0 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.72;
+}
+
+body.dark .pokemon-image-zoom-btn {
+  background: rgba(8, 12, 18, 0.80);
+  color: #ffffff;
+}
+
+@media (max-width: 820px) {
+  .pokemon-image-zoom-btn {
+    width: 26px;
+    height: 26px;
+    left: 7px;
+    bottom: 7px;
+    font-size: 12px;
+  }
+
+  .pokemon-image-viewer-stage {
+    width: min(92vw, 520px);
+    height: min(56vh, 460px);
+    border-radius: 20px;
+  }
+
+  .pokemon-image-viewer-info {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   PATCH : vrai modèle 3D Pokémon
+========================================================= */
+.pokemon-image-zoom-btn {
+  border-color: rgba(74, 222, 128, 0.92) !important;
+  background: rgba(8, 28, 20, 0.78) !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pokemon-image-zoom-btn:hover,
+.pokemon-image-zoom-btn:focus-visible {
+  border-color: rgba(74, 222, 128, 1) !important;
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.18),
+    0 0 16px rgba(74, 222, 128, 0.28) !important;
+}
+
+.pokemon-3d-stage model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  background: transparent;
+}
+
+.pokemon-3d-stage .pokemon-3d-fallback-img,
+.pokemon-3d-stage.image-fallback-mode img {
+  max-width: 82%;
+  max-height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 22px rgba(0, 0, 0, 0.40));
+  transform-origin: center center;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+.pokemon-3d-status {
+  padding: 4px 9px;
+  border: 1px solid rgba(74, 222, 128, 0.85);
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.14);
+  color: #4ade80;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.pokemon-3d-status.unavailable {
+  border-color: rgba(251, 191, 36, 0.85);
+  background: rgba(251, 191, 36, 0.12);
+  color: #facc15;
+}
+
+.pokemon-3d-viewer .pokemon-image-viewer-stage {
+  cursor: default;
+}
+
+.pokemon-3d-viewer .pokemon-image-viewer-stage.image-fallback-mode {
+  cursor: grab;
+}
+
+.pokemon-3d-viewer .pokemon-image-viewer-stage.image-fallback-mode.is-dragging {
+  cursor: grabbing;
+}
